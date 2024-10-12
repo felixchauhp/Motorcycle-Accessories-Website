@@ -23,8 +23,20 @@
   </head>
   <body>
     <style>
+      .promotions {
+        display: flex;
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        height: 100vh; /* Chiều cao đầy đủ của viewport */
+        }
       #promotionForm {
         margin-bottom: 20px;
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        max-width: 500px; /* Giới hạn chiều rộng tối đa */
+        padding: 20px; /* Khoảng cách bên trong */
+        border: 1px solid #ccc; /* Viền cho form */
+        border-radius: 8px; /* Bo góc cho form */
+        background-color: #fff; /* Màu nền */
       }
   
       #promotionForm table {
@@ -43,18 +55,35 @@
   
       #promotionForm input[type="text"],
       #promotionForm input[type="number"],
-      #promotionForm input[type="date"],
       #promotionForm textarea,
       #promotionForm select {
         width: 100%;
-        padding: 8px;
+        padding: 6px;
         border: 1px solid #ccc;
         border-radius: 4px;
         margin-bottom: 15px;
       }
+      #promotion-dates {
+            display: flex;
+            gap: 50px; /* Khoảng cách giữa các ô */
+            margin-bottom: 15px;
+        }
+
+      #promotion-dates input[type="date"] {
+            width: 100%; /* Chiếm toàn bộ chiều rộng của ô chứa */
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0; /* Không có margin */
+        }
+      .radio-group {
+            display: flex;
+            gap: 20px; /* Khoảng cách giữa các ô tròn */
+            margin-bottom: 0;
+      }
   
       #promotionForm button[type="submit"] {
-        background-color: #28a745; /* Màu xanh lá */
+        background-color: var(--first-color); /* Màu xanh lá */
         color: white;
         padding: 10px 15px;
         border: none;
@@ -63,8 +92,13 @@
       }
   
       #promotionForm button[type="submit"]:hover {
-        background-color: #218838; /* Màu xanh đậm hơn khi hover */
+        background-color: #054c2a; /* Màu xanh đậm hơn khi hover */
       }
+      /* Ẩn các ô nhập liệu theo mặc định */
+      .percent-input, .amount-input {
+        display: none;
+      }
+
     </style>
     <!--=============== HEADER ===============-->
     <nav class="nav container">
@@ -82,7 +116,7 @@
           </a>
           <div class="nav__close" id="nav-close">
             <i class="fi fi-rs-cross-small"></i>
-          </div>
+            </div>
         </div>
         <ul class="nav__list">
           <li class="nav__item">
@@ -109,43 +143,59 @@
       <section class="promotions container section--lg">
         <!-- Button to add a new promotion -->
         <div id="promotionForm">
-          <h2>Add promotion</h2>
+          <h2>Thêm mã khuyến mãi</h2>
+          <br>
           <form id="add-promotion">
-            <label for="promo-name">Name:</label>
+            <label for="promo-name">Tên mã:</label>
+            <input type="text" id="promo-name" required />
+
+            <label for="promo-code">Mã khuyến mãi:</label>
             <input type="text" id="promo-name" required />
       
-            <label for="start-date">Start date:</label>
-            <input type="date" id="start-date" required />
-      
-            <label for="end-date">End date:</label>
-            <input type="date" id="end-date" required />
-      
-            <label for="discount">Discount percentage:</label>
+            <div id="promotion-dates">
+              <div>
+                  <label for="promotion-start-date">Ngày bắt đầu:</label>
+                  <input type="date" id="promotion-start-date" required />
+              </div>
+              <div>
+                  <label for="promotion-end-date">Ngày kết thúc:</label>
+                  <input type="date" id="promotion-end-date" required />
+              </div>
+            </div>
+
+            <div class="radio-group">
+              <label>Giảm giá:</label>
+              <label>
+                <input type="radio" name="discount-type" value="percentage" checked />Theo phần trăm
+              </label>
+              <label>
+                <input type="radio" name="discount-type" value="amount" />Theo số tiền
+              </label>
+            </div>
+
+            <div class="percent-input">
+              <label for="percent-discount">Giá trị giảm (%):</label>
+              <input type="number" id="percent-discount" required />
+            </div>
+
+            <div class="amount-input">
+              <label for="amount-discount">Giá trị giảm (VNĐ):</label>
+              <input type="number" id="amount-discount" required />
+            </div>
+
+            <label for="discount">Giá trị đơn hàng tối thiểu:</label>
+            <input type="number" id="discount" required />
+
+            <label for="discount">Số tiền giảm tối đa:</label>
             <input type="number" id="discount" required />
       
-            <label for="quantity">Quantity:</label>
+            <label for="quantity">Số lượng:</label>
             <input type="number" id="quantity" required />
-      
-            <button type="submit">Add</button>
+            <br>
+            <button type="submit">Thêm</button>
           </form>
         </div>
-      
-      <script>
-        document.getElementById('add-promoitont-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
 
-            // Lấy dữ liệu sản phẩm
-            const name = document.getElementById('promotion-name').value;
-            const info = document.getElementById('promotion-info').value;
-            const quantity = document.getElementById('promotion-quantity').value;
-            const price = document.getElementById('promotion-price').value;
-            const image = document.getElementById('promotiont-image').files[0];
-
-            // Tại đây bạn có thể thực hiện một hàm để lưu dữ liệu này vào danh sách sản phẩm
-            alert('Mã đã được thêm thành công!');
-            window.location.href = 'discount.html'; // Điều chỉnh URL nếu cần
-        });
-    </script>
     </section>
     </main>
       <!--=============== FOOTER ===============-->
