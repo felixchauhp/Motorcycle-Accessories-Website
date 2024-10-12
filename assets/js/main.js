@@ -112,3 +112,28 @@ tabs.forEach((tab) => {
     tab.classList.add("active-tab");
   });
 });
+/*=============== Nút lựa chọn % hay số tiền của trang thêm 1 mã ===============*/
+function toggleInput() {
+  const percentInput = document.querySelector('.percent-input');
+  const amountInput = document.querySelector('.amount-input');
+  const discountType = document.querySelector('input[name="discount-type"]:checked').value;
+
+  if (discountType === 'percentage') {
+      percentInput.style.display = 'block';
+      amountInput.style.display = 'none';
+  } else {
+      percentInput.style.display = 'none';
+      amountInput.style.display = 'block';
+  }
+}
+
+// Khởi tạo trạng thái hiển thị ban đầu
+document.addEventListener('DOMContentLoaded', () => {
+  toggleInput();
+
+  // Thêm sự kiện để theo dõi sự thay đổi
+  const radioButtons = document.querySelectorAll('input[name="discount-type"]');
+  radioButtons.forEach(radio => {
+      radio.addEventListener('change', toggleInput);
+  });
+});
