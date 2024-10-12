@@ -23,12 +23,21 @@
   </head>
   <body>
     <style>
+      .products {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            height: 100vh; /* Chiều cao đầy đủ của viewport */
+        }
       #productForm {
         margin-bottom: 20px;
-      }
-      #productionForm table {
-        width: 100%;
-        border-collapse: collapse;
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        max-width: 600px; /* Giới hạn chiều rộng tối đa */
+        padding: 20px; /* Khoảng cách bên trong */
+        border: 1px solid #ccc; /* Viền cho form */
+        border-radius: 8px; /* Bo góc cho form */
+        background-color: #fff; /* Màu nền */
+        overflow: hidden; /* Ẩn phần tràn ra ngoài */
       }
   
       #productForm h2 {
@@ -43,18 +52,49 @@
       #productForm input[type="text"],
       #productForm input[type="number"],
       #productForm input[type="file"],
-      #productForm input[type="date"],
       #productForm textarea,
       #productForm select {
         width: 100%;
-        padding: 8px;
+        padding: 6px;
         border: 1px solid #ccc;
         border-radius: 4px;
         margin-bottom: 15px;
+        box-sizing: border-box; /* Bao gồm padding và border trong kích thước */
       }
+      #product-info {
+            height: 100px; /* Chiều cao cố định cho textarea */
+            resize: none; /* Ngăn người dùng thay đổi kích thước */
+        }
+      #product-prices {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        #product-prices div {
+            flex: 1; /* Chiếm đều không gian */
+            margin-right: 10px; /* Khoảng cách giữa các cột */
+        }
+
+        #product-prices div:last-child {
+            margin-right: 0; /* Không có margin cho cột cuối cùng */
+        }
+      
+      #product-dates {
+            display: flex;
+            gap: 45px;
+            margin-bottom: 15px;
+        }
+
+      #product-dates input[type="date"] {
+            width: 100%; /* Chiếm toàn bộ chiều rộng của ô chứa */
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0; /* Không có margin */
+        }
   
       #productForm button[type="submit"] {
-        background-color: #28a745;
+        background-color: var(--first-color);
         color: white;
         padding: 10px 15px;
         border: none;
@@ -63,7 +103,7 @@
       }
   
       #productForm button[type="submit"]:hover {
-        background-color: #218838;
+        background-color: #054c2a;
       }
     </style>
     <!--=============== HEADER ===============-->
@@ -109,37 +149,49 @@
       <section class="products container section--lg">
         <!-- Button to add a new product -->
         <div id="productForm">
-          <h2>Add Product</h2>
+          <h2>Thêm sản phẩm</h2>
+          <br>
           <form id="add-product">
-            <label for="product-name">Name:</label>
+            <label for="product-name">Tên sản phẩm:</label>
             <input type="text" id="product-name" required />
       
-            <label for="product-info">Information:</label>
+            <label for="product-info">Thông tin sản phẩm:</label>
             <textarea id="product-info" required></textarea>
       
-            <label for="product-quantity">Quantity:</label>
+            <label for="product-quantity">Số lượng:</label>
             <input type="number" id="product-quantity" required />
       
-            <label for="product-price">Origianl price:</label>
-            <input type="number" id="product-original-price" required />
-   
-            <label for="product-original-price">Product price:</label>
-            <input type="number" id="product-price" required />
+            <div id="product-prices">
+              <div>
+                <label for="product-original-price">Giá gốc:</label>
+                <input type="number" id="product-original-price" required />
+              </div>
+              <div>
+                <label for="product-price">Giá bán:</label>
+                <input type="number" id="product-price" required />
+              </div>
+            </div>
 
-
-            <label for="product-discount-price">Discount price:</label>
-            <input type="number" id="product-discount-price" required />
-
-            <label for="promotion-start-date">Promotion start date:</label>
-            <input type="date" id="promotion-start-date" required />
-
-            <label for="promotion-end-date">Promotion end date:</label>
-            <input type="date" id="promotion-end-date" required />
+            <div id="product-dates">
+              <div>
+                <label for="product-discount-price">Giá khuyến mãi:</label>
+                <input type="number" id="product-discount-price" required />
+              </div>
+              <div>
+                  <label for="product-start-date">Ngày bắt đầu:</label>
+                  <input type="date" id="product-start-date" required />
+              </div>
+              <div>
+                  <label for="product-end-date">Ngày kết thúc:</label>
+                  <input type="date" id="promotion-end-date" required />
+              </div>
+            </div>
+            
       
-            <label for="product-image">Product image:</label>
-            <input type="file" id="product-image" accept="image/*" required />
-      
-            <button type="submit">Add</button>
+            <label for="product-image">Ảnh sản phẩm (tối đa 2):</label>
+            <input type="file" id="product-image" accept="image/*" multiple required />
+            <br>
+            <button type="submit">Thêm</button>
           </form>
         </div>
       
@@ -159,6 +211,18 @@
             window.location.href = 'productManage.html'; // Điều chỉnh URL nếu cần
         });
       </script>
+      
+      
+      <script>
+        function validateForm() {
+            const fileInput = document.getElementById('product-image');
+            if (fileInput.files.length > 2) {
+                alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
+                return false;
+            }
+            return true;
+        }
+    </script>
     </main>
 
     <!--=============== FOOTER ===============-->
