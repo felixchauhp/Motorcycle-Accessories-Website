@@ -24,12 +24,15 @@
   <body>
   
     <style>
-      .add-discount-btn {
-          margin-bottom: 20px;
+
+      .add-discount-btn .button i {
+          font-size: 14px; /* Kích thước biểu tượng */
+          margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
       }
-  
+
       .add-discount-btn .button {
-          background-color: #28a745; /* Màu nền */
+          font-size: 16px; /* Kích thước chữ */
+          background-color: var(--first-color); /* Màu nền */
           color: white; /* Màu chữ */
           padding: 10px 20px; /* Khoảng cách bên trong */
           border-radius: 4px; /* Bo tròn góc */
@@ -38,8 +41,41 @@
       }
   
       .add-discount-btn .button:hover {
-          background-color: #218838; /* Màu nền khi di chuột qua */
+          background-color: #054c2a; /* Màu nền khi di chuột qua */
       }
+
+    .discount-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+}
+
+    .discount-table th, .discount-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+}
+
+    .discount-table th {
+        background-color: #f9f9f9;
+}
+    .discount-button {
+    background-color: var(--first-color); /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 5px 20px; /* Khoảng cách bên trong */
+    border-radius: 4px; /* Bo tròn góc */
+    text-decoration: none; /* Bỏ gạch chân */
+    display: inline-block; /* Để nút nằm trên cùng một dòng */
+}
+
+    .discount-button:hover {
+    background-color: #054c2a; /* Màu nền khi di chuột qua */
+}
+    .total-promo {
+      margin-top: 10px; /* Khoảng cách với nút thêm mã khuyến mãi */
+      font-size: 16px; /* Kích thước chữ */
+      color: #333; /* Màu chữ */
+}
   </style>
   
     
@@ -84,119 +120,46 @@
       <!--=============== Promotion Management ===============-->
       <section class="products container section--lg">
         <div class="add-discount-btn">
-          <a href="add-Discount.html" class="button">Add new promotion</a>
+          <a href="add-Discount.html" class="button">
+              <i class="fi fi-rs-plus"></i> Thêm 1 mã khuyến mãi mới
+          </a>
           <br>
-        <div class="products__container grid">
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="assets/img/product-1-1.jpg"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="assets/img/product-1-2.jpg"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-              <a href="#" class="action__btn" aria-label="Edit">
-                  <i class="fi fi-rs-edit"></i> 
-              </a>
-              <a href="#" class="action__btn" aria-label="Delete">
-                  <i class="fi fi-rs-trash"></i> 
-              </a>
-              </div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Discount Code</span>
-              <a href="details.html">
-                <h3 class="product__title">Big deal 10/10 </h3>
-              </a>
-              <div class="product__quantity">
-                <p>Available quantity: <span id="available-quantity">50</span></p>
-              </div>
-            </div> 
-          </div>
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="assets/img/product-2-1.jpg"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="assets/img/product-2-2.jpg"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-              <a href="#" class="action__btn" aria-label="Edit">
-                  <i class="fi fi-rs-edit"></i> 
-              </a>
-              <a href="#" class="action__btn" aria-label="Delete">
-                  <i class="fi fi-rs-trash"></i> 
-              </a>
-              </div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Discount code</span>
-              <a href="details.html">
-                <h3 class="product__title">Sale 50%</h3>
-              </a>
-              <div class="product__quantity">
-                <p>Available quantity: <span id="available-quantity">50</span></p>
-              </div>
-            </div> 
-          </div>
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.html" class="product__images">
-                <img
-                  src="assets/img/product-3-1.jpg"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="assets/img/product-3-2.jpg"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-              <a href="#" class="action__btn" aria-label="Edit">
-                  <i class="fi fi-rs-edit"></i> 
-              </a>
-              <a href="#" class="action__btn" aria-label="Delete">
-                  <i class="fi fi-rs-trash"></i> 
-              </a>
-              </div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Discount code</span>
-              <a href="details.html">
-                <h3 class="product__title">Sale 70%</h3>
-              </a>
-              <div class="product__quantity">
-                <p>Available quantity: <span id="available-quantity">50</span></p>
-              </div>
-            </div> 
-          </div>
-        </div>
-        <ul class="pagination">
-          <li><a href="#" class="pagination__link active">01</a></li>
-          <li><a href="#" class="pagination__link">02</a></li>
-          <li><a href="#" class="pagination__link">03</a></li>
-          <li><a href="#" class="pagination__link">...</a></li>
-          <li><a href="#" class="pagination__link">16</a></li>
-          <li><a href="#" class="pagination__link icon">
-            <i class="fi-rs-angle-double-small-right"></i>
-          </a></li>
-        </ul>
+      </div>
+      <div class="total-promo">
+        <span id="promo-count">1</span> mã khuyến mãi
+        <span id="no-promo-message" style="display: none;">0 mã giảm giá</span>
+    </div>
+    
+    
+    
+    
+    
+    <table class="discount-table">
+          <thead>
+            <tr>
+              <th>Tên mã</th>
+              <th>Mã code</th>
+              <th>Số lượng</th>
+              <th>Giảm bao nhiêu</th>
+              <th>Khoảng thời gian áp dụng</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="promo-table-body">
+            <tr>
+                <td>Big deal 10/10</td>
+                <td>BD1010</td>
+                <td>50</td>
+                <td>20%</td>
+                <td>01/10/2024 - 10/10/2024</td>
+                <td>
+                    <button class="discount-button" onclick="EditPromo()">Chỉnh sửa</button>
+                    <button class="discount-button" onclick="deletePromo(this)">Xóa</button>
+                </td>
+            </tr>
+            <!-- Thêm các hàng khác ở đây -->
+        </tbody>
+        </table>
       </section>
     </main>
 
