@@ -1686,14 +1686,21 @@ table {
 
 .placed__order-table thead tr th {
   color: var(--title-color);
+
   text-align: left;
 }
 
 .placed__order-table thead tr th,
 .placed__order-table tbody tr td {
   border: 1px solid var(--border-color-alt);
-  padding: 0.5rem;
-  font-size: var(--small-font-size);
+  color: var(--first-color);
+  text-align: center;
+  padding: 12px 15px;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+  color: teal;
 }
 
 .view__order,
@@ -2128,11 +2135,13 @@ table {
 .placed__order-table td button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: hsl(155, 20%, 67%);
+  margin-bottom: 10px;
+  background-color: hsl(176, 88%, 27%);
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  font-weight: 600;
 }
 .order-actions button {
   margin-right: 10px;
@@ -2140,14 +2149,16 @@ table {
   padding: 10px 15px;
   background-color: hsl(176, 88%, 27%);
   color: white;
-  border: none;
+  border: 2px solid teal;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .placed__order-table td button:hover {
-  transform: scale(110%);
-  background-color: hsl(176, 88%, 27%);
+  background-color: #fff;
+  color: hsl(176, 88%, 27%);
+  font-weight: 600;
+  border-color: hsl(176, 88%, 27%);
 }
 .order-actions button:hover {
   transform: scale(110%);

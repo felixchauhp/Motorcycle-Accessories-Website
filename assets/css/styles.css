@@ -741,7 +741,7 @@ table {
 }
 
 .deals__item:nth-child(2) {
-  background-image: url(../img/salebg2.png)
+  background-image: url(../img/salebg2.png);
 }
 
 .deals__item {
