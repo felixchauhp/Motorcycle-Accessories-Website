@@ -2125,3 +2125,41 @@ table {
     max-width: 270px;
   }
 }
+/* Style for the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 4px;
+  min-width: 150px;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu ul li:last-child {
+  border-bottom: none;
+}
+
+/* Show dropdown menu when icon is clicked */
+.show {
+  display: block;
+}
+

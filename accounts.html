@@ -64,16 +64,13 @@
                 <a href="shop.html" class="nav__link">Sản phẩm</a>
               </li>
               <li class="nav__item">
-                <a href="accounts.html" class="nav__link">Về tôi</a>
-              </li>
-              <li class="nav__item">
                 <a href="compare.html" class="nav__link">Đơn hàng</a>
               </li>
               <li class="nav__item">
                 <a href="login.html" class="nav__link">Đăng nhập</a>
               </li>
               <li class="nav__item">
-                <a href="register.html" class="nav__link">Đăng ký</a>
+                <a href="login.html" class="nav__link">Đăng ký</a>
               </li>
             </ul>
             <div class="header__search">
@@ -96,13 +93,23 @@
               <img src="assets/img/icon-cart.svg" alt="" />
               <span class="count">3</span>
             </a>
+            <a href="accounts.html" class="header__action-btn" id="user-icon" title="User">
+              <img src="assets/img/icon-user.svg" alt="" />
+            </a>
+            <div class="dropdown-menu" id="user-dropdown">
+              <ul>
+                  <li><a href="login.html">Đăng nhập</a></li>
+                  <li><a href="register.html">Đăng ký</a></li>
+                  <li><a href="account.html">Cá nhân</a></li>
+              </ul>
+          </div>
+                 
             <div class="header__action-btn nav__toggle" id="nav-toggle">
               <img src="./assets//img/menu-burger.svg" alt="">
             </div>
           </div>
         </nav>
       </header>
-
     <!--=============== MAIN ===============-->
     <main class="main">
       <!--=============== BREADCRUMB ===============-->
@@ -186,16 +193,26 @@
               </div>
             </div>
             <div class="tab__content" content id="update-profile">
-              <h3 class="tab__header">Update Profile</h3>
+              <h3 class="tab__header">Cập nhật thông tin</h3>
               <div class="tab__body">
                 <form class="form grid">
                   <input
                     type="text"
-                    placeholder="Username"
+                    placeholder="Họ và tên khách hàng"
+                    class="form__input"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Số điện thoại"
+                    class="form__input"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Địa chỉ email"
                     class="form__input"
                   />
                   <div class="form__btn">
-                    <button class="btn btn--md">Save</button>
+                    <button class="btn btn--md">Lưu</button>
                   </div>
                 </form>
               </div>
@@ -209,8 +226,9 @@
                   09 Nguyễn Thị Đinh, phường An Phú, TP. Thủ Đức <br />
                   TP. Hồ Chí Minh
                 </address>
-                <br>-----------
-                <a href="#" class="edit">Thay đổi</a>
+                <div class="form__btn">
+                  <button class="btn btn--md">Thay đổi</button>
+                </div>
               </div>
             </div>
             <div class="tab__content" content id="change-password">
