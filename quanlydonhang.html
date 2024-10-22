@@ -23,64 +23,39 @@
   </head>
   <body>
     <!--=============== HEADER ===============-->
-    <header class="header">
-      <div class="header__top">
-        <div class="header__container container">
-          <div class="header__contact">
-            <span>(+84) - 9110 - 82004</span>
-            <span>HCM city</span>
-          </div>
-          <p class="header__alert-news">GEAR STORE - WORK HARD PLAY HARD</p>
-          <a href="login-register.html" class="header__top-action">
-            Log In / Sign Up
+    <nav class="nav container">
+      <a href="index-manage.html" class="nav__logo">
+        <img
+          class="nav__logo-img"
+          src="assets/img/logo.png"
+          alt="website logo"
+        />
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu-top">
+          <a href="index-manage.html" class="nav__menu-logo">
+            <img src="./assets/img/logo.png" alt="">
           </a>
-        </div>
-      </div>
-
-      <nav class="nav container">
-        <a href="index.html" class="nav__logo">
-          <img
-            class="nav__logo-img"
-            src="assets/img/logo.svg"
-            alt="website logo"
-          />
-        </a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="index.html" class="nav__link">Home</a>
-            </li>
-            <li class="nav__item">
-              <a href="shop.html" class="nav__link">Shop</a>
-            </li>
-            <li class="nav__item">
-              <a href="accounts.html" class="nav__link">My Account</a>
-            </li>
-            <li class="nav__item">
-              <a href="compare.html" class="nav__link">Compare</a>
-            </li>
-            <li class="nav__item">
-              <a href="login-register.html" class="nav__link">Login</a>
-            </li>
-            <li class="nav__item">
-              <a href="quanlydonhang.html" class="nav__link active-link"
-                >Manage</a
-              >
-            </li>
-          </ul>
-          <div class="header__search">
-            <input
-              type="text"
-              placeholder="Search For Items..."
-              class="form__input"
-            />
-            <button class="search__btn">
-              <img src="assets/img/search.png" alt="search icon" />
-            </button>
+          <div class="nav__close" id="nav-close">
+            <i class="fi fi-rs-cross-small"></i>
           </div>
         </div>
-      </nav>
-    </header>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="productManage.html" class="nav__link">Quản lý Sản phẩm</a>
+          </li>
+          <li class="nav__item">
+            <a href="quanlydonhang.html" class="nav__link">Quản lý Đơn hàng</a>
+          </li>
+          <li class="nav__item">
+            <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
+          </li>
+          <li class="nav__item">
+            <a href="accounts-manager.html" class="nav__link">Thông tin</a>
+          </li>
+        </ul>
+    </nav>
+  </header>
 
     <!--=============== MAIN ===============-->
     <main class="main">
@@ -373,30 +348,6 @@
           </div>
         </div>
       </section>
-      <!--=============== NEWSLETTER ===============-->
-      <section class="newsletter section">
-        <div class="newsletter__container container grid">
-          <h3 class="newsletter__title flex">
-            <img
-              src="./assets/img/icon-email.svg"
-              alt=""
-              class="newsletter__icon"
-            />
-            Sign in to Newsletter
-          </h3>
-          <p class="newsletter__description">
-            ...and receive $25 coupon for first shopping.
-          </p>
-          <form action="" class="newsletter__form">
-            <input
-              type="text"
-              placeholder="Enter Your Email"
-              class="newsletter__input"
-            />
-            <button type="submit" class="newsletter__btn">Subscribe</button>
-          </form>
-        </div>
-      </section>
     </main>
 
     <!--=============== FOOTER ===============-->
@@ -404,20 +355,20 @@
       <div class="footer__container grid">
         <div class="footer__content">
           <a href="index.html" class="footer__logo">
-            <img src="./assets/img/logo.svg" alt="" class="footer__logo-img" />
+            <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
           </a>
-          <h4 class="footer__subtitle">Contact</h4>
+          <h4 class="footer__subtitle">Thông tin liên hệ</h4>
           <p class="footer__description">
-            <span>Address:</span> 13 Tlemcen Road, Street 32, Beb-Wahren
+            <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
           </p>
           <p class="footer__description">
-            <span>Phone:</span> +01 2222 365 /(+91) 01 2345 6789
+            <span>Hotline:</span> +84 001 929 992
           </p>
           <p class="footer__description">
-            <span>Hours:</span> 10:00 - 18:00, Mon - Sat
+            <span>Email:</span> contact@motorcycle.vn
           </p>
           <div class="footer__social">
-            <h4 class="footer__subtitle">Follow Me</h4>
+            <h4 class="footer__subtitle">MotorCycle đã có mặt trên:</h4>
             <div class="footer__links flex">
               <a href="#">
                 <img
@@ -458,29 +409,25 @@
           </div>
         </div>
         <div class="footer__content">
-          <h3 class="footer__title">Address</h3>
+          <h3 class="footer__title">Thông tin chi tiết</h3>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link">About Us</a></li>
-            <li><a href="#" class="footer__link">Delivery Information</a></li>
-            <li><a href="#" class="footer__link">Privacy Policy</a></li>
-            <li><a href="#" class="footer__link">Terms & Conditions</a></li>
-            <li><a href="#" class="footer__link">Contact Us</a></li>
-            <li><a href="#" class="footer__link">Support Center</a></li>
+            <li><a href="#" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="#" class="footer__link">Chính sách giao hàng</a></li>
+            <li><a href="#" class="footer__link">Điều khoản bảo mật</a></li>
+            <li><a href="#" class="footer__link">Quy định cung cấp dịch vụ</a></li>
           </ul>
         </div>
         <div class="footer__content">
-          <h3 class="footer__title">My Account</h3>
+          <h3 class="footer__title">Tải khoản của tôi</h3>
           <ul class="footer__links">
-            <li><a href="#" class="footer__link">Sign In</a></li>
-            <li><a href="#" class="footer__link">View Cart</a></li>
-            <li><a href="#" class="footer__link">My Wishlist</a></li>
-            <li><a href="#" class="footer__link">Track My Order</a></li>
-            <li><a href="#" class="footer__link">Help</a></li>
-            <li><a href="#" class="footer__link">Order</a></li>
+            <li><a href="#" class="footer__link">Đăng nhập</a></li>
+            <li><a href="#" class="footer__link">Xem giỏ hàng</a></li>
+            <li><a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a></li>
+            <li><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
           </ul>
         </div>
         <div class="footer__content">
-          <h3 class="footer__title">Secured Payed Gateways</h3>
+          <h3 class="footer__title">Đối tác thanh toán</h3>
           <img
             src="./assets/img/payment-method.png"
             alt=""
@@ -489,8 +436,8 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p class="copyright">&copy; 2024 Evara. All right reserved</p>
-        <span class="designer">Designer by Crypticalcoder</span>
+        <p class="copyright">&copy; 2024. All right reserved</p>
+        <span class="designer">Website created by Group 4</span>
       </div>
     </footer>
 
