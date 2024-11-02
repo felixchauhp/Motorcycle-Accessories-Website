@@ -1,21 +1,21 @@
 ﻿Mã số nhân viên,Họ và tên lót,Tên,Giới tính,Ngày sinh,Email,Số điện thoại,Địa chỉ,Ca làm việc,Chức vụ,Trạng thái,Ngày bắt đầu,Mức lương,Mã số tài khoản (đăng nhập),Tên tài khoản đăng nhập,Mật khẩu
-EMP001,Nguyễn Văn,An,Nam,1990-05-15,an.nguyen@motorcycle.vn,0901234567,"123 ABC, Hà Nội",Ca 1,Nhân viên,Đang làm,2019-02-10,12000000,101,anv001,123@an
-EMP002,Trần Thị,Bích,Nữ,1985-08-23,bich.tran@motorcycle.vn,0902234568,"456 XYZ, Hồ Chí Minh",Ca 2,Nhân viên,Đang làm,2020-05-12,11000000,102,bichtt,234@bich
-EMP003,Phạm Văn,Cường,Nam,1992-01-17,cuong.pham@motorcycle.vn,0903234569,"789 DEF, Đà Nẵng",Ca 3,Nhân viên,Nghỉ việc,2018-07-24,13000000,103,cuongpv,345@cuong
-EMP004,Lê Thị,Dung,Nữ,1995-11-09,dung.le@motorcycle.vn,0904234570,"101 GHI, Huế",Ca 1,Quản lý,Đang làm,2017-04-20,20000000,104,dunglt,456@dung
-EMP005,Võ Quang,Đạt,Nam,1987-03-29,dat.vo@motorcycle.vn,0905234571,"202 JKL, Hà Nội",Ca 2,Nhân viên,Đang làm,2021-06-15,11500000,105,datvq,567@dat
-EMP006,Bùi Thị,Hạnh,Nữ,1993-06-22,hanh.bui@motorcycle.vn,0906234572,"303 MNO, Hải Phòng",Ca 3,Nhân viên,Đang làm,2018-03-05,12500000,106,hanhbt,678@hanh
-EMP007,Nguyễn Hoàng,Khánh,Nam,1989-12-10,khanh.nguyen@motorcycle.vn,0907234573,"404 PQR, Cần Thơ",Ca 1,Nhân viên,Đang làm,2022-08-01,11700000,107,khanhnv,789@khanh
-EMP008,Đinh Thu,Linh,Nữ,1994-09-27,linh.dinh@motorcycle.vn,0908234574,"505 STU, Vũng Tàu",Ca 2,Quản lý,Đang làm,2016-02-28,18000000,108,linhtd,890@linh
-EMP009,Trương Văn,Mạnh,Nam,1991-02-16,manh.truong@motorcycle.vn,0909234575,"606 VWX, Hà Nội",Ca 3,Nhân viên,Đang làm,2019-12-11,12200000,109,manhtv,901@manh
-EMP010,Cao Thị,Ngọc,Nữ,1988-10-30,ngoc.cao@motorcycle.vn,0910234576,"707 YZA, Hà Nội",Ca 1,Nhân viên,Nghỉ việc,2017-09-09,12500000,110,ngocct,012@ngoc
-EMP011,Hoàng Văn,Phát,Nam,1986-12-24,phat.hoang@motorcycle.vn,0911234577,"808 BCD, Đà Nẵng",Ca 2,Nhân viên,Đang làm,2021-03-21,11800000,111,phathv,123@phat
-EMP012,Nguyễn Thị,Quỳnh,Nữ,1997-04-15,quynh.nguyen@motorcycle.vn,0912234578,"909 EFG, Huế",Ca 3,Nhân viên,Đang làm,2020-11-30,11900000,112,quynhnt,234@quynh
-EMP013,Trần Đức,Sơn,Nam,1985-07-19,son.tran@motorcycle.vn,0913234579,"101 HIJ, Hà Nội",Ca 1,Quản lý,Đang làm,2018-08-25,19500000,113,sontd,345@son
-EMP014,Phạm Ngọc,Thảo,Nữ,1990-11-07,thao.pham@motorcycle.vn,0914234580,"202 KLM, Hồ Chí Minh",Ca 2,Nhân viên,Đang làm,2019-01-14,12100000,114,thaopn,456@thao
-EMP015,Đỗ Văn,Uyên,Nam,1993-02-25,uyen.do@motorcycle.vn,0915234581,"303 NOP, Hà Nội",Ca 3,Nhân viên,Đang làm,2016-06-23,11600000,115,uyendv,567@uyen
-EMP016,Vũ Minh,Vũ,Nam,1988-08-05,vu.vu@motorcycle.vn,0916234582,"404 QRS, Hải Phòng",Ca 1,Nhân viên,Nghỉ việc,2021-10-17,12300000,116,vumv,678@vu
-EMP017,Lý Thị,Xuân,Nữ,1994-03-09,xuan.ly@motorcycle.vn,0917234583,"505 TUV, Cần Thơ",Ca 2,Quản lý,Đang làm,2017-03-18,18500000,117,xuanlt,789@xuan
-EMP018,Trần Đăng,Yến,Nữ,1995-10-22,yen.tran@motorcycle.vn,0918234584,"606 WXY, Huế",Ca 3,Nhân viên,Đang làm,2022-01-12,11800000,118,yentd,890@yen
-EMP019,Phan Văn,Hòa,Nam,1991-06-15,hoa.phan@motorcycle.vn,0919234585,"707 ZAB, Hà Nội",Ca 1,Nhân viên,Đang làm,2020-07-03,12000000,119,hoapv,901@hoa
-EMP020,Võ Thị,Oanh,Nữ,1989-12-01,oanh.vo@motorcycle.vn,0920234586,808 CDE,Ca 2,Nhân viên,Đang làm,2019-09-01,12500000,120,oanhvt,012@oanh
+EMP001,Nguyễn Văn,An,Nam,1990-05-15,an.nguyen@motorcycle.vn,0901234567,"123 ABC, Hà Nội",Ca 1,Nhân viên,Đang làm,2019-02-10,12000000,NV101,anv001,123@an
+EMP002,Trần Thị,Bích,Nữ,1985-08-23,bich.tran@motorcycle.vn,0902234568,"456 XYZ, Hồ Chí Minh",Ca 2,Nhân viên,Đang làm,2020-05-12,11000000,NV102,bichtt,234@bich
+EMP003,Phạm Văn,Cường,Nam,1992-01-17,cuong.pham@motorcycle.vn,0903234569,"789 DEF, Đà Nẵng",Ca 3,Nhân viên,Nghỉ việc,2018-07-24,13000000,NV103,cuongpv,345@cuong
+EMP004,Lê Thị,Dung,Nữ,1995-11-09,dung.le@motorcycle.vn,0904234570,"101 GHI, Huế",Ca 1,Quản lý,Đang làm,2017-04-20,20000000,NV104,dunglt,456@dung
+EMP005,Võ Quang,Đạt,Nam,1987-03-29,dat.vo@motorcycle.vn,0905234571,"202 JKL, Hà Nội",Ca 2,Nhân viên,Đang làm,2021-06-15,11500000,NV105,datvq,567@dat
+EMP006,Bùi Thị,Hạnh,Nữ,1993-06-22,hanh.bui@motorcycle.vn,0906234572,"303 MNO, Hải Phòng",Ca 3,Nhân viên,Đang làm,2018-03-05,12500000,NV106,hanhbt,678@hanh
+EMP007,Nguyễn Hoàng,Khánh,Nam,1989-12-10,khanh.nguyen@motorcycle.vn,0907234573,"404 PQR, Cần Thơ",Ca 1,Nhân viên,Đang làm,2022-08-01,11700000,NV107,khanhnv,789@khanh
+EMP008,Đinh Thu,Linh,Nữ,1994-09-27,linh.dinh@motorcycle.vn,0908234574,"505 STU, Vũng Tàu",Ca 2,Quản lý,Đang làm,2016-02-28,18000000,NV108,linhtd,890@linh
+EMP009,Trương Văn,Mạnh,Nam,1991-02-16,manh.truong@motorcycle.vn,0909234575,"606 VWX, Hà Nội",Ca 3,Nhân viên,Đang làm,2019-12-11,12200000,NV109,manhtv,901@manh
+EMP010,Cao Thị,Ngọc,Nữ,1988-10-30,ngoc.cao@motorcycle.vn,0910234576,"707 YZA, Hà Nội",Ca 1,Nhân viên,Nghỉ việc,2017-09-09,12500000,NV110,ngocct,012@ngoc
+EMP011,Hoàng Văn,Phát,Nam,1986-12-24,phat.hoang@motorcycle.vn,0911234577,"808 BCD, Đà Nẵng",Ca 2,Nhân viên,Đang làm,2021-03-21,11800000,NV111,phathv,123@phat
+EMP012,Nguyễn Thị,Quỳnh,Nữ,1997-04-15,quynh.nguyen@motorcycle.vn,0912234578,"909 EFG, Huế",Ca 3,Nhân viên,Đang làm,2020-11-30,11900000,NV112,quynhnt,234@quynh
+EMP013,Trần Đức,Sơn,Nam,1985-07-19,son.tran@motorcycle.vn,0913234579,"101 HIJ, Hà Nội",Ca 1,Quản lý,Đang làm,2018-08-25,19500000,NV113,sontd,345@son
+EMP014,Phạm Ngọc,Thảo,Nữ,1990-11-07,thao.pham@motorcycle.vn,0914234580,"202 KLM, Hồ Chí Minh",Ca 2,Nhân viên,Đang làm,2019-01-14,12100000,NV114,thaopn,456@thao
+EMP015,Đỗ Văn,Uyên,Nam,1993-02-25,uyen.do@motorcycle.vn,0915234581,"303 NOP, Hà Nội",Ca 3,Nhân viên,Đang làm,2016-06-23,11600000,NV115,uyendv,567@uyen
+EMP016,Vũ Minh,Vũ,Nam,1988-08-05,vu.vu@motorcycle.vn,0916234582,"404 QRS, Hải Phòng",Ca 1,Nhân viên,Nghỉ việc,2021-10-17,12300000,NV116,vumv,678@vu
+EMP017,Lý Thị,Xuân,Nữ,1994-03-09,xuan.ly@motorcycle.vn,0917234583,"505 TUV, Cần Thơ",Ca 2,Quản lý,Đang làm,2017-03-18,18500000,NV117,xuanlt,789@xuan
+EMP018,Trần Đăng,Yến,Nữ,1995-10-22,yen.tran@motorcycle.vn,0918234584,"606 WXY, Huế",Ca 3,Nhân viên,Đang làm,2022-01-12,11800000,NV118,yentd,890@yen
+EMP019,Phan Văn,Hòa,Nam,1991-06-15,hoa.phan@motorcycle.vn,0919234585,"707 ZAB, Hà Nội",Ca 1,Nhân viên,Đang làm,2020-07-03,12000000,NV119,hoapv,901@hoa
+EMP020,Võ Thị,Oanh,Nữ,1989-12-01,oanh.vo@motorcycle.vn,0920234586,808 CDE,Ca 2,Nhân viên,Đang làm,2019-09-01,12500000,NV120,oanhvt,012@oanh
