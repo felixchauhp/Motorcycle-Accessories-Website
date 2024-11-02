@@ -1,4 +1,4 @@
-Mã khuyến mãi,Tên khuyến mãi,Số lượng,Ngày bắt đầu,Ngày kết thúc,Phần trăm giảm,Giá trị đơn hàng tối thiểu,Số tiền giảm tối đa
+PromoCode,PromoName,Quantity,StartDate,EndDate,PromoRate,MinValue,MaxAmount
 PROMO0001,Tết Dương Lịch,200,2023-02-10,2023-02-19,30,1990000,300000
 PROMO0002,Ngày Nhà giáo Việt Nam,500,2023-01-19,2023-02-01,40,999000,399600
 PROMO0003,30/4 Giải phóng miền Nam,1000,2023-11-25,2023-12-01,15,499000,199600

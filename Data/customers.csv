@@ -1,4 +1,4 @@
-Mã khách hàng,Họ và tên lót,Tên,Email,SĐT,ID Tài khoản,Tên Tài khoản,Mật Khẩu
+CustomerID,LName,FName,Email,Tel,AccountID,AccountName,Password
 CUST00001,Phan Thị,Giang,giang.phan@example.com,0937123145,ACC00001,phan_giang19,JXxHAUJ8
 CUST00002,Lê Hữu,Ngọc,ngoc.le@example.com,0996701568,ACC00002,le_ngoc73,8bXhmyRg
 CUST00003,Đỗ Đức,Ngọc,ngoc.do@example.com,0978664854,ACC00003,do_ngoc5,LH638uCW

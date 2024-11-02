@@ -1,4 +1,4 @@
-﻿Mã số nhân viên,Họ và tên lót,Tên,Giới tính,Ngày sinh,Email,Số điện thoại,Địa chỉ,Ca làm việc,Chức vụ,Trạng thái,Ngày bắt đầu,Mức lương,Mã số tài khoản (đăng nhập),Tên tài khoản đăng nhập,Mật khẩu
+﻿EmployeeID,FName,LName,Sex,Birthday,Email,Tel,Address,WorkShift,Position,Status,StartDate,Salary,AccountID,AccountName,Password
 EMP001,Nguyễn Văn,An,Nam,1990-05-15,an.nguyen@motorcycle.vn,0901234567,"123 ABC, Hà Nội",Ca 1,Nhân viên,Đang làm,2019-02-10,12000000,NV101,anv001,123@an
 EMP002,Trần Thị,Bích,Nữ,1985-08-23,bich.tran@motorcycle.vn,0902234568,"456 XYZ, Hồ Chí Minh",Ca 2,Nhân viên,Đang làm,2020-05-12,11000000,NV102,bichtt,234@bich
 EMP003,Phạm Văn,Cường,Nam,1992-01-17,cuong.pham@motorcycle.vn,0903234569,"789 DEF, Đà Nẵng",Ca 3,Nhân viên,Nghỉ việc,2018-07-24,13000000,NV103,cuongpv,345@cuong

@@ -1,4 +1,4 @@
-Mã đơn hàng,Mã số thanh toán,Tiền mặt,Chuyển khoản,Ngày thanh toán
+OrderID,PaymentID,Cash,Transfer,PaymentDate
 ORD031516,PAYM983455,yes,no,2023-11-25
 ORD081452,PAYM660706,yes,no,2023-01-14
 ORD063728,PAYM227983,yes,no,2023-08-25
