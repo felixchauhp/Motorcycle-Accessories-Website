@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
     />
+    <!-- Bootstrap JS (for dropdown functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!--=============== SWIPER CSS ===============-->
     <link
@@ -22,91 +26,112 @@
     <title>MotorCycle Store</title>
   </head>
   <body>
-    <!--=============== HEADER ===============-->
-    <header class="header">
-      <div class="header__top">
-        <div class="header__container container">
-          <div class="header__contact">
-            <span>Gọi đặt hàng:</span>
-            <span>+84 001 929 992</span>
-          </div>
-          <p class="header__alert-news">
-            Dịch vụ giao hàng và lắp ráp tận nơi !
-          </p>
-          <a href="login.html" class="header__top-action">
-            Đăng nhập ngay để mua hàng!
+   <!--=============== HEADER ===============-->
+   <header class="header">
+    <div class="header__top">
+      <div class="header__container container">
+        <div class="header__contact">
+          <span>Gọi đặt hàng:</span>
+          <span>+84 001 929 992</span>
+        </div>
+        <p class="header__alert-news">
+          Dịch vụ giao hàng và lắp ráp tận nơi !
+        </p>
+        <a href="login.html" class="header__top-action">
+          Đăng nhập ngay để mua hàng!
+        </a>
+      </div>
+    </div>
+
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <img
+          class="nav__logo-img"
+          src="assets/img/logo.png"
+          alt="website logo"
+        />
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu-top">
+          <a href="index.html" class="nav__menu-logo">
+            <img src="./assets/img/logo.png" alt="">
           </a>
+          <div class="nav__close" id="nav-close">
+            <i class="fi fi-rs-cross-small"></i>
+          </div>
+        </div>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link active-link">Trang chủ</a>
+          </li>
+          <li class="nav__item">
+            <a href="shop.html" class="nav__link">Sản phẩm</a>
+          </li>
+          <li class="nav__item">
+            <a href="about.html" class="nav__link">Giới thiệu</a>
+          </li>
+          <li class="nav__item">
+            <a href="Blog.html" class="nav__link">Tin tức</a>
+          </li>
+        </ul>
+        <div class="header__search">
+          <input
+            type="text"
+            placeholder="Tìm kiếm..."
+            class="form__input"
+          />
+          <button class="search__btn">
+            <img src="assets/img/search.png" alt="search icon" />
+          </button>
         </div>
       </div>
-
-      <nav class="nav container">
-        <a href="index.html" class="nav__logo">
-          <img
-            class="nav__logo-img"
-            src="assets/img/logo.png"
-            alt="website logo"
-          />
+      <div class="header__user-actions">
+        <a href="wishlist.html" class="header__action-btn" title="Wishlist">
+          <img src="assets/img/icon-heart.svg" alt="" />
+          <span class="count">3</span>
         </a>
-        <div class="nav__menu" id="nav-menu">
-          <div class="nav__menu-top">
-            <a href="index.html" class="nav__menu-logo">
-              <img src="./assets/img/logo.png" alt="">
+        <a href="cart.html" class="header__action-btn" title="Cart">
+          <img src="assets/img/icon-cart.svg" alt="" />
+          <span class="count">3</span>
+        </a>
+      <div class="dropdown w-100 mt-2">
+        <a
+          href="#"
+          class="header__action-btn dropdown-toggle"
+          id="userDropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          title="User"
+        >
+          <img src="assets/img/icon-user.svg" alt=""/>
+        </a>
+        
+        <ul class="dropdown-menu dropdown-menu-right text-center p-2" style="width: 150px;" aria-labelledby="userDropdown">
+          <li>
+            <a class="dropdown-item d-flex align-items-center justify-content-center" href="login.html">
+              <i class="fi fi-rs-user mr-2"></i> Đăng nhập
             </a>
-            <div class="nav__close" id="nav-close">
-              <i class="fi fi-rs-cross-small"></i>
-            </div>
-          </div>
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="index.html" class="nav__link active-link">Trang chủ</a>
-            </li>
-            <li class="nav__item">
-              <a href="shop.html" class="nav__link">Sản phẩm</a>
-            </li>
-            <li class="nav__item">
-              <a href="login.html" class="nav__link">Đăng nhập</a>
-            </li>
-            <li class="nav__item">
-              <a href="login.html" class="nav__link">Đăng ký</a>
-            </li>
-          </ul>
-          <div class="header__search">
-            <input
-              type="text"
-              placeholder="Tìm kiếm..."
-              class="form__input"
-            />
-            <button class="search__btn">
-              <img src="assets/img/search.png" alt="search icon" />
-            </button>
-          </div>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center justify-content-center" href="register.html">
+              <i class="fi fi-rs-user-add mr-2"></i> Đăng ký
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center justify-content-center" href="accounts.html">
+              <i class="fi fi-rs-settings mr-2"></i> Cá nhân
+            </a>
+          </li>
+        </ul>
+      </div>
+             
+        <div class="header__action-btn nav__toggle" id="nav-toggle">
+          <img src="./assets//img/menu-burger.svg" alt="">
         </div>
-        <div class="header__user-actions">
-          <a href="wishlist.html" class="header__action-btn" title="Wishlist">
-            <img src="assets/img/icon-heart.svg" alt="" />
-            <span class="count">3</span>
-          </a>
-          <a href="cart.html" class="header__action-btn" title="Cart">
-            <img src="assets/img/icon-cart.svg" alt="" />
-            <span class="count">3</span>
-          </a>
-          <a href="accounts.html" class="header__action-btn" id="user-icon" title="User">
-            <img src="assets/img/icon-user.svg" alt="" />
-          </a>
-          <div class="dropdown-menu" id="user-dropdown">
-            <ul>
-                <li><a href="login.html">Đăng nhập</a></li>
-                <li><a href="register.html">Đăng ký</a></li>
-                <li><a href="account.html">Cá nhân</a></li>
-            </ul>
-        </div>
-               
-          <div class="header__action-btn nav__toggle" id="nav-toggle">
-            <img src="./assets//img/menu-burger.svg" alt="">
-          </div>
-        </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
     <!--=============== MAIN ===============-->
     <main class="main">
@@ -1647,392 +1672,6 @@
               <a href="details.html" class="btn btn--md">Mua ngay</a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!--=============== NEW ARRIVALS ===============-->
-      <section class="new__arrivals container section">
-        <h3 class="section__title"><span>Hàng</span> Mới Về</h3>
-        <div class="new__container swiper">
-          <div class="swiper-wrapper">
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-1-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-1-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-pink">Hot</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-2-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-2-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-green">Hot</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-3-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-3-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-orange">Hot</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-4-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-4-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-blue">Hot</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-5-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-5-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-blue">-30%</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-6-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-6-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-blue">-22%</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product__item swiper-slide">
-              <div class="product__banner">
-                <a href="details.html" class="product__images">
-                  <img
-                    src="assets/img/product-7-1.jpg"
-                    alt=""
-                    class="product__img default"
-                  />
-                  <img
-                    src="assets/img/product-7-2.jpg"
-                    alt=""
-                    class="product__img hover"
-                  />
-                </a>
-                <div class="product__actions">
-                  <a href="#" class="action__btn" aria-label="Quick View">
-                    <i class="fi fi-rs-eye"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                    <i class="fi fi-rs-heart"></i>
-                  </a>
-                  <a href="#" class="action__btn" aria-label="Compare">
-                    <i class="fi fi-rs-shuffle"></i>
-                  </a>
-                </div>
-                <div class="product__badge light-green">-22%</div>
-              </div>
-              <div class="product__content">
-                <span class="product__category">Phụ kiện khác</span>
-                <a href="details.html">
-                  <h3 class="product__title">Tên Sản Phẩm</h3>
-                </a>
-                <div class="product__rating">
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                  <i class="fi fi-rs-star"></i>
-                </div>
-                <div class="product__price flex">
-                  <span class="new__price">999.999 VNĐ</span>
-                  <span class="old__price">1.000.000 VNĐ</span>
-                </div>
-                <a
-                  href="#"
-                  class="action__btn cart__btn"
-                  aria-label="Add To Cart"
-                >
-                  <i class="fi fi-rs-shopping-bag-add"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-button-prev">
-            <i class="fi fi-rs-angle-left"></i>
-          </div>
-          <div class="swiper-button-next">
-            <i class="fi fi-rs-angle-right"></i>
-          </div>
-        </div>
-      </section>
-
-      <!--=============== NEWSLETTER ===============-->
-      <section class="newsletter section home__newsletter">
-        <div class="newsletter__container container grid">
         </div>
       </section>
     </main>
