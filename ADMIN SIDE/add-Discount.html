@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FLATICON ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+    <title>Ecommerce Website</title>
+  </head>
+  <body>
+    <style>
+      .promotions {
+        display: flex;
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        height: 100vh; /* Chiều cao đầy đủ của viewport */
+        }
+      #promotionForm {
+        margin-bottom: 20px;
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        max-width: 500px; /* Giới hạn chiều rộng tối đa */
+        padding: 20px; /* Khoảng cách bên trong */
+        border: 1px solid #ccc; /* Viền cho form */
+        border-radius: 8px; /* Bo góc cho form */
+        background-color: #fff; /* Màu nền */
+      }
+  
+      #promotionForm table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+  
+      #promotionForm h2 {
+        margin-top: 0;
+      }
+  
+      #promotionForm label {
+        display: block;
+        margin-bottom: 10px;
+      }
+  
+      #promotionForm input[type="text"],
+      #promotionForm input[type="number"],
+      #promotionForm textarea,
+      #promotionForm select {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+      #promotion-dates {
+            display: flex;
+            gap: 50px; /* Khoảng cách giữa các ô */
+            margin-bottom: 15px;
+        }
+
+      #promotion-dates input[type="date"] {
+            width: 100%; /* Chiếm toàn bộ chiều rộng của ô chứa */
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0; /* Không có margin */
+        }
+      .radio-group {
+            display: flex;
+            gap: 20px; /* Khoảng cách giữa các ô tròn */
+            margin-bottom: 0;
+      }
+  
+      #promotionForm button[type="submit"] {
+        background-color: var(--first-color); /* Màu xanh lá */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+  
+      #promotionForm button[type="submit"]:hover {
+        background-color: #054c2a; /* Màu xanh đậm hơn khi hover */
+      }
+      /* Ẩn các ô nhập liệu theo mặc định */
+      .percent-input, .amount-input {
+        display: none;
+      }
+
+    </style>
+    <!--=============== HEADER ===============-->
+    <header>
+      <nav class="nav container">
+          <a href="index-manage.html" class="nav__logo">
+              <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
+          </a>
+          <div class="nav__menu" id="nav-menu">
+              <div class="nav__menu-top">
+                  <a href="index-manage.html" class="nav__menu-logo">
+                      <img src="./assets/img/logo.png" alt="">
+                  </a>
+                  <div class="nav__close" id="nav-close">
+                      <i class="fi fi-rs-cross-small"></i>
+                  </div>
+              </div>
+              <ul class="nav__list">
+                  <li class="nav__item">
+                      <a href="productManage.html" class="nav__link">Sản phẩm</a>
+                  </li>
+                  <li class="nav__item">
+                      <a href="quanlydonhang.html" class="nav__link">Đơn hàng</a>
+                  </li>
+                  <li class="nav__item">
+                      <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
+                  </li>
+              </ul>
+              <div class="header__user-actions">
+                  <a href="#" class="header__action-btn" title="Notification">
+                      <img src="assets/img/bell.svg" alt="" />
+                      <span class="count">3</span>
+                  </a>
+                  <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
+                      <img src="assets/img/icon-user.svg" alt="" />
+                  </a>
+              </div>
+          </div>
+      </nav>
+  </header>
+
+    <!--=============== MAIN ===============-->
+    <main class="main">
+      <!--=============== BREADCRUMB ===============-->
+
+      <!--=============== Promotion Management ===============-->
+      <section class="promotions container section--lg">
+        <!-- Button to add a new promotion -->
+        <div id="promotionForm">
+          <h2 style="text-align: center;">Thêm mã khuyến mãi</h2>
+          <br>
+          <form id="add-promotion">
+            <label for="promo-name">Tên mã:</label>
+            <input type="text" id="promo-name" required />
+
+            <label for="promo-code">Mã khuyến mãi:</label>
+            <input type="text" id="promo-name" required />
+      
+            <div id="promotion-dates">
+              <div>
+                  <label for="promotion-start-date">Ngày bắt đầu:</label>
+                  <input type="date" id="promotion-start-date" required />
+              </div>
+              <div>
+                  <label for="promotion-end-date">Ngày kết thúc:</label>
+                  <input type="date" id="promotion-end-date" required />
+              </div>
+            </div>
+
+            <div class="radio-group">
+              <label>Giảm giá:</label>
+              <label>
+                <input type="radio" name="discount-type" value="percentage" checked />Theo phần trăm
+              </label>
+              <label>
+                <input type="radio" name="discount-type" value="amount" />Theo số tiền
+              </label>
+            </div>
+
+            <div class="percent-input">
+              <label for="percent-discount">Giá trị giảm (%):</label>
+              <input type="number" id="percent-discount" required />
+            </div>
+
+            <div class="amount-input">
+              <label for="amount-discount">Giá trị giảm (VNĐ):</label>
+              <input type="number" id="amount-discount" required />
+            </div>
+
+            <label for="discount">Giá trị đơn hàng tối thiểu:</label>
+            <input type="number" id="discount" required />
+
+            <label for="discount">Số tiền giảm tối đa:</label>
+            <input type="number" id="discount" required />
+      
+            <label for="quantity">Số lượng:</label>
+            <input type="number" id="quantity" required />
+            <br>
+            <button type="submit">Thêm</button>
+          </form>
+        </div>
+
+    </section>
+    </main>
+      <!--=============== FOOTER ===============-->
+      <footer class="footer container">
+        <div class="footer__container grid">
+          <div class="footer__content">
+            <a href="index.html" class="footer__logo">
+              <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
+            </a>
+            <h4 class="footer__subtitle">Thông tin liên hệ</h4>
+            <p class="footer__description">
+              <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
+            </p>
+            <p class="footer__description">
+              <span>Hotline:</span> +84 001 929 992
+            </p>
+            <p class="footer__description">
+              <span>Email:</span> contact@motorcycle.vn
+            </p>
+            <div class="footer__social">
+              <h4 class="footer__subtitle">MotorCycle đã có mặt trên:</h4>
+              <div class="footer__links flex">
+                <a href="#">
+                  <img
+                    src="./assets/img/icon-facebook.svg"
+                    alt=""
+                    class="footer__social-icon"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="./assets/img/icon-twitter.svg"
+                    alt=""
+                    class="footer__social-icon"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="./assets/img/icon-instagram.svg"
+                    alt=""
+                    class="footer__social-icon"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="./assets/img/icon-pinterest.svg"
+                    alt=""
+                    class="footer__social-icon"
+                  />
+                </a>
+                <a href="#">
+                  <img
+                    src="./assets/img/icon-youtube.svg"
+                    alt=""
+                    class="footer__social-icon"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="footer__content">
+            <h3 class="footer__title">Thông tin chi tiết</h3>
+            <ul class="footer__links">
+              <li><a href="#" class="footer__link">Về chúng tôi</a></li>
+              <li><a href="#" class="footer__link">Chính sách giao hàng</a></li>
+              <li><a href="#" class="footer__link">Điều khoản bảo mật</a></li>
+              <li><a href="#" class="footer__link">Quy định cung cấp dịch vụ</a></li>
+            </ul>
+          </div>
+          <div class="footer__content">
+            <h3 class="footer__title">Tải khoản của tôi</h3>
+            <ul class="footer__links">
+              <li><a href="#" class="footer__link">Đăng nhập</a></li>
+              <li><a href="#" class="footer__link">Xem giỏ hàng</a></li>
+              <li><a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a></li>
+              <li><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
+            </ul>
+          </div>
+          <div class="footer__content">
+            <h3 class="footer__title">Đối tác thanh toán</h3>
+            <img
+              src="./assets/img/payment-method.png"
+              alt=""
+              class="payment__img"
+            />
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="copyright">&copy; 2024. All right reserved</p>
+          <span class="designer">Website created by Group 4</span>
+        </div>
+      </footer>
+
+      <!--=============== SWIPER JS ===============-->
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/main.js"></script>
+      </body>
+      </html>
