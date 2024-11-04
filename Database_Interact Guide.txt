@@ -1,0 +1,37 @@
+How to use TypeORM API to interact with MySQL database
+First import the Entities(Tables) and AppDataSource form file src
+
+1. INSERT INTO
+    Just use new to create a new object 
+EX: Const Users = new User() - Table
+    Then just use the attribute to define the data 
+EX: Users.Name = 'Tuan' - Name is the attribute of User
+    Finally save it by Entity manager with this code
+EX: await AppDataSource.manager.save(Users)
+
+2. SELECT FROM
+    Before using SELECT, first create Repositories with Entities
+EX: const UserRepositories = AppDataSource.getRepository(User)
+    After that, depend on searched data we can use code: 
+    1. Find first object have match the category:
+        const firstUser = await UserRepositories.findOneby({id: 1})
+    2. Find all object in the Entities
+        const Users = await UserRepositories.find()
+    3. Find data match the category
+        const CodingUser = await UserRepositories.findBy({work: Coding})
+    4. Find all object in the Entities and count the number
+        const [Users, UsersCount] = await UserRepositories.findAndCount()
+
+3. DELETE FROM
+    First, search the data which is needed to delete 
+EX: const firstUser = await UserRepositories.findOneby({id: 1})
+    Then use code remove to delete it 
+EX: await UserRepositories.remove(firstUser)
+
+4. UPDATE
+    First, search the data which is needed to delete 
+EX: const firstUser = await UserRepositories.findOneby({id: 1})
+    Then change the attribute which needed to update 
+EX: firstUser.work = Sleeping
+    Save it agian = Update the data
+EX: await AppDataSource.manager.save(Users)
