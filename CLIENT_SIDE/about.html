@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
     />
+    <!-- Bootstrap JS (for dropdown functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!--=============== SWIPER CSS ===============-->
     <link
@@ -20,26 +24,6 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
 
     <title>MotorCycle Store</title>
-    <style>
-      h1, h2, h3, h4 {
-          color: hsl(176, 88%, 27%);;
-          text-align: center;
-      }
-
-      p {
-          max-width: 800px;
-          margin: 0 auto 20px;
-          text-align: justify;
-      }
-
-      .main img {
-          display: block;
-          margin: 20px auto;
-          max-width: 100%;
-          height: auto;
-          border-radius: 8px;
-      }
-    </style>
   </head>
   <body>
  <!--=============== HEADER ===============-->
@@ -152,47 +136,48 @@
 
     <!--=============== MAIN ===============-->
     <main class="main">
-      <h1>Giới thiệu về Motor Cycle</h1>
-      <br>
-      <h2>Đối tác tin cậy trong từng chuyến đi</h2>
-      <p>
-          <strong>Công ty Cổ phần Thương mại Dịch vụ Phụ Tùng Xe Máy Motor Cycle</strong> được thành lập vào năm 2024 tại TP. Hồ Chí Minh, đánh dấu một cột mốc quan trọng cho ngành công nghiệp phụ tùng xe máy tại Việt Nam. Ra đời với sứ mệnh trở thành thương hiệu dẫn đầu trong lĩnh vực cung cấp và phân phối phụ tùng xe máy, Motor Cycle cam kết mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ tận tâm, đáng tin cậy.
-      </p>
-  
+    <div class="product__content"> 
+          <h1>Giới thiệu về Motor Cycle</h1>
+          <br>
+          <h2 class="product__title" >Đối tác tin cậy trong từng chuyến đi</h2>
+          <p class="short__description">
+              <strong>Công ty Cổ phần Thương mại Dịch vụ Phụ Tùng Xe Máy Motor Cycle</strong> được thành lập vào năm 2024 tại TP. Hồ Chí Minh, đánh dấu một cột mốc quan trọng cho ngành công nghiệp phụ tùng xe máy tại Việt Nam. Ra đời với sứ mệnh trở thành thương hiệu dẫn đầu trong lĩnh vực cung cấp và phân phối phụ tùng xe máy, Motor Cycle cam kết mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ tận tâm, đáng tin cậy.
+          </p>
       
-  
-      <h2>Khởi nguồn từ đam mê và cam kết với chất lượng</h2>
-      <p>
-          Motor Cycle không chỉ đơn thuần là một doanh nghiệp, mà còn là kết quả của đam mê bất tận với ngành công nghiệp xe máy của đội ngũ sáng lập. Nhận thấy thị trường phụ tùng xe máy tại Việt Nam còn thiếu vắng một thương hiệu có thể đáp ứng đủ tiêu chí về <strong>chất lượng</strong>, <strong>giá thành hợp lý</strong>, và <strong>sự an toàn tuyệt đối</strong> cho người sử dụng, Motor Cycle ra đời với khát vọng thay đổi điều đó.
-      </p>
-  
+          
       
-  
-      <h2>Đối tác và khách hàng là trọng tâm phát triển</h2>
-      <p>
-          Chúng tôi luôn tin rằng sự phát triển bền vững của Motor Cycle gắn liền với mối quan hệ đối tác bền vững và sự hài lòng của khách hàng. Motor Cycle đã xây dựng được mạng lưới đối tác đa dạng với các nhà sản xuất phụ tùng xe máy uy tín hàng đầu từ Nhật Bản, Thái Lan, và nhiều quốc gia khác. Từ đó, chúng tôi cam kết cung cấp các sản phẩm đa dạng và chất lượng, phù hợp với nhiều dòng xe máy phổ biến tại thị trường Việt Nam.
-      </p>
-  
-     
-  
-      <h2>Chất lượng dịch vụ tận tâm</h2>
-      <p>
-          Bên cạnh chất lượng sản phẩm, Motor Cycle tự hào với dịch vụ chăm sóc khách hàng tận tâm và chuyên nghiệp. Motor Cycle không ngừng đầu tư vào dịch vụ hỗ trợ và tư vấn chuyên sâu, giúp khách hàng dễ dàng tìm được phụ tùng phù hợp và giải pháp tối ưu cho mọi vấn đề kỹ thuật.
-      </p>
-  
+          <h2 class="product__title">Khởi nguồn từ đam mê và cam kết với chất lượng</h2>
+          <p class="short__description">
+              Motor Cycle không chỉ đơn thuần là một doanh nghiệp, mà còn là kết quả của đam mê bất tận với ngành công nghiệp xe máy của đội ngũ sáng lập. Nhận thấy thị trường phụ tùng xe máy tại Việt Nam còn thiếu vắng một thương hiệu có thể đáp ứng đủ tiêu chí về <strong>chất lượng</strong>, <strong>giá thành hợp lý</strong>, và <strong>sự an toàn tuyệt đối</strong> cho người sử dụng, Motor Cycle ra đời với khát vọng thay đổi điều đó.
+          </p>
       
-  
-      <h2>Hướng tới tương lai – Phát triển bền vững</h2>
-      <p>
-          Với tầm nhìn dài hạn, Motor Cycle cam kết phát triển bền vững, luôn tìm kiếm các giải pháp xanh và thân thiện với môi trường. Chúng tôi tin rằng trách nhiệm của doanh nghiệp không chỉ là phát triển mà còn góp phần bảo vệ môi trường, đặc biệt trong ngành công nghiệp xe máy.
-      </p>
-  
-      <h2>Motor Cycle – Người bạn đồng hành tin cậy trên mọi cung đường</h2>
-      <p>
-          Với tất cả tâm huyết và sứ mệnh mang lại những giải pháp phụ tùng xe máy chất lượng, Motor Cycle mong muốn trở thành người bạn đồng hành đáng tin cậy cho tất cả khách hàng. Chúng tôi không chỉ là nhà cung cấp phụ tùng mà còn là đối tác đồng hành, sẵn sàng cùng bạn khám phá mọi hành trình.
-      </p>
-  
+          
       
+          <h2 class="product__title">Đối tác và khách hàng là trọng tâm phát triển</h2>
+          <p>
+              Chúng tôi luôn tin rằng sự phát triển bền vững của Motor Cycle gắn liền với mối quan hệ đối tác bền vững và sự hài lòng của khách hàng. Motor Cycle đã xây dựng được mạng lưới đối tác đa dạng với các nhà sản xuất phụ tùng xe máy uy tín hàng đầu từ Nhật Bản, Thái Lan, và nhiều quốc gia khác. Từ đó, chúng tôi cam kết cung cấp các sản phẩm đa dạng và chất lượng, phù hợp với nhiều dòng xe máy phổ biến tại thị trường Việt Nam.
+          </p>
+      
+        
+      
+          <h2 class="product__title">Chất lượng dịch vụ tận tâm</h2>
+          <p class="short__description">
+              Bên cạnh chất lượng sản phẩm, Motor Cycle tự hào với dịch vụ chăm sóc khách hàng tận tâm và chuyên nghiệp. Motor Cycle không ngừng đầu tư vào dịch vụ hỗ trợ và tư vấn chuyên sâu, giúp khách hàng dễ dàng tìm được phụ tùng phù hợp và giải pháp tối ưu cho mọi vấn đề kỹ thuật.
+          </p>
+      
+          
+      
+          <h2 class="product__title">Hướng tới tương lai – Phát triển bền vững</h2>
+          <p class="short__description">
+              Với tầm nhìn dài hạn, Motor Cycle cam kết phát triển bền vững, luôn tìm kiếm các giải pháp xanh và thân thiện với môi trường. Chúng tôi tin rằng trách nhiệm của doanh nghiệp không chỉ là phát triển mà còn góp phần bảo vệ môi trường, đặc biệt trong ngành công nghiệp xe máy.
+          </p>
+      
+          <h2 class="product__title">Motor Cycle – Người bạn đồng hành tin cậy trên mọi cung đường</h2>
+          <p class="short__description">
+              Với tất cả tâm huyết và sứ mệnh mang lại những giải pháp phụ tùng xe máy chất lượng, Motor Cycle mong muốn trở thành người bạn đồng hành đáng tin cậy cho tất cả khách hàng. Chúng tôi không chỉ là nhà cung cấp phụ tùng mà còn là đối tác đồng hành, sẵn sàng cùng bạn khám phá mọi hành trình.
+          </p>
+      
+    </div>
 
     </main>
 
