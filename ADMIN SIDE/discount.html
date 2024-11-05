@@ -48,7 +48,7 @@
       }
 
       .discount-table {
-        width: 100%;
+        width: 105%;
         border-collapse: collapse;
         margin-top: 20px;
       }
@@ -56,7 +56,7 @@
       .discount-table th,
       .discount-table td {
         border: 1px solid #ccc;
-        padding: 10px;
+        padding: 10px 10px;
         text-align: center;
       }
 
@@ -111,81 +111,106 @@ table th:last-child, table td:last-child {
     width: 150px; /* Đặt chiều rộng cột thao tác */
 }
 
-/* Định dạng cho các nút trong cột thao tác */
-.action-buttons {
-    display: flex; /* Sử dụng flexbox để xếp hàng */
-    gap: 10px; /* Khoảng cách giữa các nút */
-    justify-content: center; /* Canh giữa các nút */
-}
-
-/* Nếu cần, có thể điều chỉnh thêm cho các nút */
-.discount-button {
-    color: white; /* Màu chữ */
-    background-color: var(--first-color); /* Màu nền */
-    padding: 5px 10px; /* Khoảng cách bên trong */
-    border-radius: 4px; /* Bo tròn góc */
-    border: none; /* Bỏ viền */
-    cursor: pointer; /* Con trỏ chuột */
-    margin: 0 5px; /* Khoảng cách giữa các nút */
-}
-
-/* Màu nền khi di chuột */
-.discount-button:hover {
-    background-color: #054c2a; /* Màu nền khi di chuột qua */
-}
-
 .discount-table input {
     width: 100%; /* Chiếm toàn bộ chiều rộng của ô */
     border: none; /* Bỏ viền */
     outline: none; /* Bỏ viền khi focus */
 }
+.pagination__dots {
+    position: relative;
+    top: 15px; /* Điều chỉnh giá trị này để di chuyển dấu "..." xuống hoặc lên */
+    font-size: 14px; /* Đảm bảo dấu "..." có kích thước tương đương các số trang */
+    color: black;
+}
+.edit-icon, .trash-icon, .tick-icon {
+    color: gray; /* Màu xám cho biểu tượng */
+    transition: color 0.3s; /* Hiệu ứng chuyển màu mượt mà */
+}
 
+.edit-icon:hover, .trash-icon:hover, .tick-icon:hover {
+    color: red; /* Màu đỏ khi di chuột qua */
+}
+button {
+    cursor: pointer; /* Đặt con trỏ chuột thành hình bàn tay cho tất cả các nút */
+}
+.search-container {
+    display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+#search-input,
+#filter-input {
+    padding: 5px; /* Khoảng cách bên trong cho ô tìm kiếm và ô lọc */
+    border: 1px solid #ccc; /* Viền cho ô tìm kiếm và ô lọc */
+    border-radius: 4px; /* Bo góc cho ô tìm kiếm và ô lọc */
+    flex: 1; /* Chiếm hết không gian còn lại */
+}
+
+#apply-button {
+    border: 2px solid red; /* Khung viền đỏ */
+    background-color: transparent; /* Không có màu nền */
+    color: red; /* Chữ màu đỏ */
+    padding: 5px 10px; /* Khoảng cách bên trong */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+}
+
+#reset-button {
+    background-color: black; /* Màu nền đen */
+    color: white; /* Chữ màu trắng */
+    margin-left: 10px; /* Khoảng cách giữa hai nút */
+    padding: 5px 10px; /* Khoảng cách bên trong */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+}
 
 
     </style>
 
-        <!--=============== HEADER ===============-->
-        <header>
-          <nav class="nav container">
-              <a href="index-manage.html" class="nav__logo">
-                  <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
-              </a>
-              <div class="nav__menu" id="nav-menu">
-                  <div class="nav__menu-top">
-                      <a href="index-manage.html" class="nav__menu-logo">
-                          <img src="./assets/img/logo.png" alt="">
-                      </a>
-                      <div class="nav__close" id="nav-close">
-                          <i class="fi fi-rs-cross-small"></i>
-                      </div>
-                  </div>
-                  <ul class="nav__list">
-                      <li class="nav__item">
-                          <a href="productManage.html" class="nav__link">Sản phẩm</a>
-                      </li>
-                      <li class="nav__item">
-                          <a href="quanlydonhang.html" class="nav__link">Đơn hàng</a>
-                      </li>
-                      <li class="nav__item">
-                          <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
-                      </li>
-                  </ul>
-                  <div class="header__user-actions">
-                      <a href="#" class="header__action-btn" title="Notification">
-                          <img src="assets/img/bell.svg" alt="" />
-                          <span class="count">3</span>
-                      </a>
-                      <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
-                          <img src="assets/img/icon-user.svg" alt="" />
-                      </a>
-                  </div>
-              </div>
-          </nav>
-      </header>
+    <!--=============== HEADER ===============-->
+    <nav class="nav container">
+      <a href="index-manage.html" class="nav__logo">
+        <img
+          class="nav__logo-img"
+          src="assets/img/logo.png"
+          alt="website logo"
+        />
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu-top">
+          <a href="index-manage.html" class="nav__menu-logo">
+            <img src="./assets/img/logo.png" alt="" />
+          </a>
+          <div class="nav__close" id="nav-close">
+            <i class="fi fi-rs-cross-small"></i>
+          </div>
+        </div>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="productManage.html" class="nav__link">Quản lý Sản phẩm</a>
+          </li>
+          <li class="nav__item">
+            <a href="quanlydonhang.html" class="nav__link">Quản lý Đơn hàng</a>
+          </li>
+          <li class="nav__item">
+            <a href="discount.html" class="nav__link active-link">Quản lý khuyến mãi</a>
+          </li>
+          <li class="nav__item">
+            <a href="accounts-manager.html" class="nav__link">Thông tin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <!--=============== MAIN ===============-->
     <main class="main">
       <!--=============== Promotion Management ===============-->
       <section class="products container section--lg">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Tìm kiếm...">
+          <input type="text" id="filter-input" placeholder="Lọc..."> <!-- Ô lọc -->
+          <button id="apply-button">Áp dụng</button>
+          <button id="reset-button">Nhập lại</button>
+      </div>
+      <br>
         <div class="add-discount-btn">
           <a href="add-Discount.html" class="button">
             <i class="fi fi-rs-plus"></i> Thêm 1 mã khuyến mãi mới
@@ -256,39 +281,41 @@ table th:last-child, table td:last-child {
 </footer>
 
     <script>
-      let currentPage = 1;
+let currentPage = 1;
 const itemsPerPage = 10; // Số lượng sản phẩm hiển thị trên mỗi trang
 const promotions = [];
 
 // Hàm để sinh dữ liệu cho các mã khuyến mãi
 function generatePromotions(num) {
-  for (let i = 1; i <= num; i++) {
-    const discountPercentage = Math.floor(Math.random() * 101); // Giảm ngẫu nhiên từ 0% đến 100%
-    const discountVND = Math.floor(Math.random() * 1000000); // Giảm ngẫu nhiên từ 0 đến 1.000.000 VNĐ
-    const minOrderValue = Math.floor(Math.random() * 2000000); // Giá trị đơn hàng tối thiểu ngẫu nhiên
-    const maxDiscountValue = Math.floor(Math.random() * 500000); // Số tiền giảm tối đa ngẫu nhiên
+    for (let i = 1; i <= num; i++) {
+        const discountPercentage = Math.floor(Math.random() * 101); // Giảm ngẫu nhiên từ 0% đến 100%
+        const discountVND = Math.floor(Math.random() * 1000000); // Giảm ngẫu nhiên từ 0 đến 1.000.000 VNĐ
+        const minOrderValue = Math.floor(Math.random() * 2000000); // Giá trị đơn hàng tối thiểu ngẫu nhiên
+        const maxDiscountValue = Math.floor(Math.random() * 500000); // Số tiền giảm tối đa ngẫu nhiên
 
-    const promo = {
-      name: `Khuyến mãi ${i}`,
-      code: `PROMO${i.toString().padStart(3, '0')}`, // Mã khuyến mãi sẽ có dạng PROMO001, PROMO002,...
-      usageCount: Math.floor(Math.random() * 300), // Số lượt sử dụng ngẫu nhiên từ 0 đến 299
-      discountPercentage: discountPercentage + '%', // Giảm theo phần trăm
-      discountVND: discountVND.toLocaleString('vi-VN'), // Giảm theo VNĐ (định dạng với dấu phẩy)
-      minOrderValue: minOrderValue.toLocaleString('vi-VN'), // Giá trị đơn hàng tối thiểu
-      maxDiscountValue: maxDiscountValue.toLocaleString('vi-VN'), // Số tiền giảm tối đa
-      date: `01/11/2024 - ${new Date(2024, 10, i % 30 + 1).toLocaleDateString('en-GB')}` // Ngày áp dụng
-    };
-    promotions.push(promo);
-  }
+        const promo = {
+            name: `Khuyến mãi ${i}`,
+            code: `PROMO${i.toString().padStart(3, '0')}`, // Mã khuyến mãi sẽ có dạng PROMO001, PROMO002,...
+            usageCount: Math.floor(Math.random() * 300), // Số lượt sử dụng ngẫu nhiên từ 0 đến 299
+            discountPercentage: discountPercentage + '%', // Giảm theo phần trăm
+            discountVND: discountVND.toLocaleString('vi-VN'), // Giảm theo VNĐ (định dạng với dấu phẩy)
+            minOrderValue: minOrderValue.toLocaleString('vi-VN'), // Giá trị đơn hàng tối thiểu
+            maxDiscountValue: maxDiscountValue.toLocaleString('vi-VN'), // Số tiền giảm tối đa
+            date: `01/11/2024 - ${new Date(2024, 10, i % 30 + 1).toLocaleDateString('en-GB')}` // Ngày áp dụng
+        };
+        promotions.push(promo);
+    }
 }
 
 // Gọi hàm để sinh 100 mã khuyến mãi
 generatePromotions(100);
 
+let filteredPromotions = promotions; // Biến lưu trữ danh sách đã lọc
+
 function changePage(page) {
-  currentPage = page;
-  renderTable();
-  renderPagination();
+    currentPage = page;
+    renderTable();
+    renderPagination();
 }
 
 function renderTable() {
@@ -297,7 +324,7 @@ function renderTable() {
 
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    const paginatedItems = promotions.slice(start, end);
+    const paginatedItems = filteredPromotions.slice(start, end);
 
     paginatedItems.forEach(promotion => {
         const row = `
@@ -311,14 +338,12 @@ function renderTable() {
                 <td>${promotion.maxDiscountValue} VNĐ</td>
                 <td>${promotion.date}</td>
                 <td>
-                    <div class="action-buttons">
-                        <button class="discount-button edit" onclick="editPromotion(this.closest('tr'))">
-                            <i class="fi fi-rs-edit"></i>
-                        </button>
-                        <button class="discount-button" onclick="deletePromotion('${promotion.code}')">
-                            <i class="fi fi-rs-trash"></i>
-                        </button>
-                    </div>
+                    <button onclick="editPromotion(this.closest('tr'))">
+                        <i class="fi fi-rs-edit edit-icon"></i>
+                    </button>
+                    <button onclick="deletePromotion('${promotion.code}')">
+                        <i class="fi fi-rs-trash trash-icon"></i>
+                    </button>
                 </td>
             </tr>
         `;
@@ -326,57 +351,98 @@ function renderTable() {
     });
 }
 
-
 function deletePromotion(code) {
     const promoIndex = promotions.findIndex(promo => promo.code === code);
     if (promoIndex > -1) {
         promotions.splice(promoIndex, 1);
+        filteredPromotions = promotions; // Cập nhật danh sách đã lọc
         renderTable();
         renderPagination();
     }
 }
 
 function renderPagination() {
-  const paginationContainer = document.getElementById('pagination');
-  paginationContainer.innerHTML = '';
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
 
-  const pageCount = Math.ceil(promotions.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredPromotions.length / itemsPerPage);
 
-  for (let i = 1; i <= pageCount; i++) {
-    const link = document.createElement('a');
-    link.textContent = i;
-    link.className = 'pagination__link';
-    if (i === currentPage) {
-      link.classList.add('active');
+    // Nút lùi về
+    if (currentPage > 1) {
+        const prevButton = document.createElement('li');
+        prevButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage - 1})">«</a>`;
+        pagination.appendChild(prevButton);
     }
-    link.onclick = () => changePage(i);
-    paginationContainer.appendChild(link);
-  }
+
+    // Trang đầu tiên
+    const firstPage = document.createElement('li');
+    firstPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === 1 ? 'active' : ''}" onclick="goToPage(1)">1</a>`;
+    pagination.appendChild(firstPage);
+
+    // Dấu ba chấm nếu cần
+    if (currentPage > 3) {
+        const dots = document.createElement('li');
+        dots.innerHTML = `<span class="pagination__dots">...</span>`;
+        pagination.appendChild(dots);
+    }
+
+    // Hiển thị các trang xung quanh trang hiện tại
+    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+        const pageItem = document.createElement('li');
+        pageItem.innerHTML = `<a href="#" class="pagination__link ${currentPage === i ? 'active' : ''}" onclick="goToPage(${i})">${i}</a>`;
+        pagination.appendChild(pageItem);
+    }
+
+    // Dấu ba chấm trước trang cuối
+    if (currentPage < totalPages - 2) {
+        const dots = document.createElement('li');
+        dots.innerHTML = `<span class="pagination__dots">...</span>`;
+        pagination.appendChild(dots);
+    }
+
+    // Trang cuối
+    if (totalPages > 1) {
+        const lastPage = document.createElement('li');
+        lastPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === totalPages ? 'active' : ''}" onclick="goToPage(${totalPages})">${totalPages}</a>`;
+        pagination.appendChild(lastPage);
+    }
+
+    // Nút tiến tới
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('li');
+        nextButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage + 1})">»</a>`;
+        pagination.appendChild(nextButton);
+    }
+}
+
+// Hàm đi tới trang mong muốn
+function goToPage(page) {
+    if (page >= 1 && page <= Math.ceil(filteredPromotions.length / itemsPerPage)) {
+        currentPage = page;
+        renderTable();
+        renderPagination();
+    }
 }
 
 // Khởi động trang đầu tiên
 renderTable();
 renderPagination();
+
 let originalRowData = null; // Biến lưu trữ dữ liệu gốc
-let isEditing = false; // Trạng thái chỉnh sửa
+let currentEditingRow = null; // Biến lưu trữ hàng đang chỉnh sửa
 
 function editPromotion(row) {
     const cells = row.querySelectorAll('td');
 
-    if (isEditing) {
-        // Chuyển đổi về chế độ hiển thị
-        cells.forEach((cell, index) => {
-            if (index < cells.length - 1) { // Không chỉnh sửa cột thao tác
-                const input = cell.querySelector('input');
-                if (input) {
-                    cell.innerHTML = input.value; // Lấy giá trị từ input
-                }
-            }
-        });
+    // Nếu đã có hàng đang chỉnh sửa thì lưu lại hàng đó
+    if (currentEditingRow && currentEditingRow !== row) {
+        savePromotion(currentEditingRow);
+    }
 
-        // Cập nhật nút về "Chỉnh sửa"
-        row.querySelector('.discount-button.edit').innerHTML = '<i class="fi fi-rs-edit"></i>';
-        row.querySelector('.discount-button.edit').onclick = () => editPromotion(row);
+    // Kiểm tra nếu hàng đang chỉnh sửa đã được nhấn lại
+    if (currentEditingRow === row) {
+        // Lưu lại nếu nhấn lại hàng đang chỉnh sửa
+        savePromotion(row);
     } else {
         // Lưu dữ liệu gốc
         originalRowData = Array.from(cells).map(cell => cell.innerHTML);
@@ -389,48 +455,94 @@ function editPromotion(row) {
             }
         });
 
-        // Cập nhật nút về "Lưu" với biểu tượng tick
-        row.querySelector('.discount-button.edit').innerHTML = '<i class="fi fi-rs-check"></i>'; // Dấu tick
-        row.querySelector('.discount-button.edit').onclick = () => savePromotion(row); // Gọi hàm lưu
+        // Cập nhật nút về "Lưu" với biểu tượng tick và ẩn nút chỉnh sửa
+        const editButton = row.querySelector('button:first-child');
+        editButton.innerHTML = `<i class="fi fi-rs-check tick-icon"></i>`; // Thay đổi biểu tượng thành tick
+        currentEditingRow = row; // Lưu hàng đang chỉnh sửa
     }
-
-    isEditing = !isEditing; // Đảo ngược trạng thái
 }
 
 // Hàm lưu chỉnh sửa
 function savePromotion(row) {
     const cells = row.querySelectorAll('td');
     const isConfirmed = confirm('Bạn có chắc chắn muốn lưu các thay đổi?');
-    
+
     if (isConfirmed) {
         cells.forEach((cell, index) => {
             if (index < cells.length - 1) { // Không chỉnh sửa cột thao tác
                 const input = cell.querySelector('input');
                 cell.innerHTML = input.value; // Lấy giá trị từ input
+                // Cập nhật dữ liệu vào mảng promotions
+                const promoCode = originalRowData[1]; // Mã khuyến mãi
+                if (index === 0) promotions.find(p => p.code === promoCode).name = input.value; // Cập nhật tên
+                if (index === 3) promotions.find(p => p.code === promoCode).discountPercentage = input.value; // Cập nhật phần trăm giảm
+                if (index === 4) promotions.find(p => p.code === promoCode).discountVND = input.value; // Cập nhật giá trị giảm
+                if (index === 5) promotions.find(p => p.code === promoCode).minOrderValue = input.value; // Cập nhật giá trị đơn hàng tối thiểu
+                if (index === 6) promotions.find(p => p.code === promoCode).maxDiscountValue = input.value; // Cập nhật số tiền giảm tối đa
+                if (index === 7) promotions.find(p => p.code === promoCode).date = input.value; // Cập nhật ngày
             }
         });
-
-        // Cập nhật nút về "Chỉnh sửa"
-        row.querySelector('.discount-button.edit').innerHTML = '<i class="fi fi-rs-edit"></i>';
-        row.querySelector('.discount-button.edit').onclick = () => editPromotion(row);
     } else {
-        // Reset lại dữ liệu về trạng thái ban đầu
-        resetRowData(row);
+        // Nếu không xác nhận, khôi phục dữ liệu ban đầu
+        resetRow(row);
     }
 
-    isEditing = false; // Đặt lại trạng thái
+    // Khôi phục nút chỉnh sửa
+    const editButton = row.querySelector('button:first-child');
+    editButton.innerHTML = '<i class="fi fi-rs-edit edit-icon"></i>'; // Đặt lại biểu tượng chỉnh sửa
+    currentEditingRow = null; // Đặt trạng thái về mặc định
 }
 
-// Hàm reset dữ liệu về trạng thái ban đầu
-function resetRowData(row) {
+// Hàm khôi phục lại dữ liệu
+function resetRow(row) {
     const cells = row.querySelectorAll('td');
     cells.forEach((cell, index) => {
         if (index < cells.length - 1) { // Không chỉnh sửa cột thao tác
-            cell.innerHTML = originalRowData[index]; // Đưa dữ liệu gốc về ô
+            cell.innerHTML = originalRowData[index]; // Khôi phục lại giá trị ban đầu
         }
     });
-    originalRowData = null; // Đặt lại dữ liệu gốc
+    // Cập nhật lại nút về "Chỉnh sửa"
+    const editIcon = row.querySelector('.edit-icon');
+    editIcon.innerHTML = '<i class="fi fi-rs-edit edit-icon"></i>';
 }
+
+// Khởi động trang đầu tiên
+renderTable();
+renderPagination();
+
+const searchInput = document.getElementById('search-input');
+
+document.getElementById('apply-button').addEventListener('click', function() {
+    const searchValue = document.getElementById('search-input').value.toLowerCase();
+    const filterValue = document.getElementById('filter-input').value.toLowerCase();
+
+    // Cập nhật danh sách đã lọc
+    filteredPromotions = promotions.filter(promo => {
+        return promo.name.toLowerCase().includes(searchValue) &&
+               promo.code.toLowerCase().includes(filterValue);
+    });
+
+    // Đặt lại trang hiện tại
+    currentPage = 1;
+
+    // Cập nhật bảng với danh sách khuyến mãi đã lọc
+    renderTable();
+    renderPagination();
+});
+
+// Thêm sự kiện lắng nghe cho nút "Nhập lại"
+document.getElementById('reset-button').addEventListener('click', function() {
+    document.getElementById('search-input').value = ''; // Xóa ô tìm kiếm
+    document.getElementById('filter-input').value = ''; // Xóa ô lọc
+    filteredPromotions = promotions; // Hiển thị lại tất cả khuyến mãi
+    currentPage = 1; // Đặt lại trang hiện tại
+    renderTable(); // Hiển thị lại bảng
+    renderPagination(); // Cập nhật phân trang
+});
+
+// Khởi động trang đầu tiên
+renderTable();
+renderPagination();
 
 
 

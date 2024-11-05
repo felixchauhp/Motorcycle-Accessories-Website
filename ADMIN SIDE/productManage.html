@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
      <!-- Bootstrap JS (for dropdown functionality) -->
@@ -15,6 +15,7 @@
 
     <title>Ecommerce Website</title>
     <style>
+        /* Button styles */
         .add-product-btn {
             display: flex;
             justify-content: flex-start;
@@ -29,121 +30,95 @@
             text-decoration: none;
             display: inline-block;
         }
-
         .add-product-btn .button:hover {
             background-color: #054c2a;
         }
 
+        /* Table styles */
         .product-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-
         .product-table th, .product-table td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
         }
-
         .product-table th {
             background-color: #e0e0e0;
             font-weight: bold;
         }
 
-        .product-button {
-            color: white;
-            background-color: var(--first-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-
-        .product-button:hover {
-            background-color: #054c2a;
-        }
-
+        /* Pagination styles */
         .pagination {
-    list-style: none;
-    display: flex;
-    justify-content: center; /* Căn giữa toàn bộ phân trang */
-    margin-top: 20px;
-}
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination__link {
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            color: #000;
+            text-align: center;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pagination__link.active {
+            background-color: var(--first-color);
+            color: white;
+        }
+        .pagination__link:hover {
+            background-color: #e0e0e0;
+        }
 
-.pagination__link {
-    margin: 0 5px; /* Khoảng cách giữa các liên kết */
-    padding: 10px 15px; /* Padding cho mỗi ô */
-    border: 1px solid #ccc; /* Viền cho mỗi ô */
-    cursor: pointer; /* Con trỏ khi hover */
-    color: #000; /* Màu chữ */
-    text-align: center; /* Căn giữa văn bản trong ô */
-    border-radius: 4px; /* Bo góc cho các ô */
-    display: flex; /* Thay đổi để sử dụng Flexbox */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    justify-content: center; /* Căn giữa theo chiều ngang */
-}
-
-.pagination__link.active {
-    background-color: var(--first-color); /* Màu nền cho ô đang hoạt động */
-    color: white; /* Màu chữ cho ô đang hoạt động */
-}
-
-.pagination__link:hover {
-    background-color: #e0e0e0; /* Nền khi di chuột */
-}
-
-    
-
-        
-        
-       /* Modal styles */
-       #productForm {
-        width: 100%; /* Chiếm toàn bộ chiều rộng */
-        max-width: 600px; /* Giới hạn chiều rộng tối đa */
-        padding: 20px; /* Khoảng cách bên trong */
-        border: 1px solid #ccc; /* Viền cho form */
-        border-radius: 8px; /* Bo góc cho form */
-        background-color: #fff; /* Màu nền */
-        overflow: auto; /* Thêm cuộn nếu cần thiết, nhưng tối thiểu */
-      }
+        /* Modal styles */
+        #productForm {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            overflow: auto;
+        }
         .overlay {
-    display: none; /* ẩn mặc định */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* nền bán trong suốt */
-    z-index: 1000; /* nằm trên các nội dung khác */
-}
-
-.modal {
-    display: none; /* ẩn mặc định */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* căn giữa modal */
-    z-index: 1001; /* nằm trên overlay */
-    max-height: 90vh; /* giới hạn chiều cao */
-    overflow-y: auto; /* cho phép cuộn */
-    background: white; /* màu nền của modal */
-    padding: 20px; /* một chút padding */
-}
-
-
-
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            padding: 20px;
+        }
         
+        /* Form styles */
         #productForm h2 {
             margin-top: 0;
+            text-align: center;
         }
-        
         #productForm label {
             display: block;
             margin-bottom: 10px;
         }
-        
         #productForm input[type="text"],
         #productForm input[type="number"],
         #productForm input[type="file"],
@@ -154,47 +129,37 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             margin-bottom: 15px;
-            box-sizing: border-box; /* Bao gồm padding và border trong kích thước */
+            box-sizing: border-box;
         }
-        
-        #product-info {
-            height: 100px; /* Chiều cao cố định cho textarea */
-            resize: none; /* Ngăn người dùng thay đổi kích thước */
-        }
+        #product-info,
         #product-note {
-            height: 100px; /* Chiều cao cố định cho textarea */
-            resize: none; /* Ngăn người dùng thay đổi kích thước */
+            height: 100px;
+            resize: none;
         }
-        
         #product-prices {
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
         }
-        
         #product-prices div {
-            flex: 1; /* Chiếm đều không gian */
-            margin-right: 10px; /* Khoảng cách giữa các cột */
+            flex: 1;
+            margin-right: 10px;
         }
-        
         #product-prices div:last-child {
-            margin-right: 0; /* Không có margin cho cột cuối cùng */
+            margin-right: 0;
         }
-        
         #product-dates {
             display: flex;
             gap: 45px;
             margin-bottom: 15px;
         }
-        
         #product-dates input[type="date"] {
-            width: 100%; /* Chiếm toàn bộ chiều rộng của ô chứa */
+            width: 100%;
             padding: 6px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            margin: 0; /* Không có margin */
+            margin: 0;
         }
-        
         #productForm button[type="submit"] {
             background-color: var(--first-color);
             color: white;
@@ -203,143 +168,136 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        
         #productForm button[type="submit"]:hover {
             background-color: #054c2a;
         }
 
+        /* Image upload styles */
         #image-upload-area {
-            display: flex; /* Use flexbox for alignment */
-            align-items: center; /* Center items vertically */
-            gap: 10px; /* Space between the button and image previews */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
         #image-preview {
             display: flex; 
             flex-wrap: wrap; 
-            gap: 10px; /* Space between images */
+            gap: 10px;
         }
-
         #image-preview img {
-            width: 100px; /* Set the width of the thumbnails */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 4px; /* Rounded corners for images */
-            border: 1px solid #ccc; /* Optional: add a border to images */
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #ccc;
         }
 
+        /* Navigation styles */
         .form-navigation {
-    background-color: #f5f5f5; /* Change this as needed */
-    color: #333; /* Change text color as needed */
-}
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .form-navigation .nav__item {
+            display: none;
+        }
+        .form-navigation .form-nav__item {
+            display: block;
+        }
 
-/* Optionally, hide the original navigation items */
-.form-navigation .nav__item {
-    display: none; /* Hide original items */
-}
+        /* Search container styles */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #search-input,
+        #filter-input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 1;
+        }
+        #apply-button {
+            border: 2px solid red;
+            background-color: transparent;
+            color: red;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #reset-button {
+            background-color: black;
+            color: white;
+            margin-left: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
 
-.form-navigation .form-nav__item {
-    display: block; /* Show form-specific items */
-}
-.search-container {
-    display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    gap: 10px; /* Khoảng cách giữa các phần tử */
-}
+        /* Pagination dots styles */
+        .pagination__dots {
+            position: relative;
+            top: 15px;
+            font-size: 14px;
+            color: black;
+        }
 
-#search-input,
-#filter-input {
-    padding: 5px; /* Khoảng cách bên trong cho ô tìm kiếm và ô lọc */
-    border: 1px solid #ccc; /* Viền cho ô tìm kiếm và ô lọc */
-    border-radius: 4px; /* Bo góc cho ô tìm kiếm và ô lọc */
-    flex: 1; /* Chiếm hết không gian còn lại */
-}
-
-#apply-button {
-    border: 2px solid red; /* Khung viền đỏ */
-    background-color: transparent; /* Không có màu nền */
-    color: red; /* Chữ màu đỏ */
-    padding: 5px 10px; /* Khoảng cách bên trong */
-    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
-}
-
-#reset-button {
-    background-color: black; /* Màu nền đen */
-    color: white; /* Chữ màu trắng */
-    margin-left: 10px; /* Khoảng cách giữa hai nút */
-    padding: 5px 10px; /* Khoảng cách bên trong */
-    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
-}
-
+        /* Icon styles */
+        .edit-icon, .trash-icon, .go-to-icon {
+            color: gray;
+            transition: color 0.3s;
+        }
+        .edit-icon:hover, .trash-icon:hover, .go-to-icon:hover {
+            color: red;
+        }
+        button {
+            cursor: pointer;
+        }
     </style>
 </head>
 
-    <!--=============== HEADER ===============-->
-    <header>
-        <nav class="nav container">
-            <a href="index-manage.html" class="nav__logo">
-                <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
-            </a>
-            <div class="nav__menu" id="nav-menu">
-                <div class="nav__menu-top">
-                    <a href="index-manage.html" class="nav__menu-logo">
-                        <img src="./assets/img/logo.png" alt="">
-                    </a>
-                    <div class="nav__close" id="nav-close">
-                        <i class="fi fi-rs-cross-small"></i>
-                    </div>
-                </div>
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="productManage.html" class="nav__link">Sản phẩm</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="quanlydonhang.html" class="nav__link">Đơn hàng</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
-                    </li>
-                </ul>
-                <div class="header__user-actions">
-                    <a href="#" class="header__action-btn" title="Notification">
-                        <img src="assets/img/bell.svg" alt="" />
-                        <span class="count">3</span>
-                    </a>
-                    <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
-                        <img src="assets/img/icon-user.svg" alt="" />
-                    </a>
+<body>
+    <nav class="nav container">
+        <a href="index-manage.html" class="nav__logo">
+            <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
+        </a>
+        <div class="nav__menu" id="nav-menu">
+            <div class="nav__menu-top">
+                <a href="index-manage.html" class="nav__menu-logo">
+                    <img src="./assets/img/logo.png" alt="">
+                </a>
+                <div class="nav__close" id="nav-close">
+                    <i class="fi fi-rs-cross-small"></i>
                 </div>
             </div>
-        </nav>
-    </header>
-    
-<body>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="productManage.html" class="nav__link">Quản lý Sản phẩm</a></li>
+                <li class="nav__item"><a href="quanlydonhang.html" class="nav__link">Quản lý Đơn hàng</a></li>
+                <li class="nav__item"><a href="discount.html" class="nav__link active-link">Quản lý khuyến mãi</a></li>
+                <li class="nav__item"><a href="accounts-manager.html" class="nav__link">Thông tin</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <main class="main">
         <section class="products container section--lg">
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Tìm kiếm...">
-                <input type="text" id="filter-input" placeholder="Lọc..."> <!-- Ô lọc -->
+                <input type="text" id="filter-input" placeholder="Lọc...">
                 <button id="apply-button">Áp dụng</button>
                 <button id="reset-button">Nhập lại</button>
             </div>
-            
             <br>
-            
-          <div class="add-product-btn">
-            <a href="add-Product.html" class="button"><i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới</a>
-        </div>
-
+            <div class="add-product-btn">
+                <a href="add-Product.html" class="button"><i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới</a>
+            </div>
             <table class="product-table">
                 <thead>
                     <tr>
-                      <th>Ảnh</th>
-                      <th>Mã</th>
-                      <th>Tên</th>
-                      <th>Giá gốc</th>
-                      <th>Giá bán</th>
-                      <th>Tồn kho</th>
-                      <th>Ghi chú</th>
-                      <th>Thao tác</th>
+                        <th>Ảnh</th>
+                        <th>Mã</th>
+                        <th>Tên</th>
+                        <th>Giá gốc</th>
+                        <th>Giá bán</th>
+                        <th>Tồn kho</th>
+                        <th>Ghi chú</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody id="product-table-body">
@@ -350,193 +308,138 @@
                 <!-- Sẽ được điền bằng JavaScript -->
             </ul>
         </section>
+
         <div id="overlay" class="overlay"></div>
-    <div id="productForm" class="modal">
-      <h2 style="text-align: center;">Chỉnh sửa thông tin sản phẩm</h2>
-      <br>
-      <form id="save-product">
-          <label for="product-id">Mã sản phẩm:</label>
-          <input type="text" id="product-id" required />
+        <div id="productForm" class="modal">
+            <h2>Chỉnh sửa thông tin sản phẩm</h2>
+            <form id="save-product">
+                <label for="product-id">Mã sản phẩm:</label>
+                <input type="text" id="product-id" required />
 
-          <label for="product-name">Tên sản phẩm:</label>
-          <input type="text" id="product-name" required />
+                <label for="product-name">Tên sản phẩm:</label>
+                <input type="text" id="product-name" required />
 
-          <label for="product-supplier">Nhà cung cấp:</label>
-          <input type="text" id="product-supplier" required />
-    
-           <label for="product-des">Mô tả:</label>
-            <textarea id="product-info" required></textarea>
+                <label for="product-supplier">Nhà cung cấp:</label>
+                <input type="text" id="product-supplier" required />
+        
+                <label for="product-info">Mô tả:</label>
+                <textarea id="product-info" required></textarea>
 
-          <label for="product-function">Công dụng:</label>
-          <input type="text" id="product-function" required />
-    
-          <label for="product-quantity">Tồn kho:</label>
-          <input type="number" id="product-quantity" required />
-          
-          <label for="product-unit">Đơn vị tính:</label>
-          <input type="text" id="product-unit" required />
-    
-          <div id="product-prices">
-              <div>
-                  <label for="product-original-price">Giá gốc:</label>
-                  <input type="number" id="product-original-price" required />
-              </div>
-              <div>
-                  <label for="product-price">Giá bán:</label>
-                  <input type="number" id="product-price" required />
-              </div>
-          </div>
+                <label for="product-function">Công dụng:</label>
+                <input type="text" id="product-function" required />
+        
+                <label for="product-quantity">Tồn kho:</label>
+                <input type="number" id="product-quantity" required />
+                
+                <label for="product-unit">Đơn vị tính:</label>
+                <input type="text" id="product-unit" required />
+        
+                <div id="product-prices">
+                    <div>
+                        <label for="product-original-price">Giá gốc:</label>
+                        <input type="number" id="product-original-price" required />
+                    </div>
+                    <div>
+                        <label for="product-price">Giá bán:</label>
+                        <input type="number" id="product-price" required />
+                    </div>
+                </div>
 
-          <div id="product-dates">
-              <div>
-                  <label for="product-discount-price">Giá khuyến mãi:</label>
-                  <input type="number" id="product-discount-price" required />
-              </div>
-              <div>
-                  <label for="product-start-date">Ngày bắt đầu:</label>
-                  <input type="date" id="product-start-date" required />
-              </div>
-              <div>
-                  <label for="product-end-date">Ngày kết thúc:</label>
-                  <input type="date" id="product-end-date" required />
-              </div>
-          </div>
-          
-          <label for="product-image">Ảnh sản phẩm (tối đa 2):</label>
-            <div id="image-upload-container" style="border: 1px solid #ccc; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px;">
-                <input type="file" id="product-image" accept="image/*" multiple required style="display: none;" />
-                <label for="product-image" style="cursor: pointer; padding: 10px; background-color: #f0f0f0; border-radius: 8px;">
-                    Chọn ảnh
-                </label>
-                <div id="image-preview" style="display: flex; flex-wrap: nowrap; gap: 10px;"></div> <!-- Preview container for images -->
-            </div>
+                <div id="product-dates">
+                    <div>
+                        <label for="product-discount-price">Giá khuyến mãi:</label>
+                        <input type="number" id="product-discount-price" required />
+                    </div>
+                    <div>
+                        <label for="product-start-date">Ngày bắt đầu:</label>
+                        <input type="date" id="product-start-date" required />
+                    </div>
+                    <div>
+                        <label for="product-end-date">Ngày kết thúc:</label>
+                        <input type="date" id="product-end-date" required />
+                    </div>
+                </div>
+                
+                <label for="product-image">Ảnh sản phẩm (tối đa 2):</label>
+                <div id="image-upload-container" style="border: 1px solid #ccc; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px;">
+                    <input type="file" id="product-image" accept="image/*" multiple required style="display: none;" />
+                    <label for="product-image" style="cursor: pointer; padding: 10px; background-color: #f0f0f0; border-radius: 8px;">
+                        Chọn ảnh
+                    </label>
+                    <div id="image-preview"></div>
+                </div>
 
-          <label for="product-note">Ghi chú:</label>
-          <textarea id="product-note" required></textarea>
+                <label for="product-note">Ghi chú:</label>
+                <textarea id="product-note" required></textarea>
 
-          <button type="submit">Lưu</button>
-      </form>
-  </div>
-  
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </main>
 
+    <script>
+        // Image upload and preview logic
+        const fileInput = document.getElementById('product-image');
+        const imagePreview = document.getElementById('image-preview');
+        let selectedFiles = [];
 
-<script>
-const fileInput = document.getElementById('product-image');
-const imagePreview = document.getElementById('image-preview');
+        fileInput.addEventListener('change', function() {
+            const files = Array.from(fileInput.files);
 
-// Array to keep track of selected image files
-let selectedFiles = [];
+            if (files.length + selectedFiles.length > 2) {
+                alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
+                fileInput.value = '';
+                return;
+            }
 
-fileInput.addEventListener('change', function() {
-    const files = Array.from(fileInput.files);
-
-    if (files.length + selectedFiles.length > 2) {
-        alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
-        fileInput.value = '';
-        return;
-    }
-
-    selectedFiles = selectedFiles.concat(files);
-    imagePreview.innerHTML = '';
-
-    selectedFiles.forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imgWrapper = document.createElement('div');
-            imgWrapper.style.position = 'relative';
-
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.style.width = '200px';
-            img.style.height = 'auto';
-            img.style.borderRadius = '4px';
-            img.style.border = '1px solid #ccc';
-            img.style.objectFit = 'cover';
-
-            const deleteIcon = document.createElement('span');
-            deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
-            deleteIcon.style.position = 'absolute';
-            deleteIcon.style.top = '5px';
-            deleteIcon.style.right = '5px';
-            deleteIcon.style.cursor = 'pointer';
-            deleteIcon.style.display = 'none';
-            deleteIcon.style.opacity = '0.7';
-            deleteIcon.style.fontSize = '20px';
-
-            imgWrapper.addEventListener('mouseenter', () => {
-                deleteIcon.style.display = 'block';
-            });
-            imgWrapper.addEventListener('mouseleave', () => {
-                deleteIcon.style.display = 'none';
-            });
-
-            // Cập nhật hình ảnh sản phẩm
-            const currentProductId = document.getElementById('product-id').value; // Lấy ID sản phẩm hiện tại
-            updateProductImage(currentProductId, e.target.result); // Cập nhật hình ảnh mới
-
-            deleteIcon.addEventListener('click', () => {
-                selectedFiles.splice(index, 1);
-                imgWrapper.remove();
-                updateImagePreviews();
-                updateProductImage(currentProductId, ''); // Xóa hình ảnh khỏi sản phẩm
-            });
-
-            imgWrapper.appendChild(img);
-            imgWrapper.appendChild(deleteIcon);
-            imagePreview.appendChild(imgWrapper);
-        };
-        reader.readAsDataURL(file);
-    });
-});
-
-
-// Function to update the image previews after deletion
-function updateImagePreviews() {
-imagePreview.innerHTML = ''; // Clear the current previews
-selectedFiles.forEach((file, index) => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const imgWrapper = document.createElement('div');
-        imgWrapper.style.position = 'relative'; // Set position for the icon
-
-        const img = document.createElement('img');
-        img.src = e.target.result; // Set the image source to the file's data URL
-        img.style.width = '200px'; // Thay đổi kích thước của hình ảnh ở đây
-        img.style.height = 'auto'; // Maintain aspect ratio
-        img.style.borderRadius = '4px'; // Optional: rounded corners for images
-        img.style.border = '1px solid #ccc'; // Optional: border for images
-        img.style.objectFit = 'cover'; // Ensure images fit well within their boxes
-
-        const deleteIcon = document.createElement('span');
-        deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
-        deleteIcon.style.position = 'absolute';
-        deleteIcon.style.top = '5px';
-        deleteIcon.style.right = '5px';
-        deleteIcon.style.cursor = 'pointer';
-        deleteIcon.style.display = 'none'; // Initially hidden
-        deleteIcon.style.opacity = '0.7'; // Slightly transparent
-        deleteIcon.style.fontSize = '20px'; // Adjust the icon size if needed
-
-        imgWrapper.addEventListener('mouseenter', () => {
-            deleteIcon.style.display = 'block'; // Show icon on hover
-        });
-        imgWrapper.addEventListener('mouseleave', () => {
-            deleteIcon.style.display = 'none'; // Hide icon when not hovering
+            selectedFiles = selectedFiles.concat(files);
+            updateImagePreviews();
         });
 
-        deleteIcon.addEventListener('click', () => {
-            selectedFiles.splice(index, 1); // Remove file from array
-            imgWrapper.remove(); // Remove the image element
-            updateImagePreviews(); // Update the preview display
-        });
+        function updateImagePreviews() {
+            imagePreview.innerHTML = '';
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.style.position = 'relative';
 
-        imgWrapper.appendChild(img); // Add the image to the wrapper
-        imgWrapper.appendChild(deleteIcon); // Add the delete icon to the wrapper
-        imagePreview.appendChild(imgWrapper); // Add the wrapper to the preview container
-    }
-    reader.readAsDataURL(file); // Read the file as a data URL
-});
-}
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100px';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '4px';
+                    img.style.border = '1px solid #ccc';
+
+                    const deleteIcon = document.createElement('span');
+                    deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
+                    deleteIcon.style.position = 'absolute';
+                    deleteIcon.style.top = '5px';
+                    deleteIcon.style.right = '5px';
+                    deleteIcon.style.cursor = 'pointer';
+                    deleteIcon.style.display = 'none';
+                    deleteIcon.style.opacity = '0.7';
+
+                    imgWrapper.addEventListener('mouseenter', () => {
+                        deleteIcon.style.display = 'block';
+                    });
+                    imgWrapper.addEventListener('mouseleave', () => {
+                        deleteIcon.style.display = 'none';
+                    });
+
+                    deleteIcon.addEventListener('click', () => {
+                        selectedFiles.splice(index, 1);
+                        imgWrapper.remove();
+                        updateImagePreviews();
+                    });
+
+                    imgWrapper.appendChild(img);
+                    imgWrapper.appendChild(deleteIcon);
+                    imagePreview.appendChild(imgWrapper);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
 
 
 </script>
@@ -596,105 +499,149 @@ selectedFiles.forEach((file, index) => {
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-      const products = [];
-  
-      // Create sample product data
-      for (let i = 1; i <= 100; i++) {
-          products.push({
-              id: `SP${100 + i}`,
-              name: `Sản phẩm ${i}`,
-              originalPrice: `$${(Math.random() * 1000).toFixed(2)}`,
-              salePrice: `$${(Math.random() * 500).toFixed(2)}`,
-              stock: Math.floor(Math.random() * 100) + 1,
-              image: `assets/img/product-${i}-1.jpg`,
-              notes: `Note ${i}`
-          });
-      }
-  
-      console.log("Products array:", products); // Check if the products array has been populated
-  
-      const itemsPerPage = 20;
-      let currentPage = 1;
-  
-      // Render products for the current page
-      function renderProducts(page) {
-          const startIndex = (page - 1) * itemsPerPage;
-          const endIndex = startIndex + itemsPerPage;
-          const productTableBody = document.getElementById('product-table-body');
-  
-          if (!productTableBody) {
-              console.error("Element with ID 'product-table-body' not found");
-              return;
-          }
-  
-          productTableBody.innerHTML = '';
-  
-          const currentProducts = products.slice(startIndex, endIndex);
-          currentProducts.forEach(product => {
-              productTableBody.innerHTML += createProductRow(product);
-          });
-  
-          renderPagination();
-      }
-  
-      // Create a row for the product table
-      function createProductRow(product) {
-          return `
-              <tr>
-                  <td><img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;" /></td>
-                  <td>${product.id}</td>
-                  <td>${product.name}</td>
-                  <td>${product.originalPrice}</td>
-                  <td>${product.salePrice}</td>
-                  <td>${product.stock}</td>
-                  <td>${product.notes}</td>
-                  <td>
-                      <button class="product-button" onclick="editProduct('${product.id}', event)">
-        <i class="fi fi-rs-edit"></i>
-                      <button class="product-button" onclick="deleteProduct('${product.id}')">
-                          <i class="fi fi-rs-trash"></i>
-                      </button>
-                      <button class="product-button" onclick="goToDetail('${product.id}')">
-                          <i class="fi fi-rs-menu-dots"></i>
-                      </button>
-                  </td>
-              </tr>
-          `;
-      }
-  
-      // Render pagination controls
-      function renderPagination() {
-          const pagination = document.getElementById('pagination');
-          pagination.innerHTML = '';
-  
-          const totalPages = Math.ceil(products.length / itemsPerPage);
-          for (let i = 1; i <= totalPages; i++) {
-              const pageItem = document.createElement('li');
-              pageItem.innerHTML = `<a href="#" class="pagination__link ${currentPage === i ? 'active' : ''}" onclick="goToPage(${i})">${i}</a>`;
-              pagination.appendChild(pageItem);
-          }
-      }
-  
-      // Go to the selected page
-      function goToPage(page) {
-          currentPage = page;
-          renderProducts(currentPage);
-      }
-  
-      // Redirect to product detail page
-      function goToDetail(productId) {
-          window.location.href = `details.html?id=${productId}`;
-      }
-  
-      // Delete a product
-      function deleteProduct(productId) {
-          const productIndex = products.findIndex(product => product.id === productId);
-          if (productIndex > -1) {
-              products.splice(productIndex, 1);
-              renderProducts(currentPage);
-          }
-      }
-  
+// Tạo dữ liệu mẫu cho 1000 sản phẩm
+const products = [];
+for (let i = 1; i <= 1000; i++) {
+    products.push({
+        id: `SP${1000 + i}`,
+        name: `Sản phẩm ${i}`,
+        originalPrice: `$${(Math.random() * 1000).toFixed(2)}`,
+        salePrice: `$${(Math.random() * 500).toFixed(2)}`,
+        stock: Math.floor(Math.random() * 100) + 1,
+        image: `assets/img/product-${i % 100 + 1}-1.jpg`, // Nếu có dưới 100 ảnh, dùng chỉ số lặp lại
+        notes: `Note ${i}`
+    });
+}
+
+console.log("Products array:", products); // Check if the products array has been populated
+
+const itemsPerPage = 20;
+let currentPage = 1;
+let filteredProducts = [...products]; // Biến lưu trữ sản phẩm đã lọc
+
+// Render products for the current page
+function renderProducts(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const productTableBody = document.getElementById('product-table-body');
+
+    if (!productTableBody) {
+        console.error("Element with ID 'product-table-body' not found");
+        return;
+    }
+
+    productTableBody.innerHTML = '';
+
+    const currentProducts = filteredProducts.slice(startIndex, endIndex); // Lấy sản phẩm từ filteredProducts
+    currentProducts.forEach(product => {
+        productTableBody.innerHTML += createProductRow(product);
+    });
+
+    renderPagination(filteredProducts.length); // Gọi renderPagination với số sản phẩm đã lọc
+}
+
+// Create a row for the product table
+function createProductRow(product) {
+    return `
+        <tr>
+            <td><img src="${product.image}" alt="${product.name}" style="width: 100px; height: auto;" /></td>
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+            <td>${product.originalPrice}</td>
+            <td>${product.salePrice}</td>
+            <td>${product.stock}</td>
+            <td>${product.notes}</td>
+            <td>
+                <button onclick="editProduct('${product.id}', event)">
+                    <i class="fi fi-rs-edit edit-icon"></i>
+                </button>
+                <button onclick="deleteProduct('${product.id}')">
+                    <i class="fi fi-rs-trash trash-icon"></i>
+                </button>
+                <button onclick="goToDetail('${product.id}')">
+                    <i class="fi fi-rs-menu-dots go-to-icon"></i>
+                </button>
+            </td>
+        </tr>
+    `;
+}
+
+function renderPagination(filteredProductCount) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    const totalPages = Math.ceil(filteredProductCount / itemsPerPage);
+
+    // Nút lùi về
+    if (currentPage > 1) {
+        const prevButton = document.createElement('li');
+        prevButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage - 1})">«</a>`;
+        pagination.appendChild(prevButton);
+    }
+
+    // Trang đầu tiên
+    const firstPage = document.createElement('li');
+    firstPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === 1 ? 'active' : ''}" onclick="goToPage(1)">1</a>`;
+    pagination.appendChild(firstPage);
+
+    // Dấu ba chấm nếu cần
+    if (currentPage > 3) {
+        const dots = document.createElement('li');
+        dots.innerHTML = `<span class="pagination__dots">...</span>`;
+        pagination.appendChild(dots);
+    }
+
+    // Hiển thị các trang xung quanh trang hiện tại
+    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+        const pageItem = document.createElement('li');
+        pageItem.innerHTML = `<a href="#" class="pagination__link ${currentPage === i ? 'active' : ''}" onclick="goToPage(${i})">${i}</a>`;
+        pagination.appendChild(pageItem);
+    }
+
+    // Dấu ba chấm trước trang cuối
+    if (currentPage < totalPages - 2) {
+        const dots = document.createElement('li');
+        dots.innerHTML = `<span class="pagination__dots">...</span>`;
+        pagination.appendChild(dots);
+    }
+
+    // Trang cuối
+    if (totalPages > 1) {
+        const lastPage = document.createElement('li');
+        lastPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === totalPages ? 'active' : ''}" onclick="goToPage(${totalPages})">${totalPages}</a>`;
+        pagination.appendChild(lastPage);
+    }
+
+    // Nút tiến tới
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('li');
+        nextButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage + 1})">»</a>`;
+        pagination.appendChild(nextButton);
+    }
+}
+
+// Hàm đi tới trang mong muốn
+function goToPage(page) {
+    if (page >= 1 && page <= Math.ceil(filteredProducts.length / itemsPerPage)) {
+        currentPage = page;
+        renderProducts(currentPage);
+    }
+}
+
+// Redirect to product detail page
+function goToDetail(productId) {
+    window.location.href = `details.html?id=${productId}`;
+}
+
+// Delete a product
+function deleteProduct(productId) {
+    const productIndex = products.findIndex(product => product.id === productId);
+    if (productIndex > -1) {
+        products.splice(productIndex, 1);
+        filteredProducts = products; // Cập nhật lại danh sách sản phẩm đã lọc
+        renderProducts(currentPage);
+    }
+}
 
 function editProduct(productId, event) {
     event.preventDefault(); // Prevent default link behavior
@@ -731,25 +678,23 @@ function toggleModalVisibility(isVisible) {
     }
 }
 
+// Close modal
+function closeModal() {
+    toggleModalVisibility(false);
+    document.querySelector('.nav').classList.remove('form-navigation');
+}
 
-  
-      // Close modal
-      function closeModal() {
-          toggleModalVisibility(false);
-          document.querySelector('.nav').classList.remove('form-navigation');
-      }
-  
-      // Update product data
-      function updateProduct(productId, productData) {
-          const productIndex = products.findIndex(product => product.id === productId);
-          if (productIndex > -1) {
-              products[productIndex] = { ...products[productIndex], ...productData };
-              renderProducts(currentPage);
-          }
-      }
+// Update product data
+function updateProduct(productId, productData) {
+    const productIndex = products.findIndex(product => product.id === productId);
+    if (productIndex > -1) {
+        products[productIndex] = { ...products[productIndex], ...productData };
+        filteredProducts = products; // Cập nhật lại danh sách sản phẩm đã lọc
+        renderProducts(currentPage);
+    }
+}
 
-
-      function updateProductImage(productId, newImage) {
+function updateProductImage(productId, newImage) {
     const productIndex = products.findIndex(product => product.id === productId);
     if (productIndex > -1) {
         products[productIndex].image = newImage; // Cập nhật đường dẫn hình ảnh mới
@@ -757,127 +702,77 @@ function toggleModalVisibility(isVisible) {
     }
 }
 
-  
-      // Handle form submission
-      document.getElementById('save-product').addEventListener('submit', function (event) {
-          event.preventDefault();
-  
-          const productId = document.getElementById('product-id').value;
-          const productData = {
-              name: document.getElementById('product-name').value,
-              notes: document.getElementById('product-note').value,
-              stock: parseInt(document.getElementById('product-quantity').value, 10),
-              salePrice: `$${document.getElementById('product-price').value}`,
-              originalPrice: `$${document.getElementById('product-original-price').value}`
-          };
-  
-          updateProduct(productId, productData);
-          closeModal();
-      });
-  
-      
+// Handle form submission
+document.getElementById('save-product').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      // Close modal when overlay is clicked
-      document.getElementById('overlay').addEventListener('click', closeModal);
-  
-      // Initialize first page render
-      document.addEventListener('DOMContentLoaded', function () {
-          renderProducts(currentPage);
-      });
-      document.getElementById('apply-button').addEventListener('click', function() {
-    const searchValue = document.getElementById('search-input').value.toLowerCase(); // Lấy giá trị tìm kiếm và chuyển thành chữ thường
-    const rows = document.querySelectorAll('#product-table-body tr'); // Lấy tất cả các hàng trong bảng
+    const productId = document.getElementById('product-id').value;
+    const productData = {
+        name: document.getElementById('product-name').value,
+        notes: document.getElementById('product-note').value,
+        stock: parseInt(document.getElementById('product-quantity').value, 10),
+        salePrice: `$${document.getElementById('product-price').value}`,
+        originalPrice: `$${document.getElementById('product-original-price').value}`
+    };
 
-    // Lưu trữ kết quả tìm kiếm
-    const results = [];
-
-    // Duyệt qua tất cả các hàng
-    rows.forEach(row => {
-        const cells = row.querySelectorAll('td'); // Lấy tất cả các ô trong hàng
-        let rowMatches = false; // Biến để kiểm tra xem hàng có khớp với tìm kiếm hay không
-
-        // Duyệt qua các ô trong hàng
-        cells.forEach(cell => {
-            if (cell.textContent.toLowerCase().includes(searchValue)) { // Kiểm tra xem giá trị tìm kiếm có trong ô không
-                rowMatches = true; // Nếu có, đánh dấu hàng này là khớp
-            }
-        });
-
-        if (rowMatches) {
-            results.push(row); // Nếu hàng khớp, thêm vào kết quả
-        }
-    });
-
-    // Xóa bảng hiện tại và in ra kết quả
-    const productTableBody = document.getElementById('product-table-body');
-    productTableBody.innerHTML = ''; // Xóa tất cả hàng cũ
-
-    // Nếu có kết quả tìm kiếm, hiển thị chúng
-    if (results.length > 0) {
-        results.forEach(resultRow => {
-            productTableBody.appendChild(resultRow); // Thêm hàng khớp vào bảng
-        });
-    } else {
-        productTableBody.innerHTML = '<tr><td colspan="8">Không tìm thấy sản phẩm nào.</td></tr>'; // Hiển thị thông báo nếu không tìm thấy
-    }
+    updateProduct(productId, productData);
+    closeModal();
 });
-// Thêm sự kiện lắng nghe cho nút "Áp dụng"
+
+// Close modal when overlay is clicked
+document.getElementById('overlay').addEventListener('click', closeModal);
+
+// Initialize first page render
+document.addEventListener('DOMContentLoaded', function () {
+    renderProducts(currentPage);
+});
+
+// Lắng nghe sự kiện cho nút "Áp dụng"
 document.getElementById('apply-button').addEventListener('click', function() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase(); // Giá trị tìm kiếm
-    const filterInput = document.getElementById('filter-input').value.toLowerCase(); // Giá trị lọc
-    const productTableBody = document.getElementById('product-table-body'); // Lấy bảng sản phẩm
+    const searchValue = document.getElementById('search-input').value.toLowerCase(); // Lấy giá trị tìm kiếm
 
-    // Lọc dữ liệu và hiển thị
-    productTableBody.innerHTML = ''; // Xóa nội dung cũ trong bảng
+    // Lọc dữ liệu và cập nhật filteredProducts
+    filteredProducts = products.filter(product => {
+        const hasId = product.id && product.id.trim() !== ''; // Kiểm tra xem mã sản phẩm có tồn tại không
+        const hasName = product.name && product.name.trim() !== ''; // Kiểm tra xem tên sản phẩm có tồn tại không
 
-    const filteredProducts = products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchInput); // Lọc theo tên
-        const matchesFilter = product.id.toLowerCase().includes(filterInput); // Lọc theo mã
-        return matchesSearch && matchesFilter; // Trả về sản phẩm nếu khớp cả hai điều kiện
+        const matchesId = hasId && product.id.toLowerCase().includes(searchValue); // Lọc theo mã
+        const matchesName = hasName && product.name.toLowerCase().includes(searchValue); // Lọc theo tên
+
+        // Trả về sản phẩm nếu có mã hoặc tên, và cả hai đều không rỗng
+        return (matchesId || matchesName) && hasId && hasName; 
     });
 
-    filteredProducts.forEach(product => {
-        productTableBody.innerHTML += createProductRow(product); // Tạo hàng cho sản phẩm đã lọc
-    });
-
-    // Nếu không tìm thấy sản phẩm nào, bạn có thể hiển thị thông báo
-    if (filteredProducts.length === 0) {
-        productTableBody.innerHTML = '<tr><td colspan="8">Không tìm thấy sản phẩm nào.</td></tr>';
-    }
+    currentPage = 1; // Reset về trang đầu
+    renderProducts(currentPage); // Hiển thị sản phẩm đã lọc
 });
 
 // Thêm sự kiện lắng nghe cho nút "Nhập lại"
 document.getElementById('reset-button').addEventListener('click', function() {
     document.getElementById('search-input').value = ''; // Xóa ô tìm kiếm
-    document.getElementById('filter-input').value = ''; // Xóa ô lọc
+    filteredProducts = [...products]; // Reset lại filteredProducts
+    currentPage = 1; // Reset về trang đầu
     renderProducts(currentPage); // Hiển thị lại tất cả sản phẩm
 });
 
+// Kiểm tra hợp lệ khi tải hình ảnh
+function validateForm() {
+    const fileInput = document.getElementById('product-image');
+    if (fileInput.files.length > 2) {
+        alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
+        return false;
+    }
+    return true;
+}
 
-document.getElementById('reset-button').addEventListener('click', function() {
-    document.getElementById('search-input').value = ''; // Xóa giá trị tìm kiếm
-    renderProducts(currentPage); // Khôi phục lại bảng sản phẩm ban đầu
-});
+
+
+
 
 
       
   </script>
   
-    <script>
-      function validateForm() {
-          const fileInput = document.getElementById('product-image');
-          if (fileInput.files.length > 2) {
-              alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
-              return false;
-          }
-          return true;
-      }
-  </script>
-  
-  
-  
-  
-
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
 </body>
