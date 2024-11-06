@@ -27,7 +27,7 @@
     <title>Ecommerce Website</title>
   </head>
   <body>
-    
+
     
         <!--=============== HEADER ===============-->
         <header>
@@ -87,6 +87,19 @@
 
             <label for="product-supplier">Nhà cung cấp:</label>
             <input type="text" id="product-supplier" required />
+
+            <label for="product-category">Danh mục:</label>
+            <select id="filter-input">
+              <option value="" disabled selected>Chọn</option>
+              <option value="vo-xe-ruot-xe">Vỏ xe và ruột xe</option>
+              <option value="nhong-sen-dia">Nhông sên dĩa</option>
+              <option value="bac-dan">Bạc đạn</option>
+              <option value="nhot">Nhớt</option>
+              <option value="ac-quy">Ắc quy</option>
+              <option value="bo-dia-bo-thang">Bố đĩa và bố thắng</option>
+              <option value="phu-kien-khac">Các phụ kiện khác</option>
+            </select>
+            
       
             <label for="product-info">Mô tả:</label>
             <textarea id="product-info" required></textarea>
@@ -134,179 +147,13 @@
                 </label>
                 <div id="image-preview" style="display: flex; flex-wrap: nowrap; gap: 10px;"></div> <!-- Preview container for images -->
             </div>
-            
-            
-
-
-            
-            
-            
-
-
-
-
-
             <label for="product-note">Ghi chú:</label>
             <textarea id="product-info" required></textarea>
             <br>
             <button type="submit">Thêm</button>
           </form>
-        </div>
+        </div>   
       
-      <script>
-        document.getElementById('add-product-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
-
-            // Lấy dữ liệu sản phẩm
-            const name = document.getElementById('product-name').value;
-            const info = document.getElementById('product-info').value;
-            const quantity = document.getElementById('product-quantity').value;
-            const price = document.getElementById('product-price').value;
-            const image = document.getElementById('product-image').files[0];
-
-            // Tại đây bạn có thể thực hiện một hàm để lưu dữ liệu này vào danh sách sản phẩm
-            alert('Sản phẩm đã được thêm thành công!');
-            window.location.href = 'productManage.html'; // Điều chỉnh URL nếu cần
-        });
-      </script>
-
-
-<script>
-  const fileInput = document.getElementById('product-image');
-const imagePreview = document.getElementById('image-preview');
-
-// Array to keep track of selected image files
-let selectedFiles = [];
-
-fileInput.addEventListener('change', function() {
-    const files = Array.from(fileInput.files); // Convert FileList to an array
-
-    // Check if more than 2 files are selected
-    if (files.length + selectedFiles.length > 2) {
-        alert('Bạn chỉ được chọn tối đa 2 hình ảnh.'); // Alert if more than 2 images are selected
-        fileInput.value = ''; // Clear the input
-        return;
-    }
-
-    // Add new files to the selectedFiles array
-    selectedFiles = selectedFiles.concat(files);
-
-    // Clear the current image preview container
-    imagePreview.innerHTML = '';
-
-    // Loop through the selected files and create image elements for preview
-    selectedFiles.forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imgWrapper = document.createElement('div');
-            imgWrapper.style.position = 'relative'; // Set position for the icon
-
-            const img = document.createElement('img');
-            img.src = e.target.result; // Set the image source to the file's data URL
-            img.style.width = '200px'; // Thay đổi kích thước của hình ảnh ở đây
-            img.style.height = 'auto'; // Maintain aspect ratio
-            img.style.borderRadius = '4px'; // Optional: rounded corners for images
-            img.style.border = '1px solid #ccc'; // Optional: border for images
-            img.style.objectFit = 'cover'; // Ensure images fit well within their boxes
-            
-            // Create a trash can icon
-            const deleteIcon = document.createElement('span');
-            deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>'; // Use your specified icon here
-            deleteIcon.style.position = 'absolute';
-            deleteIcon.style.top = '5px';
-            deleteIcon.style.right = '5px';
-            deleteIcon.style.cursor = 'pointer';
-            deleteIcon.style.display = 'none'; // Initially hidden
-            deleteIcon.style.opacity = '0.7'; // Slightly transparent
-            deleteIcon.style.fontSize = '20px'; // Adjust the icon size if needed
-
-            // Show the delete icon on hover
-            imgWrapper.addEventListener('mouseenter', () => {
-                deleteIcon.style.display = 'block'; // Show icon on hover
-            });
-            imgWrapper.addEventListener('mouseleave', () => {
-                deleteIcon.style.display = 'none'; // Hide icon when not hovering
-            });
-
-            // Delete the image when the icon is clicked
-            deleteIcon.addEventListener('click', () => {
-                selectedFiles.splice(index, 1); // Remove file from array
-                imgWrapper.remove(); // Remove the image element
-                updateImagePreviews(); // Update the preview display
-            });
-
-            imgWrapper.appendChild(img); // Add the image to the wrapper
-            imgWrapper.appendChild(deleteIcon); // Add the delete icon to the wrapper
-            imagePreview.appendChild(imgWrapper); // Add the wrapper to the preview container
-        }
-        reader.readAsDataURL(file); // Read the file as a data URL
-    });
-});
-
-// Function to update the image previews after deletion
-function updateImagePreviews() {
-    imagePreview.innerHTML = ''; // Clear the current previews
-    selectedFiles.forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imgWrapper = document.createElement('div');
-            imgWrapper.style.position = 'relative'; // Set position for the icon
-
-            const img = document.createElement('img');
-            img.src = e.target.result; // Set the image source to the file's data URL
-            img.style.width = '200px'; // Thay đổi kích thước của hình ảnh ở đây
-            img.style.height = 'auto'; // Maintain aspect ratio
-            img.style.borderRadius = '4px'; // Optional: rounded corners for images
-            img.style.border = '1px solid #ccc'; // Optional: border for images
-            img.style.objectFit = 'cover'; // Ensure images fit well within their boxes
-
-            const deleteIcon = document.createElement('span');
-            deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
-            deleteIcon.style.position = 'absolute';
-            deleteIcon.style.top = '5px';
-            deleteIcon.style.right = '5px';
-            deleteIcon.style.cursor = 'pointer';
-            deleteIcon.style.display = 'none'; // Initially hidden
-            deleteIcon.style.opacity = '0.7'; // Slightly transparent
-            deleteIcon.style.fontSize = '20px'; // Adjust the icon size if needed
-
-            imgWrapper.addEventListener('mouseenter', () => {
-                deleteIcon.style.display = 'block'; // Show icon on hover
-            });
-            imgWrapper.addEventListener('mouseleave', () => {
-                deleteIcon.style.display = 'none'; // Hide icon when not hovering
-            });
-
-            deleteIcon.addEventListener('click', () => {
-                selectedFiles.splice(index, 1); // Remove file from array
-                imgWrapper.remove(); // Remove the image element
-                updateImagePreviews(); // Update the preview display
-            });
-
-            imgWrapper.appendChild(img); // Add the image to the wrapper
-            imgWrapper.appendChild(deleteIcon); // Add the delete icon to the wrapper
-            imagePreview.appendChild(imgWrapper); // Add the wrapper to the preview container
-        }
-        reader.readAsDataURL(file); // Read the file as a data URL
-    });
-}
-
-
-  </script>
-
-
-
-      
-      <script>
-        function validateForm() {
-            const fileInput = document.getElementById('product-image');
-            if (fileInput.files.length > 2) {
-                alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
-                return false;
-            }
-            return true;
-        }
-    </script>
     </main>
 
      <!--=============== FOOTER ===============-->
@@ -345,8 +192,6 @@ function updateImagePreviews() {
         <span class="designer">Website created by Group 4</span>
     </div>
 </footer>
-</body>
-</html>
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
