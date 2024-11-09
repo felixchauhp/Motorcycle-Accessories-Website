@@ -234,6 +234,22 @@ function resetRow(row) {
     editIcon.innerHTML = '<i class="fi fi-rs-edit edit-icon"></i>';
 }
 
+// Hàm để hiện các tùy chọn lọc
+document.addEventListener('DOMContentLoaded', function () {
+    renderCategoryFilter(); // Gọi hàm này sau khi DOM đã được tải
+  });
+function renderCategoryFilter() {
+  const categorySelect = document.getElementById('filter-input');
+  const categories = ["", "Mã voucher", "Tên voucher"];
+  
+  categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category.toLowerCase();
+      option.textContent = category || "Tất cả";
+      categorySelect.appendChild(option);
+  });
+}
+
 // Khởi động trang đầu tiên
 renderTable();
 renderPagination();

@@ -72,33 +72,19 @@
     <main class="main">
       <!--=============== Promotion Management ===============-->
       <section class="products container section--lg">
-        <div class="input-search-wrapper">
-          <!-- Chọn loại tìm kiếm: Tên Voucher hay Mã Voucher -->
-          <select id="input-type" class="input-type-select">
-              <option value="name">Tên Voucher</option>
-              <option value="code">Mã Voucher</option>
-          </select>
-      
-          <!-- Ô nhập liệu để tìm kiếm -->
-          <input type="text" id="input-search" placeholder="Nhập tên hoặc mã voucher...">
-      
-          <!-- Nút áp dụng tìm kiếm -->
-          <button id="apply-button" class="apply-search-button">Tìm</button>
-      </div>
-      
-      
-      
-      
-      
-      
-      <br>
-        <div class="add-discount-btn">
-          <a href="add-Discount.html" class="button">
-            <i class="fi fi-rs-plus"></i> Thêm 1 mã khuyến mãi mới
-          </a>
-          <br />
+          <div class="search-container">
+            <a href="add-Discount.html" class="btn flex btn__md">
+        <i class="fi fi-rs-plus"></i> Thêm 1 mã khuyến mãi mới
+    </a>
+    <div class="right-actions">
+            <input type="text" id="search-input" placeholder="Tìm kiếm...">
+            <select id="filter-input">
+              <option value="" disabled selected>Lọc...</option>
+            </select>
+            <button id="apply-button" class="btn flex btn__md">Áp dụng</button>
+            <button id="reset-button" class="btn flex btn__md">Nhập lại</button>
         </div>
-
+    </div>
         <table class="discount-table">
           <thead>
             <tr>

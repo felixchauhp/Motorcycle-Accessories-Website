@@ -60,17 +60,18 @@
     <main class="main">
         <section class="products container section--lg">
             <div class="search-container">
+                <a href="add-Product.html" class="btn flex btn__md">
+            <i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới
+        </a>
+        <div class="right-actions">
                 <input type="text" id="search-input" placeholder="Tìm kiếm...">
                 <select id="filter-input">
                   <option value="" disabled selected>Lọc...</option>
                 </select>
-                <button id="apply-button">Áp dụng</button>
-                <button id="reset-button">Nhập lại</button>
+                <button id="apply-button" class="btn flex btn__md">Áp dụng</button>
+                <button id="reset-button" class="btn flex btn__md">Nhập lại</button>
             </div>
-            <br>
-            <div class="add-product-btn">
-                <a href="add-Product.html" class="button"><i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới</a>
-            </div>
+        </div>
             <table class="product-table">
                 <thead>
                     <tr>
@@ -602,6 +603,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
   
     <!--=============== MAIN JS ===============-->
-    <script src="assets/js/test.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
