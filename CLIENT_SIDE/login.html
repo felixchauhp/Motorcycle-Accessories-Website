@@ -21,6 +21,7 @@
 
     <title>MotorCycle Store</title>
   </head>
+
   <body>
     <!--=============== HEADER ===============-->
     <header class="header">
@@ -114,7 +115,7 @@
       <section class="breadcrumb">
         <ul class="breadcrumb__list flex container">
           <li><a href="index.html" class="breadcrumb__link">Home</a></li>
-          <li><span class="breadcrumb__link">></span></li>
+          <li><span class="breadcrumb__link"></span></li>
           <li><span class="breadcrumb__link">Đăng nhập</span></li>
         </ul>
       </section>
@@ -124,11 +125,11 @@
         <div class="login-register__container container grid">
           <div class="login">
             <h3 class="section__title">Đăng nhập</h3>
-            <form class="form grid" id="formLogin">
+            <form class="form grid" id="loginForm">
               <input
                 type="email"
-                placeholder="Số điện thoại/ Email"
                 id="email"
+                placeholder="Số điện thoại/ Email"
                 class="form__input"
               />
               <div id="emailNull" style="color: #e25555; display: none">
@@ -136,8 +137,8 @@
               </div>
               <input
                 type="password"
-                placeholder="Mật khẩu"
                 id="password"
+                placeholder="Mật khẩu"
                 class="form__input"
               />
               <div id="passNull" style="color: #e25555; display: none">
@@ -278,12 +279,10 @@
       </div>
     </footer>
 
-    <!--=============== SWIPER JS ===============-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--=============== SCRIPT JS ===============-->
+    <script type="module" src="./assets/js/login.js"></script>
 
     <!--=============== MAIN JS ===============-->
     <!-- <script src="assets/js/main.js"></script> -->
-    <!--=============== LOGIN JS ===============-->
-    <script src="assets/js/login.js"></script>
   </body>
 </html>

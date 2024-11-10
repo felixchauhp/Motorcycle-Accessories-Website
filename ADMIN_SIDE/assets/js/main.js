@@ -137,4 +137,120 @@ document.addEventListener('DOMContentLoaded', () => {
       radio.addEventListener('change', toggleInput);
   });
 });
+                                      /*=============== Trang thêm sản phẩm ===============*/
+document.addEventListener('DOMContentLoaded', function() {
+  const fileInput = document.getElementById('product-image');
+  const imagePreview = document.getElementById('image-preview');
 
+  let selectedFiles = [];
+
+  fileInput.addEventListener('change', function() {
+      const files = Array.from(fileInput.files); 
+
+      if (files.length + selectedFiles.length > 2) {
+          alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
+          fileInput.value = ''; 
+          return;
+      }
+
+      selectedFiles = selectedFiles.concat(files);
+
+      imagePreview.innerHTML = '';
+
+      selectedFiles.forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const imgWrapper = document.createElement('div');
+              imgWrapper.style.position = 'relative'; 
+
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.style.width = '200px'; 
+              img.style.height = 'auto'; 
+              img.style.borderRadius = '4px'; 
+              img.style.border = '1px solid #ccc'; 
+              img.style.objectFit = 'cover'; 
+
+              const deleteIcon = document.createElement('span');
+              deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
+              deleteIcon.style.position = 'absolute';
+              deleteIcon.style.top = '5px';
+              deleteIcon.style.right = '5px';
+              deleteIcon.style.cursor = 'pointer';
+              deleteIcon.style.display = 'none'; 
+              deleteIcon.style.opacity = '0.7'; 
+              deleteIcon.style.fontSize = '20px'; 
+
+              imgWrapper.addEventListener('mouseenter', () => {
+                  deleteIcon.style.display = 'block'; 
+              });
+              imgWrapper.addEventListener('mouseleave', () => {
+                  deleteIcon.style.display = 'none'; 
+              });
+
+              deleteIcon.addEventListener('click', () => {
+                  selectedFiles.splice(index, 1); 
+                  imgWrapper.remove(); 
+                  updateImagePreviews(); 
+              });
+
+              imgWrapper.appendChild(img);
+              imgWrapper.appendChild(deleteIcon); 
+              imagePreview.appendChild(imgWrapper);
+          }
+          reader.readAsDataURL(file); 
+      });
+  });
+
+  function updateImagePreviews() {
+      imagePreview.innerHTML = ''; 
+      selectedFiles.forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const imgWrapper = document.createElement('div');
+              imgWrapper.style.position = 'relative'; 
+
+              const img = document.createElement('img');
+              img.src = e.target.result; 
+              img.style.width = '200px'; 
+              img.style.height = 'auto'; 
+              img.style.borderRadius = '4px'; 
+              img.style.border = '1px solid #ccc'; 
+              img.style.objectFit = 'cover'; 
+
+              const deleteIcon = document.createElement('span');
+              deleteIcon.innerHTML = '<i class="fi fi-rs-trash"></i>';
+              deleteIcon.style.position = 'absolute';
+              deleteIcon.style.top = '5px';
+              deleteIcon.style.right = '5px';
+              deleteIcon.style.cursor = 'pointer';
+              deleteIcon.style.display = 'none'; 
+              deleteIcon.style.opacity = '0.7'; 
+              deleteIcon.style.fontSize = '20px'; 
+
+              imgWrapper.addEventListener('mouseenter', () => {
+                  deleteIcon.style.display = 'block'; 
+              });
+              imgWrapper.addEventListener('mouseleave', () => {
+                  deleteIcon.style.display = 'none'; 
+              });
+
+              deleteIcon.addEventListener('click', () => {
+                  selectedFiles.splice(index, 1); 
+                  imgWrapper.remove(); 
+                  updateImagePreviews(); 
+              });
+
+              imgWrapper.appendChild(img); 
+              imgWrapper.appendChild(deleteIcon); 
+              imagePreview.appendChild(imgWrapper); 
+          }
+          reader.readAsDataURL(file); 
+      });
+  }
+});
+
+                                      
+
+
+                                             
