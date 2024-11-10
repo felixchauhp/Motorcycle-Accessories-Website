@@ -1,9 +1,9 @@
 import { AppDataSource } from "./data-source.js"
-import accounts from "./entity/accounts.js"
+import AddressList from "./entity/address_list.js"
 
 AppDataSource.initialize().then(async () => {
-    const accountRepository = AppDataSource.getRepository(accounts)
-    console.log("accounts found: ")
+    const accountRepository = AppDataSource.getRepository(AddressList)
+    console.log("Data found: ")
     const accounts_check = await accountRepository.find()
     console.log(accounts_check);
 
