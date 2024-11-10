@@ -32,12 +32,12 @@
 <!--=============== HEADER ===============-->
 <header>
   <nav class="nav container">
-    <a href="index-manage.html" class="nav__logo">
+    <a href="index-manage.php" class="nav__logo">
       <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
     </a>
     <div class="nav__menu" id="nav-menu">
       <div class="nav__menu-top">
-        <a href="index-manage.html" class="nav__menu-logo">
+        <a href="index-manage.php" class="nav__menu-logo">
           <img src="./assets/img/logo.png" alt="">
         </a>
         <div class="nav__close" id="nav-close">
@@ -46,13 +46,13 @@
       </div>
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="productManage.html" class="nav__link">Sản phẩm</a>
+          <a href="productManage.php" class="nav__link">Sản phẩm</a>
         </li>
         <li class="nav__item">
-          <a href="quanlydonhang.html" class="nav__link">Đơn hàng</a>
+          <a href="quanlydonhang.php" class="nav__link">Đơn hàng</a>
         </li>
         <li class="nav__item">
-          <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
+          <a href="discount.php" class="nav__link active-link">Khuyến mãi</a>
         </li>
       </ul>
       <div class="header__user-actions">
@@ -60,7 +60,7 @@
           <img src="assets/img/bell.svg" alt="" />
           <span class="count">3</span>
         </a>
-        <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
+        <a href="accounts-manager.php" class="header__action-btn" id="user-icon" title="User">
           <img src="assets/img/icon-user.svg" alt="" />
         </a>
       </div>
@@ -73,7 +73,7 @@
       <!--=============== Promotion Management ===============-->
       <section class="products container section--lg">
           <div class="search-container">
-            <a href="add-Discount.html" class="btn flex btn__md">
+            <a href="add-Discount.php" class="btn flex btn__md">
         <i class="fi fi-rs-plus"></i> Thêm 1 mã khuyến mãi mới
     </a>
     <div class="right-actions">
@@ -114,7 +114,7 @@
   <footer class="footer container">
     <div class="footer__container grid">
       <div class="footer__content">
-            <a href="index.html" class="footer__logo">
+            <a href="index.php" class="footer__logo">
                 <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
             </a>    
             <div class="footer__social">
