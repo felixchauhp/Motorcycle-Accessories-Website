@@ -8,3 +8,6 @@ temp/
 .DS_Store
 
 assets/.DS_Store
+Data/category_products.csv
+Data/products.csv
+Data/category.csv
