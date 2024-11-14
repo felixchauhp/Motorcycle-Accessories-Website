@@ -30,6 +30,10 @@
       <!--=============== BREADCRUMB ===============-->
 
       <!--=============== ACCOUNTS ===============-->
+                              <!-- Nút In -->
+                              <button onclick="window.print()">
+                                <i class="fi fi-rs-print table__trash "></i>
+                              </button>
       <section class="accounts section--lg">
             <h3 class="tab__header">Invoice</h3>
             <div class="tab__body">
