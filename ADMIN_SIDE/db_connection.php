@@ -30,6 +30,8 @@ if ($result->num_rows > 0) {
     $products = [];
 }
 
+
+// Truy vấn dữ liệu từ bảng danh mục sản phẩm
 $query_category = "SELECT * FROM products_in_category"; 
 $result_category = $conn->query($query_category);
 
@@ -41,6 +43,20 @@ if ($result_category->num_rows > 0) {
     }
 } else {
     $products_category = [];
+}
+
+// Truy vấn dữ liệu từ bảng đơn hàng
+$query_orders = "SELECT * FROM orders"; 
+$result_orders = $conn->query($query_orders);
+
+# Kiểm tra kết quả
+if ($result_orders->num_rows > 0) {
+    $orders = [];
+    while ($row = $result_orders->fetch_assoc()) {
+       $orders[] = $row;
+    }
+} else {
+   $orders = [];
 }
 
 $conn->close();
