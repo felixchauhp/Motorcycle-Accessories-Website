@@ -9,11 +9,11 @@ $database = 'motorcycle'; // Thay bằng tên cơ sở dữ liệu của bạn
 // Kết nối với MySQL
 $conn = new mysqli($host, $username, $password, $database, $port);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
-echo "Kết nối thành công!";
+//Kiểm tra kết nối
+// if ($conn->connect_error) {
+//     die("Kết nối thất bại: " . $conn->connect_error);
+// }
+// echo "Kết nối thành công!";
 
 
 // Truy vấn dữ liệu từ bảng sản phẩm
@@ -46,7 +46,7 @@ if ($result_category->num_rows > 0) {
 }
 
 // Truy vấn dữ liệu từ bảng đơn hàng
-$query_orders = "SELECT * FROM orders"; 
+$query_orders = "SELECT * FROM orders LIMIT 50"; 
 $result_orders = $conn->query($query_orders);
 
 # Kiểm tra kết quả
@@ -59,7 +59,20 @@ if ($result_orders->num_rows > 0) {
    $orders = [];
 }
 
-$conn->close();
+// Truy vấn dữ liệu từ bảng promocode
+$query_promotions = "SELECT * FROM promotion"; 
+$result_promotions = $conn->query($query_promotions);
+
+# Kiểm tra kết quả
+if ($result_promotions->num_rows > 0) {
+    $promotions = [];
+    while ($row = $result_promotions->fetch_assoc()) {
+       $promotions[] = $row;
+    }
+} else {
+   $promotions = [];
+}
+
 ?>
 
 

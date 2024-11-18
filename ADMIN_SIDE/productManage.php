@@ -20,7 +20,6 @@ include 'db_connection.php';
 
     <title>Ecommerce Website</title>
 </head>
-<body>
    <!--=============== HEADER ===============-->
   <header>
     <nav class="nav container">
@@ -59,8 +58,7 @@ include 'db_connection.php';
       </div>
     </nav>
   </header>
-
-
+  <body>
     <main class="main">
         <section class="products container section--lg">
             <div class="search-container">
@@ -121,7 +119,6 @@ include 'db_connection.php';
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
-            </table>
             </table>
             <ul class="pagination" id="pagination">
                 <!-- Sẽ được điền bằng JavaScript -->
