@@ -3,8 +3,8 @@
 include 'db_connection.php';
 
 // Khởi tạo các biến rỗng cho dữ liệu và lỗi
-$promo_name = $promo_code = $start_date = $end_date = "";
-$percent_discount = $min_order = $max_discount = $quantity = "";
+$promo_name = $promo_code = $start_date = $end_date = $discount_type = "";
+$percent_discount = $amount_discount = $min_order = $max_discount = $quantity = "";
 $errors = [];
 
 // Xử lý dữ liệu khi biểu mẫu được gửi
@@ -35,11 +35,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['end_date'] = "Ngày kết thúc phải sau ngày bắt đầu.";
     }
 
-    // Kiểm tra giảm giá theo phần trăm
-    $percent_discount = $_POST["percent-discount"];
-    if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
-        $errors['percent_discount'] = "Giá trị giảm phải là số hợp lệ từ 1 đến 100.";
-    }
+    // // Kiểm tra loại giảm giá
+    // $discount_type = $_POST["discount-type"];
+    // if ($discount_type === "percentage") {
+    //     $percent_discount = $_POST["percent-discount"];
+    //     if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
+    //         $errors['percent_discount'] = "Giá trị giảm phải là số hợp lệ từ 1 đến 100.";
+    //     }
+    // } elseif ($discount_type === "amount") {
+    //     $amount_discount = $_POST["amount-discount"];
+    //     if (empty($amount_discount) || !is_numeric($amount_discount) || $amount_discount <= 0) {
+    //         $errors['amount_discount'] = "Giá trị giảm tiền phải là số hợp lệ lớn hơn 0.";
+    //     }
+    // }
 
     // Kiểm tra giá trị đơn hàng tối thiểu
     $min_order = $_POST["discount"];
@@ -61,29 +69,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Nếu không có lỗi, thêm vào cơ sở dữ liệu
     if (empty($errors)) {
-      $query = "INSERT INTO promotion (PromoName, PromoCode, StartDate, EndDate, PromoRate, MinValue, MaxAmount, Quantity)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-      if ($stmt = mysqli_prepare($conn, $query)) {
-          // Liên kết các giá trị với câu lệnh SQL
-          mysqli_stmt_bind_param($stmt, "ssssidii", $promo_name, $promo_code, $start_date, $end_date, $percent_discount, $min_order, $max_discount, $quantity);
-          if (mysqli_stmt_execute($stmt)) {
-              // Thay thế alert bằng việc hiển thị popup
-              echo '<script>
-                      document.getElementById("successPopup").style.display = "block";
-                      document.getElementById("closePopupBtn").addEventListener("click", function() {
-                          document.getElementById("successPopup").style.display = "none";
-                          window.location.href = "discount.php"; // Chuyển hướng đến trang danh sách mã khuyến mãi
-                      });
-                    </script>';
-          } else {
-              echo '<p class="text-danger">Đã xảy ra lỗi khi thêm mã khuyến mãi: ' . mysqli_error($conn) . '</p>';
-          }
-          mysqli_stmt_close($stmt);
-      }
-  }  
+        $query = "INSERT INTO promotion (PromoName, PromoCode, StartDate, EndDate, PromoRate, MinValue, MaxAmount, Quantity)
+                  VALUES (?,?,?,?,?,?,?,?)";
+        if ($stmt = mysqli_prepare($conn, $query)) {
+            mysqli_stmt_bind_param($stmt, "ssssdiid", $promo_name, $promo_code, $start_date, $end_date, $percent_discount, $min_order, $max_discount, $quantity);
+            if (mysqli_stmt_execute($stmt)) {
+                echo '<script>alert("Thêm mã khuyến mãi thành công!"); window.location.href = "discount.php";</script>';
+            } else {
+                echo '<p class="text-danger">Đã xảy ra lỗi khi thêm mã khuyến mãi: ' . mysqli_error($conn) . '</p>';
+            }
+            mysqli_stmt_close($stmt);
+        }
+    }
 }
 ?>
-
 
     <!--========================================================================-->
 <!DOCTYPE html>
@@ -107,36 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <style>
-      #successPopup {
-    display: none; 
-    position: fixed;
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
-    background: rgba(0, 0, 0, 0.5); 
-    z-index: 9999;
-}
-
-#successPopup div {
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: white; 
-    padding: 20px; 
-    border-radius: 10px; 
-    text-align: center; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-#successPopup button {
-    padding: 10px 20px; 
-    margin: 5px;
-}
-
-    </style>
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -235,17 +204,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button>
         <input type="submit" value="Thêm">
     </button>
-  </form>
-  
+</form>
 
         </div>
-<!-- Popup thông báo thành công -->
-<div id="successPopup" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        <p>Mã khuyến mãi đã được thêm thành công!</p>
-        <button id="closePopupBtn" style="padding: 10px 20px; margin: 5px;">Đóng</button>
-    </div>
-</div>
 
     </section>
     </main>
