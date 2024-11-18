@@ -332,7 +332,7 @@
               </table>
             </div>
           </section>
-    
+  </main>
   <!--=============== FOOTER ===============-->
   <footer class="footer container">
     <div class="footer__container grid">
