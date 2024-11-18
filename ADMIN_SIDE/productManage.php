@@ -104,15 +104,14 @@ include 'db_connection.php';
                         <td><?= htmlspecialchars($product['Category']) ?></td>
                         <td>
                         <button onclick="editProduct('${product.id}', event)">
-                    <i class="fi fi-rs-edit edit-icon"></i>
-                </button>
-                <button onclick="deleteProduct('<?= $product['ProductID'] ?>')">
-                    <i class="fi fi-rs-trash trash-icon"></i>
-                </button>
-
-                <button onclick="goToDetail('${product.id}')">
-                    <i class="fi fi-rs-menu-dots go-to-icon"></i>
-                </button>
+                            <i class="fi fi-rs-edit edit-icon"></i>
+                        </button>
+                        <button onclick="deleteProduct('<?= $product['ProductID'] ?>')">
+                            <i class="fi fi-rs-trash trash-icon"></i>
+                        </button>
+                        <button onclick="goToDetail('${product.id}')">
+                            <i class="fi fi-rs-menu-dots go-to-icon"></i>
+                        </button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
