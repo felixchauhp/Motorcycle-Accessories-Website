@@ -82,26 +82,30 @@ include 'db_connection.php';
                         <th>Ảnh</th>
                         <th>Mã</th>
                         <th>Tên</th>
+                        <th>Danh mục</th>
+                        <th>Tồn kho</th>
                         <th>Giá gốc</th>
                         <th>Giá bán</th>
-                        <th>Tồn kho</th>
                         <th>Ghi chú</th>
-                        <th>Danh mục</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Hiển thị danh sách sản phẩm -->
-                    <?php foreach ($products as $product): ?>
+                    <?php
+                    $combined = array_map(null, $products, $products_category);
+
+                    foreach ($combined as [$product, $product_category]): ?>
                     <tr>
                         <td><?= htmlspecialchars($product['ProductID']) ?></td>
                         <td><?= htmlspecialchars($product['ProductID']) ?></td>
                         <td><?= htmlspecialchars($product['ProductName']) ?></td>
+                        <td><?= htmlspecialchars($product_category['Category']) ?></td>
+                        <td><?= htmlspecialchars($product['InStock']) ?></td>
                         <td><?= htmlspecialchars($product['BasePrice']) ?></td>
                         <td><?= htmlspecialchars($product['SalePrice']) ?></td>
-                        <td><?= htmlspecialchars($product['InStock']) ?></td>
                         <td><?= htmlspecialchars($product['Notes']) ?></td>
-                        <td><?= htmlspecialchars($product['Category']) ?></td>
+                        
                         <td>
                         <button onclick="editProduct('${product.id}', event)">
                     <i class="fi fi-rs-edit edit-icon"></i>
@@ -250,119 +254,119 @@ include 'db_connection.php';
     <script>
                                                 <!--=============== Phân trang ===============-->
 // Truyền dữ liệu sản phẩm từ PHP sang JavaScript
-const products = <?php echo json_encode($products); ?>;
-console.log(products);  // Để kiểm tra xem dữ liệu có được truyền đúng không                                                
-const itemsPerPage = 10;  // Số sản phẩm hiển thị mỗi trang
-let currentPage = 1;  // Trang hiện tại
-let filteredProducts = [...products];  // Mảng sản phẩm đã được lọc (nếu có lọc)
+// const products = <?php echo json_encode($products); ?>;
+// console.log(products);  // Để kiểm tra xem dữ liệu có được truyền đúng không                                                
+// const itemsPerPage = 20;  // Số sản phẩm hiển thị mỗi trang
+// let currentPage = 1;  // Trang hiện tại
+// let filteredProducts = [...products];  // Mảng sản phẩm đã được lọc (nếu có lọc)
 
-function renderProducts(page) {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
+// function renderProducts(page) {
+//     const start = (page - 1) * itemsPerPage;
+//     const end = start + itemsPerPage;
 
-    // Lấy các sản phẩm cần hiển thị cho trang hiện tại
-    const productsToRender = filteredProducts.slice(start, end);
-    const tableBody = document.querySelector('table.product-table tbody');
-    tableBody.innerHTML = '';  // Xóa danh sách sản phẩm cũ
+//     // Lấy các sản phẩm cần hiển thị cho trang hiện tại
+//     const productsToRender = filteredProducts.slice(start, end);
+//     const tableBody = document.querySelector('table.product-table tbody');
+//     tableBody.innerHTML = '';  // Xóa danh sách sản phẩm cũ
 
-    // Render các sản phẩm cho trang hiện tại
-    productsToRender.forEach((product) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><img src="${product.ProductImage}" alt="${product.ProductName}" /></td>
-            <td>${product.ProductID}</td>
-            <td>${product.ProductName}</td>
-            <td>${product.BasePrice}</td>
-            <td>${product.SalePrice}</td>
-            <td>${product.InStock}</td>
-            <td>${product.Notes}</td>
-            <td>${product.Category}</td>
-            <td>
-                <button onclick="editProduct('${product.ProductID}')"><i class="fi fi-rs-edit edit-icon"></i></button>
-                <button onclick="deleteProduct('<?= $product['ProductID'] ?>')">
-                    <i class="fi fi-rs-trash trash-icon"></i>
-                </button>
+//     // Render các sản phẩm cho trang hiện tại
+//     productsToRender.forEach((product) => {
+//         const row = document.createElement('tr');
+//         row.innerHTML = `
+//             <td><img src="${product.ProductImage}" alt="${product.ProductName}" /></td>
+//             <td>${product.ProductID}</td>
+//             <td>${product.ProductName}</td>
+//             <td>${product.BasePrice}</td>
+//             <td>${product.SalePrice}</td>
+//             <td>${product.InStock}</td>
+//             <td>${product.Notes}</td>
+//             <td>${product.Category}</td>
+//             <td>
+//                 <button onclick="editProduct('${product.ProductID}')"><i class="fi fi-rs-edit edit-icon"></i></button>
+//                 <button onclick="deleteProduct('<?= $product['ProductID'] ?>')">
+//                     <i class="fi fi-rs-trash trash-icon"></i>
+//                 </button>
 
-                <button onclick="goToDetail('${product.ProductID}')"><i class="fi fi-rs-menu-dots go-to-icon"></i></button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
+//                 <button onclick="goToDetail('${product.ProductID}')"><i class="fi fi-rs-menu-dots go-to-icon"></i></button>
+//             </td>
+//         `;
+//         tableBody.appendChild(row);
+//     });
 
-    // Render phân trang
-    renderPagination(filteredProducts.length);
-}
+//     // Render phân trang
+//     renderPagination(filteredProducts.length);
+// }
 
-// Hàm render phân trang
-function renderPagination(filteredProductCount) {
-    const pagination = document.getElementById('pagination');
-    pagination.innerHTML = '';  // Xóa phân trang cũ
+// // Hàm render phân trang
+// function renderPagination(filteredProductCount) {
+//     const pagination = document.getElementById('pagination');
+//     pagination.innerHTML = '';  // Xóa phân trang cũ
 
-    const totalPages = Math.ceil(filteredProductCount / itemsPerPage);  // Tính tổng số trang
+//     const totalPages = Math.ceil(filteredProductCount / itemsPerPage);  // Tính tổng số trang
 
-    // Thêm nút Prev nếu không phải trang đầu tiên
-    if (currentPage > 1) {
-        const prevButton = document.createElement('li');
-        prevButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage - 1})">«</a>`;
-        pagination.appendChild(prevButton);
-    }
+//     // Thêm nút Prev nếu không phải trang đầu tiên
+//     if (currentPage > 1) {
+//         const prevButton = document.createElement('li');
+//         prevButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage - 1})">«</a>`;
+//         pagination.appendChild(prevButton);
+//     }
 
-    // Thêm nút trang đầu tiên
-    const firstPage = document.createElement('li');
-    firstPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === 1 ? 'active' : ''}" onclick="goToPage(1)">1</a>`;
-    pagination.appendChild(firstPage);
+//     // Thêm nút trang đầu tiên
+//     const firstPage = document.createElement('li');
+//     firstPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === 1 ? 'active' : ''}" onclick="goToPage(1)">1</a>`;
+//     pagination.appendChild(firstPage);
 
-    // Dấu ba chấm nếu cần
-    if (currentPage > 3) {
-        const dots = document.createElement('li');
-        dots.innerHTML = `<span class="pagination__dots">...</span>`;
-        pagination.appendChild(dots);
-    }
+//     // Dấu ba chấm nếu cần
+//     if (currentPage > 3) {
+//         const dots = document.createElement('li');
+//         dots.innerHTML = `<span class="pagination__dots">...</span>`;
+//         pagination.appendChild(dots);
+//     }
 
-    // Thêm các nút trang ở giữa
-    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
-        const pageItem = document.createElement('li');
-        pageItem.innerHTML = `<a href="#" class="pagination__link ${currentPage === i ? 'active' : ''}" onclick="goToPage(${i})">${i}</a>`;
-        pagination.appendChild(pageItem);
-    }
+//     // Thêm các nút trang ở giữa
+//     for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+//         const pageItem = document.createElement('li');
+//         pageItem.innerHTML = `<a href="#" class="pagination__link ${currentPage === i ? 'active' : ''}" onclick="goToPage(${i})">${i}</a>`;
+//         pagination.appendChild(pageItem);
+//     }
 
-    // Dấu ba chấm trước trang cuối nếu cần
-    if (currentPage < totalPages - 2) {
-        const dots = document.createElement('li');
-        dots.innerHTML = `<span class="pagination__dots">...</span>`;
-        pagination.appendChild(dots);
-    }
+//     // Dấu ba chấm trước trang cuối nếu cần
+//     if (currentPage < totalPages - 2) {
+//         const dots = document.createElement('li');
+//         dots.innerHTML = `<span class="pagination__dots">...</span>`;
+//         pagination.appendChild(dots);
+//     }
 
-    // Thêm nút trang cuối cùng
-    if (totalPages > 1) {
-        const lastPage = document.createElement('li');
-        lastPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === totalPages ? 'active' : ''}" onclick="goToPage(${totalPages})">${totalPages}</a>`;
-        pagination.appendChild(lastPage);
-    }
+//     // Thêm nút trang cuối cùng
+//     if (totalPages > 1) {
+//         const lastPage = document.createElement('li');
+//         lastPage.innerHTML = `<a href="#" class="pagination__link ${currentPage === totalPages ? 'active' : ''}" onclick="goToPage(${totalPages})">${totalPages}</a>`;
+//         pagination.appendChild(lastPage);
+//     }
 
-    // Thêm nút Next nếu không phải trang cuối cùng
-    if (currentPage < totalPages) {
-        const nextButton = document.createElement('li');
-        nextButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage + 1})">»</a>`;
-        pagination.appendChild(nextButton);
-    }
-}
+//     // Thêm nút Next nếu không phải trang cuối cùng
+//     if (currentPage < totalPages) {
+//         const nextButton = document.createElement('li');
+//         nextButton.innerHTML = `<a href="#" class="pagination__link" onclick="goToPage(${currentPage + 1})">»</a>`;
+//         pagination.appendChild(nextButton);
+//     }
+// }
 
-// Hàm chuyển đến trang khác
-function goToPage(page) {
-    if (page >= 1 && page <= Math.ceil(filteredProducts.length / itemsPerPage)) {
-        currentPage = page;
-        renderProducts(currentPage);
-    }
-}
+// // Hàm chuyển đến trang khác
+// function goToPage(page) {
+//     if (page >= 1 && page <= Math.ceil(filteredProducts.length / itemsPerPage)) {
+//         currentPage = page;
+//         renderProducts(currentPage);
+//     }
+// }
 
-// Hàm xem chi tiết sản phẩm
-function goToDetail(productId) {
-    window.location.href = `details.php?id=${productId}`;
-}
+// // Hàm xem chi tiết sản phẩm
+// function goToDetail(productId) {
+//     window.location.href = `details.php?id=${productId}`;
+// }
 
-// Ban đầu, render trang đầu tiên
-renderProducts(currentPage);
+// // Ban đầu, render trang đầu tiên
+// renderProducts(currentPage);
 
 
 
