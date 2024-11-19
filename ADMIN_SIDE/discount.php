@@ -120,7 +120,9 @@ include 'db_connection.php';
                                 <a href="update-Discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="edit-btn">
                                     <i class="fi fi-rs-edit table__trash"></i>
                                 </a>
-                                <i class="fi fi-rs-menu-dots table__trash"></i>
+                                <a href="show-discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="menu-btn">
+                                    <i class="fi fi-rs-menu-dots table__trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
