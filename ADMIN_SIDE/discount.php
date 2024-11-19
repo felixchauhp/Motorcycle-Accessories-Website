@@ -117,7 +117,9 @@ include 'db_connection.php';
                                 <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($promo['PromoCode']) ?>">
                                     <i class="fi fi-rs-trash table__trash"></i>
                                 </a>
-                                <i class="fi fi-rs-edit table__trash "></i>
+                                <a href="update-Discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="edit-btn">
+                                    <i class="fi fi-rs-edit table__trash"></i>
+                                </a>
                                 <i class="fi fi-rs-menu-dots table__trash"></i>
                             </td>
                         </tr>
