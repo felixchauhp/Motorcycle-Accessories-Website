@@ -59,15 +59,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($end_date) || strtotime($end_date) < strtotime($start_date)) {
         $errors['end_date'] = "Ngày kết thúc phải sau ngày bắt đầu.";
     }
-    if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
-        $errors['percent_discount'] = "Giá trị giảm phải từ 1 đến 100.";
-    }
-    if (empty($min_order) || !is_numeric($min_order) || $min_order <= 0) {
-        $errors['min_order'] = "Giá trị đơn hàng tối thiểu phải lớn hơn 0.";
-    }
-    if (empty($max_discount) || !is_numeric($max_discount) || $max_discount <= 0) {
-        $errors['max_discount'] = "Số tiền giảm tối đa phải lớn hơn 0.";
-    }
+    // if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
+    //     $errors['percent_discount'] = "Giá trị giảm phải từ 1 đến 100.";
+    // }
+    // if (empty($min_order) || !is_numeric($min_order) || $min_order <= 0) {
+    //     $errors['min_order'] = "Giá trị đơn hàng tối thiểu phải lớn hơn 0.";
+    // }
+    // if (empty($max_discount) || !is_numeric($max_discount) || $max_discount <= 0) {
+    //     $errors['max_discount'] = "Số tiền giảm tối đa phải lớn hơn 0.";
+    // }
     if (empty($quantity) || !is_numeric($quantity) || $quantity <= 0) {
         $errors['quantity'] = "Số lượng phải lớn hơn 0.";
     }
