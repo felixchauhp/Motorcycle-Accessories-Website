@@ -115,43 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
     
    <!--=============== HEADER ===============-->
-    <header>
-      <nav class="nav container">
-          <a href="index-manage.html" class="nav__logo">
-              <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
-          </a>
-          <div class="nav__menu" id="nav-menu">
-              <div class="nav__menu-top">
-                  <a href="index-manage.html" class="nav__menu-logo">
-                      <img src="./assets/img/logo.png" alt="">
-                  </a>
-                  <div class="nav__close" id="nav-close">
-                      <i class="fi fi-rs-cross-small"></i>
-                  </div>
-              </div>
-              <ul class="nav__list">
-                  <li class="nav__item">
-                      <a href="productManage.html" class="nav__link">Sản phẩm</a>
-                  </li>
-                  <li class="nav__item">
-                      <a href="quanlydonhang.html" class="nav__link">Đơn hàng</a>
-                  </li>
-                  <li class="nav__item">
-                      <a href="discount.html" class="nav__link active-link">Khuyến mãi</a>
-                  </li>
-              </ul>
-              <div class="header__user-actions">
-                  <a href="#" class="header__action-btn" title="Notification">
-                      <img src="assets/img/bell.svg" alt="" />
-                      <span class="count">3</span>
-                  </a>
-                  <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
-                      <img src="assets/img/icon-user.svg" alt="" />
-                  </a>
-              </div>
-          </div>
-      </nav>
-  </header>
+   <?php include 'header.php'; ?>
 
     <!--=============== MAIN ===============-->
     <main class="main">
@@ -209,41 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
     </main>
        <!--=============== FOOTER ===============-->
-  <footer class="footer container">
-    <div class="footer__container grid">
-      <div class="footer__content">
-            <a href="index.html" class="footer__logo">
-                <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
-            </a>    
-            <div class="footer__social">
-                <h4 class="footer__subtitle">MotorCycle đã có mặt trên:</h4>
-                <div class="footer__links flex">
-                    <a href="#"><img src="./assets/img/icon-facebook.svg" alt="" class="footer__social-icon" /></a>
-                    <a href="#"><img src="./assets/img/icon-twitter.svg" alt="" class="footer__social-icon" /></a>
-                    <a href="#"><img src="./assets/img/icon-instagram.svg" alt="" class="footer__social-icon" /></a>
-                    <a href="#"><img src="./assets/img/icon-pinterest.svg" alt="" class="footer__social-icon" /></a>
-                    <a href="#"><img src="./assets/img/icon-youtube.svg" alt="" class="footer__social-icon" /></a>
-                </div>
-              </div>
-      </div> 
-      <div class="footer__content">
-              <h4 class="footer__subtitle">Thông tin liên hệ</h4>
-              <p class="footer__description">
-                  <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
-              </p>
-              <p class="footer__description">
-                  <span>Hotline:</span> +84 001 929 992
-              </p>
-              <p class="footer__description">
-                  <span>Email:</span> contact@motorcycle.vn
-              </p>
-        </div>
-      </div>
-    <div class="footer__bottom">
-        <p class="copyright">&copy; 2024. All right reserved</p>
-        <span class="designer">Website created by Group 4</span>
-    </div>
-</footer>
+       <?php include 'footer.php'; ?>
 
       <!--=============== SWIPER JS ===============-->
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
