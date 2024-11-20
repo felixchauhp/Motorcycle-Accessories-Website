@@ -45,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $start_date = $_POST["promotion-start-date"];
     $end_date = $_POST["promotion-end-date"];
     $percent_discount = $_POST["percent-discount"];
-    $min_order = $_POST["min-order"];
-    $max_discount = $_POST["max-discount"];
+    $min_order = $_POST["min_order"];
+    $max_discount = $_POST["max_discount"];
     $quantity = $_POST["quantity"];
 
     // Kiểm tra lỗi
@@ -59,15 +59,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($end_date) || strtotime($end_date) < strtotime($start_date)) {
         $errors['end_date'] = "Ngày kết thúc phải sau ngày bắt đầu.";
     }
-    // if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
-    //     $errors['percent_discount'] = "Giá trị giảm phải từ 1 đến 100.";
-    // }
-    // if (empty($min_order) || !is_numeric($min_order) || $min_order <= 0) {
-    //     $errors['min_order'] = "Giá trị đơn hàng tối thiểu phải lớn hơn 0.";
-    // }
-    // if (empty($max_discount) || !is_numeric($max_discount) || $max_discount <= 0) {
-    //     $errors['max_discount'] = "Số tiền giảm tối đa phải lớn hơn 0.";
-    // }
+    if (empty($percent_discount) || !is_numeric($percent_discount) || $percent_discount <= 0 || $percent_discount > 100) {
+        $errors['percent_discount'] = "Giá trị giảm phải từ 1 đến 100.";
+    }
+    if (empty($min_order) || !is_numeric($min_order) || $min_order <= 0) {
+        $errors['min_order'] = "Giá trị đơn hàng tối thiểu phải lớn hơn 0.";
+    }
+    if (empty($max_discount) || !is_numeric($max_discount) || $max_discount <= 0) {
+        $errors['max_discount'] = "Số tiền giảm tối đa phải lớn hơn 0.";
+    }
     if (empty($quantity) || !is_numeric($quantity) || $quantity <= 0) {
         $errors['quantity'] = "Số lượng phải lớn hơn 0.";
     }
@@ -187,8 +187,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="discount">Giá trị đơn hàng tối thiểu:</label>
                     <input 
                         type="number" 
-                        id="discount" 
-                        name="discount" 
+                        id="min_order" 
+                        name="min_order" 
                         value="<?php echo htmlspecialchars($min_order); ?>" 
                         required 
                     />
@@ -197,8 +197,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="max-discount">Số tiền giảm tối đa:</label>
                     <input 
                         type="number" 
-                        id="max-discount" 
-                        name="max-discount" 
+                        id="max_discount" 
+                        name="max_discount" 
                         value="<?php echo htmlspecialchars($max_discount); ?>" 
                         required 
                     />
