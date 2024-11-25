@@ -52,3 +52,21 @@
     color: #666;
     margin: 0;
   }
+
+
+
+  .personal-info {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .personal-info li {
+    margin-bottom: 10px;
+  }
+  
+  .personal-info strong {
+    color: #333;
+  }
+
+
+  

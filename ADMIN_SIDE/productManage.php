@@ -50,7 +50,13 @@ include 'db_connection.php';
                         $productCategory = $product['Category'] ? $product['Category'] : 'N/A';
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($product['ProductID']) ?></td>
+                        <td>
+                            <?php if (!empty($product['Image'])): ?>
+                                <img src="<?= htmlspecialchars($product['Image']) ?>" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                            <?php else: ?>
+                                <span>Không có ảnh</span>
+                            <?php endif; ?>
+                        </td>
                         <td><?= htmlspecialchars($product['ProductID']) ?></td>
                         <td><?= htmlspecialchars($product['ProductName']) ?></td>
                         <td><?= htmlspecialchars($productCategory) ?></td>

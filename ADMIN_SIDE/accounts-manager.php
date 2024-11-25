@@ -14,9 +14,6 @@
       <section class="accounts section--lg">
         <div class="accounts__container container grid">
           <div class="account__tabs">
-            <p class="account__tab active-tab" data-target="#dashboard">
-              <i class="fi fi-rs-settings-sliders"></i> Bảng điều khiển
-            </p>
             <p class="account__tab" data-target="#address">
               <i class="fi fi-rs-marker"></i> Thông tin cá nhân
             </p>
@@ -29,8 +26,8 @@
             <div class="tab__content active-tab" content id="dashboard">
               <h3 class="tab__header">Xin chào Nguyễn Văn A</h3>
               <div class="tab__body">
-                <p class="tab__description">
-                  Bạn được phân quyền là: Nhân viên
+                <p class="tab__description personal-info">
+                  Vị trí hiện tại của bạn trong công ty là: <strong>Nhân viên</strong> </p>
                 </p>
               </div>
             </div>
@@ -52,35 +49,42 @@
             <div class="tab__content" content id="address">
               <h3 class="tab__header">Thông tin cá nhân</h3>
               <div class="tab__body">
-                <address class="address">
-                  Họ và tên: Nguyễn Văn A <br />
-                  MSNV: 2218299 <br />
-                  SĐT: 0919191919 <br />
-                  Địa chỉ: 09 Đồng Hới, Quảng Bình.
-                </address>
+                <p class="tab__description">
+                  <ul class="personal-info">
+                    <li><strong>Mã số nhân viên:</strong> 12345</li>
+                    <li><strong>Họ và tên:</strong> Nguyễn Văn A</li>
+                    <li><strong>Giới tính:</strong> Nam</li>
+                    <li><strong>Ngày sinh:</strong> 01/01/1990</li>
+                    <li><strong>Email:</strong> nguyen.vana@example.com</li>
+                    <li><strong>SĐT:</strong> 0919191919</li>
+                    <li><strong>Địa chỉ:</strong> 09 Đồng Hới, Quảng Bình</li>
+                    <li><strong>Ngày bắt đầu làm việc:</strong> 01/01/2020</li>
+                    <li><strong>Mức Lương:</strong> 10,000,000 VND</li>
+                  </ul>
+                </p>
               </div>
             </div>
             <div class="tab__content" content id="change-password">
-              <h3 class="tab__header">Change Password</h3>
+              <h3 class="tab__header">Đổi mật khẩu</h3>
               <div class="tab__body">
                 <form class="form grid">
                   <input
                     type="password"
-                    placeholder="Current Password"
+                    placeholder="Mật khẩu hiện tại"
                     class="form__input"
                   />
                   <input
                     type="password"
-                    placeholder="New Password"
+                    placeholder="Mật khẩu mới"
                     class="form__input"
                   />
                   <input
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder="Xác nhận mật khẩu mới"
                     class="form__input"
                   />
                   <div class="form__btn">
-                    <button class="btn btn--md">Save</button>
+                    <button class="btn btn--md">Lưu</button>
                   </div>
                 </form>
               </div>

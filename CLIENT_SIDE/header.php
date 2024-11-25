@@ -9,7 +9,7 @@
         <p class="header__alert-news">
           Dịch vụ giao hàng và lắp ráp tận nơi !
         </p>
-        <a href="login.html" class="header__top-action">
+        <a href="login.php" class="header__top-action">
           Đăng nhập ngay để mua hàng!
         </a>
       </div>

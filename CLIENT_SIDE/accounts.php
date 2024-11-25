@@ -116,12 +116,13 @@
             <div class="tab__content" content id="address">
               <h3 class="tab__header">Địa chỉ giao hàng mặc định</h3>
               <div class="tab__body">
-                <address class="address">
+                <p>
                   Nguyễn Thị A <br />
                   0919191919<br />
                   09 Nguyễn Thị Đinh, phường An Phú, TP. Thủ Đức <br />
                   TP. Hồ Chí Minh
-                </address>
+                </p>
+                <br>
                 <div class="form__btn">
                   <button class="btn btn--md">Thay đổi</button>
                 </div>
