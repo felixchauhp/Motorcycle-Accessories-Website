@@ -65,8 +65,8 @@ include 'db_connection.php';
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Mã</th>
-                    <th>Sản phẩm</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Mã khách hàng</th>
                     <th>Thành tiền</th>
                     <th>Ngày tạo đơn</th>
                     <th>Trạng thái</th>
@@ -81,7 +81,7 @@ include 'db_connection.php';
                   </td>  
                   <td>
                         <p class="table__description">
-                              <?= htmlspecialchars($order['OrderID']) ?>
+                              <?= htmlspecialchars($order['CustomerID']) ?>
                         </p>
                   </td>
                     <td>

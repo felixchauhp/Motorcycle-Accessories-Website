@@ -10,10 +10,10 @@ $database = 'motorcycle'; // Thay bằng tên cơ sở dữ liệu của bạn
 $conn = new mysqli($host, $username, $password, $database, $port);
 
 //Kiểm tra kết nối
-// if ($conn->connect_error) {
-//     die("Kết nối thất bại: " . $conn->connect_error);
-// }
-// echo "Kết nối thành công!";
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+echo "Kết nối thành công!";
 
 
 // Truy vấn dữ liệu từ bảng sản phẩm

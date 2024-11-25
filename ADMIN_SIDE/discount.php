@@ -133,8 +133,8 @@ include 'db_connection.php';
           <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
               <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                   <p>Bạn có chắc chắn muốn xóa mã khuyến mãi này?</p>
-                  <button type="submit" class="btn-submit" id="confirmDeleteBtn" >Xóa</button>
-                  <button type="submit" class="btn-submit" id="cancelDeleteBtn" >Hủy</button>
+                  <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
+                  <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
               </div>
           </div>
  

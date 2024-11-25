@@ -25,14 +25,14 @@
 
   <style>
     /* Đặt toàn bộ trang với Flexbox để căn giữa nội dung */
-    body {
+    /* body {
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
       background-color: #f9f9f9;
-    }
+    } */
 
     /* Đảm bảo nội dung nằm giữa header và footer */
     .content {
@@ -163,7 +163,11 @@
     </div>
   </div>
 
-  <!--=============== FOOTER ===============-->
-<?php include 'footer.php'; ?>
+    <!--=============== FOOTER ===============-->
+    <?php include 'footer.php'; ?>
+    <!--=============== SWIPER JS ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
