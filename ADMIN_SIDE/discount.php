@@ -33,7 +33,6 @@ include 'db_connection.php';
                         <th>Số lượng</th>
                         <th>Phần trăm (%)</th>
                         <th>Giá trị đơn hàng tối thiểu</th>
-                        <th>Số tiền giảm tối đa</th>
                         <th>Bắt đầu</th>
                         <th>Kết thúc</th>
                         <th>Thao tác</th>
@@ -48,7 +47,7 @@ include 'db_connection.php';
                             <td><?= htmlspecialchars($promo['Quantity']) ?></td>
                             <td><?= htmlspecialchars($promo['PromoRate']) ?></td>
                             <td><?= htmlspecialchars($promo['MinValue']) ?></td>
-                            <td><?= htmlspecialchars($promo['MaxAmount']) ?></td>
+                            <!-- <td><?= htmlspecialchars($promo['MaxAmount']) ?></td> -->
                             <td><?= htmlspecialchars($promo['StartDate']) ?></td>
                             <td><?= htmlspecialchars($promo['EndDate']) ?></td>
                             <td>
@@ -66,6 +65,35 @@ include 'db_connection.php';
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <ul class="pagination">
+            <?php if ($currentPage > 1): ?>
+              <li><a href="?page=<?= $currentPage - 1 ?>" class="pagination__link">«</a></li>
+            <?php else: ?>
+              <li><a href="#" class="pagination__link disabled">«</a></li>
+            <?php endif; ?>
+    
+            <?php
+            if ($currentPage > 3) {
+              echo '<li><a href="?page=1" class="pagination__link">1</a></li>';
+              if ($currentPage > 4) echo '<li class="pagination__dots">...</li>';
+            }
+
+            for ($i = max(1, $currentPage - 2); $i <= min($totalPromotionPages, $currentPage + 2); $i++) {
+              echo '<li><a href="?page=' . $i . '" class="pagination__link ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</a></li>';
+            }
+
+            if ($currentPage < $totalPromotionPages - 2) {
+              if ($currentPage < $totalPromotionPages - 3) echo '<li class="pagination__dots">...</li>';
+              echo '<li><a href="?page=' . $totalPromotionPages . '" class="pagination__link">' . $totalPromotionPages . '</a></li>';
+            }
+            ?>
+    
+            <?php if ($currentPage < $totalPromotionPages): ?>
+              <li><a href="?page=<?= $currentPage + 1 ?>" class="pagination__link">»</a></li>
+            <?php else: ?>
+              <li><a href="#" class="pagination__link disabled">»</a></li>
+            <?php endif; ?>
+        </ul>
 
            <!-- Popup xác nhận xóa -->
           <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">

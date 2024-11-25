@@ -10,23 +10,23 @@ include 'db_connection.php';
   <?php include 'header.php'; ?>
    <!--=============== MAIN ===============-->
   <body>
-    <main class="main">
-        <section class="products container section--lg">
+  <main class="main">
+    <section class="products container section--lg">
         <div class="search-container">
-    <a href="add-Product.php" class="btn flex btn__md">
-        <i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới
-    </a>
-    <form method="GET" action="productManage.php" class="right-actions">
+            <a href="add-Product.php" class="btn flex btn__md">
+                <i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới
+            </a>
+            <form method="GET" action="productManage.php" class="right-actions">
                 <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
-                <select id="filter-input" name="filter">
+                <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit; padding: 0.5em; border-radius: 5px;">
                     <option value="" <?= !$filter ? 'selected' : '' ?>>Tất cả</option>
                     <?php foreach ($categoryMapping as $key => $value): ?>
                         <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button type="submit" class="btn flex btn__md">Áp dụng</button>
+                <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
                 <a href="productManage.php" class="btn flex btn__md">Nhập lại</a>
-    </form>
+            </form>
   </div>
 
             <table class="product-table">
@@ -60,12 +60,12 @@ include 'db_connection.php';
                         <td><?= htmlspecialchars($product['Notes']) ?></td>
                         <td>
                         <button onclick="editProduct('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-edit edit-icon"></i></button>
-                            <form action="productManage.php" method="POST" style="display: inline;">
-        <input type="hidden" name="product-id" value="<?= $product['ProductID'] ?>" />
-        <button type="submit" name="delete-product" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
-            <i class="fi fi-rs-trash trash-icon"></i>
-        </button>
-    </form>
+                          <form action="productManage.php" method="POST" style="display: inline;">
+                          <input type="hidden" name="product-id" value="<?= $product['ProductID'] ?>" />
+                          <button type="submit" name="delete-product" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                          <i class="fi fi-rs-trash trash-icon"></i>
+                        </button>
+                    </form>
                             <button onclick="goToDetail('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-menu-dots go-to-icon"></i></button>
                         </td>
                     </tr>
