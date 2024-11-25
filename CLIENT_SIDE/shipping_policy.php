@@ -1,61 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<?php include 'head.php' ?>
 
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
 
-    <title>Ecommerce Website - Delivery Policy</title>
-    <style>
-        /* CSS căn giữa văn bản chính sách giao hàng */
-        .footer__content {
-            text-align: left; /* Align text to the left */
-            margin: 0 auto; /* Optional: keep margin auto for centering the block itself */
-        }
-
-        .footer__description {
-            text-align: left; /* Align text to the left */
-            margin: 0 auto;
-            max-width: 800px; /* Limit width for readability */
-            line-height: 1.6; /* Increase line spacing */
-        }
-        
-        .policy-title {
-            text-align: center; /* Center the title */
-            font-size: 3em; /* Increase font size to 3em for better visibility */
-            font-weight: bold; /* Make the font bold */
-            margin-bottom: 20px; /* Space below the title */
-            color: #054c2a; /* Set title color */
-        }
-    </style>
-    
-</head>
 <body>
-
-    <nav class="nav container">
-        <a href="index-manage.html" class="nav__logo">
-            <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
-        </a>
-        <div class="nav__menu" id="nav-menu">
-            <div class="nav__menu-top">
-                <a href="index-manage.html" class="nav__menu-logo">
-                    <img src="./assets/img/logo.png" alt="">
-                </a>
-                <div class="nav__close" id="nav-close">
-                    <i class="fi fi-rs-cross-small"></i>
-                </div>
-            </div>
-            <ul class="nav__list">
-                <li class="nav__item"><a href="productManage.html" class="nav__link">Quản lý Sản phẩm</a></li>
-                <li class="nav__item"><a href="quanlydonhang.html" class="nav__link">Quản lý Đơn hàng</a></li>
-                <li class="nav__item"><a href="discount.html" class="nav__link">Khuyến mãi</a></li>
-                <li class="nav__item"><a href="accounts-manager.html" class="nav__link active-link">Thông tin</a></li>
-            </ul>
-        </div>
-    </nav>
+<?php include 'header.php' ?>
 
     <div class="footer__content">
       <h3 class="footer__title policy-title">Chính sách giao hàng</h3>
@@ -239,95 +188,7 @@
         </p>
     </div>
 <!--=============== FOOTER ===============-->
-<footer class="footer container">
-  <div class="footer__container grid">
-    <div class="footer__content">
-      <a href="index.html" class="footer__logo">
-        <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
-      </a>
-      <h4 class="footer__subtitle">Thông tin liên hệ</h4>
-      <p class="footer__description">
-        <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
-      </p>
-      <p class="footer__description">
-        <span>Hotline:</span> +84 001 929 992
-      </p>
-      <p class="footer__description">
-        <span>Email:</span> contact@motorcycle.vn
-      </p>
-      <div class="footer__social">
-        <h4 class="footer__subtitle">MotorCycle đã có mặt trên:</h4>
-        <div class="footer__links flex">
-          <a href="#">
-            <img
-              src="./assets/img/icon-facebook.svg"
-              alt=""
-              class="footer__social-icon"
-            />
-          </a>
-          <a href="#">
-            <img
-              src="./assets/img/icon-twitter.svg"
-              alt=""
-              class="footer__social-icon"
-            />
-          </a>
-          <a href="#">
-            <img
-              src="./assets/img/icon-instagram.svg"
-              alt=""
-              class="footer__social-icon"
-            />
-          </a>
-          <a href="#">
-            <img
-              src="./assets/img/icon-pinterest.svg"
-              alt=""
-              class="footer__social-icon"
-            />
-          </a>
-          <a href="#">
-            <img
-              src="./assets/img/icon-youtube.svg"
-              alt=""
-              class="footer__social-icon"
-            />
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__content">
-      <h3 class="footer__title">Thông tin chi tiết</h3>
-      <ul class="footer__links">
-        <li><a href="#" class="footer__link">Về chúng tôi</a></li>
-        <li><a href="#" class="footer__link">Chính sách giao hàng</a></li>
-        <li><a href="#" class="footer__link">Điều khoản bảo mật</a></li>
-        <li><a href="#" class="footer__link">Quy định cung cấp dịch vụ</a></li>
-      </ul>
-    </div>
-    <div class="footer__content">
-      <h3 class="footer__title">Tải khoản của tôi</h3>
-      <ul class="footer__links">
-        <li><a href="#" class="footer__link">Đăng nhập</a></li>
-        <li><a href="#" class="footer__link">Xem giỏ hàng</a></li>
-        <li><a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a></li>
-        <li><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
-      </ul>
-    </div>
-    <div class="footer__content">
-      <h3 class="footer__title">Đối tác thanh toán</h3>
-      <img
-        src="./assets/img/payment-method.png"
-        alt=""
-        class="payment__img"
-      />
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <p class="copyright">&copy; 2024. All right reserved</p>
-    <span class="designer">Website created by Group 4</span>
-  </div>
-</footer>
+<?php include 'footer.php' ?>
 
 <!--=============== SWIPER JS ===============-->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

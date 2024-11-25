@@ -11,7 +11,7 @@
       <section class="breadcrumb">
         <ul class="breadcrumb__list flex container">
           <li><a href="index.php" class="breadcrumb__link">Trang chủ</a></li>
-          <li><span class="breadcrumb__link"></span>></li>
+          <li><span class="breadcrumb__link">></span></li>
           <li><span class="breadcrumb__link">Giới thiệu</span></li>
         </ul>
       </section>

@@ -92,6 +92,7 @@ h4 {
 
 ul {
   list-style: none;
+  color: var(--first-color);
 }
 
 a {
@@ -173,6 +174,10 @@ table {
 
 .form {
   row-gap: 1rem;
+}
+
+.form li {
+  color: var(--first-color);
 }
 
 .form__group {
@@ -325,6 +330,7 @@ table {
 .home__subtitle,
 .home__description {
   font-size: var(--large-font-size);
+  color: var(--first-color);
 }
 
 .home__subtitle {
@@ -2247,6 +2253,7 @@ table {
   padding-bottom: 0.5rem;
 }
 
+
 /* Đoạn văn */
 .product__content p {
   font-size: 1rem;
@@ -2291,4 +2298,22 @@ table {
   .product__content p {
     font-size: 0.95rem;
   }
+}
+
+
+a {
+  color: var(--first-color); /* Giữ nguyên màu sắc từ phần tử cha */
+  text-decoration: none; /* Xóa gạch chân nếu cần */
+}
+
+a:visited {
+  color: var(--first-color); /* Giữ màu giống như trạng thái ban đầu */
+}
+
+a:active {
+  color: var(--first-color); /* Giữ nguyên màu khi nhấn */
+}
+
+.fi {
+  color: hsl(0, 0%, 59%);
 }
