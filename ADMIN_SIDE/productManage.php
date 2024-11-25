@@ -25,7 +25,7 @@ include 'db_connection.php';
               <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
             <?php endforeach; ?>
           </select>
-          <button type="submit" class="btn flex btn__md">Áp dụng</button>
+          <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
           <a href="productManage.php" class="btn flex btn__md">Nhập lại</a>
         </form>
       </div>
@@ -63,14 +63,14 @@ include 'db_connection.php';
                 <td><?= htmlspecialchars($product['SalePrice']) ?></td>
                 <td><?= htmlspecialchars($product['Notes']) ?></td>
                 <td>
-                  <button onclick="editProduct('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-edit edit-icon"></i></button>
                   <form action="productManage.php" method="POST" style="display: inline;">
                     <input type="hidden" name="product-id" value="<?= $product['ProductID'] ?>" />
                     <button type="submit" name="delete-product" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
-                      <i class="fi fi-rs-trash trash-icon"></i>
+                      <i class="fi fi-rs-trash trash-icon" style="cursor: pointer;"></i>
                     </button>
                   </form>
-                  <button onclick="goToDetail('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-menu-dots go-to-icon"></i></button>
+                  <button onclick="editProduct('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-edit edit-icon" style="cursor: pointer;"></i></button>
+                  <button onclick="goToDetail('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-menu-dots go-to-icon" style="cursor: pointer;"></i></button>
                 </td>
               </tr>
             <?php endforeach; ?>
