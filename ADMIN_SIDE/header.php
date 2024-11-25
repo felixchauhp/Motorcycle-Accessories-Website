@@ -3,7 +3,7 @@
     
     <nav class="nav container">
 
-      <a href="index-manage.html" class="nav__logo">
+      <a href="index-manage.php" class="nav__logo">
         <img class="nav__logo-img" 
         src="assets/img/logo.png" 
         alt="website logo" 
@@ -13,7 +13,7 @@
       <div class="nav__menu" id="nav-menu">
 
         <div class="nav__menu-top">
-          <a href="index-manage.html" class="nav__menu-logo">
+          <a href="index-manage.php" class="nav__menu-logo">
             <img src="./assets/img/logo.png" alt="">
           </a>
 
@@ -40,7 +40,7 @@
             <img src="assets/img/bell.svg" alt="" />
             <span class="count">3</span>
           </a>
-          <a href="accounts-manager.html" class="header__action-btn" id="user-icon" title="User">
+          <a href="accounts-manager.php" class="header__action-btn" id="user-icon" title="User">
             <img src="assets/img/icon-user.svg" alt="" />
           </a>
           <div class="header__action-btn nav__toggle" id="nav-toggle">

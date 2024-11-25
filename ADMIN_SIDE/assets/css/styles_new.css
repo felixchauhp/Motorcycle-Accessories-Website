@@ -1,16 +1,16 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Spartan:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 4rem;
 
   /*========== Colors ==========*/
-  --first-color: hsl(176, 88%, 27%);
-  --first-color-alt: hsl(129, 44%, 94%);
+  --first-color: hsl(212, 100%, 18%);
+  --first-color-alt: hsl(212, 100%, 18%);
   --second-color: hsl(34, 94%, 87%);
-  --title-color: hsl(176, 88%, 27%);
-  --text-color: hsl(176, 88%, 27%);
+  --title-color: hsl(212, 100%, 18%);
+  --text-color: hsl(212, 100%, 18%);
   --text-color-light: hsl(60, 1%, 56%);
   --body-color: hsl(0, 0%, 100%);
   --container-color: hsl(0, 0%, 93%);
@@ -18,9 +18,8 @@
   --border-color-alt: hsl(113, 15%, 90%);
 
   /*========== Font and typography ==========*/
-  --body-font: "Lato", sans-serif;
-  --second-font: "League Spartan" sans-serif;
-  --big-font-size: 3.5rem;
+  --body-font: 'Montserrat', sans-serif;
+  --second-font: 'Montserrat', sans-serif;
   --h1-font-size: 2.75rem;
   --h2-font-size: 2rem;
   --h3-font-size: 1.75rem;
@@ -974,7 +973,7 @@ table {
 
 /*=============== FOOTER ===============*/
 .footer__container {
-  grid-template-columns: 4.5fr repeat(2, 2fr) 3.5fr;
+  grid-template-columns: 2.5fr 4.5fr;
   padding-block: 2.5rem;
 }
 
@@ -1613,7 +1612,7 @@ table {
 
 /*=============== LOGIN & REGISTER ===============*/
 .login-register__container {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   align-items: flex-start;
 }
 

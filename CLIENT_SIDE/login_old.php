@@ -1,120 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--=============== DOCUMENT HEAD ===============-->
+  <?php include 'head.php'; ?>
 
-    <!--=============== FLATICON ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-
-    <title>MotorCycle Store</title>
-  </head>
-  <body>
-       <!--=============== HEADER ===============-->
-       <header class="header">
-        <div class="header__top">
-          <div class="header__container container">
-            <div class="header__contact">
-              <span>Gọi đặt hàng:</span>
-              <span>+84 001 929 992</span>
-            </div>
-            <p class="header__alert-news">
-              Dịch vụ giao hàng và lắp ráp tận nơi !
-            </p>
-            <a href="login.html" class="header__top-action">
-              Đăng nhập ngay để mua hàng!
-            </a>
-          </div>
-        </div>
-  
-        <nav class="nav container">
-          <a href="index.html" class="nav__logo">
-            <img
-              class="nav__logo-img"
-              src="assets/img/logo.png"
-              alt="website logo"
-            />
-          </a>
-          <div class="nav__menu" id="nav-menu">
-            <div class="nav__menu-top">
-              <a href="index.html" class="nav__menu-logo">
-                <img src="./assets/img/logo.png" alt="">
-              </a>
-              <div class="nav__close" id="nav-close">
-                <i class="fi fi-rs-cross-small"></i>
-              </div>
-            </div>
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="index.html" class="nav__link active-link">Trang chủ</a>
-              </li>
-              <li class="nav__item">
-                <a href="shop.html" class="nav__link">Sản phẩm</a>
-              </li>
-              <li class="nav__item">
-                <a href="login.html" class="nav__link">Đăng nhập</a>
-              </li>
-              <li class="nav__item">
-                <a href="login.html" class="nav__link">Đăng ký</a>
-              </li>
-            </ul>
-            <div class="header__search">
-              <input
-                type="text"
-                placeholder="Tìm kiếm..."
-                class="form__input"
-              />
-              <button class="search__btn">
-                <img src="assets/img/search.png" alt="search icon" />
-              </button>
-            </div>
-          </div>
-          <div class="header__user-actions">
-            <a href="wishlist.html" class="header__action-btn" title="Wishlist">
-              <img src="assets/img/icon-heart.svg" alt="" />
-              <span class="count">3</span>
-            </a>
-            <a href="cart.html" class="header__action-btn" title="Cart">
-              <img src="assets/img/icon-cart.svg" alt="" />
-              <span class="count">3</span>
-            </a>
-            <a href="accounts.html" class="header__action-btn" id="user-icon" title="User">
-              <img src="assets/img/icon-user.svg" alt="" />
-            </a>
-            <div class="dropdown-menu" id="user-dropdown">
-              <ul>
-                  <li><a href="login.html">Đăng nhập</a></li>
-                  <li><a href="register.html">Đăng ký</a></li>
-                  <li><a href="account.html">Cá nhân</a></li>
-              </ul>
-          </div>
-                 
-            <div class="header__action-btn nav__toggle" id="nav-toggle">
-              <img src="./assets//img/menu-burger.svg" alt="">
-            </div>
-          </div>
-        </nav>
-      </header>
-
+<body>
+   <!--=============== HEADER ===============-->
+   <?php include 'header.php'; ?>
     <!--=============== MAIN ===============-->
     <main class="main">
       <!--=============== BREADCRUMB ===============-->
       <section class="breadcrumb">
         <ul class="breadcrumb__list flex container">
           <li><a href="index.html" class="breadcrumb__link">Home</a></li>
-          <li><span class="breadcrumb__link">></span></li>
+          <li><span class="breadcrumb__link"></span></li>
           <li><span class="breadcrumb__link">Đăng nhập</span></li>
         </ul>
       </section>
@@ -126,30 +24,35 @@
             <h3 class="section__title">Đăng nhập</h3>
             <form class="form grid" id="loginForm">
               <input
-                type="username"
-                id="username" name="username"
+                type="email"
+                id="email"
                 placeholder="Số điện thoại/ Email"
                 class="form__input"
               />
+              <div id="emailNull" style="color: #e25555; display: none">
+                Sai tài khoản hoặc mật khẩu
+              </div>
               <input
                 type="password"
-                id="password" name="password"
+                id="password"
                 placeholder="Mật khẩu"
                 class="form__input"
               />
+              <div id="passNull" style="color: #e25555; display: none">
+                Sai tài khoản hoặc mật khẩu
+              </div>
               <div class="form__btn">
-                <button class="btn">
-                   <input type="submit" value="Đăng nhập">
-                </button>
+                <button class="btn" type="submit">Đăng nhập</button>
               </div>
               <p>
                 <li><a href="forgetpass.html">Quên mật khẩu ?</a></li>
-                <li><a href="forgetpass.html">Chưa có tài khoản ? Đăng ký ngay.</a></li>
+                <li>
+                  <a href="forgetpass.html"
+                    >Chưa có tài khoản ? Đăng ký ngay.</a
+                  >
+                </li>
               </p>
             </form>
-          </div>
-          <div class="register">
-            <img href="shop.php" src="assets/img/RIGHTBANNER.png" class="home__img" alt="hats" />
           </div>
         </div>
       </section>
@@ -186,7 +89,8 @@
           </a>
           <h4 class="footer__subtitle">Thông tin liên hệ</h4>
           <p class="footer__description">
-            <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
+            <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông
+            Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
           </p>
           <p class="footer__description">
             <span>Hotline:</span> +84 001 929 992
@@ -241,7 +145,9 @@
             <li><a href="#" class="footer__link">Về chúng tôi</a></li>
             <li><a href="#" class="footer__link">Chính sách giao hàng</a></li>
             <li><a href="#" class="footer__link">Điều khoản bảo mật</a></li>
-            <li><a href="#" class="footer__link">Quy định cung cấp dịch vụ</a></li>
+            <li>
+              <a href="#" class="footer__link">Quy định cung cấp dịch vụ</a>
+            </li>
           </ul>
         </div>
         <div class="footer__content">
@@ -249,7 +155,9 @@
           <ul class="footer__links">
             <li><a href="#" class="footer__link">Đăng nhập</a></li>
             <li><a href="#" class="footer__link">Xem giỏ hàng</a></li>
-            <li><a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a></li>
+            <li>
+              <a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a>
+            </li>
             <li><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
           </ul>
         </div>
@@ -268,10 +176,10 @@
       </div>
     </footer>
 
-    <!--=============== SWIPER JS ===============-->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+    <!--=============== SCRIPT JS ===============-->
+    <script type="module" src="./assets/js/login.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="script.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
   </body>
 </html>

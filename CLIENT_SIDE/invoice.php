@@ -1,29 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--=============== DOCUMENT HEAD ===============-->
+  <?php include 'head.php'; ?>
 
-    <!--=============== FLATICON ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="./assets/css/styles1.css" />
-
-    <title>Ecommerce Website</title>
-  </head>
-  <body>
-    <!--=============== HEADER ===============-->
-
+<body>
+   <!--=============== HEADER ===============-->
+   <?php include 'header.php'; ?>
 
     <!--=============== MAIN ===============-->
     <main class="main">

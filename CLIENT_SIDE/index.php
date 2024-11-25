@@ -1,31 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--=============== DOCUMENT HEAD ===============-->
+  <?php include 'head.php'; ?>
 
-    <!--=============== FLATICON ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-    <!-- Bootstrap JS (for dropdown functionality) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-
-    <title>MotorCycle Store</title>
-  </head>
-  <body>
+<body>
    <!--=============== HEADER ===============-->
    <?php include 'header.php'; ?>
 
@@ -35,12 +13,12 @@
       <section class="home section--lg">
         <div class="home__container container grid">
           <div class="home__content">
-            <span class="home__subtitle">Siêu ưu đãi Phượt Hè</span>
+            <span class="home__subtitle">Siêu ưu đãi Chào Đông</span>
             <h1 class="home__title">
-              Your Motor <span>Your Way</span>
+              <span>Ur Motor Ur Way</span>
             </h1>
             <p class="home__description">
-              Mã giảm giá lên đến 99%
+              Mã giảm giá lên đến 59%
             </p>
             <a href="shop.html" class="btn">Mua ngay kẽo lỡ!</a>
           </div>

@@ -80,35 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--========================================================================-->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== FLATICON ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-     <!-- Bootstrap JS (for dropdown functionality) -->
-     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 
-    <!--=============== SWIPER CSS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <link rel="stylesheet" href="./assets/css/styles2.css" />
-    <title>Ecommerce Website</title>
-  </head>
-  <body>
-    
    <!--=============== HEADER ===============-->
-   <?php include 'header.php'; ?>
+ <?php include 'head.php'; ?>
+<body>
+  <!--=============== HEADER ===============-->
+  <?php include 'header.php'; ?>
 
     <!--=============== MAIN ===============-->
     <main class="main">
