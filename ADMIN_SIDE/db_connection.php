@@ -16,34 +16,44 @@ if ($conn->connect_error) {
 echo "Kết nối thành công!";
 
 
-// Truy vấn dữ liệu từ bảng sản phẩm
-$query = "SELECT * FROM products"; 
-$result = $conn->query($query);
+// Cấu hình phân trang
+$itemsPerPage = 20;
+$currentPage = $_GET['page'] ?? 1;
+$start = ($currentPage - 1) * $itemsPerPage;
+// Ánh xạ danh mục
+$categoryMapping = [
+    'vo-xe-ruot-xe' => 'Vỏ xe và ruột xe',
+    'nhong-sen-dia' => 'Nhông sên dĩa',
+    'bac-dan' => 'Bạc đạn',
+    'nhot' => 'Nhớt',
+    'ac-quy' => 'Ắc quy',
+    'bo-dia-bo-thang' => 'Bố đĩa và bố thắng',
+    'cac-phu-kien-khac' => 'Các phụ kiện khác'
+  ];
+  
+  // Lọc tìm kiếm và danh mục
+  $search = $_GET['search'] ?? '';
+  $filter = $_GET['filter'] ?? '';
+  if ($filter && !isset($categoryMapping[$filter])) $filter = '';
+  
+  // Điều kiện WHERE SQL
+  $whereClauses = [];
+  if ($search) $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
+  if ($filter) $whereClauses[] = "c.Category = '{$conn->real_escape_string($categoryMapping[$filter])}'";
+  $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
-// Kiểm tra kết quả
-if ($result->num_rows > 0) {
-    $products = [];
-    while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
-} else {
-    $products = [];
-}
+// Lấy tổng số sản phẩm
+$totalQuery = "SELECT COUNT(*) as total FROM products p LEFT JOIN products_in_category c ON p.ProductID = c.ProductID $whereSQL";
+$totalItems = $conn->query($totalQuery)->fetch_assoc()['total'];
+$totalPages = ceil($totalItems / $itemsPerPage);
 
+// Truy vấn sản phẩm
+$query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category 
+          FROM products p
+          LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
+          $whereSQL LIMIT $start, $itemsPerPage";
+$products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
-// Truy vấn dữ liệu từ bảng danh mục sản phẩm
-$query_category = "SELECT * FROM products_in_category"; 
-$result_category = $conn->query($query_category);
-
-# Kiểm tra kết quả
-if ($result_category->num_rows > 0) {
-    $products_category = [];
-    while ($row = $result_category->fetch_assoc()) {
-        $products_category[] = $row;
-    }
-} else {
-    $products_category = [];
-}
 
 // Truy vấn dữ liệu từ bảng đơn hàng
 $query_orders = "SELECT * FROM orders LIMIT 50"; 
