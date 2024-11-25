@@ -28,7 +28,7 @@ $categoryMapping = [
     'cac-phu-kien-khac' => 'Các phụ kiện khác'
   ];
   
-  // Cấu hình phân trang
+// Cấu hình phân trang
 $itemsPerPage = 20;
 $currentPage = $_GET['page'] ?? 1;
 $start = ($currentPage - 1) * $itemsPerPage;
@@ -56,16 +56,40 @@ $query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice
           $whereSQL LIMIT $start, $itemsPerPage";
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
+
+
+
 // 2. Phân trang cho bảng đơn hàng
-$totalOrdersQuery = "SELECT COUNT(*) as total FROM orders";
+// Lấy giá trị từ GET
+$search = $_GET['search'] ?? '';
+$startDate = $_GET['start_date'] ?? '';
+$endDate = $_GET['end_date'] ?? '';
+
+// Phân trang cho bảng đơn hàng
+$itemsPerPage = 20;
+$currentPage = $_GET['page'] ?? 1;
+$start = ($currentPage - 1) * $itemsPerPage;
+
+$whereClauses = [];
+if ($search) {
+    $whereClauses[] = "(OrderID LIKE '%$search%' OR CustomerID LIKE '%$search%')";
+}
+if ($startDate) $whereClauses[] = "OrderDate >= '{$conn->real_escape_string($startDate)}'";
+if ($endDate) $whereClauses[] = "OrderDate <= '{$conn->real_escape_string($endDate)}'";
+
+$whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
+
+// Truy vấn tổng số đơn hàng
+$totalOrdersQuery = "SELECT COUNT(*) as total FROM orders $whereSQL";
 $totalOrders = $conn->query($totalOrdersQuery)->fetch_assoc()['total'];
 $totalOrderPages = ceil($totalOrders / $itemsPerPage);
 
-$orderQuery = "SELECT * FROM orders LIMIT $start, $itemsPerPage";
+// Truy vấn đơn hàng
+$orderQuery = "SELECT * FROM orders $whereSQL LIMIT $start, $itemsPerPage";
 $orderResults = $conn->query($orderQuery);
 
+$orders = [];
 if ($orderResults->num_rows > 0) {
-    $orders = [];
     while ($row = $orderResults->fetch_assoc()) {
         $orders[] = $row;
     }
@@ -73,29 +97,41 @@ if ($orderResults->num_rows > 0) {
     $orders = [];
 }
 
+
+
+
+
 // 3. Phân trang cho bảng khuyến mãi
-$totalPromotionsQuery = "SELECT COUNT(*) as total FROM promotion";
+// Lấy giá trị từ GET
+$startDate = $_GET['start_date'] ?? '';
+$endDate = $_GET['end_date'] ?? '';
+
+// Điều kiện WHERE SQL
+$whereClauses = [];
+if ($search) {
+    // Tìm kiếm theo tên khuyến mãi và mã khuyến mãi
+    $whereClauses[] = "(PromoName LIKE '%$search%' OR PromoCode LIKE '%$search%')";
+}
+if ($startDate) $whereClauses[] = "StartDate >= '{$conn->real_escape_string($startDate)}'";
+if ($endDate) $whereClauses[] = "EndDate <= '{$conn->real_escape_string($endDate)}'";
+
+$whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
+
+// Tổng số khuyến mãi
+$totalPromotionsQuery = "SELECT COUNT(*) as total FROM promotion $whereSQL";
 $totalPromotions = $conn->query($totalPromotionsQuery)->fetch_assoc()['total'];
 $totalPromotionPages = ceil($totalPromotions / $itemsPerPage);
 
-$promotionQuery = "SELECT * FROM promotion LIMIT $start, $itemsPerPage";
+// Truy vấn khuyến mãi
+$promotionQuery = "SELECT * FROM promotion $whereSQL LIMIT $start, $itemsPerPage";
 $promotionResults = $conn->query($promotionQuery);
 
+$promotions = [];
 if ($promotionResults->num_rows > 0) {
-    $promotions = [];
     while ($row = $promotionResults->fetch_assoc()) {
         $promotions[] = $row;
     }
 } else {
     $promotions = [];
 }
-
-
 ?>
-
-
-
-
-
-
-
