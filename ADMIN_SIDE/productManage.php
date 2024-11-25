@@ -50,7 +50,9 @@ include 'db_connection.php';
                         $productCategory = $product['Category'] ? $product['Category'] : 'N/A';
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($product['ProductID']) ?></td>
+                        <td>
+                            <img src="<?= htmlspecialchars($product['Image']) ?>" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                        </td>
                         <td><?= htmlspecialchars($product['ProductID']) ?></td>
                         <td><?= htmlspecialchars($product['ProductName']) ?></td>
                         <td><?= htmlspecialchars($productCategory) ?></td>

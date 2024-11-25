@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
   fileInput.addEventListener('change', function() {
       const files = Array.from(fileInput.files); 
 
-      if (files.length + selectedFiles.length > 2) {
-          alert('Bạn chỉ được chọn tối đa 2 hình ảnh.');
+      if (files.length + selectedFiles.length > 1) {
+          alert('Bạn chỉ được chọn tối đa 1 hình ảnh.');
           fileInput.value = ''; 
           return;
       }

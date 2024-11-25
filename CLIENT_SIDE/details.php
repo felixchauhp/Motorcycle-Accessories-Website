@@ -15,27 +15,10 @@
         <div class="details__container container grid">
           <div class="details__group">
             <img
-              src="./assets/img/product-8-1.jpg"
+              src="https://product.hstatic.net/200000287255/product/ac_quy_gs_gt9a_12v-9ah_8cee7263e49b47f3bd28188e961bda47_master.png"
               alt=""
               class="details__img"
             />
-            <div class="details__small-images grid">
-              <img
-                src="./assets/img/product-8-2.jpg"
-                alt=""
-                class="details__small-img"
-              />
-              <img
-                src="./assets/img/product-8-1.jpg"
-                alt=""
-                class="details__small-img"
-              />
-              <img
-                src="./assets/img/product-8-2.jpg"
-                alt=""
-                class="details__small-img"
-              />
-            </div>
           </div>
           <div class="details__group">
             <h3 class="details__title">Tên sản phẩm</h3>
@@ -82,153 +65,95 @@
 
       <!--=============== DETAILS TAB ===============-->
       <section class="details__tab container">
-        <div class="detail__tabs">
-          <span class="detail__tab active-tab" data-target="#info">
-            Thông tin chi tiết sản phẩm
-          </span>
-          <span class="detail__tab" data-target="#reviews">Đánh giá(3)</span>
-        </div>
-        <div class="details__tabs-content">
-          <div class="details__tab-content active-tab" content id="info">
-            <table class="info__table">
-              <tr>
-                <th>Thông tin 1</th>
-                <td>35" L x 24"W x 37-45"H(front to back wheel)</td>
-              </tr>
-              <tr>
-                <th>Thông tin 2</th>
-                <td>32.5"L x 18.5"W x 16.5"H</td>
-              </tr>
-              <tr>
-                <th>Thông tin 3</th>
-                <td>32.5"L x 24"W x 18.5"H</td>
-              </tr>
-              <tr>
-                <th>Thông tin 4</th>
-                <td>24</td>
-              </tr>
-              <tr>
-                <th>Thông tin 5</th>
-                <td>Aluminum</td>
-              </tr>
-              <tr>
-                <th>Thông tin 6</th>
-                <td>20 LBS</td>
-              </tr>
-              <tr>
-                <th>Thông tin 7</th>
-                <td>60 LBS</td>
-              </tr>
-              <tr>
-                <th>Thông tin 8</th>
-                <td>24</td>
-              </tr>
-              <tr>
-                <th>Thông tin 9</th>
-                <td>37-45</td>
-              </tr>
-              <tr>
-                <th>Thông tin 10</th>
-                <td>12" air / wide track slick tread</td>
-              </tr>
-            </table>
+  <div class="detail__tabs">
+    <span class="detail__tab active-tab" data-target="#reviews">Đánh giá(3)</span>
+  </div>
+  <div class="details__tabs-content">
+    <div class="details__tab-content active-tab" id="reviews">
+      <div class="reviews__container grid">
+        <div class="review__single">
+          <div>
+            <img src="./assets/img/avt1.jpg" alt="" class="review__img" />
+            <h4 class="review__title">Nine Naphat</h4>
           </div>
-          <div class="details__tab-content" content id="reviews">
-            <div class="reviews__container grid">
-              <div class="review__single">
-                <div>
-                  <img
-                    src="./assets/img/avt1.jpg"
-                    alt=""
-                    class="review__img"
-                  />
-                  <h4 class="review__title">Nine Naphat</h4>
-                </div>
-                <div class="review__data">
-                  <div class="review__rating">
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                  </div>
-                  <p class="review__description">
-                    Sản phẩm chính hãng, chất lượng.
-                  </p>
-                  <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
-                </div>
-              </div>
-              <div class="review__single">
-                <div>
-                  <img
-                    src="./assets/img/avt2.jpg"
-                    alt=""
-                    class="review__img"
-                  />
-                  <h4 class="review__title">Srettha Thavisin</h4>
-                </div>
-                <div class="review__data">
-                  <div class="review__rating">
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                  </div>
-                  <p class="review__description">
-                    Sản phẩm tốt, giao hàng qua Thái Lan nhanh hơn cả việc tôi mất chức
-                  </p>
-                  <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
-                </div>
-              </div>
-              <div class="review__single">
-                <div>
-                  <img
-                    src="./assets/img/avt3.jpg"
-                    alt=""
-                    class="review__img"
-                  />
-                  <h4 class="review__title">Engfa Waraha</h4>
-                </div>
-                <div class="review__data">
-                  <div class="review__rating">
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                    <i class="fi fi-rs-star"></i>
-                  </div>
-                  <p class="review__description">
-                    Thật sự không thích sản phẩm này lắm, thích sầu riêng hơn.
-                  </p>
-                  <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
-                </div>
-              </div>
+          <div class="review__data">
+            <div class="review__rating">
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
             </div>
-            <div class="review__form">
-              <h4 class="review__form-title">Thêm đánh giá</h4>
-              <div class="rate__product">
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-              </div>
-              <form action="" class="form grid">
-                <textarea
-                  class="form__input textarea"
-                  placeholder="Viết đánh giá"
-                ></textarea>
-                <div class="form__group grid">
-                  <input type="text" placeholder="Tên" class="form__input">
-                  <input type="email" placeholder="Địa chỉ email" class="form__input">
-                </div>
-                <div class="form__btn">
-                  <button class="btn">Gửi</button>
-                </div>
-              </form>
-            </div>
+            <p class="review__description">
+              Sản phẩm chính hãng, chất lượng.
+            </p>
+            <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
           </div>
         </div>
-      </section>
+        <div class="review__single">
+          <div>
+            <img src="./assets/img/avt2.jpg" alt="" class="review__img" />
+            <h4 class="review__title">Srettha Thavisin</h4>
+          </div>
+          <div class="review__data">
+            <div class="review__rating">
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+            </div>
+            <p class="review__description">
+              Sản phẩm tốt, giao hàng qua Thái Lan nhanh hơn cả việc tôi mất chức.
+            </p>
+            <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
+          </div>
+        </div>
+        <div class="review__single">
+          <div>
+            <img src="./assets/img/avt3.jpg" alt="" class="review__img" />
+            <h4 class="review__title">Engfa Waraha</h4>
+          </div>
+          <div class="review__data">
+            <div class="review__rating">
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+              <i class="fi fi-rs-star"></i>
+            </div>
+            <p class="review__description">
+              Thật sự không thích sản phẩm này lắm, thích sầu riêng hơn.
+            </p>
+            <span class="review__date">10:00 ngày 22 tháng 10 năm 2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="review__form">
+        <h4 class="review__form-title">Thêm đánh giá</h4>
+        <div class="rate__product">
+          <i class="fi fi-rs-star"></i>
+          <i class="fi fi-rs-star"></i>
+          <i class="fi fi-rs-star"></i>
+          <i class="fi fi-rs-star"></i>
+          <i class="fi fi-rs-star"></i>
+        </div>
+        <form action="" class="form grid">
+          <textarea
+            class="form__input textarea"
+            placeholder="Viết đánh giá"
+          ></textarea>
+          <div class="form__group grid">
+            <input type="text" placeholder="Tên" class="form__input">
+            <input type="email" placeholder="Địa chỉ email" class="form__input">
+          </div>
+          <div class="form__btn">
+            <button class="btn">Gửi</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <!--=============== PRODUCTS ===============-->
       <section class="products container section--lg">
