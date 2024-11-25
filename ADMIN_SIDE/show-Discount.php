@@ -115,7 +115,7 @@ if (isset($_GET['promoCode'])) {
                     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
                     <!-- Nút quay lại -->
                     <button
-                        type="submit" 
+                        type="button" 
                         class="btn flex btn__md" 
                         onclick="window.location.href='discount.php'">
                         Quay lại
