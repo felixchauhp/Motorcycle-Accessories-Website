@@ -26,12 +26,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Sản phẩm<th>
+                <th>Sản phẩm</th>
                 <th>Tên</th>
                 <th>Đơn giá</th>
                 <th>Số lượng</th>
                 <th>Thành tiền</th>
-                <th>Xóa</th>
               </tr>
             </thead>
             <tbody>
@@ -39,50 +38,6 @@
                 <td>
                   <img
                     src="./assets//img/product-1-2.jpg"
-                    alt=""
-                    class="table__img"
-                  />
-                </td>
-                <td>
-                  <h3 class="table__title">
-                    Sản phẩm
-                  </h3>
-                  <p class="table__description">
-                    Mô tả.
-                  </p>
-                </td>
-                <td>
-                  <span class="table__price">110.000 VNĐ</span>
-                </td>
-                <td><input type="number" value="3" class="quantity" /></td>
-                <td><span class="subtotal">330.000 VNĐ</span></td>
-                <td><i class="fi fi-rs-trash table__trash"></i></td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="./assets//img/product-7-1.jpg"
-                    alt=""
-                    class="table__img"
-                  />
-                </td>
-                <td>
-                  <h3 class="table__title">Sản phẩm</h3>
-                  <p class="table__description">
-                    Mô tả.
-                  </p>
-                </td>
-                <td>
-                  <span class="table__price">110.000 VNĐ</span>
-                </td>
-                <td><input type="number" value="3" class="quantity" /></td>
-                <td><span class="subtotal">330.000 VNĐ</span></td>
-                <td><i class="fi fi-rs-trash table__trash"></i></td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="./assets//img/product-2-1.jpg"
                     alt=""
                     class="table__img"
                   />
