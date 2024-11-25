@@ -76,9 +76,35 @@ include 'db_connection.php';
                 <?php endforeach; ?>                    
                 </tbody>
               </table>
-              <ul class="pagination" id="pagination">
-                <!-- Sẽ được điền bằng JavaScript -->
-            </ul>
+              <ul class="pagination">
+            <?php if ($currentPage > 1): ?>
+              <li><a href="?page=<?= $currentPage - 1 ?>" class="pagination__link">«</a></li>
+            <?php else: ?>
+              <li><a href="#" class="pagination__link disabled">«</a></li>
+            <?php endif; ?>
+    
+            <?php
+            if ($currentPage > 3) {
+              echo '<li><a href="?page=1" class="pagination__link">1</a></li>';
+              if ($currentPage > 4) echo '<li class="pagination__dots">...</li>';
+            }
+
+            for ($i = max(1, $currentPage - 2); $i <= min($totalOrderPages, $currentPage + 2); $i++) {
+              echo '<li><a href="?page=' . $i . '" class="pagination__link ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</a></li>';
+            }
+
+            if ($currentPage < $totalOrderPages - 2) {
+              if ($currentPage < $totalOrderPages - 3) echo '<li class="pagination__dots">...</li>';
+              echo '<li><a href="?page=' . $totalOrderPages . '" class="pagination__link">' . $totalOrderPages . '</a></li>';
+            }
+            ?>
+    
+            <?php if ($currentPage < $totalOrderPages): ?>
+              <li><a href="?page=<?= $currentPage + 1 ?>" class="pagination__link">»</a></li>
+            <?php else: ?>
+              <li><a href="#" class="pagination__link disabled">»</a></li>
+            <?php endif; ?>
+        </ul>
             </div>
           </section>
   </main>
