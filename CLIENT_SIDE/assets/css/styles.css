@@ -1613,7 +1613,7 @@ table {
 
 /*=============== LOGIN & REGISTER ===============*/
 .login-register__container {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   align-items: flex-start;
 }
 
