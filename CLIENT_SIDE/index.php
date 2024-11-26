@@ -18,14 +18,14 @@
           <div class="home__content">
             <span class="home__subtitle">Siêu ưu đãi Chào Đông</span>
             <h1 class="home__title">
-              <span>Ur Motor Ur Way</span>
+              <span>FROZEN</span>
             </h1>
             <p class="home__description">
-              Mã giảm giá lên đến 59%
+              THE BIGGEST SALE EVER - UP TO 59%
             </p>
-            <a href="shop.html" class="btn">Mua ngay kẽo lỡ!</a>
+            <a href="shop.html" class="btn">Mua ngay kẻo lỡ!</a>
           </div>
-          <img src="assets/img/bannerindex.png" class="home__img" alt="hats" />
+          <img src="assets/img/bannerindex3.png" class="home__img" alt="hats" />
         </div>
       </section>
 

@@ -24,8 +24,7 @@ include 'db_connection.php';
           <a href="quanlydonhang.php" class="btn flex btn__md">Nhập lại</a>
         </form>
       </div>
-            <div class="table__container">
-              <table class="table">
+              <table class="product-table">
                 <thead>
                   <tr>
                     <th>Mã đơn hàng</th>
@@ -50,18 +49,13 @@ include 'db_connection.php';
                             <?= htmlspecialchars($order['OrderID']) ?>
                   </td>  
                   <td>
-                        <p class="table__description">
                               <?= htmlspecialchars($order['CustomerID']) ?>
-                        </p>
                   </td>
                     <td>
-                      <span class="table__price">
                               <?= htmlspecialchars($order['TotalDue']) ?>
-                      </span>
                     </td>
-                    <td><span class="table__stock">
+                    <td>
                               <?= htmlspecialchars($order['OrderDate']) ?>
-                        </span>
                     </td>
                     <td>
                                 <select id="status" onchange="removeSelectedOption()">

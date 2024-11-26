@@ -23,7 +23,7 @@
           <br>
           <h2 class="product__title" >Đối tác tin cậy trong từng chuyến đi</h2>
           <p class="short__description">
-              <strong>Công ty Cổ phần Thương mại Dịch vụ Phụ Tùng Xe Máy Motor Cycle</strong> được thành lập vào năm 2024 tại TP. Hồ Chí Minh, đánh dấu một cột mốc quan trọng cho ngành công nghiệp phụ tùng xe máy tại Việt Nam. Ra đời với sứ mệnh trở thành thương hiệu dẫn đầu trong lĩnh vực cung cấp và phân phối phụ tùng xe máy, Motor Cycle cam kết mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ tận tâm, đáng tin cậy.
+              <strong>Công ty Cổ phần Thương mại Dịch vụ Xe Gắn Máy </strong> (tên tiếng Anh: <strong>MotorCycle Service and Trading Joint Stock Company</strong>) được thành lập vào năm 2014 tại TP. Hồ Chí Minh, đánh dấu một cột mốc quan trọng cho ngành công nghiệp phụ tùng xe máy tại Việt Nam. Ra đời với sứ mệnh trở thành thương hiệu dẫn đầu trong lĩnh vực cung cấp và phân phối phụ tùng xe máy, Motor Cycle cam kết mang đến cho khách hàng những sản phẩm chất lượng cao và dịch vụ tận tâm, đáng tin cậy.
           </p>
           <img src="./assets/img/about1.png" alt="Đối tác tin cậy" class="product__image">
           <h2 class="product__title">Khởi nguồn từ đam mê và cam kết với chất lượng</h2>
@@ -56,7 +56,7 @@
           <p class="short__description">
               Với tất cả tâm huyết và sứ mệnh mang lại những giải pháp phụ tùng xe máy chất lượng, Motor Cycle mong muốn trở thành người bạn đồng hành đáng tin cậy cho tất cả khách hàng. Chúng tôi không chỉ là nhà cung cấp phụ tùng mà còn là đối tác đồng hành, sẵn sàng cùng bạn khám phá mọi hành trình.
           </p>
-      
+          <img src="./assets/img/bannerindex.png" alt="Đối tác tin cậy" class="product__image">
     </div>
  <br>
     </main>

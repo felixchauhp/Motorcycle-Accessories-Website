@@ -40,7 +40,7 @@
           </ul>
         </div>
         <div class="footer__content">
-          <h3 class="footer__title">Tải khoản của tôi</h3>
+          <h3 class="footer__title">Tài khoản của tôi</h3>
           <ul class="footer__links">
             <li><a href="login.php" class="footer__link">Đăng nhập</a></li>
             <li><a href="cart.php" class="footer__link">Xem giỏ hàng</a></li>
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p class="copyright">&copy; 2024. All right reserved</p>
-        <span class="designer">Website created by Group 4</span>
+        <p class="copyright">&copy; 2024. Group 4 all right reserved</p>
+        <span class="designer">Website created by Group 4 DA KTDL.</span>
       </div>
     </footer>

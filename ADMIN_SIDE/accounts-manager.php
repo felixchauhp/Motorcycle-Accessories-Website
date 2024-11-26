@@ -58,6 +58,7 @@
                     <li><strong>Email:</strong> nguyen.vana@example.com</li>
                     <li><strong>SĐT:</strong> 0919191919</li>
                     <li><strong>Địa chỉ:</strong> 09 Đồng Hới, Quảng Bình</li>
+                    <li><strong>Ca làm việc:</strong> Fulltime (cả ngày)</li>
                     <li><strong>Ngày bắt đầu làm việc:</strong> 01/01/2020</li>
                     <li><strong>Mức Lương:</strong> 10,000,000 VND</li>
                   </ul>

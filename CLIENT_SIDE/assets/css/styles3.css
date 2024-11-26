@@ -222,7 +222,7 @@ table {
 }
 
 .header__top-action {
-  color: whitesmoke;
+  color: white;
   font-size: var(--small-font-size);
 }
 
@@ -995,13 +995,14 @@ table {
 }
 
 .footer__subtitle {
-  color: var(--text-color-light);
+  color: var(--first-color);
   font-size: var(--small-font-size);
   margin-block: 1.25rem 0.625rem;
 }
 
 .footer__description {
   margin-bottom: 0.25rem;
+  color: var(--first-color);
 }
 
 .footer__description span {
@@ -1654,6 +1655,7 @@ table {
 }
 
 .login {
+  color: var(--first-color);
   border: 1px solid var(--border-color-alt);
   padding: 2rem;
   border-radius: 0.5rem;
@@ -2256,6 +2258,15 @@ table {
 
 /* Đoạn văn */
 .product__content p {
+  text-align: center; 
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.product__content ul,
+.product__conten li {
+  text-align: center; 
   font-size: 1rem;
   margin-bottom: 1.5rem;
   color: #666;
@@ -2301,18 +2312,17 @@ table {
 }
 
 
-a {
-  color: var(--first-color); /* Giữ nguyên màu sắc từ phần tử cha */
-  text-decoration: none; /* Xóa gạch chân nếu cần */
-}
+/* a {
+  color: var(--first-color);
+} */
 
-a:visited {
-  color: var(--first-color); /* Giữ màu giống như trạng thái ban đầu */
+/* a:visited {
+  color: var(--first-color);
 }
 
 a:active {
-  color: var(--first-color); /* Giữ nguyên màu khi nhấn */
-}
+  color: var(--first-color);
+} */
 
 .fi {
   color: hsl(0, 0%, 59%);
