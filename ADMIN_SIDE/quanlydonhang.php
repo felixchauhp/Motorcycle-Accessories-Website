@@ -81,10 +81,14 @@ include 'db_connection.php';
                         <i class="fi fi-rs-trash table__trash"></i>
                         <!-- Nút In -->
                         <button onclick="window.print()">
-                          <i class="fi fi-rs-print table__trash "></i>
+                            <i class="fi fi-rs-print table__trash"></i>
                         </button>
-                        <i class="fi fi-rs-menu-dots table__trash"></i>
-                        </td>
+                        <!-- Nút hiển thị chi tiết đơn hàng -->
+                        <a href="show-order.php?OrderID=<?= urlencode($order['OrderID']); ?>">
+                            <i class="fi fi-rs-menu-dots table__trash"></i>
+                        </a>
+                    </td>
+
                     </tr>
                     <?php endforeach; ?>                    
                   <?php endif; ?>
