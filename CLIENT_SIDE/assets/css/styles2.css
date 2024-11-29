@@ -1126,6 +1126,7 @@ table {
 /*=============== DETAILS ===============*/
 .details__container {
   grid-template-columns: 5.5fr 6.5fr;
+  color: var(--first-color);
 }
 
 .details__img {
@@ -1143,11 +1144,13 @@ table {
 
 .details__title {
   font-size: var(--h2-font-size);
+  color: var(--first-color);
 }
 
 .details__brand {
   font-size: var(--small-font-size);
   margin-block: 1rem;
+  color: var(--first-color);
 }
 
 .details__brand span {
@@ -1171,6 +1174,7 @@ table {
 
 .short__description {
   margin-block: 1rem 2rem;
+  color: var(--first-color);
 }
 
 .list__item,
@@ -1202,6 +1206,7 @@ table {
 .size__list {
   display: flex;
   column-gap: 0.25rem;
+  color: var(--first-color);
 }
 
 .color__link {
@@ -1213,6 +1218,7 @@ table {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  color: var(--first-color);
 }
 
 .size__link {
@@ -1252,7 +1258,7 @@ table {
 }
 
 .details__action-btn {
-  color: var(--text-color);
+  color: var(--first-color);
   line-height: 40px;
   padding-inline: 0.75rem;
 }
