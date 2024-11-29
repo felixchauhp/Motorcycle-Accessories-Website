@@ -263,6 +263,7 @@ table {
 
 .header__search .form__input {
   width: 100%;
+  color: black;
 }
 
 .search__btn {

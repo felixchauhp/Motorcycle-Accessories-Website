@@ -74,9 +74,8 @@ include 'db_connection.php';
         <?php endforeach; ?>
     <?php endif; ?>
 </tbody>
-
-            </table>
-            <ul class="pagination">
+</table>
+<ul class="pagination">
     <?php
     $queryParams = [];
     if ($search) $queryParams['search'] = $search;
