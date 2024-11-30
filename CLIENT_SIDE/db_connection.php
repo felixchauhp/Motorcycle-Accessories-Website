@@ -2,8 +2,8 @@
 // Cấu hình kết nối tới cơ sở dữ liệu MySQL trên Aiven
 $host = 'motorcycle-da-ktdl.j.aivencloud.com'; // Thay bằng hostname của Aiven MySQL
 $port = 17160; // Cổng mặc định của MySQL
-$username = 'baophuc'; // Thay bằng tên đăng nhập của bạn
-$password = 'AVNS_Y0CHLEKwLz75-i0dayg'; // Thay bằng mật khẩu của bạn
+$username = 'avnadmin'; // Thay bằng tên đăng nhập của bạn
+$password = 'AVNS_C5O40UheLNtPN46nujS'; // Thay bằng mật khẩu của bạn
 $database = 'motorcycle'; // Thay bằng tên cơ sở dữ liệu của bạn
 
 // Kết nối với MySQL
@@ -27,15 +27,15 @@ $categoryMapping = [
     'bo-dia-bo-thang' => 'Bố đĩa và bố thắng',
     'cac-phu-kien-khac' => 'Các phụ kiện khác'
   ];
-
   
 // Cấu hình phân trang
-$itemsPerPage = 20;
+$itemsPerPage = 8;
 $currentPage = $_GET['page'] ?? 1;
 $start = ($currentPage - 1) * $itemsPerPage;
 
 // 1. Phân trang cho bảng sản phẩm
 $search = $_GET['search'] ?? '';
+$search_input = $_GET['search_input'] ?? '';
 $filter = $_GET['filter'] ?? '';
 if ($filter && !isset($categoryMapping[$filter])) $filter = '';
 
@@ -45,13 +45,16 @@ if ($search) $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName L
 if ($filter) $whereClauses[] = "c.Category = '{$conn->real_escape_string($categoryMapping[$filter])}'";
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
+$itemsPerPageProduct = 8; // Số lượng sản phẩm mỗi trang
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 // Tổng số sản phẩm
 $totalQuery = "SELECT COUNT(*) as total FROM products p LEFT JOIN products_in_category c ON p.ProductID = c.ProductID $whereSQL";
 $totalItems = $conn->query($totalQuery)->fetch_assoc()['total'];
-$totalPages = ceil($totalItems / $itemsPerPage);
+$totalPages = ceil($totalItems / $itemsPerPageProduct);
+$totalProductPages = ceil($totalItems / $itemsPerPageProduct);
 
 // Truy vấn sản phẩm
-$query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier
+$query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image
           FROM products p
           LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
           $whereSQL LIMIT $start, $itemsPerPage";
@@ -65,8 +68,6 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 $search = $_GET['search'] ?? '';
 $startDate = $_GET['start_date'] ?? '';
 $endDate = $_GET['end_date'] ?? '';
-$statusFilter = $_GET['status'] ?? '';
-$paymentFilter = $_GET['payment'] ?? '';
 
 // Phân trang cho bảng đơn hàng
 $itemsPerPage = 20;
@@ -79,8 +80,6 @@ if ($search) {
 }
 if ($startDate) $whereClauses[] = "OrderDate >= '{$conn->real_escape_string($startDate)}'";
 if ($endDate) $whereClauses[] = "OrderDate <= '{$conn->real_escape_string($endDate)}'";
-if ($statusFilter) $whereClauses[] = "OrderStatus = '{$conn->real_escape_string($statusFilter)}'";
-if ($paymentFilter) $whereClauses[] = "PaymentStatus = '{$conn->real_escape_string($paymentFilter)}'";
 
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
@@ -90,7 +89,7 @@ $totalOrders = $conn->query($totalOrdersQuery)->fetch_assoc()['total'];
 $totalOrderPages = ceil($totalOrders / $itemsPerPage);
 
 // Truy vấn đơn hàng
-$orderQuery = "SELECT * FROM orders $whereSQL ORDER BY OrderDate DESC LIMIT $start, $itemsPerPage";
+$orderQuery = "SELECT * FROM orders $whereSQL LIMIT $start, $itemsPerPage";
 $orderResults = $conn->query($orderQuery);
 
 $orders = [];
@@ -128,7 +127,7 @@ $totalPromotions = $conn->query($totalPromotionsQuery)->fetch_assoc()['total'];
 $totalPromotionPages = ceil($totalPromotions / $itemsPerPage);
 
 // Truy vấn khuyến mãi
-$promotionQuery = "SELECT * FROM promotion $whereSQL ORDER BY StartDate DESC LIMIT $start, $itemsPerPage";
+$promotionQuery = "SELECT * FROM promotion $whereSQL LIMIT $start, $itemsPerPage";
 $promotionResults = $conn->query($promotionQuery);
 
 $promotions = [];
@@ -139,4 +138,6 @@ if ($promotionResults->num_rows > 0) {
 } else {
     $promotions = [];
 }
+
 ?>
+

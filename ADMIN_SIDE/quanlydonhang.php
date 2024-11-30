@@ -15,6 +15,22 @@ include 'db_connection.php';
         <div class="search-container">
         <form method="GET" action="quanlydonhang.php" class="right-actions">
           <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
+          <!-- Lọc trạng thái -->
+    <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+        <option value="Đã xác nhận" <?= isset($_GET['status']) && $_GET['status'] === 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
+        <option value="Đã đóng gói" <?= isset($_GET['status']) && $_GET['status'] === 'Đã đóng gói' ? 'selected' : '' ?>>Đã đóng gói</option>
+        <option value="Đã giao" <?= isset($_GET['status']) && $_GET['status'] === 'Đã giao' ? 'selected' : '' ?>>Đã giao</option>
+        <option value="Đã hủy" <?= isset($_GET['status']) && $_GET['status'] === 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
+    </select>
+
+    <!-- Lọc thanh toán -->
+    <select id="payment-filter" name="payment" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['payment']) ? 'selected' : '' ?>>Tất cả thanh toán</option>
+        <option value="Thành công" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thành công' ? 'selected' : '' ?>>Thành công</option>
+        <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
+        <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
+    </select>
           <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>"
             style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
           <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
@@ -32,6 +48,7 @@ include 'db_connection.php';
                     <th>Thành tiền</th>
                     <th>Ngày tạo đơn</th>
                     <th>Trạng thái</th>
+                    <th>Thanh toán</th>
                     <th>Tùy chọn</th>
                   </tr>
                 </thead>
@@ -58,33 +75,28 @@ include 'db_connection.php';
                               <?= htmlspecialchars($order['OrderDate']) ?>
                     </td>
                     <td>
-                                <select id="status" onchange="removeSelectedOption()">
-                                    <option value="">-- Chọn trạng thái --</option>
-                                    <option value="confirmed">Đã xác nhận</option>
-                                    <option value="packed">Đã đóng gói</option>
-                                    <option value="delivered">Đã giao</option>
-                                    <option value="canceled">Đã hủy</option>
-                                </select>
-                    
-                                <script>
-                                    function removeSelectedOption() {
-                                        const select = document.getElementById("status");
-                                        const selectedIndex = select.selectedIndex;
-                            
-                                        if (selectedIndex > 0) { // Bỏ qua option đầu tiên
-                                            select.options[selectedIndex].disabled = true; // Loại bỏ option đã chọn
-                                        }
-                                    }
-                                </script>
-                    </td>
+                              <?= htmlspecialchars($order['OrderStatus']) ?>
+                    </td>      
                     <td>
-                        <i class="fi fi-rs-trash table__trash"></i>
+                              <?= htmlspecialchars($order['PaymentStatus']) ?>
+                    </td>        
+                    <td>
                         <!-- Nút In -->
-                        <button onclick="window.print()">
-                          <i class="fi fi-rs-print table__trash "></i>
-                        </button>
-                        <i class="fi fi-rs-menu-dots table__trash"></i>
-                        </td>
+                        <a href="bill-order.php?OrderID=<?= urlencode($order['OrderID']); ?>" target="_blank">
+                            <i class="fi fi-rs-print table__trash"></i>
+                        </a>
+                        <a href="edit-order.php?OrderID=<?= urlencode($order['OrderID']) ?>" class="edit-btn">
+                            <i class="fi fi-rs-edit table__trash"></i>
+                        </a>
+                        <!-- Nút hiển thị chi tiết đơn hàng -->
+                        <a href="show-order.php?OrderID=<?= urlencode($order['OrderID']); ?>">
+                            <i class="fi fi-rs-menu-dots table__trash"></i>
+                        </a>
+                        <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($order['OrderID']) ?>">
+                            <i class="fi fi-rs-trash table__trash"></i>
+                        </a>
+                    </td>
+
                     </tr>
                     <?php endforeach; ?>                    
                   <?php endif; ?>
@@ -96,17 +108,27 @@ include 'db_connection.php';
     $search = $_GET['search'] ?? '';
     $startDate = $_GET['start_date'] ?? '';
     $endDate = $_GET['end_date'] ?? '';
-    
+    $statusFilter = $_GET['status'] ?? '';
+    $paymentFilter = $_GET['payment'] ?? '';
+
     // Lưu trữ các tham số lọc trong một mảng để tạo query string
     $queryParams = [
         'search' => $search,
         'start_date' => $startDate,
         'end_date' => $endDate,
+        'status' => $statusFilter,
+        'payment' => $paymentFilter,
     ];
-    
+
+    // Loại bỏ các tham số trống để tránh thêm các giá trị không cần thiết vào URL
+    $queryParams = array_filter($queryParams, function($value) {
+        return $value !== '';
+    });
+
     // Cơ sở URL phân trang (có các tham số lọc)
     $baseUrl = 'quanlydonhang.php?' . http_build_query($queryParams);
     ?>
+
 
     <!-- Phân trang: Trang trước -->
     <?php if ($currentPage > 1): ?>
@@ -140,8 +162,44 @@ include 'db_connection.php';
     <?php endif; ?>
 </ul>
 
+</div>
+            <!-- Popup xác nhận xóa -->
+            <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <p>Bạn có chắc chắn muốn xóa đơn hàng này?</p>
+                    <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
+                    <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
+                </div>
             </div>
-          </section>
+            <!-- JavaScript để xử lý popup xác nhận -->
+            <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    const confirmDeletePopup = document.getElementById('confirmDelete');
+                    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+                    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+                    let promoCodeToDelete = null;
+
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            promoCodeToDelete = button.getAttribute('data-code'); // Lấy PromoCode từ data attribute
+                            confirmDeletePopup.style.display = 'block'; // Hiển thị popup
+                        });
+                    });
+
+                    cancelDeleteBtn.addEventListener('click', function() {
+                        confirmDeletePopup.style.display = 'none'; // Ẩn popup
+                    });
+
+                    confirmDeleteBtn.addEventListener('click', function() {
+                        if (promoCodeToDelete) {
+                            window.location.href = 'delete_discount.php?promo_code=' + promoCodeToDelete; // Chuyển hướng đến file PHP xử lý xóa
+                        }
+                    });
+                });
+            </script>
+  </section>
   </main>
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>

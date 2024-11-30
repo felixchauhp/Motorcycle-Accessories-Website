@@ -1,6 +1,11 @@
 <?php
 session_start();
-session_destroy(); // Xóa tất cả session
+
+// Hủy session và thông tin người dùng
+session_unset();
+session_destroy();
+
+// Chuyển hướng về trang login.php
 header("Location: login.php");
-exit;
+exit();
 ?>

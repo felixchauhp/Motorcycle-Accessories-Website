@@ -231,18 +231,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 10px;
 }
 #search-input, #filter-input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    flex: 0 0 300px;
+    width: 100px; 
 }
 .search-container .right-actions {
     display: flex;
-    justify-content: flex-end; /* Căn phần tử bên phải */
+    justify-content: flex-end; 
     gap: 0.75rem;
-    flex-grow: 1; /* Cho phần tử này chiếm hết không gian còn lại */
+    flex-grow: 1; 
 }
 
 /* Icon styles */

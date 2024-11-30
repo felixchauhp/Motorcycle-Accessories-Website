@@ -76,7 +76,7 @@ if (!isset($_SESSION['user_id'])) {
                       <td>March 19, 2022</td>
                       <td>Processing</td>
                       <td>$125.00</td>
-                      <td><a href="#" class="view__order">View</a></td>
+                      <td><a href="show-order.php" class="view__order">View</a></td>
                     </tr>
                     <tr>
                       <td>#2468</td>
