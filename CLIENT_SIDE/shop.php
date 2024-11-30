@@ -27,8 +27,8 @@ include 'db_connection.php';
       <section class="categories container section">
         <h3 class="section__title"><span>Danh mục</span> Sản phẩm</h3>
         <div class="categories__container swiper">
-          <div class="swiper-wrapper">
-            <a href="shop.html" class="category__item swiper-slide">
+          <div class="swiper-wrapper" style ="height: 280px;">
+            <a href="shop.php" class="category__item swiper-slide">
               <img
                 src="assets/img/cat1.jpg"
                 alt=""
@@ -123,6 +123,7 @@ include 'db_connection.php';
                   class="product__img hover"
                 />
               </a>
+
             </div>
             <div class="product__content">
               <span class="product__category"><?= htmlspecialchars($productlist['Category']) ?></span>

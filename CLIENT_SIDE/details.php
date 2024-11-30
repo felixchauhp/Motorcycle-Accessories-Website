@@ -1,3 +1,6 @@
+<?php
+include 'db_connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <!--=============== DOCUMENT HEAD ===============-->
@@ -9,7 +12,18 @@
 
     <!--=============== MAIN ===============-->
     <main class="main">
-
+      <?php
+    if (isset($_GET['ProductID']) && !empty(trim($_GET['ProductID']))) {
+      $productID = $conn->real_escape_string(trim($_GET['ProductID']));
+  
+      // Truy vấn thông tin sản phẩm
+      $query = "SELECT * FROM products WHERE ProductID = '$ProductID'";
+      $result = $conn->query($query);
+      if ($result && $result->num_rows > 0) {
+        $product = $result->fetch_assoc();
+      }
+    }
+      ?>
       <!--=============== DETAILS ===============-->
       <section class="details section--lg">
         <div class="details__container container grid">
@@ -21,7 +35,7 @@
             />
           </div>
           <div class="details__group">
-            <h3 class="details__title">Tên sản phẩm</h3>
+            <h3 class="details__title"><?= htmlspecialchars($product['ProductName']) ?></h3>
             <p class="details__brand">Danh mục: <span>bình điện</span></p>
             <div class="details__price flex">
               <span class="new__price">900.000 VNĐ</span>

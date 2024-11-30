@@ -50,7 +50,7 @@ $totalItems = $conn->query($totalQuery)->fetch_assoc()['total'];
 $totalPages = ceil($totalItems / $itemsPerPage);
 
 // Truy vấn sản phẩm
-$query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image
+$query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier
           FROM products p
           LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
           $whereSQL LIMIT $start, $itemsPerPage";
