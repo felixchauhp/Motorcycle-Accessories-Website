@@ -15,6 +15,22 @@ include 'db_connection.php';
         <div class="search-container">
         <form method="GET" action="quanlydonhang.php" class="right-actions">
           <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
+          <!-- Lọc trạng thái -->
+    <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+        <option value="Đã xác nhận" <?= isset($_GET['status']) && $_GET['status'] === 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
+        <option value="Đã đóng gói" <?= isset($_GET['status']) && $_GET['status'] === 'Đã đóng gói' ? 'selected' : '' ?>>Đã đóng gói</option>
+        <option value="Đã giao" <?= isset($_GET['status']) && $_GET['status'] === 'Đã giao' ? 'selected' : '' ?>>Đã giao</option>
+        <option value="Đã hủy" <?= isset($_GET['status']) && $_GET['status'] === 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
+    </select>
+
+    <!-- Lọc thanh toán -->
+    <select id="payment-filter" name="payment" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['payment']) ? 'selected' : '' ?>>Tất cả thanh toán</option>
+        <option value="Thành công" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thành công' ? 'selected' : '' ?>>Thành công</option>
+        <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
+        <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
+    </select>
           <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>"
             style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
           <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
@@ -92,17 +108,27 @@ include 'db_connection.php';
     $search = $_GET['search'] ?? '';
     $startDate = $_GET['start_date'] ?? '';
     $endDate = $_GET['end_date'] ?? '';
-    
+    $statusFilter = $_GET['status'] ?? '';
+    $paymentFilter = $_GET['payment'] ?? '';
+
     // Lưu trữ các tham số lọc trong một mảng để tạo query string
     $queryParams = [
         'search' => $search,
         'start_date' => $startDate,
         'end_date' => $endDate,
+        'status' => $statusFilter,
+        'payment' => $paymentFilter,
     ];
-    
+
+    // Loại bỏ các tham số trống để tránh thêm các giá trị không cần thiết vào URL
+    $queryParams = array_filter($queryParams, function($value) {
+        return $value !== '';
+    });
+
     // Cơ sở URL phân trang (có các tham số lọc)
     $baseUrl = 'quanlydonhang.php?' . http_build_query($queryParams);
     ?>
+
 
     <!-- Phân trang: Trang trước -->
     <?php if ($currentPage > 1): ?>

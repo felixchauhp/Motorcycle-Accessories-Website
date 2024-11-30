@@ -27,6 +27,7 @@ $categoryMapping = [
     'bo-dia-bo-thang' => 'Bố đĩa và bố thắng',
     'cac-phu-kien-khac' => 'Các phụ kiện khác'
   ];
+
   
 // Cấu hình phân trang
 $itemsPerPage = 20;
@@ -64,6 +65,8 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 $search = $_GET['search'] ?? '';
 $startDate = $_GET['start_date'] ?? '';
 $endDate = $_GET['end_date'] ?? '';
+$statusFilter = $_GET['status'] ?? '';
+$paymentFilter = $_GET['payment'] ?? '';
 
 // Phân trang cho bảng đơn hàng
 $itemsPerPage = 20;
@@ -76,6 +79,8 @@ if ($search) {
 }
 if ($startDate) $whereClauses[] = "OrderDate >= '{$conn->real_escape_string($startDate)}'";
 if ($endDate) $whereClauses[] = "OrderDate <= '{$conn->real_escape_string($endDate)}'";
+if ($statusFilter) $whereClauses[] = "OrderStatus = '{$conn->real_escape_string($statusFilter)}'";
+if ($paymentFilter) $whereClauses[] = "PaymentStatus = '{$conn->real_escape_string($paymentFilter)}'";
 
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
