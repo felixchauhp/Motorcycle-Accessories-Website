@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <!--=============== DOCUMENT HEAD ===============-->
@@ -36,11 +45,10 @@
             <p class="account__tab" data-target="#change-password">
               <i class="fi fi-rs-settings-sliders"></i> Thay đổi mật khẩu
             </p>
-            <p class="account__tab"><i class="fi fi-rs-exit"></i> Đăng xuất</p>
           </div>
           <div class="tabs__content">
             <div class="tab__content active-tab" content id="dashboard">
-              <h3 class="tab__header">Xin chào User</h3>
+              <h3 class="tab__header">Xin chào <?php echo $_SESSION['username']; ?></h3> 
               <div class="tab__body">
                 <p class="tab__description">
                   Từ bảng điều khiển tài khoản của bạn. bạn có thể dễ dàng kiểm tra & xem
@@ -151,7 +159,7 @@
                     <button class="btn btn--md">Lưu</button>
                   </div>
                 </form>
-              </div>
+              </div>    
             </div>
           </div>
         </div>

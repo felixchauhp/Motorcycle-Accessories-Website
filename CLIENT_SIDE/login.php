@@ -1,3 +1,27 @@
+<?php
+session_start();
+include 'sql_config.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $pdo->prepare("SELECT * FROM customers WHERE AccountName = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['Password'])) {
+    // if ($user && $password == $user['Password']) {
+        $_SESSION['user_id'] = $user['AccountID'];
+        $_SESSION['username'] = $user['Fname'] . ' ' . $user['Lname'];
+        header("Location: index.php");
+        exit;
+    } else {
+        $error = "Sai tên đăng nhập hoặc mật khẩu.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <!--=============== DOCUMENT HEAD ===============-->
@@ -23,7 +47,8 @@
         <div class="login__container container grid">
           <div class="login">
             <h3 class="section__title">Đăng nhập</h3>
-            <form class="form grid" id="loginForm">
+            <form method="POST" class="form grid" id="loginForm">
+            <?php if (!empty($error)) echo "<p style='color: red;'>$error</p>"; ?>
               <input
                 type="username"
                 id="username" name="username"
@@ -58,6 +83,6 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
 
     <!--=============== MAIN JS ===============-->
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
   </body>
 </html>
