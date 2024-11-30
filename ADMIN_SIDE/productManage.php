@@ -11,7 +11,7 @@ include 'db_connection.php';
    <!--=============== MAIN ===============-->
   <body>
   <main class="main">
-    <section class="products container section--lg">
+    <section class="wishlist section--lg container">
         <div class="search-container">
             <a href="add-Product.php" class="btn flex btn__md">
                 <i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới

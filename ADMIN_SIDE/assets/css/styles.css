@@ -10,7 +10,7 @@
   --first-color-alt: hsl(212, 100%, 18%);
   --second-color: hsl(34, 94%, 87%);
   --title-color: hsl(212, 100%, 18%);
-  --text-color: hsl(0, 0%, 100%);
+  --text-color: hsl(212, 100%, 18%);
   --text-color-light: hsl(60, 1%, 56%);
   --body-color: hsl(0, 0%, 100%);
   --container-color: hsl(0, 0%, 93%);
@@ -529,6 +529,7 @@ table {
 .product__images {
   display: block;
   overflow: hidden;
+  flex-wrap: wrap;
   border-radius: 1.25rem;
   -webkit-border-radius: 1.25rem;
   -moz-border-radius: 1.25rem;
@@ -986,7 +987,7 @@ table {
 
 /*=============== FOOTER ===============*/
 .footer__container {
-  grid-template-columns: 4.5fr repeat(2, 2fr) 3.5fr;
+  grid-template-columns: 2.5fr 4.5fr;
   padding-block: 2.5rem;
 }
 

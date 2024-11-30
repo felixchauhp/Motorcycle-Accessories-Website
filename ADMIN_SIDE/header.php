@@ -40,12 +40,35 @@
             <img src="assets/img/bell.svg" alt="" />
             <span class="count">3</span>
           </a>
-          <a href="accounts-manager.php" class="header__action-btn" id="user-icon" title="User">
-            <img src="assets/img/icon-user.svg" alt="" />
+        <div class="dropdown w-100 mt-2">
+          <a
+            href="#"
+            class="header__action-btn dropdown-toggle"
+            id="userDropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            title="User"
+          >
+            <img src="assets/img/icon-user.svg" alt=""/>
           </a>
-          <div class="header__action-btn nav__toggle" id="nav-toggle">
+          
+          <ul class="dropdown-menu dropdown-menu-right text-center p-2" style="width: 150px;" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item d-flex align-items-center justify-content-center" href="accounts-manager.php">
+                <i class="fi fi-rs-settings mr-2"></i> Cá nhân
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center justify-content-center" href="logout.php">
+                <i class="fi fi-rs-user-add mr-2"></i> Đăng xuất
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="header__action-btn nav__toggle" id="nav-toggle">
             <img src="./assets//img/menu-burger.svg" alt="">
-          </div>
+        </div>
         </div>
 
     </nav>

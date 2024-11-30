@@ -24,7 +24,7 @@
     />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href=".\assets\css\styles2.css" />
+    <link rel="stylesheet" href=".\assets\css\styles.css" />
     <link rel="stylesheet" href=".\assets\css\stylessnow.css" />
 
     <title>MotorCycle</title>

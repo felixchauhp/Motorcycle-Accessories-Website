@@ -32,6 +32,7 @@ include 'db_connection.php';
                     <th>Thành tiền</th>
                     <th>Ngày tạo đơn</th>
                     <th>Trạng thái</th>
+                    <th>Thanh toán</th>
                     <th>Tùy chọn</th>
                   </tr>
                 </thead>
@@ -58,34 +59,25 @@ include 'db_connection.php';
                               <?= htmlspecialchars($order['OrderDate']) ?>
                     </td>
                     <td>
-                                <select id="status" onchange="removeSelectedOption()">
-                                    <option value="">-- Chọn trạng thái --</option>
-                                    <option value="confirmed">Đã xác nhận</option>
-                                    <option value="packed">Đã đóng gói</option>
-                                    <option value="delivered">Đã giao</option>
-                                    <option value="canceled">Đã hủy</option>
-                                </select>
-                    
-                                <script>
-                                    function removeSelectedOption() {
-                                        const select = document.getElementById("status");
-                                        const selectedIndex = select.selectedIndex;
-                            
-                                        if (selectedIndex > 0) { // Bỏ qua option đầu tiên
-                                            select.options[selectedIndex].disabled = true; // Loại bỏ option đã chọn
-                                        }
-                                    }
-                                </script>
-                    </td>
+                              <?= htmlspecialchars($order['OrderStatus']) ?>
+                    </td>      
                     <td>
-                        <i class="fi fi-rs-trash table__trash"></i>
+                              <?= htmlspecialchars($order['PaymentStatus']) ?>
+                    </td>        
+                    <td>
                         <!-- Nút In -->
-                        <button onclick="window.print()">
+                        <a href="bill-order.php?OrderID=<?= urlencode($order['OrderID']); ?>" target="_blank">
                             <i class="fi fi-rs-print table__trash"></i>
-                        </button>
+                        </a>
+                        <a href="edit-order.php?OrderID=<?= urlencode($order['OrderID']) ?>" class="edit-btn">
+                            <i class="fi fi-rs-edit table__trash"></i>
+                        </a>
                         <!-- Nút hiển thị chi tiết đơn hàng -->
                         <a href="show-order.php?OrderID=<?= urlencode($order['OrderID']); ?>">
                             <i class="fi fi-rs-menu-dots table__trash"></i>
+                        </a>
+                        <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($order['OrderID']) ?>">
+                            <i class="fi fi-rs-trash table__trash"></i>
                         </a>
                     </td>
 
@@ -144,8 +136,44 @@ include 'db_connection.php';
     <?php endif; ?>
 </ul>
 
+</div>
+            <!-- Popup xác nhận xóa -->
+            <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <p>Bạn có chắc chắn muốn xóa đơn hàng này?</p>
+                    <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
+                    <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
+                </div>
             </div>
-          </section>
+            <!-- JavaScript để xử lý popup xác nhận -->
+            <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    const confirmDeletePopup = document.getElementById('confirmDelete');
+                    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+                    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+                    let promoCodeToDelete = null;
+
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            promoCodeToDelete = button.getAttribute('data-code'); // Lấy PromoCode từ data attribute
+                            confirmDeletePopup.style.display = 'block'; // Hiển thị popup
+                        });
+                    });
+
+                    cancelDeleteBtn.addEventListener('click', function() {
+                        confirmDeletePopup.style.display = 'none'; // Ẩn popup
+                    });
+
+                    confirmDeleteBtn.addEventListener('click', function() {
+                        if (promoCodeToDelete) {
+                            window.location.href = 'delete_discount.php?promo_code=' + promoCodeToDelete; // Chuyển hướng đến file PHP xử lý xóa
+                        }
+                    });
+                });
+            </script>
+  </section>
   </main>
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>

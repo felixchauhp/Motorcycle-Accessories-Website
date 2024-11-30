@@ -6,8 +6,14 @@ if (isset($_GET['OrderID'])) {
 
     // Truy vấn thông tin đơn hàng
     $order_query = "
-        SELECT * FROM orders
-        WHERE OrderID = ?";
+        SELECT 
+            orders.OrderID, orders.OrderDate, orders.CustomerID, orders.ShippingAddress, 
+            orders.TotalAmount, orders.Discount, orders.TotalDue,
+            orders.OrderStatus, orders.PaymentStatus,
+            customers.LName, customers.FName, customers.email, customers.Tel
+        FROM orders
+        JOIN customers ON orders.CustomerID = customers.CustomerID
+        WHERE orders.OrderID = ?";
 
     $stmt = mysqli_prepare($conn, $order_query);
     mysqli_stmt_bind_param($stmt, "s", $order_id);
@@ -24,6 +30,7 @@ if (isset($_GET['OrderID'])) {
         FROM products_in_orders
         JOIN products ON products_in_orders.ProductID = products.ProductID
         WHERE products_in_orders.OrderID = ?";
+
     $stmt = mysqli_prepare($conn, $products_query);
     mysqli_stmt_bind_param($stmt, "s", $order_id);
     mysqli_stmt_execute($stmt);
@@ -79,7 +86,7 @@ if (isset($_GET['OrderID'])) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        header("Location: show_order.php?OrderID=" . urlencode($order_id));
+        header("Location: show-order.php?OrderID=" . urlencode($order_id));
         exit;
     }
 } else {
@@ -96,7 +103,40 @@ if (isset($_GET['OrderID'])) {
 <main class="main">
     <section class="wishlist section--lg container">
         <h2 style="text-align: center;">Chỉnh sửa đơn hàng</h2>
+        <div class="order-detail-container">
+            <p><strong>Mã đơn hàng:</strong> <?= htmlspecialchars($order['OrderID']); ?></p>
+            <p><strong>Ngày đặt hàng:</strong> <?= htmlspecialchars($order['OrderDate']); ?></p>
+            <p><strong>Tên khách hàng:</strong> <?= htmlspecialchars($order['LName'] . ' ' . $order['FName']); ?></p>
+            <p><strong>Email:</strong> <?= htmlspecialchars($order['email']); ?></p>
+            <p><strong>Số điện thoại:</strong> <?= htmlspecialchars($order['Tel']); ?></p>
+            <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($order['ShippingAddress']); ?></p>
+        </div>
+        <br>
         <form method="POST" id="editOrderForm">
+            <!-- Trạng thái đơn hàng và thanh toán -->
+            <div class="status-container">
+                <div class="status-item">
+                    <i class="fas fa-box"></i>
+                    <label for="order_status">Trạng thái đơn hàng:</label>
+                    <select name="order_status" id="order_status" required>
+                        <option value="Đã xác nhận" <?= $order['OrderStatus'] === 'Đã xác nhận' ? 'selected' : ''; ?>>Đã xác nhận</option>
+                        <option value="Đã đóng gói" <?= $order['OrderStatus'] === 'Đã đóng gói' ? 'selected' : ''; ?>>Đã đóng gói</option>
+                        <option value="Đã giao" <?= $order['OrderStatus'] === 'Đã giao' ? 'selected' : ''; ?>>Đã giao</option>
+                        <option value="Đã hủy" <?= $order['OrderStatus'] === 'Đã hủy' ? 'selected' : ''; ?>>Đã hủy</option>
+                    </select>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-wallet"></i>
+                    <label for="payment_status">Trạng thái thanh toán:</label>
+                    <select name="payment_status" id="payment_status" required>
+                        <option value="Thành công" <?= $order['PaymentStatus'] === 'Thành công' ? 'selected' : ''; ?>>Thành công</option>
+                        <option value="Thất bại" <?= $order['PaymentStatus'] === 'Thất bại' ? 'selected' : ''; ?>>Thất bại</option>
+                        <option value="Đang chờ" <?= $order['PaymentStatus'] === 'Đang chờ' ? 'selected' : ''; ?>>Đang chờ</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bảng sản phẩm -->
             <table class="product-table">
                 <thead>
                     <tr>
@@ -114,11 +154,11 @@ if (isset($_GET['OrderID'])) {
                             <td><?= htmlspecialchars($product['ProductName']); ?></td>
                             <td>
                                 <input type="number" name="quantity[<?= $product['ProductID']; ?>]" 
-                                       value="<?= $product['InStock']; ?>" 
-                                       min="0" 
-                                       class="quantity-input" 
-                                       data-price="<?= $product['SalePrice']; ?>" 
-                                       required>
+                                    value="<?= $product['InStock']; ?>" 
+                                    min="0" 
+                                    class="quantity-input" 
+                                    data-price="<?= $product['SalePrice']; ?>" 
+                                    required>
                             </td>
                             <td><?= number_format($product['SalePrice'], 0, ',', '.'); ?> VND</td>
                             <td class="product-total">
@@ -129,37 +169,23 @@ if (isset($_GET['OrderID'])) {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="4" style="text-align: right;">Tổng cộng:</td>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Tổng cộng:</td>
                         <td id="totalAmount"><?= number_format($order['TotalAmount'], 0, ',', '.'); ?> VND</td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="text-align: right;">Giảm giá:</td>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Giảm giá:</td>
                         <td><?= number_format($order['Discount'], 0, ',', '.'); ?> VND</td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="text-align: right;">Tổng thanh toán:</td>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Tổng thanh toán:</td>
                         <td id="totalDue"><?= number_format($order['TotalDue'], 0, ',', '.'); ?> VND</td>
                     </tr>
                 </tfoot>
             </table>
-
-            <label for="order_status">Trạng thái đơn hàng:</label>
-            <select name="order_status" id="order_status" required>
-                <option value="Đã xác nhận" <?= $order['OrderStatus'] === 'Đã xác nhận' ? 'selected' : ''; ?>>Đã xác nhận</option>
-                <option value="Đã đóng gói" <?= $order['OrderStatus'] === 'Đã đóng gói' ? 'selected' : ''; ?>>Đã đóng gói</option>
-                <option value="Đã giao" <?= $order['OrderStatus'] === 'Đã giao' ? 'selected' : ''; ?>>Đã giao</option>
-                <option value="Đã hủy" <?= $order['OrderStatus'] === 'Đã hủy' ? 'selected' : ''; ?>>Đã hủy</option>
-            </select>
-
-            <label for="payment_status">Trạng thái thanh toán:</label>
-            <select name="payment_status" id="payment_status" required>
-                <option value="Thành công" <?= $order['PaymentStatus'] === 'Thành công' ? 'selected' : ''; ?>>Thành công</option>
-                <option value="Thất bại" <?= $order['PaymentStatus'] === 'Thất bại' ? 'selected' : ''; ?>>Thất bại</option>
-                <option value="Đang chờ" <?= $order['PaymentStatus'] === 'Đang chờ' ? 'selected' : ''; ?>>Đang chờ</option>
-            </select>
-
-            <button type="submit" class="btn flex btn__md">Lưu thay đổi</button>
-            <button type="button" class="btn flex btn__md" onclick="window.location.href='show_order.php?OrderID=<?= urlencode($order_id); ?>'">Hủy</button>
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button type="submit" class="btn flex btn__md">Lưu thay đổi</button>
+                <button type="button" class="btn flex btn__md" onclick="window.location.href='show-order.php?OrderID=<?= urlencode($order_id); ?>'">Hủy</button>
+            </div>
         </form>
     </section>
 </main>

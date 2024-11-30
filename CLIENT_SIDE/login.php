@@ -37,8 +37,8 @@
                 class="form__input"
               />
               <div class="form__btn">
-                <button class="btn flex btn__md">
-                   <input type="submit" value="Đăng nhập">
+                <button class="btn">
+                   Đăng nhập
                 </button>
               </div>
               <p>

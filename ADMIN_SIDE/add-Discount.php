@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="number" id="quantity" name="quantity" required />
     <p class="error"><?php echo $errors['quantity'] ?? ''; ?></p>
     <br>
-    <button type="submit" class="btn-submit">Thêm</button>
+    <button type="submit" class="btn flex btn__md">Thêm</button>
 </form>
 
         </div>
