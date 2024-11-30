@@ -90,7 +90,7 @@ $totalOrders = $conn->query($totalOrdersQuery)->fetch_assoc()['total'];
 $totalOrderPages = ceil($totalOrders / $itemsPerPage);
 
 // Truy vấn đơn hàng
-$orderQuery = "SELECT * FROM orders $whereSQL LIMIT $start, $itemsPerPage";
+$orderQuery = "SELECT * FROM orders $whereSQL ORDER BY OrderDate DESC LIMIT $start, $itemsPerPage";
 $orderResults = $conn->query($orderQuery);
 
 $orders = [];
@@ -128,7 +128,7 @@ $totalPromotions = $conn->query($totalPromotionsQuery)->fetch_assoc()['total'];
 $totalPromotionPages = ceil($totalPromotions / $itemsPerPage);
 
 // Truy vấn khuyến mãi
-$promotionQuery = "SELECT * FROM promotion $whereSQL LIMIT $start, $itemsPerPage";
+$promotionQuery = "SELECT * FROM promotion $whereSQL ORDER BY StartDate DESC LIMIT $start, $itemsPerPage";
 $promotionResults = $conn->query($promotionQuery);
 
 $promotions = [];

@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $start_date = $_POST["promotion-start-date"];
     if (empty($start_date)) {
         $errors['start_date'] = "Vui lòng chọn ngày bắt đầu.";
+    } elseif (strtotime($start_date) < strtotime(date("Y-m-d"))) {
+        $errors['start_date'] = "Ngày bắt đầu phải từ ngày tạo trở đi.";
     }
 
     // Kiểm tra ngày kết thúc
@@ -106,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div id="promotion-dates">
         <div>
-            <label for="promotion-start-date">Ngày bắt đầu:</label>
+            <label for="promotion-start-date">Ngày bắt đầu (từ ngày tạo):</label>
             <input type="date" id="promotion-start-date" name="promotion-start-date" required />
             <p class="error"><?php echo $errors['start_date'] ?? ''; ?></p>
         </div>
