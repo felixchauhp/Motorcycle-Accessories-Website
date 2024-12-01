@@ -1322,7 +1322,14 @@ table {
   color: hsl(24, 100%, 50%);
   margin-bottom: 0.25rem;
 }
+.review__rating .fi-rs-star {
+  font-size: 1.5rem;
+  color: #ccc;
+}
 
+.review__rating .fi-rs-star.selected {
+  color: #ffc700;
+}
 .review__description {
   margin-bottom: 0.5rem;
 }
@@ -1338,7 +1345,20 @@ table {
 }
 
 .rate__product {
-  margin-bottom: 2rem;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.rate__product .fi-rs-star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.rate__product .fi-rs-star.hovered,
+.rate__product .fi-rs-star.selected {
+  color: #ffc700;
 }
 
 /*=============== CART ===============*/
