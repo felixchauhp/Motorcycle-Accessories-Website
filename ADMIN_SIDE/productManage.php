@@ -17,14 +17,14 @@ include 'db_connection.php';
             </a>
             <form method="GET" action="productManage.php" class="right-actions">
                 <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
-                <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit; padding: 0.5em; border-radius: 5px;">
-                    <option value="" <?= !$filter ? 'selected' : '' ?>>Tất cả</option>
+                <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit;">
+                    <option value="" <?= !$filter ? 'selected' : '' ?>>Tất cả danh mục</option>
                     <?php foreach ($categoryMapping as $key => $value): ?>
                         <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
-                <a href="productManage.php" class="btn flex btn__md">Nhập lại</a>
+                <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
+                <a href="productManage.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
             </form>
   </div>
 
@@ -76,36 +76,48 @@ include 'db_connection.php';
                     </tr>
                     <?php } ?>
                 </tbody>
-            </table>    
-          <ul class="pagination">
-            <?php if ($currentPage > 1): ?>
-              <li><a href="?page=<?= $currentPage - 1 ?>" class="pagination__link">«</a></li>
-            <?php else: ?>
-              <li><a href="#" class="pagination__link disabled">«</a></li>
-            <?php endif; ?>
-    
-            <?php
-            if ($currentPage > 3) {
-              echo '<li><a href="?page=1" class="pagination__link">1</a></li>';
-              if ($currentPage > 4) echo '<li class="pagination__dots">...</li>';
-            }
+            </table> 
+  <ul class="pagination">
+    <?php
+      // Lấy toàn bộ tham số GET hiện tại và loại bỏ tham số `page`
+      $queryParams = $_GET;
+      unset($queryParams['page']);
 
-            for ($i = max(1, $currentPage - 2); $i <= min($totalPages, $currentPage + 2); $i++) {
-              echo '<li><a href="?page=' . $i . '" class="pagination__link ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</a></li>';
-            }
+      // Xây dựng URL cơ sở cho phân trang
+      $baseUrl = 'productManage.php?' . http_build_query($queryParams);
+      ?>
+    <!-- Nút trang trước -->
+    <?php if ($currentPage > 1): ?>
+        <li><a href="<?= $baseUrl . '&page=' . ($currentPage - 1) ?>" class="pagination__link">«</a></li>
+    <?php else: ?>
+        <li><a href="#" class="pagination__link disabled">«</a></li>
+    <?php endif; ?>
 
-            if ($currentPage < $totalPages - 2) {
-              if ($currentPage < $totalPages - 3) echo '<li class="pagination__dots">...</li>';
-              echo '<li><a href="?page=' . $totalPages . '" class="pagination__link">' . $totalPages . '</a></li>';
-            }
-            ?>
-    
-            <?php if ($currentPage < $totalPages): ?>
-              <li><a href="?page=<?= $currentPage + 1 ?>" class="pagination__link">»</a></li>
-            <?php else: ?>
-              <li><a href="#" class="pagination__link disabled">»</a></li>
-            <?php endif; ?>
-        </ul>
+    <!-- Các số trang -->
+    <?php
+    if ($currentPage > 3) {
+        echo '<li><a href="' . $baseUrl . '&page=1" class="pagination__link">1</a></li>';
+        if ($currentPage > 4) echo '<li class="pagination__dots">...</li>';
+    }
+
+    for ($i = max(1, $currentPage - 2); $i <= min($totalPages, $currentPage + 2); $i++) {
+        echo '<li><a href="' . $baseUrl . '&page=' . $i . '" class="pagination__link ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</a></li>';
+    }
+
+    if ($currentPage < $totalPages - 2) {
+        if ($currentPage < $totalPages - 3) echo '<li class="pagination__dots">...</li>';
+        echo '<li><a href="' . $baseUrl . '&page=' . $totalPages . '" class="pagination__link">' . $totalPages . '</a></li>';
+    }
+    ?>
+
+    <!-- Nút trang tiếp -->
+    <?php if ($currentPage < $totalPages): ?>
+        <li><a href="<?= $baseUrl . '&page=' . ($currentPage + 1) ?>" class="pagination__link">»</a></li>
+    <?php else: ?>
+        <li><a href="#" class="pagination__link disabled">»</a></li>
+    <?php endif; ?>
+</ul>
+
 
         </section>
 

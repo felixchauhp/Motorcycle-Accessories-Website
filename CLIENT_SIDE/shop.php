@@ -111,11 +111,14 @@ include 'db_connection.php';
         <?php foreach ($products as $productlist):?>
             <div class="product__item">
               <div class="product__banner">
-              <a href="details.php" class="product__images">
+              <a href="details.php" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
                 <img
                   src="<?=  htmlspecialchars($productlist['Image']) ?>"
                   alt="Product Image"
                   class="product__img default"
+                  style ="max-width: 100%;
+  object-fit: cover;
+  width: 100%;  "
                 />
                 <img
                   src="<?=  htmlspecialchars($productlist['Image']) ?>"
