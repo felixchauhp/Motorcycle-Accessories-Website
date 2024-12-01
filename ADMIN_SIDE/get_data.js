@@ -1,122 +1,96 @@
-// Context cho các biểu đồ
-const ordersChartCtx = document.getElementById('ordersChart').getContext('2d');
-const revenueChartCtx = document.getElementById('revenueChart').getContext('2d');
+let combinedChart, ordersChart, revenueChart;
 
-let ordersChart, revenueChart;
-
-// Mặc định hiển thị từ tháng 11/2023 đến 12/2023
-// const defaultStartDate = '2023-11-01';
-// const defaultEndDate = '2023-12-31';
-
-const sampleData = [
-    { date: "2023-11-01", orderCount: 10, totalDue: 500 },
-    { date: "2023-11-02", orderCount: 15, totalDue: 700 },
-    { date: "2023-11-03", orderCount: 12, totalDue: 800 },
-];
-
-updateCharts(sampleData);
-
-// Hàm fetch data từ API PHP
-const fetchData = async (timeRange, startDate = null, endDate = null) => {
-    let url = `get_data.php?timeRange=${timeRange}`;
-    if (startDate && endDate) {
-        url += `&startDate=${startDate}&endDate=${endDate}`;
-    }
-
-    const response = await fetch(url);
-    return response.json();
+// Khởi tạo biểu đồ
+window.onload = function () {
+    initializeCombinedChart();
+    initializeCharts();
+    loadDefaultData();
+    showTab('combined'); // Hiển thị mặc định tab 3D Combined Chart
+    
 };
 
-// Hàm cập nhật biểu đồ
-const updateCharts = (data) => {
-    const labels = data.map(item => item.date);
-    const orderCounts = data.map(item => item.orderCount);
-    const revenues = data.map(item => item.totalDue);
+function initializeCombinedChart() {
+    const ctxCombined = document.getElementById('combinedChart').getContext('2d');
 
-    if (ordersChart) ordersChart.destroy();
-    if (revenueChart) revenueChart.destroy();
-
-    ordersChart = new Chart(ordersChartCtx, {
+    combinedChart = new Chart(ctxCombined, {
         type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Số đơn hàng',
-                data: orderCounts,
-                borderColor: '#4285F4',
-                backgroundColor: 'rgba(66, 133, 244, 0.2)',
-                tension: 0.4,
-                fill: true,
-            }]
+        data: { labels: [], datasets: [
+            { label: 'Tổng đơn hàng', data: [], borderColor: '#4e73df', backgroundColor: 'rgba(78, 115, 223, 0.2)', yAxisID: 'yOrders', fill: true },
+            { label: 'Tổng doanh thu (VNĐ)', data: [], borderColor: '#1cc88a', backgroundColor: 'rgba(28, 200, 138, 0.2)', yAxisID: 'yRevenue', fill: true }
+        ] },
+        options: {
+            responsive: true, interaction: { mode: 'index', intersect: false },
+            scales: {
+                x: { title: { display: true, text: 'Ngày' } },
+                yOrders: { type: 'linear', position: 'left', title: { display: true, text: 'Đơn hàng' } },
+                yRevenue: { type: 'linear', position: 'right', title: { display: true, text: 'Doanh thu' }, grid: { drawOnChartArea: false } }
+            }
         }
     });
+}
 
-    revenueChart = new Chart(revenueChartCtx, {
+function initializeCharts() {
+    const ctxOrders = document.getElementById('ordersChart').getContext('2d');
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+
+    ordersChart = new Chart(ctxOrders, {
         type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Doanh thu (TotalDue)',
-                data: revenues,
-                backgroundColor: '#34A853',
-                borderColor: '#34A853',
-                borderWidth: 1
-            }]
-        }
+        data: { labels: [], datasets: [{ label: 'Tổng đơn hàng', data: [], borderColor: '#4e73df', backgroundColor: 'rgba(78, 115, 223, 0.2)', fill: true }] },
+        options: { responsive: true, scales: { x: { title: { display: true, text: 'Ngày' } }, y: { title: { display: true, text: 'Đơn hàng' } } } }
     });
-};
 
-// Xử lý khi chọn khoảng thời gian
-document.getElementById('time-range').addEventListener('change', async (event) => {
-    const timeRange = event.target.value;
+    revenueChart = new Chart(ctxRevenue, {
+        type: 'bar',
+        data: { labels: [], datasets: [{ label: 'Tổng doanh thu (VNĐ)', data: [], borderColor: '#1cc88a', backgroundColor: 'rgba(28, 200, 138, 0.2)', fill: true }] },
+        options: { responsive: true, scales: { x: { title: { display: true, text: 'Ngày' } }, y: { title: { display: true, text: 'Doanh thu (VNĐ)' } } } }
+    });
+}
 
-    if (timeRange === 'custom') {
-        document.getElementById('custom-range').classList.remove('hidden');
-    } else {
-        document.getElementById('custom-range').classList.add('hidden');
-        const data = await fetchData(timeRange);
-        updateCharts(data);
-    }
-});
+function loadDefaultData() {
+    fetch(`get_chart_data.php?start_date=2023-11-01&end_date=2023-12-31`)
+        .then(response => response.json())
+        .then(data => updateCharts(data))
+        .catch(error => console.error('Error fetching default data:', error));
+}
 
-// Xử lý khi áp dụng khoảng thời gian tùy chỉnh
-document.getElementById('apply-date').addEventListener('click', async () => {
+function updateCharts(data) {
+    ordersChart.data.labels = data.dates;
+    ordersChart.data.datasets[0].data = data.orders;
+    ordersChart.update();
+
+    revenueChart.data.labels = data.dates;
+    revenueChart.data.datasets[0].data = data.revenue;
+    revenueChart.update();
+
+    updateCombinedChart(data);
+}
+
+function updateCombinedChart(data) {
+    combinedChart.data.labels = data.dates;
+    combinedChart.data.datasets[0].data = data.orders;
+    combinedChart.data.datasets[1].data = data.revenue;
+    combinedChart.update();
+}
+
+function updateChart() {
     const startDate = document.getElementById('start-date').value;
     const endDate = document.getElementById('end-date').value;
 
-    if (!startDate || !endDate) {
-        alert('Vui lòng chọn cả hai ngày bắt đầu và kết thúc.');
-        return;
+    if (startDate && endDate) {
+        fetch(`get_chart_data.php?start_date=${startDate}&end_date=${endDate}`)
+            .then(response => response.json())
+            .then(data => updateCharts(data))
+            .catch(error => console.error('Error updating chart data:', error));
+    } else {
+        alert('Please select both start and end dates.');
     }
+}
 
-    const data = await fetchData('custom', startDate, endDate);
-    updateCharts(data);
-});
+function showTab(tab) {
+    document.getElementById('orders-tab').style.display = tab === 'orders' ? 'block' : 'none';
+    document.getElementById('revenue-tab').style.display = tab === 'revenue' ? 'block' : 'none';
+    document.getElementById('combined-tab').style.display = tab === 'combined' ? 'block' : 'none';
 
-// Xử lý khi nhấn nút reset
-document.getElementById('reset-chart').addEventListener('click', async () => {
-    document.getElementById('time-range').value = 'custom';
-    document.getElementById('start-date').value = defaultStartDate;
-    document.getElementById('end-date').value = defaultEndDate;
-
-    const data = await fetchData('custom', defaultStartDate, defaultEndDate);
-    updateCharts(data);
-});
-
-// Chuyển đổi tab giữa biểu đồ Đơn hàng và Doanh thu
-document.getElementById('tab-orders').addEventListener('click', () => {
-    document.getElementById('orders-chart-container').classList.remove('hidden');
-    document.getElementById('revenue-chart-container').classList.add('hidden');
-    document.getElementById('tab-orders').classList.add('active');
-    document.getElementById('tab-revenue').classList.remove('active');
-});
-
-document.getElementById('tab-revenue').addEventListener('click', () => {
-    document.getElementById('orders-chart-container').classList.add('hidden');
-    document.getElementById('revenue-chart-container').classList.remove('hidden');
-    document.getElementById('tab-revenue').classList.add('active');
-    document.getElementById('tab-orders').classList.remove('active');
-});
-
-// Load dữ liệu mặc định
-fetchData('custom', defaultStartDate, defaultEndDate).then(updateCharts);
+    document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active-tab'));
+    document.querySelector(`button[onclick="showTab('${tab}')"]`).classList.add('active-tab');
+}

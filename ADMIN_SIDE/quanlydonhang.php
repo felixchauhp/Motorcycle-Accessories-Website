@@ -9,7 +9,6 @@ include 'db_connection.php';
   <!--=============== HEADER ===============-->
   <?php include 'header.php'; ?>
     <!--=============== ORDER ===============-->   
-<body>
     <main class="main">
         <section class="wishlist section--lg container">
         <div class="search-container">

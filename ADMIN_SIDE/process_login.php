@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'id' => $user['id'],
                 'accountName' => $user['AccountName'],
             ];
-            header("Location: index-manage.php");
+            header("Location: index.php");
             exit;
         } else {
             echo "Sai tài khoản hoặc mật khẩu.";

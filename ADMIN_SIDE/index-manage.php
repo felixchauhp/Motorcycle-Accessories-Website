@@ -51,7 +51,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
         <div class="info-box">
           <h3><?php echo $active_promotions; ?></h3>
-          <p>Chương Trình Khuyến Mãi</p>
+          <p>Khuyến Mãi</p>
         </div>
       </div>
 
