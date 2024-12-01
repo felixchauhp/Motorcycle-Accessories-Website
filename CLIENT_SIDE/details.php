@@ -13,42 +13,48 @@ include 'db_connection.php';
     <!--=============== MAIN ===============-->
     <main class="main">
       <?php
-    if (isset($_GET['ProductID']) && !empty(trim($_GET['ProductID']))) {
-      $productID = $conn->real_escape_string(trim($_GET['ProductID']));
-  
-      // Truy vấn thông tin sản phẩm
-      $query = "SELECT * FROM products WHERE ProductID = '$ProductID'";
-      $result = $conn->query($query);
-      if ($result && $result->num_rows > 0) {
-        $product = $result->fetch_assoc();
-      }
-    }
+        // Lấy ID sản phẩm từ URL
+        $product_id = isset($_GET['id']) ? $_GET['id'] : '';
+        if (empty($product_id)) {
+            die("Không tìm thấy sản phẩm!");
+        }
+        //truy vấn thông tin sản phẩm   
+        $sql = "SELECT * FROM products WHERE ProductID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $product = $result->fetch_assoc();
+        } else {
+            die("Sản phẩm không tồn tại!");
+        }
       ?>
       <!--=============== DETAILS ===============-->
       <section class="details section--lg">
         <div class="details__container container grid">
           <div class="details__group">
             <img
-              src="https://product.hstatic.net/200000287255/product/ac_quy_gs_gt9a_12v-9ah_8cee7263e49b47f3bd28188e961bda47_master.png"
+              src="<?= htmlspecialchars($product['Image']) ?>"
               alt=""
               class="details__img"
             />
           </div>
           <div class="details__group">
             <h3 class="details__title"><?= htmlspecialchars($product['ProductName']) ?></h3>
-            <p class="details__brand">Danh mục: <span>bình điện</span></p>
+            <p class="details__brand">Danh mục: <span>Bình điện</span></p>
             <div class="details__price flex">
-              <span class="new__price">900.000 VNĐ</span>
-              <span class="old__price">1.000.000 VNĐ</span>
-              <span class="save__price">Flash sale</span>
+              <span class="new__price"><?= htmlspecialchars($product['SalePrice']) ?> VNĐ</span>
             </div>
             <p class="short__description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptate, fuga. Quo blanditiis recusandae facere nobis cum optio,
-              inventore aperiam placeat, quis maxime nam officiis illum? Optio
-              et nisi eius, inventore impedit ratione sunt, cumque, eligendi
-              asperiores iste porro non error?
+            <?= htmlspecialchars($product['Description']) ?>
             </p>
+            <p class="short__description" 
+            >
+            <?= htmlspecialchars($product['Usage']) ?>
+            </p>
+
             <ul class="products__list">
               <li class="list__item flex">
                 <i class="fi-rs-crown"></i> Chính sách bảo hành: 6 tháng nếu có hư hỏng do nhà sản xuất.
@@ -65,9 +71,9 @@ include 'db_connection.php';
               <a href="#" class="btn btn--sm">Thêm vào giỏ hàng</a>
             </div>
             <ul class="details__meta">
-              <li class="meta__list flex"><span>SKU:</span>BDN00001</li>
+              <li class="meta__list flex"><span>SKU:</span><?= htmlspecialchars($product['ProductID']) ?></li>
               <li class="meta__list flex">
-                <span>Tồn kho:</span>1000
+                <span>Tồn kho:</span><?= htmlspecialchars($product['InStock']) ?>
               </li>
             </ul>
           </div>
