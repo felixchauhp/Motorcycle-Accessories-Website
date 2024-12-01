@@ -44,6 +44,13 @@ include 'db_connection.php';
                 </thead>
                 <tbody>
                     <!-- Hiển thị danh sách sản phẩm -->
+                    <?php if (empty($products)): ?>
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+                            Không có sản phẩm tồn tại.
+                        </td>
+                    </tr>
+                  <?php else: ?>
                     <?php
                     foreach ($products as $product) {
                         $productCategory = $product['Category'] ? $product['Category'] : 'N/A';
@@ -77,6 +84,7 @@ include 'db_connection.php';
                         </td>
                     </tr>
                     <?php } ?>
+                    <?php endif; ?>
                 </tbody>
             </table> 
   <ul class="pagination">

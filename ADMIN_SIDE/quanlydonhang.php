@@ -54,7 +54,7 @@ include 'db_connection.php';
                 <tbody>
                   <?php if (empty($orders)): ?>
                     <tr>
-                        <td colspan="6" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+                        <td colspan="7" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
                             Không có đơn hàng tồn tại.
                         </td>
                     </tr>
