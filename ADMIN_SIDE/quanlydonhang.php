@@ -9,7 +9,6 @@ include 'db_connection.php';
   <!--=============== HEADER ===============-->
   <?php include 'header.php'; ?>
     <!--=============== ORDER ===============-->   
-<body>
     <main class="main">
         <section class="wishlist section--lg container">
         <div class="search-container">
@@ -36,8 +35,8 @@ include 'db_connection.php';
           <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
             style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
           
-          <button type="submit" class="btn flex btn__md" style="cursor: pointer; width: 135px; ">Áp dụng</button>
-          <a href="quanlydonhang.php" class="btn flex btn__md" style="cursor: pointer; width: 135px; ">Nhập lại</a>
+          <button type="submit" class="btn flex btn__md" style="cursor: pointer; width: 155px; ">Áp dụng</button>
+          <a href="quanlydonhang.php" class="btn flex btn__md" style="cursor: pointer; width: 150px; ">Nhập lại</a>
         </form>
       </div>
               <table class="product-table">
@@ -55,7 +54,7 @@ include 'db_connection.php';
                 <tbody>
                   <?php if (empty($orders)): ?>
                     <tr>
-                        <td colspan="6" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+                        <td colspan="7" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
                             Không có đơn hàng tồn tại.
                         </td>
                     </tr>

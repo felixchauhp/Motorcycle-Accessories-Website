@@ -9,7 +9,6 @@ include 'db_connection.php';
   <!--=============== HEADER ===============-->
   <?php include 'header.php'; ?>
    <!--=============== MAIN ===============-->
-  <body>
   <main class="main">
     <section class="wishlist section--lg container">
         <div class="search-container">
@@ -45,6 +44,13 @@ include 'db_connection.php';
                 </thead>
                 <tbody>
                     <!-- Hiển thị danh sách sản phẩm -->
+                    <?php if (empty($products)): ?>
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+                            Không có sản phẩm tồn tại.
+                        </td>
+                    </tr>
+                  <?php else: ?>
                     <?php
                     foreach ($products as $product) {
                         $productCategory = $product['Category'] ? $product['Category'] : 'N/A';
@@ -65,17 +71,20 @@ include 'db_connection.php';
                         <td><?= htmlspecialchars($product['SalePrice']) ?></td>
                         <td><?= htmlspecialchars($product['Notes']) ?></td>
                         <td>
-                        <button onclick="editProduct('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-edit edit-icon"></i></button>
-                          <form action="productManage.php" method="POST" style="display: inline;">
-                          <input type="hidden" name="product-id" value="<?= $product['ProductID'] ?>" />
-                          <button type="submit" name="delete-product" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
-                          <i class="fi fi-rs-trash trash-icon"></i>
-                        </button>
-                    </form>
-                            <button onclick="goToDetail('<?= $product['ProductID'] ?>')"><i class="fi fi-rs-menu-dots go-to-icon"></i></button>
+                            <!-- Nút chỉnh sửa -->
+                            <a href="edit-product.php?product-id=<?= $product['ProductID'] ?>"><i class="fi fi-rs-edit edit-icon"></i></a>
+                            
+                            <!-- Nút xem chi tiết -->
+                            <a href="CLIENT_SIDE/details.php?product-id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
+                            
+                            <!-- Nút xóa -->
+                            <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($product['ProductID']) ?>">
+                                <i class="fi fi-rs-trash table__trash"></i>
+                            </a>
                         </td>
                     </tr>
                     <?php } ?>
+                    <?php endif; ?>
                 </tbody>
             </table> 
   <ul class="pagination">
@@ -118,7 +127,43 @@ include 'db_connection.php';
         <li><a href="#" class="pagination__link disabled">»</a></li>
     <?php endif; ?>
 </ul>
+                   <!-- Popup xác nhận xóa -->
+                   <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                  <p>Bạn có chắc chắn muốn xóa mã khuyến mãi này?</p>
+                  <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
+                  <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
+              </div>
+          </div>
+                      <!-- JavaScript để xử lý popup xác nhận -->
+                      <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                    const confirmDeletePopup = document.getElementById('confirmDelete');
+                    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+                    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+                    let promoCodeToDelete = null;
 
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            promoCodeToDelete = button.getAttribute('data-code'); // Lấy PromoCode từ data attribute
+                            confirmDeletePopup.style.display = 'block'; // Hiển thị popup
+                        });
+                    });
+
+                    cancelDeleteBtn.addEventListener('click', function() {
+                        confirmDeletePopup.style.display = 'none'; // Ẩn popup
+                    });
+
+                    confirmDeleteBtn.addEventListener('click', function() {
+                        if (promoCodeToDelete) {
+                            window.location.href = 'delete_discount.php?promo_code=' + promoCodeToDelete; // Chuyển hướng đến file PHP xử lý xóa
+                        }
+                    });
+                });
+            </script>
+ 
 
         </section>
 

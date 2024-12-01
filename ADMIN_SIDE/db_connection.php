@@ -37,12 +37,18 @@ $start = ($currentPage - 1) * $itemsPerPage;
 // 1. Phân trang cho bảng sản phẩm
 $search = $_GET['search'] ?? '';
 $filter = $_GET['filter'] ?? '';
-if ($filter && !isset($categoryMapping[$filter])) $filter = '';
+if ($filter && !isset($categoryMapping[$filter]) && $filter !== 'out_of_stock') {
+    $filter = '';
+}
 
 // Điều kiện WHERE SQL
 $whereClauses = [];
 if ($search) $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
-if ($filter) $whereClauses[] = "c.Category = '{$conn->real_escape_string($categoryMapping[$filter])}'";
+if ($filter === 'out_of_stock') {
+    $whereClauses[] = "p.InStock = 0";
+} elseif ($filter) {
+    $whereClauses[] = "c.Category = '{$conn->real_escape_string($categoryMapping[$filter])}'";
+}
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
 // Tổng số sản phẩm

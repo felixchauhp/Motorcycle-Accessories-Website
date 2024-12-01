@@ -2,8 +2,8 @@
 include 'db_connection.php';
 
 // Lấy dữ liệu từ form (nếu có), nếu không thì lấy giá trị mặc định
-$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '2023-11-01';
-$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '2023-12-31';
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '2024-12-02';
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '2024-12-02';
 
 // Truy vấn đơn hàng đã xác nhận
 $confirmed_orders_query = "SELECT COUNT(*) AS confirmed_orders FROM orders WHERE OrderStatus = 'Đã xác nhận' AND OrderDate BETWEEN '$start_date' AND '$end_date'";

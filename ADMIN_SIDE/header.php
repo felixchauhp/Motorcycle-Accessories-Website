@@ -3,7 +3,7 @@
     
     <nav class="nav container">
 
-      <a href="index-manage.php" class="nav__logo">
+      <a href="index.php" class="nav__logo">
         <img class="nav__logo-img" 
         src="assets/img/logo.png" 
         alt="website logo" 
@@ -13,7 +13,7 @@
       <div class="nav__menu" id="nav-menu">
 
         <div class="nav__menu-top">
-          <a href="index-manage.php" class="nav__menu-logo">
+          <a href="index.php" class="nav__menu-logo">
             <img src="./assets/img/logo.png" alt="">
           </a>
 
