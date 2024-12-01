@@ -1,5 +1,5 @@
 <?php include 'dashboard_data.php'; ?>
-<?php
+<a?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
@@ -32,27 +32,27 @@ $end_date = $today;
       <h2>Danh sách cần làm</h2>
       <div class="grid-container">
         <div class="info-box">
-          <h3><?php echo $confirmed_orders; ?></h3>
+          <h3><a href="quanlydonhang.php?status=<?= urlencode('Đã xác nhận') ?>"><?php echo $confirmed_orders; ?></a></h3>
           <p>Đã xác nhận</p>
         </div>
         <div class="info-box">
-          <h3><?php echo $packed_orders; ?></h3>
+          <h3><a href="quanlydonhang.php?status=<?= urlencode('Đã đóng gói') ?>"><?php echo $packed_orders; ?></a></h3>
           <p>Đã đóng gói</p>
         </div>
         <div class="info-box">
-          <h3><?php echo $delivered_orders; ?></h3>
+          <h3><a href="quanlydonhang.php?status=<?= urlencode('Đã giao') ?>"><?php echo $delivered_orders; ?></a></h3>
           <p>Đã giao</p>
         </div>
         <div class="info-box">
-          <h3><?php echo $canceled_orders; ?></h3>
+          <h3><a href="quanlydonhang.php?status=<?= urlencode('Đã hủy') ?>"><?php echo $canceled_orders; ?></a></h3>
           <p>Đơn Hủy</p>
         </div>
         <div class="info-box">
-          <h3><?php echo $out_of_stock; ?></h3>
+          <h3><a href="productManage.php?filter=out_of_stock"><?php echo $out_of_stock; ?></a></h3>
           <p>Sản Phẩm Hết Hàng</p>
         </div>
         <div class="info-box">
-          <h3><?php echo $active_promotions; ?></h3>
+          <h3><a href="discount.php?start_date=<?= date('Y-m-d') ?>"><?php echo $active_promotions; ?></a></h3>
           <p>Khuyến Mãi</p>
         </div>
       </div>
