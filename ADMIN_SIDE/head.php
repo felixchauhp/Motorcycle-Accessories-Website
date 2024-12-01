@@ -28,7 +28,7 @@
     />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href=".\assets\css\styles.css" />
+   <link rel="stylesheet" href=".\assets\css\styles.css" />
     <link rel="stylesheet" href=".\assets\css\styles_index.css" />
     <link rel="stylesheet" href=".\assets\css\styles2.css" />
     <link rel="stylesheet" href=".\assets\css\style_orders1.css" />

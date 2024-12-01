@@ -24,8 +24,8 @@ include 'db_connection.php';
                         <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
-                <a href="productManage.php" class="btn flex btn__md">Nhập lại</a>
+                <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
+                <a href="productManage.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
             </form>
   </div>
 
