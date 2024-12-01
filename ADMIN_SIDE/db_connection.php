@@ -27,6 +27,7 @@ $categoryMapping = [
     'bo-dia-bo-thang' => 'Bố đĩa và bố thắng',
     'cac-phu-kien-khac' => 'Các phụ kiện khác'
   ];
+
   
 // Cấu hình phân trang
 $itemsPerPage = 20;
@@ -64,6 +65,8 @@ $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 $search = $_GET['search'] ?? '';
 $startDate = $_GET['start_date'] ?? '';
 $endDate = $_GET['end_date'] ?? '';
+$statusFilter = $_GET['status'] ?? '';
+$paymentFilter = $_GET['payment'] ?? '';
 
 // Phân trang cho bảng đơn hàng
 $itemsPerPage = 20;
@@ -76,6 +79,8 @@ if ($search) {
 }
 if ($startDate) $whereClauses[] = "OrderDate >= '{$conn->real_escape_string($startDate)}'";
 if ($endDate) $whereClauses[] = "OrderDate <= '{$conn->real_escape_string($endDate)}'";
+if ($statusFilter) $whereClauses[] = "OrderStatus = '{$conn->real_escape_string($statusFilter)}'";
+if ($paymentFilter) $whereClauses[] = "PaymentStatus = '{$conn->real_escape_string($paymentFilter)}'";
 
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
@@ -85,7 +90,7 @@ $totalOrders = $conn->query($totalOrdersQuery)->fetch_assoc()['total'];
 $totalOrderPages = ceil($totalOrders / $itemsPerPage);
 
 // Truy vấn đơn hàng
-$orderQuery = "SELECT * FROM orders $whereSQL LIMIT $start, $itemsPerPage";
+$orderQuery = "SELECT * FROM orders $whereSQL ORDER BY OrderDate DESC LIMIT $start, $itemsPerPage";
 $orderResults = $conn->query($orderQuery);
 
 $orders = [];
@@ -123,7 +128,7 @@ $totalPromotions = $conn->query($totalPromotionsQuery)->fetch_assoc()['total'];
 $totalPromotionPages = ceil($totalPromotions / $itemsPerPage);
 
 // Truy vấn khuyến mãi
-$promotionQuery = "SELECT * FROM promotion $whereSQL LIMIT $start, $itemsPerPage";
+$promotionQuery = "SELECT * FROM promotion $whereSQL ORDER BY StartDate DESC LIMIT $start, $itemsPerPage";
 $promotionResults = $conn->query($promotionQuery);
 
 $promotions = [];

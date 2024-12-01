@@ -1,4 +1,9 @@
-   <!--=============== HEADER ===============-->
+<?php
+if (session_id() == '') {
+  session_start();
+}
+?>
+<!--=============== HEADER ===============-->
    <header class="header">
     <div class="header__top">
       <div class="header__container container">
@@ -9,9 +14,11 @@
         <p class="header__alert-news">
           Dịch vụ giao hàng và lắp ráp tận nơi !
         </p>
+        <?php if (!isset($_SESSION['user_id'])): ?>
         <a href="login.php" class="header__top-action">
           Đăng nhập ngay để mua hàng!
         </a>
+        <?php endif; ?>
       </div>
     </div>
 
@@ -82,11 +89,18 @@
         </a>
         
         <ul class="dropdown-menu dropdown-menu-right text-center p-2" style="width: 150px;" aria-labelledby="userDropdown">
+        <?php if (isset($_SESSION['user_id'])): ?>
           <li>
             <a class="dropdown-item d-flex align-items-center justify-content-center" href="accounts.php">
               <i class="fi fi-rs-settings mr-2"></i> Cá nhân
             </a>
           </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center justify-content-center" href="logout.php">
+              <i class="fi fi-rs-exit mr-2"></i> Đăng xuất
+            </a>
+          </li>
+        <?php else: ?>
           <li>
             <a class="dropdown-item d-flex align-items-center justify-content-center" href="login.php">
               <i class="fi fi-rs-user mr-2"></i> Đăng nhập
@@ -97,9 +111,9 @@
               <i class="fi fi-rs-user-add mr-2"></i> Đăng ký
             </a>
           </li>
+        <?php endif; ?>
         </ul>
       </div>
-             
         <div class="header__action-btn nav__toggle" id="nav-toggle">
           <img src="./assets//img/menu-burger.svg" alt="">
         </div>
