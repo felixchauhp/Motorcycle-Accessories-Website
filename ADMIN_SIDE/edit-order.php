@@ -223,5 +223,8 @@ if (isset($_GET['OrderID'])) {
 </script>
 
 <?php include 'footer.php'; ?>
+    <!--=============== SWIPER JS ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
