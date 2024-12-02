@@ -116,6 +116,7 @@ if ($orderResults->num_rows > 0) {
 // Lấy giá trị từ GET
 $startDate = $_GET['start_date'] ?? '';
 $endDate = $_GET['end_date'] ?? '';
+$customVar = $_GET['custom_var'] ?? '';
 
 // Điều kiện WHERE SQL
 $whereClauses = [];
@@ -123,9 +124,19 @@ if ($search) {
     // Tìm kiếm theo tên khuyến mãi và mã khuyến mãi
     $whereClauses[] = "(PromoName LIKE '%$search%' OR PromoCode LIKE '%$search%')";
 }
-if ($startDate) $whereClauses[] = "StartDate >= '{$conn->real_escape_string($startDate)}'";
-if ($endDate) $whereClauses[] = "EndDate <= '{$conn->real_escape_string($endDate)}'";
-
+if ($startDate && $endDate && $customVar) {
+    // Áp dụng bộ lọc đặc biệt cho ngày hôm nay
+    $whereClauses[] = "StartDate <= '{$conn->real_escape_string($startDate)}'"; // Bắt đầu <= hôm nay
+    $whereClauses[] = "EndDate >= '{$conn->real_escape_string($endDate)}'"; // Kết thúc >= hôm nay
+} else {
+    // Nếu không có start_date và end_date từ liên kết, dùng các ô lọc thông thường
+    if ($startDate) {
+        $whereClauses[] = "StartDate >= '{$conn->real_escape_string($startDate)}'"; // Bắt đầu >= ngày bắt đầu
+    }
+    if ($endDate) {
+        $whereClauses[] = "EndDate <= '{$conn->real_escape_string($endDate)}'"; // Kết thúc <= ngày kết thúc
+    }
+}
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
 // Tổng số khuyến mãi

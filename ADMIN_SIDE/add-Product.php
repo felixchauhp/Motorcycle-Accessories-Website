@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Chuyển hướng sau khi thêm thành công
-            header("Location: productManage.php?message=Sản phẩm đã được thêm thành công!");
+            header("Location: products.php?message=Sản phẩm đã được thêm thành công!");
             exit();
         } else {
             echo "Lỗi khi thêm sản phẩm: " . mysqli_error($conn);

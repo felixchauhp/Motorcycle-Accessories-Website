@@ -24,10 +24,10 @@
 
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="productManage.php" class="nav__link">Sản phẩm</a>
+            <a href="products.php" class="nav__link">Sản phẩm</a>
           </li>
           <li class="nav__item">
-            <a href="quanlydonhang.php" class="nav__link">Đơn hàng</a>
+            <a href="orders.php" class="nav__link">Đơn hàng</a>
           </li>
           <li class="nav__item">
             <a href="discount.php" class="nav__link active-link">Khuyến mãi</a>
@@ -55,7 +55,7 @@
           
           <ul class="dropdown-menu dropdown-menu-right text-center p-2" style="width: 150px;" aria-labelledby="userDropdown">
             <li>
-              <a class="dropdown-item d-flex align-items-center justify-content-center" href="accounts-manager.php">
+              <a class="dropdown-item d-flex align-items-center justify-content-center" href="account.php">
                 <i class="fi fi-rs-settings mr-2"></i> Cá nhân
               </a>
             </li>
