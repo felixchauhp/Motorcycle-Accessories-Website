@@ -103,11 +103,29 @@ include 'db_connection.php';
         </div>
       </section>
       
-      <!--=============== PRODUCTS ===============-->
+
+      <section class="wishlist section--lg container">
+        <div class="search-container">
+            <form method="GET" action="shop.php" class="right-actions">
+                <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
+                <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit;">
+                    <option value="" <?= !$filter ? 'selected' : '' ?>>Tất cả danh mục</option>
+                    <?php foreach ($categoryMapping as $key => $value): ?>
+                        <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
+                <a href="shop.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
+            </form>
+  </div>
+  </section>
+
       <section class="products container section--lg">
         <div class="products__container grid">
         <?php if (empty($products)): ?>
-            <p> Không tồn tại sản phẩm bạn đang tìm</p>
+          <div style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+        Không tồn tại sản phẩm bạn đang tìm: "<?= htmlspecialchars($search) ?>"
+    </div>
         <?php else: ?>
         <?php foreach ($products as $productlist):?>
             <div class="product__item">
@@ -153,7 +171,9 @@ include 'db_connection.php';
     <?php
     // Cơ sở URL cho phân trang
     $queryParams = [];
-    if ($search_input) $queryParams['search_input'] = $search_input;
+    if (!empty($search)) {
+      $queryParams['search'] = $search; 
+    }
     $baseUrl = 'shop.php?' . http_build_query($queryParams);
 
     // Nút "trang trước"
