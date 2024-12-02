@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'sql_config.php';
+
 // Xác nhận id người đăng nhập
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
