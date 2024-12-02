@@ -125,7 +125,7 @@ if (isset($_GET['promoCode'])) {
                     <button 
                         type="button" 
                         class="btn flex btn__md" 
-                        onclick="window.location.href='update-Discount.php?promoCode=<?= urlencode($promotion['PromoCode']); ?>'">
+                        onclick="window.location.href='edit-discount.php?promoCode=<?= urlencode($promotion['PromoCode']); ?>'">
                         Chỉnh sửa
                     </button>
                 </div>

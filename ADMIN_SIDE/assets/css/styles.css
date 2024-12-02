@@ -169,7 +169,6 @@ table {
 .old__price {
   color: var(--text-color-light);
   font-size: var(--small-font-size);
-  text-decoration: line-through;
 }
 
 .form {
@@ -1736,6 +1735,7 @@ table {
 .tab__body {
   padding: 1rem;
   color: var(--first-color);
+  background-color: white;
 }
 
 .placed__order-table thead tr th {

@@ -13,42 +13,49 @@ include 'db_connection.php';
     <!--=============== MAIN ===============-->
     <main class="main">
       <?php
-    if (isset($_GET['ProductID']) && !empty(trim($_GET['ProductID']))) {
-      $productID = $conn->real_escape_string(trim($_GET['ProductID']));
-  
-      // Truy vấn thông tin sản phẩm
-      $query = "SELECT * FROM products WHERE ProductID = '$ProductID'";
-      $result = $conn->query($query);
-      if ($result && $result->num_rows > 0) {
-        $product = $result->fetch_assoc();
-      }
-    }
+        // Lấy ID sản phẩm từ URL
+        $product_id = isset($_GET['id']) ? $_GET['id'] : '';
+        if (empty($product_id)) {
+            die("Không tìm thấy sản phẩm!");
+        }
+        //truy vấn thông tin sản phẩm   
+        $sql = "SELECT * FROM products WHERE ProductID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $product = $result->fetch_assoc();
+        } else {
+            die("Sản phẩm không tồn tại!");
+        }
       ?>
       <!--=============== DETAILS ===============-->
       <section class="details section--lg">
+      <div id="product" data-id="<?= htmlspecialchars($product_id) ?>"></div>
         <div class="details__container container grid">
           <div class="details__group">
             <img
-              src="https://product.hstatic.net/200000287255/product/ac_quy_gs_gt9a_12v-9ah_8cee7263e49b47f3bd28188e961bda47_master.png"
+              src="<?= htmlspecialchars($product['Image']) ?>"
               alt=""
               class="details__img"
             />
           </div>
           <div class="details__group">
             <h3 class="details__title"><?= htmlspecialchars($product['ProductName']) ?></h3>
-            <p class="details__brand">Danh mục: <span>bình điện</span></p>
+            <p class="details__brand">Danh mục: <span>Bình điện</span></p>
             <div class="details__price flex">
-              <span class="new__price">900.000 VNĐ</span>
-              <span class="old__price">1.000.000 VNĐ</span>
-              <span class="save__price">Flash sale</span>
+              <span class="new__price"><?= htmlspecialchars($product['SalePrice']) ?> VNĐ</span>
             </div>
             <p class="short__description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptate, fuga. Quo blanditiis recusandae facere nobis cum optio,
-              inventore aperiam placeat, quis maxime nam officiis illum? Optio
-              et nisi eius, inventore impedit ratione sunt, cumque, eligendi
-              asperiores iste porro non error?
+            <?= htmlspecialchars($product['Description']) ?>
             </p>
+            <p class="short__description" 
+            >
+            <?= htmlspecialchars($product['Usage']) ?>
+            </p>
+
             <ul class="products__list">
               <li class="list__item flex">
                 <i class="fi-rs-crown"></i> Chính sách bảo hành: 6 tháng nếu có hư hỏng do nhà sản xuất.
@@ -65,9 +72,9 @@ include 'db_connection.php';
               <a href="#" class="btn btn--sm">Thêm vào giỏ hàng</a>
             </div>
             <ul class="details__meta">
-              <li class="meta__list flex"><span>SKU:</span>BDN00001</li>
+              <li class="meta__list flex"><span>SKU:</span><?= htmlspecialchars($product['ProductID']) ?></li>
               <li class="meta__list flex">
-                <span>Tồn kho:</span>1000
+                <span>Tồn kho:</span><?= htmlspecialchars($product['InStock']) ?>
               </li>
             </ul>
           </div>
@@ -77,7 +84,7 @@ include 'db_connection.php';
       <!--=============== DETAILS TAB ===============-->
       <section class="details__tab container">
   <div class="detail__tabs">
-    <span class="detail__tab active-tab" data-target="#reviews">Đánh giá(3)</span>
+    <span class="detail__tab active-tab" data-target="#reviews">Đánh giá:</span>
   </div>
   <div class="details__tabs-content">
     <div class="details__tab-content active-tab" id="reviews">
@@ -141,23 +148,24 @@ include 'db_connection.php';
       <div class="review__form">
         <h4 class="review__form-title">Thêm đánh giá</h4>
         <div class="rate__product">
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-        </div>
+  <i class="fi fi-rs-star" data-value="1"></i>
+  <i class="fi fi-rs-star" data-value="2"></i>
+  <i class="fi fi-rs-star" data-value="3"></i>
+  <i class="fi fi-rs-star" data-value="4"></i>
+  <i class="fi fi-rs-star" data-value="5"></i>
+</div>
         <form action="" class="form grid">
           <textarea
             class="form__input textarea"
             placeholder="Viết đánh giá"
+            id="reviewText"
           ></textarea>
           <div class="form__group grid">
-            <input type="text" placeholder="Tên" class="form__input">
-            <input type="email" placeholder="Địa chỉ email" class="form__input">
+            <input type="text" placeholder="Tên" class="form__input" id="reviewName">
+            <input type="email" placeholder="Địa chỉ email" class="form__input"  id="reviewEmail">
           </div>
           <div class="form__btn">
-            <button class="btn">Gửi</button>
+            <button class="btn" type="submit">Gửi</button>
           </div>
         </form>
       </div>
@@ -218,7 +226,10 @@ include 'db_connection.php';
           </div>
         </div>
       </section>
-
+      <script>
+      // Truyền ProductID từ PHP sang JS
+      var productId = <?php echo json_encode($product_id); ?>;
+      </script>
       <!--=============== NEWSLETTER ===============-->
 <?php include 'footer.php' ?>
 
@@ -226,6 +237,7 @@ include 'db_connection.php';
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>\
+    <script src="reviews.js"></script>
   </body>
 </html>

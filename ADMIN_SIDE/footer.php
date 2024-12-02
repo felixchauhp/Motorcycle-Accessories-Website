@@ -1,7 +1,7 @@
 <footer class="footer container">
 <div class="footer__container grid">
       <div class="footer__content">
-        <a href="index-manage.php" class="footer__logo">
+        <a href="index.php" class="footer__logo">
           <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
         </a>    
         <div class="footer__social">

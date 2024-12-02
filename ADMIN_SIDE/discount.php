@@ -60,14 +60,14 @@ include 'db_connection.php';
                 <td><?= htmlspecialchars($promo['StartDate']) ?></td>
                 <td><?= htmlspecialchars($promo['EndDate']) ?></td>
                 <td>
-                    <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($promo['PromoCode']) ?>">
-                        <i class="fi fi-rs-trash table__trash"></i>
-                    </a>
-                    <a href="update-Discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="edit-btn">
+                    <a href="edit-discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="edit-btn">
                         <i class="fi fi-rs-edit table__trash"></i>
                     </a>
                     <a href="show-discount.php?promoCode=<?= urlencode($promo['PromoCode']) ?>" class="menu-btn">
                         <i class="fi fi-rs-menu-dots table__trash"></i>
+                    </a>
+                    <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($promo['PromoCode']) ?>">
+                        <i class="fi fi-rs-trash table__trash"></i>
                     </a>
                 </td>
             </tr>
