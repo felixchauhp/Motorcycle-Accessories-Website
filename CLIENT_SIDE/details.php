@@ -33,6 +33,7 @@ include 'db_connection.php';
       ?>
       <!--=============== DETAILS ===============-->
       <section class="details section--lg">
+      <div id="product" data-id="<?= htmlspecialchars($product_id) ?>"></div>
         <div class="details__container container grid">
           <div class="details__group">
             <img
@@ -83,7 +84,7 @@ include 'db_connection.php';
       <!--=============== DETAILS TAB ===============-->
       <section class="details__tab container">
   <div class="detail__tabs">
-    <span class="detail__tab active-tab" data-target="#reviews">Đánh giá(3)</span>
+    <span class="detail__tab active-tab" data-target="#reviews">Đánh giá:</span>
   </div>
   <div class="details__tabs-content">
     <div class="details__tab-content active-tab" id="reviews">
@@ -147,23 +148,24 @@ include 'db_connection.php';
       <div class="review__form">
         <h4 class="review__form-title">Thêm đánh giá</h4>
         <div class="rate__product">
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-          <i class="fi fi-rs-star"></i>
-        </div>
+  <i class="fi fi-rs-star" data-value="1"></i>
+  <i class="fi fi-rs-star" data-value="2"></i>
+  <i class="fi fi-rs-star" data-value="3"></i>
+  <i class="fi fi-rs-star" data-value="4"></i>
+  <i class="fi fi-rs-star" data-value="5"></i>
+</div>
         <form action="" class="form grid">
           <textarea
             class="form__input textarea"
             placeholder="Viết đánh giá"
+            id="reviewText"
           ></textarea>
           <div class="form__group grid">
-            <input type="text" placeholder="Tên" class="form__input">
-            <input type="email" placeholder="Địa chỉ email" class="form__input">
+            <input type="text" placeholder="Tên" class="form__input" id="reviewName">
+            <input type="email" placeholder="Địa chỉ email" class="form__input"  id="reviewEmail">
           </div>
           <div class="form__btn">
-            <button class="btn">Gửi</button>
+            <button class="btn" type="submit">Gửi</button>
           </div>
         </form>
       </div>
@@ -224,7 +226,10 @@ include 'db_connection.php';
           </div>
         </div>
       </section>
-
+      <script>
+      // Truyền ProductID từ PHP sang JS
+      var productId = <?php echo json_encode($product_id); ?>;
+      </script>
       <!--=============== NEWSLETTER ===============-->
 <?php include 'footer.php' ?>
 
@@ -232,6 +237,7 @@ include 'db_connection.php';
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>\
+    <script src="reviews.js"></script>
   </body>
 </html>
