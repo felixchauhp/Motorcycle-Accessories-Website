@@ -16,18 +16,6 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 // echo "Kết nối thành công!";
 
 
-
-// Ánh xạ danh mục
-$categoryMapping = [
-    'vo-xe-ruot-xe' => 'Vỏ xe và ruột xe',
-    'nhong-sen-dia' => 'Nhông sên dĩa',
-    'bac-dan' => 'Bạc đạn',
-    'nhot' => 'Nhớt',
-    'ac-quy' => 'Ắc quy',
-    'bo-dia-bo-thang' => 'Bố đĩa và bố thắng',
-    'cac-phu-kien-khac' => 'Các phụ kiện khác'
-  ];
-
   
 // Cấu hình phân trang
 $itemsPerPage = 20;
@@ -37,17 +25,14 @@ $start = ($currentPage - 1) * $itemsPerPage;
 // 1. Phân trang cho bảng sản phẩm
 $search = $_GET['search'] ?? '';
 $filter = $_GET['filter'] ?? '';
-if ($filter && !isset($categoryMapping[$filter]) && $filter !== 'out_of_stock') {
-    $filter = '';
-}
 
 // Điều kiện WHERE SQL
 $whereClauses = [];
-if ($search) $whereClauses[] = "(p.ProductName LIKE '%$search%')";
+if ($search) $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
 if ($filter === 'out_of_stock') {
     $whereClauses[] = "p.InStock = 0";
 } elseif ($filter) {
-    $whereClauses[] = "c.Category = '{$conn->real_escape_string($categoryMapping[$filter])}'";
+    $whereClauses[] = "c.Category = '{$conn->real_escape_string($filter)}'";
 }
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 

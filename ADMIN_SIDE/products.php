@@ -18,13 +18,17 @@ include 'db_connection.php';
             <form method="GET" action="products.php" class="right-actions">
                 <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
                 <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit;">
-                    <option value="" <?= !$filter ? 'selected' : '' ?>>Tất cả danh mục</option>
-                    <?php foreach ($categoryMapping as $key => $value): ?>
-                        <option value="<?= $key ?>" <?= $filter == $key ? 'selected' : '' ?>><?= $value ?></option>
-                    <?php endforeach; ?>
+                    <option value="" <?= !isset($_GET['filter']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+                    <option value="Vỏ xe và ruột xe" <?= isset($_GET['filter']) && $_GET['filter'] === 'Vỏ xe và ruột xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
+                    <option value="Nhông sên dĩa" <?= isset($_GET['filter']) && $_GET['filter'] === 'Nhông sên dĩa' ? 'selected' : '' ?>>Nhông sên dĩa</option>
+                    <option value="Bạc đạn" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>
+                    <option value="Nhớt" <?= isset($_GET['filter']) && $_GET['filter'] === 'Nhớt' ? 'selected' : '' ?>>Nhớt</option>
+                    <option value="Ắc quy" <?= isset($_GET['filter']) && $_GET['filter'] === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
+                    <option value="Bố đĩa và bố thắng" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>
+                    <option value="Các phụ kiện khác" <?= isset($_GET['filter']) && $_GET['filter'] === 'Các phụ kiện khác' ? 'selected' : '' ?>>Các phụ kiện khác</option>
                 </select>
                 <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
-                <a href="products.php" class="btn flex btn__md" style="cursor: pointer;  ">Nhập lại</a>
+                <a href="products.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
             </form>
   </div>
 
@@ -71,16 +75,9 @@ include 'db_connection.php';
                         <td><?= htmlspecialchars($product['SalePrice']) ?></td>
                         <td><?= htmlspecialchars($product['Notes']) ?></td>
                         <td>
-                            <!-- Nút chỉnh sửa -->
-                            <a href="edit-product.php?product-id=<?= $product['ProductID'] ?>"><i class="fi fi-rs-edit edit-icon"></i></a>
-                            
-                            <!-- Nút xem chi tiết -->
-                            <a href="show-product.php?product-id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
-                            
-                            <!-- Nút xóa -->
-                            <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($product['ProductID']) ?>">
-                                <i class="fi fi-rs-trash table__trash"></i>
-                            </a>
+                        <i class="fi fi-rs-edit edit-icon"></i>
+                        <i class="fi fi-rs-menu-dots go-to-icon"></i>
+                        <i class="fi fi-rs-trash trash-icon"></i>
                         </td>
                     </tr>
                     <?php } ?>
@@ -127,43 +124,7 @@ include 'db_connection.php';
         <li><a href="#" class="pagination__link disabled">»</a></li>
     <?php endif; ?>
 </ul>
-                   <!-- Popup xác nhận xóa -->
-                   <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
-              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                  <p>Bạn có chắc chắn muốn xóa mã khuyến mãi này?</p>
-                  <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
-                  <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
-              </div>
-          </div>
-                      <!-- JavaScript để xử lý popup xác nhận -->
-                      <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                    const deleteButtons = document.querySelectorAll('.delete-btn');
-                    const confirmDeletePopup = document.getElementById('confirmDelete');
-                    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-                    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-                    let promoCodeToDelete = null;
 
-                    deleteButtons.forEach(button => {
-                        button.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            promoCodeToDelete = button.getAttribute('data-code'); // Lấy PromoCode từ data attribute
-                            confirmDeletePopup.style.display = 'block'; // Hiển thị popup
-                        });
-                    });
-
-                    cancelDeleteBtn.addEventListener('click', function() {
-                        confirmDeletePopup.style.display = 'none'; // Ẩn popup
-                    });
-
-                    confirmDeleteBtn.addEventListener('click', function() {
-                        if (promoCodeToDelete) {
-                            window.location.href = 'delete_discount.php?promo_code=' + promoCodeToDelete; // Chuyển hướng đến file PHP xử lý xóa
-                        }
-                    });
-                });
-            </script>
- 
 
         </section>
 
@@ -214,6 +175,6 @@ include 'db_connection.php';
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+
 </body>
 </html>
