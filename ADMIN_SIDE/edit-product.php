@@ -124,9 +124,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="product-category">Danh mục:</label>
             <select id="filter-input" name="product-category" required>
               <option value="" disabled>Chọn</option>
-              <option value="vo-xe-ruot-xe" <?= ($product['Category'] ?? '') === 'vo-xe-ruot-xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
-              <option value="nhong-sen-dia" <?= ($product['Category'] ?? '') === 'nhong-sen-dia' ? 'selected' : '' ?>>Nhông sên dĩa</option>
-              <!-- Thêm các danh mục khác -->
+              <option value="Ắc quy" <?= ($product['Category'] ?? '') === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
+              <option value="Bạc đạn" <?= ($product['Category'] ?? '') === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>
+              <option value="Bố đĩa và bố thắng" <?= ($product['Category'] ?? '') === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>
+              <option value="Nhông sên dĩa" <?= ($product['Category'] ?? '') === 'Nhông sên dĩa' ? 'selected' : '' ?>>Nhông sên dĩa</option>
+              <option value="Nhớt" <?= ($product['Category'] ?? '') === 'Nhớt' ? 'selected' : '' ?>>Nhớt</option>
+              <option value="Vỏ xe và ruột xe" <?= ($product['Category'] ?? '') === 'Vỏ xe và ruột xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
+              <option value="Các phụ kiện khác" <?= ($product['Category'] ?? '') === 'Các phụ kiện khác' ? 'selected' : '' ?>>Các phụ kiện khác</option>
             </select>
 
             <label for="product-info">Mô tả:</label>
