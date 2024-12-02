@@ -125,7 +125,7 @@ if (isset($_GET['OrderID'])) {
                     <button
                         type="button" 
                         class="btn flex btn__md" 
-                        onclick="window.location.href='quanlydonhang.php'">
+                        onclick="window.location.href='accounts.php'">
                         Quay lại
                     </button>
 
