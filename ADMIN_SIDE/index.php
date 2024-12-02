@@ -62,7 +62,7 @@ $end_date = $today;
           <p>Hết Hàng</p>
         </div>
         </a>
-        <a href="discount.php?start_date=<?= date('Y-m-d') ?>">
+        <a href="discount.php?start_date=<?php echo date('Y-m-d'); ?>&end_date=<?php echo date('Y-m-d'); ?>&custom_var=value">
         <div class="info-box">
           <h3><?php echo $active_promotions; ?></h3>
           <p>Khuyến Mãi</p>
