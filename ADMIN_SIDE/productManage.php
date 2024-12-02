@@ -24,7 +24,7 @@ include 'db_connection.php';
                     <?php endforeach; ?>
                 </select>
                 <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
-                <a href="productManage.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
+                <a href="productManage.php" class="btn flex btn__md" style="cursor: pointer;  ">Nhập lại</a>
             </form>
   </div>
 
@@ -75,7 +75,7 @@ include 'db_connection.php';
                             <a href="edit-product.php?product-id=<?= $product['ProductID'] ?>"><i class="fi fi-rs-edit edit-icon"></i></a>
                             
                             <!-- Nút xem chi tiết -->
-                            <a href="CLIENT_SIDE/details.php?product-id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
+                            <a href="details.php?product-id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
                             
                             <!-- Nút xóa -->
                             <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($product['ProductID']) ?>">

@@ -169,7 +169,6 @@ table {
 .old__price {
   color: var(--text-color-light);
   font-size: var(--small-font-size);
-  text-decoration: line-through;
 }
 
 .form {
