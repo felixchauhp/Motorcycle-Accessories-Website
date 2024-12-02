@@ -103,9 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
         // Update password in the database
         $stmt = $pdo->prepare("UPDATE customers SET Password = ? WHERE AccountID = ?");
-        if ($stmt->execute([$new_password, [$_SESSION['user_id']]])) {
+        if ($stmt->execute([$new_password, $_SESSION['user_id']])) {
           session_unset();
           session_destroy();
+          header("Location: login.php");
+          exit;
         } else {
           $error = "Có lỗi xảy ra. Vui lòng thử lại.";
         }
