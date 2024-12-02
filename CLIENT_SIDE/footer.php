@@ -1,3 +1,8 @@
+<?php
+if (session_id() == '') {
+  session_start();
+}
+?>    
     <!--=============== FOOTER ===============-->
     <footer class="footer container">
     <a href="shop.php">
@@ -42,9 +47,13 @@
         <div class="footer__content">
           <h3 class="footer__title">Tài khoản của tôi</h3>
           <ul class="footer__links">
+            <?php if (!isset($_SESSION['user_id'])): ?>
             <li><a href="login.php" class="footer__link">Đăng nhập</a></li>
-            <li><a href="cart.php" class="footer__link">Xem giỏ hàng</a></li>
+            <?php else: ?>
             <li><a href="accounts.php" class="footer__link">Thông tin cá nhân</a></li>
+            <?php endif; ?>
+            <li><a href="cart.php" class="footer__link">Xem giỏ hàng</a></li>
+            
             <li><a href="accounts.php" class="footer__link">Tra cứu đơn hàng</a></li>
           </ul>
         </div>

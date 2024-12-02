@@ -13,7 +13,7 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
-echo "Kết nối thành công!";
+// echo "Kết nối thành công!";
 
 
 
