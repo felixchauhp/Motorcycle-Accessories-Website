@@ -102,6 +102,7 @@ include 'db_connection.php';
           </div>
         </div>
       </section>
+      
       <!--=============== PRODUCTS ===============-->
       <section class="products container section--lg">
         <div class="products__container grid">
@@ -125,8 +126,7 @@ include 'db_connection.php';
                   alt="Product Image"
                   class="product__img hover"
                 />
-              </a>
-
+              </a> 
             </div>
             <div class="product__content">
               <span class="product__category"><?= htmlspecialchars($productlist['Category']) ?></span>
@@ -149,7 +149,7 @@ include 'db_connection.php';
       <?php endif; ?>
     </div>
 
-        <ul class="pagination">
+    <ul class="pagination">
     <?php
     // Cơ sở URL cho phân trang
     $queryParams = [];
