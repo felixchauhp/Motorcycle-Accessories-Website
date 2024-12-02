@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // if ($user && password_verify($password, $user['Password'])) {
     if ($user && $password == $user['Password']) {
         $_SESSION['user_id'] = $user['AccountID'];
-        $_SESSION['username'] = $user['Fname'] . ' ' . $user['Lname'];
+        $_SESSION['username'] = $user['Lname'] . ' ' . $user['Fname'];
         header("Location: index.php");
         exit;
     } else {
