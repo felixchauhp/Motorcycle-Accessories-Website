@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Chuyển hướng sau khi cập nhật thành công
-            header("Location: productManage.php?message=Sản phẩm đã được cập nhật thành công!");
+            header("Location: products.php?message=Sản phẩm đã được cập nhật thành công!");
             exit();
         } else {
             echo "Lỗi khi cập nhật sản phẩm: " . mysqli_error($conn);

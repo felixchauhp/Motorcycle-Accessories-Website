@@ -17,8 +17,9 @@ $end_date = $today;
 <?php include 'head.php'; ?>
 <body>
   <!--=============== HEADER ===============-->
-  <?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
   <!--=============== MAIN ===============-->
+<main class="main">
   <div class="content">
 
     <div class="dashboard">
@@ -58,7 +59,7 @@ $end_date = $today;
         <a href="productManage.php?filter=out_of_stock">
         <div class="info-box">
           <h3><?php echo $out_of_stock; ?></h3>
-          <p>Sản Phẩm Hết Hàng</p>
+          <p>Hết Hàng</p>
         </div>
         </a>
         <a href="discount.php?start_date=<?= date('Y-m-d') ?>">
@@ -111,20 +112,22 @@ $end_date = $today;
     </div>
         <!-- Vùng chứa biểu đồ -->
         <div class="tab-content">
+            <div id="combined-tab" class="chart-container" style="display:none;">
+                <canvas id="combinedChart"></canvas>
+            </div>
             <div id="orders-tab" class="chart-container">
                 <canvas id="ordersChart"></canvas>
             </div>
             <div id="revenue-tab" class="chart-container" style="display:none;">
                 <canvas id="revenueChart"></canvas>
             </div>
-            <div id="combined-tab" class="chart-container" style="display:none;">
-                <canvas id="combinedChart"></canvas>
-            </div>
         </div>
+</main>
 
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="get_data.js"></script>
+  <script src="assets/js/get_data_test.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
