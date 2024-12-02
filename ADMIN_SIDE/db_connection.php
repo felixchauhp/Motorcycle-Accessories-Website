@@ -59,10 +59,6 @@ $endDate = $_GET['end_date'] ?? '';
 $statusFilter = $_GET['status'] ?? '';
 $paymentFilter = $_GET['payment'] ?? '';
 
-// Phân trang cho bảng đơn hàng
-$itemsPerPage = 20;
-$currentPage = $_GET['page'] ?? 1;
-$start = ($currentPage - 1) * $itemsPerPage;
 
 $whereClauses = [];
 if ($search) {
@@ -73,7 +69,7 @@ if ($endDate) $whereClauses[] = "OrderDate <= '{$conn->real_escape_string($endDa
 if ($statusFilter) $whereClauses[] = "OrderStatus = '{$conn->real_escape_string($statusFilter)}'";
 if ($paymentFilter) $whereClauses[] = "PaymentStatus = '{$conn->real_escape_string($paymentFilter)}'";
 
-$whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
+$whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', array: $whereClauses) : '';
 
 // Truy vấn tổng số đơn hàng
 $totalOrdersQuery = "SELECT COUNT(*) as total FROM orders $whereSQL";
