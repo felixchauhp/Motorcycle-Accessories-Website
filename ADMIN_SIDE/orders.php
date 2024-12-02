@@ -12,7 +12,7 @@ include 'db_connection.php';
     <main class="main">
         <section class="wishlist section--lg container">
         <div class="search-container">
-        <form method="GET" action="quanlydonhang.php" class="right-actions">
+        <form method="GET" action="orders.php" class="right-actions">
           <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
           <!-- Lọc trạng thái -->
     <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
@@ -36,7 +36,7 @@ include 'db_connection.php';
             style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
           
           <button type="submit" class="btn flex btn__md" style="cursor: pointer; width: 155px; ">Áp dụng</button>
-          <a href="quanlydonhang.php" class="btn flex btn__md" style="cursor: pointer; width: 150px; ">Nhập lại</a>
+          <a href="orders.php" class="btn flex btn__md" style="cursor: pointer; width: 150px; ">Nhập lại</a>
         </form>
       </div>
               <table class="product-table">
@@ -125,7 +125,7 @@ include 'db_connection.php';
     });
 
     // Cơ sở URL phân trang (có các tham số lọc)
-    $baseUrl = 'quanlydonhang.php?' . http_build_query($queryParams);
+    $baseUrl = 'orders.php?' . http_build_query($queryParams);
     ?>
 
 
@@ -202,5 +202,7 @@ include 'db_connection.php';
   </main>
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
