@@ -91,11 +91,19 @@ function initializeCharts() {
 }
 
 function loadDefaultData() {
-    fetch(`get_chart_test.php?start_date=2023-11-01&end_date=2023-11-08`)
+    const today = new Date(); // Lấy ngày hiện tại
+    const endDate = today.toISOString().split('T')[0]; // Định dạng ngày kết thúc (YYYY-MM-DD)
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() - 6); // Trừ đi 6 ngày (vì tính cả ngày hiện tại)
+    const formattedStartDate = startDate.toISOString().split('T')[0]; // Định dạng ngày bắt đầu
+
+    // Gọi API với khoảng thời gian đã tính
+    fetch(`get_chart_test.php?start_date=${formattedStartDate}&end_date=${endDate}`)
         .then(response => response.json())
         .then(data => updateCharts(data))
         .catch(error => console.error('Error fetching default data:', error));
 }
+
 
 function updateCharts(data) {
     ordersChart.data.labels = data.dates;

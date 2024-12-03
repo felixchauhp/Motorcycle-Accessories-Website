@@ -1,9 +1,12 @@
 <?php
 include 'db_connection.php';
+// Lấy ngày hiện tại theo định dạng 'YYYY-MM-DD'
+$current_date = date('Y-m-d');
 
-// Lấy dữ liệu từ form (nếu có), nếu không thì lấy giá trị mặc định
-$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '2024-12-02';
-$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '2024-12-02';
+// Lấy dữ liệu từ form (nếu có), nếu không thì lấy giá trị mặc định là ngày hiện tại
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : $current_date;
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : $current_date;
+
 
 // Truy vấn đơn hàng đã xác nhận
 $confirmed_orders_query = "SELECT COUNT(*) AS confirmed_orders FROM orders WHERE OrderStatus = 'Đã xác nhận' AND OrderDate BETWEEN '$start_date' AND '$end_date'";

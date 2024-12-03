@@ -12,9 +12,15 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Thiết lập ngày mặc định từ 1/11/2023 đến 31/12/2023
-$start_date = $_GET['start_date'] ?? '2023-11-01';
-$end_date = $_GET['end_date'] ?? '2023-11-08';
+// Thiết lập ngày hiện tại theo định dạng 'YYYY-MM-DD'
+$current_date = date('Y-m-d');
+
+// Tính ngày bắt đầu là 7 ngày trước
+$start_date_default = date('Y-m-d', strtotime('-6 days', strtotime($current_date)));
+
+// Lấy dữ liệu từ URL hoặc dùng giá trị mặc định
+$start_date = $_GET['start_date'] ?? $start_date_default;
+$end_date = $_GET['end_date'] ?? $current_date;
 
 // Truy vấn dữ liệu chi tiết theo trạng thái đơn hàng và thanh toán
 $query = "
