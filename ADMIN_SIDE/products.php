@@ -10,7 +10,7 @@ include 'db_connection.php';
   <?php include 'header.php'; ?>
    <!--=============== MAIN ===============-->
   <main class="main">
-    <section class="wishlist section--lg container">
+    <section class="products section--lg container">
         <div class="search-container">
             <a href="add-Product.php" class="btn flex btn__md">
                 <i class="fi fi-rs-plus"></i> Thêm 1 sản phẩm mới
@@ -30,7 +30,7 @@ include 'db_connection.php';
                 <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
                 <a href="products.php" class="btn flex btn__md" style="cursor: pointer;  ">Nhập lại</a>
             </form>
-  </div>
+        </div>
 
             <table class="product-table">
                 <thead>
@@ -79,7 +79,7 @@ include 'db_connection.php';
                             <a href="edit-product.php?product-id=<?= $product['ProductID'] ?>"><i class="fi fi-rs-edit edit-icon"></i></a>
                             
                             <!-- Nút xem chi tiết -->
-                            <a href="show-product.php?product-id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
+                            <a href="../CLIENT_SIDE/details.php?id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
                             
                             <!-- Nút xóa -->
                             <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($product['ProductID']) ?>">

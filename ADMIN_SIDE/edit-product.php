@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea id="product-image-link" name="product-image-link" required><?= htmlspecialchars($product['Image'] ?? '') ?></textarea>
 
             <label for="product-note">Ghi chú:</label>
-            <textarea id="product-note" name="product-note" required><?= htmlspecialchars($product['Notes'] ?? '') ?></textarea>
+            <textarea id="product-note" name="product-note"><?= htmlspecialchars($product['Notes'] ?? '') ?></textarea>
 
             <br>
             <button type="submit">Cập nhật</button>
