@@ -1122,6 +1122,12 @@ table {
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
 }
+.pagination__dots {
+  position: relative;
+  top: 15px;
+  font-size: 14px;
+  color: black;
+}
 
 /*=============== DETAILS ===============*/
 .details__container {
