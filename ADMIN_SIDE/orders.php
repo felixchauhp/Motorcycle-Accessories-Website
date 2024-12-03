@@ -44,7 +44,7 @@ include 'db_connection.php';
                   <tr>
                     <th>Mã đơn hàng</th>
                     <th>Mã khách hàng</th>
-                    <th>Thành tiền</th>
+                    <th>Thành tiền (VND)</th>
                     <th>Ngày tạo đơn</th>
                     <th>Trạng thái</th>
                     <th>Thanh toán</th>
@@ -68,7 +68,7 @@ include 'db_connection.php';
                               <?= htmlspecialchars($order['CustomerID']) ?>
                   </td>
                     <td>
-                              <?= htmlspecialchars($order['TotalDue']) ?>
+                            <?= number_format($order['TotalDue'], 0, ',', '.'); ?>
                     </td>
                     <td>
                               <?= htmlspecialchars($order['OrderDate']) ?>
