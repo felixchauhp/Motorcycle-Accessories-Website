@@ -66,9 +66,9 @@ include 'db_connection.php';
                   alt="Product Image"
                   class="product__img default"
                   style ="max-width: 100%;
-  object-fit: cover;
-  width: 100%;  "
-                />
+object-fit: cover;
+width: 100%;  "
+                  />
                 <img
                   src="<?=  htmlspecialchars($productlist['Image']) ?>"
                   alt="Product Image"
