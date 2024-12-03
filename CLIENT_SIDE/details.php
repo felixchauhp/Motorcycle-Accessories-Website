@@ -49,22 +49,23 @@ include 'db_connection.php';
               <span class="new__price"><?= htmlspecialchars($product['SalePrice']) ?> VNĐ</span>
             </div>
             <p class="short__description">
+            Mô tả:
             <?= htmlspecialchars($product['Description']) ?>
             </p>
-            <p class="short__description" 
-            >
+            <p class="short__description" >
+            Công dụng:
             <?= htmlspecialchars($product['Usage']) ?>
             </p>
 
             <ul class="products__list">
               <li class="list__item flex">
-                <i class="fi-rs-crown"></i> Chính sách bảo hành: 6 tháng nếu có hư hỏng do nhà sản xuất.
+                <i class="fi-rs-crown"></i> Chính sách bảo hành cho tất cả các sản phẩm: 6 tháng nếu có hư hỏng do nhà sản xuất.
               </li>
               <li class="list__item flex">
-                <i class="fi-rs-refresh"></i> 3 ngày đổi trả.
+                <i class="fi-rs-refresh"></i> Chính sách đổi trả: 3 ngày kể từ ngày giao hàng.
               </li>
               <li class="list__item flex">
-                <i class="fi-rs-credit-card"></i> Nhận hàng, kiểm tra hàng và thanh toán
+                <i class="fi-rs-credit-card"></i> Với mọi đơn hàng, quý khách được quyền kiểm tra hàng rồi thanh toán.
               </li>
             </ul>
             <div class="details__action">

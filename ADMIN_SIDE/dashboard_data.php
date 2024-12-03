@@ -45,7 +45,9 @@ $total_orders_query = "SELECT COUNT(*) AS total_orders FROM orders WHERE OrderDa
 $total_orders_result = $conn->query($total_orders_query);
 $total_orders = $total_orders_result ? $total_orders_result->fetch_assoc()['total_orders'] : 0;
 
-// Tỷ lệ thành công và tỷ lệ hủy
-$success_rate = ($total_orders > 0) ? ($delivered_orders / $total_orders) * 100 : 0;
+// Tỷ lệ bàn giao và tỷ lệ hủy
+$success_rate = ($total_orders - $canceled_orders > 0) 
+    ? ($packed_orders / ($total_orders - $canceled_orders)) * 100 
+    : 0;
 $cancellation_rate = ($total_orders > 0) ? ($canceled_orders / $total_orders) * 100 : 0;
 ?>

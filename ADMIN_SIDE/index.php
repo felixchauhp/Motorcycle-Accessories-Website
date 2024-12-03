@@ -83,7 +83,7 @@ $end_date = $today;
         </div>
         <div class="info-box">
           <h3><?php echo number_format($success_rate, 2); ?>%</h3>
-          <p>Tỷ lệ đơn hàng thành công</p>
+          <p>Tỷ lệ đơn hàng bàn giao</p>
         </div>
         <div class="info-box">
           <h3><?php echo number_format($cancellation_rate, 2); ?>%</h3>
