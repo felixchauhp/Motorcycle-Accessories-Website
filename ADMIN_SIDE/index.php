@@ -74,7 +74,7 @@ $end_date = $today;
       <h2>Phân Tích Bán Hàng</h2>
       <div class="grid-container">
         <div class="info-box">
-          <h3><?php echo number_format($total_sales, 0, ',', '.'); ?> VNĐ</h3>
+          <h3><?php echo number_format($total_sales, 0, ',', '.'); ?> VND</h3>
           <p>Doanh số</p>
         </div>
         <div class="info-box">
