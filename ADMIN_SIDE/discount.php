@@ -34,7 +34,7 @@ include 'db_connection.php';
                         <th>Code</th>
                         <th>Số lượng</th>
                         <th>Phần trăm (%)</th>
-                        <th>Giá trị đơn hàng tối thiểu</th>
+                        <th>Đơn hàng tối thiểu (VND)</th>
                         <th>Bắt đầu</th>
                         <th>Kết thúc</th>
                         <th>Thao tác</th>
@@ -54,9 +54,8 @@ include 'db_connection.php';
             <tr>
                 <td><?= htmlspecialchars($promo['PromoName']) ?></td>
                 <td><?= htmlspecialchars($promo['PromoCode']) ?></td>
-                <td><?= htmlspecialchars($promo['Quantity']) ?></td>
-                <td><?= htmlspecialchars($promo['PromoRate']) ?></td>
-                <td><?= htmlspecialchars($promo['MinValue']) ?></td>
+                <td><?= number_format($promo['Quantity'], 0, ',', '.'); ?></td>                <td><?= number_format($promo['PromoRate'], 0, ',', '.'); ?></td>
+                <td><?= number_format($promo['MinValue'], 0, ',', '.'); ?></td>                
                 <td><?= htmlspecialchars($promo['StartDate']) ?></td>
                 <td><?= htmlspecialchars($promo['EndDate']) ?></td>
                 <td>

@@ -10,10 +10,11 @@ include 'db_connection.php';
   <?php include 'header.php'; ?>
     <!--=============== ORDER ===============-->   
     <main class="main">
-        <section class="wishlist section--lg container">
+        <section class="products section--lg container">
         <div class="search-container">
         <form method="GET" action="orders.php" class="right-actions">
-          <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
+        <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto;" />
+
           <!-- Lọc trạng thái -->
     <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
         <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
@@ -35,8 +36,8 @@ include 'db_connection.php';
           <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
             style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
           
-          <button type="submit" class="btn flex btn__md" style="cursor: pointer; width: 155px; ">Áp dụng</button>
-          <a href="orders.php" class="btn flex btn__md" style="cursor: pointer; width: 150px; ">Nhập lại</a>
+          <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
+          <a href="orders.php" class="btn flex btn__md" style="cursor: pointer;">Nhập lại</a>
         </form>
       </div>
               <table class="product-table">
@@ -44,7 +45,7 @@ include 'db_connection.php';
                   <tr>
                     <th>Mã đơn hàng</th>
                     <th>Mã khách hàng</th>
-                    <th>Thành tiền</th>
+                    <th>Thành tiền (VND)</th>
                     <th>Ngày tạo đơn</th>
                     <th>Trạng thái</th>
                     <th>Thanh toán</th>
@@ -68,7 +69,7 @@ include 'db_connection.php';
                               <?= htmlspecialchars($order['CustomerID']) ?>
                   </td>
                     <td>
-                              <?= htmlspecialchars($order['TotalDue']) ?>
+                            <?= number_format($order['TotalDue'], 0, ',', '.'); ?>
                     </td>
                     <td>
                               <?= htmlspecialchars($order['OrderDate']) ?>

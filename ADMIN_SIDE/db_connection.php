@@ -112,10 +112,10 @@ if ($startDate && $endDate && $customVar) {
 } else {
     // Nếu không có start_date và end_date từ liên kết, dùng các ô lọc thông thường
     if ($startDate) {
-        $whereClauses[] = "StartDate >= '{$conn->real_escape_string($startDate)}'"; // Bắt đầu >= ngày bắt đầu
+        $whereClauses[] = "StartDate <= '{$conn->real_escape_string($startDate)}'"; // Bắt đầu >= ngày bắt đầu
     }
     if ($endDate) {
-        $whereClauses[] = "EndDate <= '{$conn->real_escape_string($endDate)}'"; // Kết thúc <= ngày kết thúc
+        $whereClauses[] = "EndDate >= '{$conn->real_escape_string($endDate)}'"; // Kết thúc <= ngày kết thúc
     }
 }
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';

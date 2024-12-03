@@ -40,8 +40,8 @@ include 'db_connection.php';
                         <th>Tên</th>
                         <th>Danh mục</th>
                         <th>Tồn kho</th>
-                        <th>Giá gốc</th>
-                        <th>Giá bán</th>
+                        <th>Giá gốc (VND)</th>
+                        <th>Giá bán (VND)</th>
                         <th>Ghi chú</th>
                         <th>Thao tác</th>
                     </tr>
@@ -71,8 +71,8 @@ include 'db_connection.php';
                         <td><?= htmlspecialchars($product['ProductName']) ?></td>
                         <td><?= htmlspecialchars($productCategory) ?></td>
                         <td><?= htmlspecialchars($product['InStock']) ?></td>
-                        <td><?= htmlspecialchars($product['BasePrice']) ?></td>
-                        <td><?= htmlspecialchars($product['SalePrice']) ?></td>
+                        <td><?= number_format($product['BasePrice'], 0, ',', '.'); ?></td>
+                        <td><?= number_format($product['SalePrice'], 0, ',', '.'); ?></td>
                         <td><?= htmlspecialchars($product['Notes']) ?></td>
                         <td>
                             <!-- Nút chỉnh sửa -->
