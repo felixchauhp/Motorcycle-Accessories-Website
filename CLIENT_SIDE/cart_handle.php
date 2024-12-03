@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include 'db_connection.php';
@@ -98,5 +97,4 @@ foreach ($_SESSION['cart'] as $product) {
 // }
 
 // $total_after_discount = $total - $discount;
-// ?>
 // ?>

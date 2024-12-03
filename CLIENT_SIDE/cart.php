@@ -117,11 +117,11 @@
                 </tr>
                 <tr>
                   <td><span class="cart__total-title">Số tiền giảm giá</span></td>
-                  <td><span class="cart__total-price">10.000 VNĐ</span></td>
+                  <td><span class="cart__total-price">0.000 VNĐ</span></td>
                 </tr>
                 <tr>
                   <td><span class="cart__total-title">Tổng cộng</span></td>
-                  <td><span class="cart__total-price">1.000.000 VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
             </table>
             <a href="checkout.php" class="btn flex btn--md">
