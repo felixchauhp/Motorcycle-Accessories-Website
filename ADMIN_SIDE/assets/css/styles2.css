@@ -208,23 +208,6 @@
     background-color: #054c2a;
 }
 
-/* Image upload styles */
-#image-upload-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-#image-preview {
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 10px;
-}
-#image-preview img {
-    width: 100px;
-    height: auto;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
 
 /* Search and filter container styles */
 .search-container {
@@ -245,16 +228,6 @@
     gap: 0.75rem;
     flex-grow: 1; 
 }
-
-/* Icon styles */
-.edit-icon, .trash-icon, .tick-icon, .go-to-icon{
-    color: gray;
-    transition: color 0.3s;
-}
-.edit-icon:hover, .trash-icon:hover, .tick-icon:hover,.go-to-icon:hover {
-    color: red;
-}
-
 
 
 

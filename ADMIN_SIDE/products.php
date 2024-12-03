@@ -91,7 +91,7 @@ include 'db_connection.php';
                     <?php endif; ?>
                 </tbody>
             </table> 
-  <ul class="pagination">
+    <ul class="pagination">
     <?php
       // Lấy toàn bộ tham số GET hiện tại và loại bỏ tham số `page`
       $queryParams = $_GET;
@@ -130,7 +130,7 @@ include 'db_connection.php';
     <?php else: ?>
         <li><a href="#" class="pagination__link disabled">»</a></li>
     <?php endif; ?>
-</ul>
+    </ul>
                    <!-- Popup xác nhận xóa -->
                    <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
               <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -170,44 +170,6 @@ include 'db_connection.php';
  
 
         </section>
-
-        <div id="overlay" class="overlay"></div>
-<div id="productForm" class="modal">
-    <h2>Chỉnh sửa thông tin sản phẩm</h2>
-    <form id="save-product" method="POST">
-        <input type="hidden" id="product-id" name="product-id" />
-
-        <label for="product-name">Tên sản phẩm:</label>
-        <input type="text" id="product-name" name="product-name" required />
-
-        <label for="product-supplier">Nhà cung cấp:</label>
-        <input type="text" id="product-supplier" name="product-supplier" required />
-
-        <label for="product-category">Danh mục:</label>
-        <select id="product-category" name="product-category" required>
-            <option value="vo-xe-ruot-xe">Vỏ xe và ruột xe</option>
-            <option value="nhong-sen-dia">Nhông sên dĩa</option>
-            <option value="bac-dan">Bạc đạn</option>
-            <option value="nhot">Nhớt</option>
-            <option value="ac-quy">Ắc quy</option>
-            <option value="bo-dia-bo-thang">Bố đĩa và bố thắng</option>
-            <option value="phu-kien-khac">Các phụ kiện khác</option>
-        </select>
-
-        <label for="product-quantity">Tồn kho:</label>
-        <input type="number" id="product-quantity" name="product-quantity" required />
-
-        <label for="product-price">Giá bán:</label>
-        <input type="number" id="product-price" name="product-price" required />
-
-        <label for="product-note">Ghi chú:</label>
-        <textarea id="product-note" name="product-note" required></textarea>
-
-        <button type="submit">Lưu</button>
-    </form>
-</div>
-
-        </div>
     </main>
     
 
