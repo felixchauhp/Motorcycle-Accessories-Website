@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_connection.php';
 ?>
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ include 'db_connection.php';
       <section class="categories container section">
         <h3 class="section__title"><span>Danh mục</span> Sản phẩm</h3>
         <div class="categories__container swiper">
-          <div class="swiper-wrapper" style ="height: 280px;">
+          <div class="swiper-wrapper" style ="height: 290px;">
             <a href="shop.php" class="category__item swiper-slide">
               <img
                 src="assets/img/cat1.jpg"
@@ -112,7 +113,7 @@ include 'db_connection.php';
         <?php foreach ($products as $productlist):?>
             <div class="product__item">
               <div class="product__banner">
-              <a href="details.php" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
+              <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
                 <img
                   src="<?=  htmlspecialchars($productlist['Image']) ?>"
                   alt="Product Image"
@@ -134,10 +135,10 @@ include 'db_connection.php';
                 <h3 class="product__title"><?= htmlspecialchars($productlist['ProductName']) ?></h3>
               </a>
               <div class="product__price flex">
-                <span class="new__price"><?= htmlspecialchars($productlist['SalePrice']) ?> VNĐ</span>
+                <span class="new__price"><?= number_format($productlist['SalePrice'], 0, ',', '.') ?> VNĐ</span>
               </div>
               <a
-                href="#"
+                href="cart.php?action=add&ProductID=<?= htmlspecialchars($productlist['ProductID']) ?>"
                 class="action__btn cart__btn"
                 aria-label="Add To Cart"
               >
