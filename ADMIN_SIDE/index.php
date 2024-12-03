@@ -32,31 +32,31 @@ $end_date = $today;
 
       <h2>Danh sách cần làm</h2>
       <div class="grid-container">
-        <a href="quanlydonhang.php?status=<?= urlencode('Đã xác nhận') ?>&start_date=<?= date('Y-m-d') ?>">
+        <a href="orders.php?status=<?= urlencode('Đã xác nhận') ?>&start_date=<?= date('Y-m-d') ?>">
         <div class="info-box">
           <h3><?php echo $confirmed_orders; ?></h3>
           <p>Đã xác nhận</p>
         </div>
         </a>
-        <a href="quanlydonhang.php?status=<?= urlencode('Đã đóng gói') ?>&start_date=<?= date('Y-m-d') ?>">
+        <a href="orders.php?status=<?= urlencode('Đã đóng gói') ?>&start_date=<?= date('Y-m-d') ?>">
         <div class="info-box">
           <h3><?php echo $packed_orders; ?></h3>
           <p>Đã đóng gói</p>
         </div>
         </a>
-        <a href="quanlydonhang.php?status=<?= urlencode('Đã giao') ?>&start_date=<?= date('Y-m-d') ?>">
+        <a href="orders.php?status=<?= urlencode('Đã giao') ?>&start_date=<?= date('Y-m-d') ?>">
         <div class="info-box">
           <h3><?php echo $delivered_orders; ?></h3>
           <p>Đã giao</p>
         </div>
         </a>
-        <a href="quanlydonhang.php?status=<?= urlencode('Đã hủy') ?>&start_date=<?= date('Y-m-d') ?>">
+        <a href="orders.php?status=<?= urlencode('Đã hủy') ?>&start_date=<?= date('Y-m-d') ?>">
         <div class="info-box">
           <h3><?php echo $canceled_orders; ?></h3>
           <p>Đơn Hủy</p>
         </div>
         </a>
-        <a href="productManage.php?filter=out_of_stock">
+        <a href="products.php?filter=out_of_stock">
         <div class="info-box">
           <h3><?php echo $out_of_stock; ?></h3>
           <p>Hết Hàng</p>

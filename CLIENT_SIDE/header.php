@@ -69,11 +69,9 @@ if (session_id() == '') {
       <div class="header__user-actions">
         <a href="" class="header__action-btn" title="Wishlist">
           <img src="assets/img/bell.svg" alt="" />
-          <span class="count">3</span>
         </a>
         <a href="cart.php" class="header__action-btn" title="Cart">
           <img src="assets/img/icon-cart.svg" alt="" />
-          <span class="count">3</span>
         </a>
       <div class="dropdown w-100 mt-2">
         <a

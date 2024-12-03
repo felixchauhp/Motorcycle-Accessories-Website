@@ -1,9 +1,8 @@
-<?php
-include 'db_connection.php';
-?>
+<?php include 'cart_handle.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
     <!--=============== DOCUMENT HEAD ===============-->
     <?php include 'head.php'; ?>
 
@@ -24,6 +23,9 @@ include 'db_connection.php';
 
       <!--=============== CART ===============-->
       <section class="cart section--lg container">
+      <?php if (empty($_SESSION['cart'])): ?>
+            <p>Hic, giỏ hàng của bạn đang trống.</p>
+        <?php else: ?>
         <div class="table__container">
           <table class="table">
             <thead>
@@ -36,38 +38,46 @@ include 'db_connection.php';
               </tr>
             </thead>
             <tbody>
+            <?php foreach ($_SESSION['cart'] as $id => $item): ?>
               <tr>
                 <td>
                   <img
-                    src="./assets//img/product-1-2.jpg"
-                    alt=""
+                  src="<?= htmlspecialchars($item['image']) ?>"
+                    alt="Product Image"
                     class="table__img"
                   />
                 </td>
                 <td>
                   <h3 class="table__title">
-                    Sản phẩm
+                  <?= htmlspecialchars($item['name']) ?>
                   </h3>
                   <p class="table__description">
                     Mô tả.
                   </p>
                 </td>
                 <td>
-                  <span class="table__price">110.000 VNĐ</span>
+                  <span class="table__price"><?= number_format($item['price']) ?> VNĐ</span>
                 </td>
-                <td><input type="number" value="3" class="quantity" /></td>
-                <td><span class="subtotal">330.000 VNĐ</span></td>
-                <td><i class="fi fi-rs-trash table__trash"></i></td>
+                <td><input type="number" value="<?= $item['quantity'] ?>" class="quantity" readonly /></td>
+                <td><span class="subtotal"><?= number_format($item['price'] * $item['quantity']) ?> VNĐ</span></td>
+
+                <td>
+                <a href="cart.php?action=remove&ProductID=<?= $id ?>" class="table__trash">
+                        <i class="fi fi-rs-trash"></i>
+                      </a>
+                </td>
               </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
+          <?php endif; ?>
         </div>
 
         <div class="cart__actions">
           <a href="#" class="btn flex btn__md">
             <i class="fi-rs-shuffle"></i> Cập nhật giỏ hàng
           </a>
-          <a href="#" class="btn flex btn__md">
+          <a href="shop.php" class="btn flex btn__md">
             <i class="fi-rs-shopping-bag"></i> Tiếp tục mua hàng
           </a>
         </div>
@@ -84,11 +94,12 @@ include 'db_connection.php';
                 <div class="form__group grid">
                   <input
                     type="text"
+                    name="promo_code"
                     class="form__input"
                     placeholder="Enter Your Coupon"
                   />
                   <div class="form__btn">
-                    <button class="btn flex btn--sm">
+                    <button class="btn flex btn--sm" type="submit" name="apply_promo">
                       <i class="fi-rs-label"></i> Sử dụng
                     </button>
                   </div>
@@ -102,22 +113,23 @@ include 'db_connection.php';
             <table class="cart__total-table">
                 <tr>
                   <td><span class="cart__total-title">Thành tiền</span></td>
-                  <td><span class="cart__total-price">990.000 VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
                 <tr>
-                  <td><span class="cart__total-title">Phí vận chuyển</span></td>
-                  <td><span class="cart__total-price">10.000 VNĐ</span></td>
+                  <td><span class="cart__total-title">Số tiền giảm giá</span></td>
+                  <td><span class="cart__total-price">0.000 VNĐ</span></td>
                 </tr>
                 <tr>
                   <td><span class="cart__total-title">Tổng cộng</span></td>
-                  <td><span class="cart__total-price">1.000.000 VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
             </table>
-            <a href="checkout.html" class="btn flex btn--md">
+            <a href="checkout.php" class="btn flex btn--md">
               <i class="fi fi-rs-box-alt"></i> Tiến hành thanh toán
             </a>
           </div>
         </div>
+
       </section>
     </main>
 

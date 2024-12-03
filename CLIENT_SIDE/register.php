@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $re_password = $_POST['re_password'];
 
     $name_parts = explode(' ', $fullname);
-    $lname = array_pop($name_parts);
-    $fname = implode(' ', $name_parts);
+    $fname = array_pop($name_parts);
+    $lname = implode(' ', $name_parts);
 
     $customerID = generateUniqueId('CUST', $pdo, 'CustomerID', 'customers');
     $accountID = generateUniqueId('ACC', $pdo, 'AccountID', 'customers');

@@ -1,0 +1,260 @@
+/* Table styles */
+.product-table, .discount-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: none; /* Bỏ viền ngoài của bảng */
+}
+
+.product-table th, .product-table td, .discount-table th, .discount-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color-alt);
+}
+
+.product-table th:first-child, .discount-table th:first-child,
+.product-table td:first-child, .discount-table td:first-child {
+    border-left: none; /* Loại bỏ viền trái của các cột đầu tiên */
+}
+
+.product-table th:last-child, .discount-table th:last-child,
+.product-table td:last-child, .discount-table td:last-child {
+    border-right: none; /* Loại bỏ viền phải của các cột cuối cùng */
+}
+
+/* Giữ lại viền ngang ở tất cả các dòng (trừ dòng đầu và dòng cuối cùng) */
+.product-table tr:first-child, .discount-table tr:first-child {
+    border-top: none; /* Loại bỏ viền trên của dòng đầu tiên */
+}
+
+.product-table tr:last-child, .discount-table tr:last-child {
+    border-bottom: none; /* Loại bỏ viền dưới của dòng cuối cùng */
+}
+
+/* Pagination styles */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination__link {
+    margin: 0 5px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #000;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.pagination__link.active {
+    background-color: var(--first-color);
+    color: white;
+}
+.pagination__link:hover {
+    background-color: #e0e0e0;
+}
+.pagination__dots {
+    position: relative;
+    top: 15px;
+    font-size: 14px;
+    color: black;
+}
+
+/* Modal styles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    
+}
+
+/* Form styles */
+#productForm, #promotionForm {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+#productForm h2, #promotionForm h2 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--first-color);
+    font-weight: bold;
+}
+#productForm label, #promotionForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+#productForm input[type="text"],
+#productForm input[type="number"],
+#productForm input[type="file"],
+#productForm textarea,
+#productForm select,
+#promotionForm input[type="text"],
+#promotionForm input[type="number"],
+#promotionForm textarea,
+#promotionForm select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+#productForm select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#productForm select:focus {
+    border-color: var(--first-color); /* Thêm màu sắc khi focus */
+    outline: none;
+}
+
+#product-info,
+#product-note {
+    height: 100px;
+    resize: none;
+}
+#product-prices {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+#product-prices div {
+    flex: 1;
+    margin-right: 10px;
+}
+#product-prices div:last-child {
+    margin-right: 0;
+}
+#product-dates {
+    display: flex;
+    gap: 45px;
+    margin-bottom: 15px;
+} 
+#product-dates input[type="date"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0;
+}
+#promotion-dates {
+    display: flex;
+    gap: 50px; /* Khoảng cách giữa các ô */
+    margin-bottom: 15px;
+}
+
+#promotion-dates input[type="date"] {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của ô chứa */
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0; /* Không có margin */
+}
+.radio-group {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các ô tròn */
+    margin-bottom: 0;
+}
+#productForm button[type="submit"], #promotionForm button[type="submit"] {
+    background-color: var(--first-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+#productForm button[type="submit"]:hover, #promotionForm button[type="submit"]:hover {
+    background-color: #054c2a;
+}
+
+/* Image upload styles */
+#image-upload-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#image-preview {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+#image-preview img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Search and filter container styles */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 10px;
+}
+#search-input, #filter-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px; 
+}
+.search-container .right-actions {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 0.75rem;
+    flex-grow: 1; 
+}
+
+/* Icon styles */
+.edit-icon, .trash-icon, .tick-icon, .go-to-icon{
+    color: gray;
+    transition: color 0.3s;
+}
+.edit-icon:hover, .trash-icon:hover, .tick-icon:hover,.go-to-icon:hover {
+    color: red;
+}
+
+
+
+

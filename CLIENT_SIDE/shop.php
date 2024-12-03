@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_connection.php';
 ?>
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ include 'db_connection.php';
       <section class="categories container section">
         <h3 class="section__title"><span>Danh mục</span> Sản phẩm</h3>
         <div class="categories__container swiper">
-          <div class="swiper-wrapper" style ="height: 280px;">
+          <div class="swiper-wrapper" style ="height: 290px;">
             <a href="shop.php" class="category__item swiper-slide">
               <img
                 src="assets/img/cat1.jpg"
@@ -103,16 +104,39 @@ include 'db_connection.php';
         </div>
       </section>
       
-      <!--=============== PRODUCTS ===============-->
+
+      <section class="wishlist section--lg container">
+        <div class="search-container">
+            <form method="GET" action="shop.php" class="right-actions">
+                <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
+                <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit;">
+                    <option value="" <?= !isset($_GET['filter']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+                    <option value="Ắc quy" <?= isset($_GET['filter']) && $_GET['filter'] === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
+                    <option value="Bạc đạn" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>   
+                    <option value="Bố đĩa và bố thắng" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>
+                    <option value="Nhông sên dĩa" <?= isset($_GET['filter']) && $_GET['filter'] === 'Nhông sên dĩa' ? 'selected' : '' ?>>Nhông sên dĩa</option>
+                    <option value="Nhớt" <?= isset($_GET['filter']) && $_GET['filter'] === 'Nhớt' ? 'selected' : '' ?>>Nhớt</option>
+                    <option value="Vỏ xe và ruột xe" <?= isset($_GET['filter']) && $_GET['filter'] === 'Vỏ xe và ruột xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
+                    <option value="Các phụ kiện khác" <?= isset($_GET['filter']) && $_GET['filter'] === 'Các phụ kiện khác' ? 'selected' : '' ?>>Các phụ kiện khác</option>
+                </select>
+                <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Áp dụng</button>
+                <a href="shop.php" class="btn flex btn__md" style="cursor: pointer; ">Nhập lại</a>
+            </form>
+        </div>
+      </section>
+
+
       <section class="products container section--lg">
         <div class="products__container grid">
         <?php if (empty($products)): ?>
-            <p> Không tồn tại sản phẩm bạn đang tìm</p>
+          <div style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+        Không tồn tại sản phẩm bạn đang tìm: "<?= htmlspecialchars($search) ?>"
+    </div>
         <?php else: ?>
         <?php foreach ($products as $productlist):?>
             <div class="product__item">
               <div class="product__banner">
-              <a href="details.php" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
+              <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
                 <img
                   src="<?=  htmlspecialchars($productlist['Image']) ?>"
                   alt="Product Image"
@@ -134,10 +158,10 @@ include 'db_connection.php';
                 <h3 class="product__title"><?= htmlspecialchars($productlist['ProductName']) ?></h3>
               </a>
               <div class="product__price flex">
-                <span class="new__price"><?= htmlspecialchars($productlist['SalePrice']) ?> VNĐ</span>
+                <span class="new__price"><?= number_format($productlist['SalePrice'], 0, ',', '.') ?> VNĐ</span>
               </div>
               <a
-                href="#"
+                href="cart.php?action=add&ProductID=<?= htmlspecialchars($productlist['ProductID']) ?>"
                 class="action__btn cart__btn"
                 aria-label="Add To Cart"
               >
@@ -152,12 +176,13 @@ include 'db_connection.php';
     <ul class="pagination">
     <?php
     // Cơ sở URL cho phân trang
-    $queryParams = [];
-    if ($search_input) $queryParams['search_input'] = $search_input;
-    $baseUrl = 'shop.php?' . http_build_query($queryParams);
+    $queryParams = $_GET;
+    unset($queryParams['page']);
 
-    // Nút "trang trước"
-    if ($currentPage > 1): ?>
+    $baseUrl = 'shop.php?' . http_build_query($queryParams);
+    ?>
+    <!-- Nút trang trước -->
+    <?php  if ($currentPage > 1): ?>
         <li><a href="<?= $baseUrl ?>&page=<?= $currentPage - 1 ?>" class="pagination__link">«</a></li>
     <?php else: ?>
         <li><a href="#" class="pagination__link disabled">«</a></li>

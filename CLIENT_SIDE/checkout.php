@@ -1,3 +1,7 @@
+<?php
+include 'cart_handle.php';
+?>
+<?php include 'checkout_handle.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <!--=============== DOCUMENT HEAD ===============-->
@@ -23,21 +27,18 @@
         <div class="checkout__container container grid">
           <div class="checkout__group">
             <h3 class="section__title">Thông tin cá nhân</h3>
-            <form class="form grid">
-              <input type="text" placeholder="Họ và tên" class="form__input" />
-              <input type="text" placeholder="Địa chỉ" class="form__input" />
-              <input type="text" placeholder="Số điện thoại" class="form__input" />
-              <input type="email" placeholder="Email" class="form__input" />
-              <h3 class="checkout__title">Ghi chú giao hàng:</h3>
-              <textarea
-                name=""
-                placeholder="Giao ngoài giờ hành chính, v.v.."
-                class="form__input textarea"
-              ></textarea>
+            <form class="form grid" method="POST" action="checkout_handle.php">
+              <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" required/>
+              <input type="text" name="address" placeholder="Địa chỉ" class="form__input" required/>
+              <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
+              <input type="email" name="email" placeholder="Email" class="form__input" required/>
             </form>
           </div>
           <div class="checkout__group">
             <h3 class="section__title">Chi tiết đơn hàng</h3>
+            <?php if (empty($_SESSION['cart'])): ?>
+            <p>Không có sản phẩm trong đơn hàng.</p>
+            <?php else: ?>
             <table class="order__table">
               <thead>
                 <tr>
@@ -45,68 +46,27 @@
                   <th>Thành tiền</th>
                 </tr>
               </thead>
-
+              <?php foreach ($_SESSION['cart'] as $id => $item): ?>
               <tbody>
                 <tr>
                   <td>
                     <img
-                      src="./assets/img/product-1-2.jpg"
+                      src="<?= htmlspecialchars($item['image']) ?>"
                       alt=""
                       class="order__img"
                     />
                   </td>
                   <td>
-                    <h3 class="table__title">Sản phẩm</h3>
-                    <p class="table__quantity">x 2</p>
+                    <h3 class="table__title"><?= htmlspecialchars($item['name']) ?></h3>
+                    <p class="table__quantity">x <?= $item['quantity'] ?></p>
                   </td>
-                  <td><span class="table__price">200.000 VNĐ</span></td>
+                  <td><span class="table__price"><?= number_format($item['price']) ?> VNĐ</span></td>
                 </tr>
-                <tr>
-                  <td>
-                    <img
-                      src="./assets/img/product-2-1.jpg"
-                      alt=""
-                      class="order__img"
-                    />
-                  </td>
-                  <td>
-                    <h3 class="table__title">Sản phẩm</h3>
-                    <p class="table__quantity">x 1</p>
-                  </td>
-                  <td><span class="table__price">100.000 VNĐ</span></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      src="./assets/img/product-7-1.jpg"
-                      alt=""
-                      class="order__img"
-                    />
-                  </td>
-                  <td>
-                    <h3 class="table__title">Sản phẩm</h3>
-                    <p class="table__quantity">x 2</p>
-                  </td>
-                  <td><span class="table__price">200.000 VNĐ</span></td>
-                </tr>
-                <tr>
-                  <td><span class="order__subtitle">Thành tiền</span></td>
-                  <td colspan="2"><span class="table__price">500.000 VNĐ</span></td>
-                </tr>
-                <tr>
-                  <td><span class="order__subtitle">Phí vận chuyển</span></td>
-                  <td colspan="2">
-                    <span class="table__price">15.000 VNĐ</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td><span class="order__subtitle">Tổng thanh toán</span></td>
-                  <td colspan="2">
-                    <span class="order__grand-total">515.000 VNĐ</span>
-                  </td>
-                </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
+            <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($total, 0, ',', '.') ?> VNĐ</span></h3>
+            <?php endif; ?>
             <div class="payment__methods">
               <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
               <div class="payment__option flex">
@@ -140,11 +100,17 @@
                 <label for="l3" class="payment__label">Quét mã QR VNPay</label>
               </div>
             </div>
-            <button class="btn btn--md">Đặt hàng</button>
+            <button type="submit" name="place_order" class="btn btn--md">Đặt hàng</button>
           </div>
         </div>
       </section>
-
+      <?php if (isset($_SESSION['order_success'])): ?>
+      <p class="alert alert-success">Đặt hàng thành công!</p>
+      <?php unset($_SESSION['order_success']); ?>
+      <?php elseif (isset($_SESSION['order_error'])): ?>
+        <p class="alert alert-error"><?= $_SESSION['order_error'] ?></p>
+      <?php unset($_SESSION['order_error']); ?>
+      <?php endif; ?>
     <!--=============== NEWSLETTER ===============-->
     <section class="newsletter section home__newsletter">
       <div class="newsletter__container container grid">
