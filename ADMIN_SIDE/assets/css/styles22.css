@@ -154,7 +154,7 @@
     justify-content: flex-end; 
     gap: 10px;
 }
-#search-input, #filter-input {
+#search-input, #filter-input, #payment-filter, #status-filter, #start-date, #end-date{
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

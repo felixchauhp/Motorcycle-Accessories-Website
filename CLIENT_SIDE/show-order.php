@@ -129,13 +129,7 @@ if (isset($_GET['OrderID'])) {
                         Quay lại
                     </button>
 
-                    <!-- Nút chỉnh sửa -->
-                    <button 
-                        type="button" 
-                        class="btn flex btn__md" 
-                        onclick="window.location.href='edit-order.php?OrderID=<?= urlencode($order['OrderID']); ?>'">
-                        Chỉnh sửa
-                    </button>
+
         </div>
 
     </section>

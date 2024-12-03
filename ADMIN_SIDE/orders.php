@@ -31,11 +31,8 @@ include 'db_connection.php';
         <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
         <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
     </select>
-          <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>"
-            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
-          <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
-            style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
-          
+          <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>">
+          <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>">
           <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
           <a href="orders.php" class="btn flex btn__md" style="cursor: pointer;">Nhập lại</a>
         </form>

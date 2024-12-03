@@ -27,6 +27,6 @@
     <link rel="stylesheet" href=".\assets\css\styles.css" />
     <link rel="stylesheet" href=".\assets\css\order.css" />
     <link rel="stylesheet" href=".\assets\css\stylessnow.css" />
-    <link rel="stylesheet" href=".\assets\css\stylessbp.css" />
+    <link rel="stylesheet" href=".\assets\css\stypebp.css" />
     <title>MotorCycle</title>
   </head>

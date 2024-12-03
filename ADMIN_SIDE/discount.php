@@ -18,11 +18,8 @@ include 'db_connection.php';
                 </a>
                 <form method="GET" action="discount.php" class="right-actions">
                     <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
-                    <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>"
-                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
-                    <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>"
-                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 180px; box-sizing: border-box; margin-left: 10px; margin-right: 10px;">
-                    
+                    <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>">
+                    <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>">
                         <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
                     <a href="discount.php" class="btn flex btn__md">Nhập lại</a>
                 </form>

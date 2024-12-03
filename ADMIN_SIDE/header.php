@@ -24,6 +24,9 @@
 
         <ul class="nav__list">
           <li class="nav__item">
+            <a href="index.php" class="nav__link">Trang chủ</a>
+          </li>
+          <li class="nav__item">
             <a href="products.php" class="nav__link">Sản phẩm</a>
           </li>
           <li class="nav__item">

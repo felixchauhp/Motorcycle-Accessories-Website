@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
             </div>
             <div class="tab__content" content id="orders">
-              <h3 class="tab__header">Your Orders</h3>
+              <h3 class="tab__header">Đơn hàng của bạn</h3>
               <div class="tab__body">
                 <table class="placed__order-table">
                   <?php
@@ -185,12 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   ?>
                   <thead>
                     <tr>
-                      <th>Orders</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Payment</th>
-                      <th>Totals</th>
-                      <th>Actions</th>
+                      <th>Mã đơn hàng</th>
+                      <th>Ngày đặt hàng</th>
+                      <th>Trạng thái</th>
+                      <th>Thanh toán</th>
+                      <th>Tổng thanh toán</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -207,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?php echo $order['OrderStatus']; ?></td>
                         <td><?php echo $order['PaymentStatus']; ?></td>
                         <td><?php echo number_format($order['TotalDue'], 2); ?> VNĐ</td>
-                        <td><a href="show-order.php?OrderID=<?php echo $order['OrderID']; ?>" class="view__order">View</a></td>
+                        <td><a href="show-order.php?OrderID=<?php echo $order['OrderID']; ?>" class="view__order">Chi tiết</a></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
