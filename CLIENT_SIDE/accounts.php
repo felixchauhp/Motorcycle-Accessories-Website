@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="search-container">
                   <form method="GET" action="accounts.php" class="right-actions">
                   <input type="hidden" name="active_tab" value="orders">
-                  <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto;" />
+                  <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto; width:100px;" />
 
                   <!-- Lọc trạng thái -->
                   <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
