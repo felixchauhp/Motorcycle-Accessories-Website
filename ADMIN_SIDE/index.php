@@ -1,10 +1,11 @@
-<?php include 'dashboard_data.php'; ?>
+<?php 
+session_start();
+include 'checklogin.php';
+include 'dashboard_data.php'; 
+?>
 <a?php
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");
-    exit();
-}
+
 
 // Lấy ngày hiện tại
 $today = date('Y-m-d');

@@ -4,6 +4,22 @@ $dbname = 'motorcycle';
 $user = 'caotuan';
 $password = 'AVNS_hti9_ONmu8qTVi8uTAl';
 
+// Kiểm tra nếu người dùng đã đăng nhập
+$current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
+if (!isset($_SESSION['customer_id'])) {
+    // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
+    if ($current_page !== 'login.php') {
+        header("Location: login.php");
+        exit;
+   }
+} else {
+    // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
+    if ($current_page === 'login.php') {
+        header("Location: index.php");
+        exit;
+    }
+}
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,9 +43,13 @@ $statusFilter = $_GET['status'] ?? '';
 $paymentFilter = $_GET['payment'] ?? '';
 
 
-$whereClauses[] = "CustomerID = :customerID";
-$params[':customerID'] = $_SESSION['customer_id'];
+$params = [];
+$whereClauses = [];
 
+if (isset($_SESSION['customer_id'])) {
+  $whereClauses[] = "CustomerID = :customerID";
+  $params[':customerID'] = $_SESSION['customer_id'];
+}
 if ($search) {
     $whereClauses[] = "(OrderID LIKE :search)";
     $params[':search'] = "%$search%";
@@ -63,24 +83,22 @@ $stmt->execute();
 $totalOrders = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 $totalOrderPages = ceil($totalOrders / $itemsPerPage);
 
-// Truy vấn đơn hàng
-$orderQuery = "SELECT OrderID, OrderDate, OrderStatus, PaymentStatus, TotalDue 
-               FROM orders 
-               $whereSQL 
-               AND CustomerID = :customerID 
-               ORDER BY OrderDate DESC 
-               LIMIT :start, :itemsPerPage";
-$stmt = $pdo->prepare($orderQuery);
+$orders = []; // Khởi tạo danh sách đơn hàng rỗng
+if (isset($_SESSION['customer_id'])) {
+    $orderQuery = "SELECT OrderID, OrderDate, OrderStatus, PaymentStatus, TotalDue 
+                   FROM orders 
+                   $whereSQL 
+                   ORDER BY OrderDate DESC 
+                   LIMIT :start, :itemsPerPage";
+    $stmt = $pdo->prepare($orderQuery);
 
-// Gán giá trị cho các tham số
-foreach ($params as $key => $value) {
-    $stmt->bindValue($key, $value);
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
+    $stmt->bindValue(':start', $start, PDO::PARAM_INT);
+    $stmt->bindValue(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+    $stmt->execute();
+    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-$stmt->bindValue(':customerID', $_SESSION['customer_id'], PDO::PARAM_STR); // Thêm tham số CustomerID
-$stmt->bindValue(':start', $start, PDO::PARAM_INT);
-$stmt->bindValue(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
-
-$stmt->execute();
-$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

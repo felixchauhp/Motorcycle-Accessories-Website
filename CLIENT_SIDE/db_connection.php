@@ -1,10 +1,10 @@
 <?php
 // Cấu hình kết nối tới cơ sở dữ liệu MySQL trên Aiven
-$host = 'motorcycle-da-ktdl.j.aivencloud.com'; // Thay bằng hostname của Aiven MySQL
-$port = 17160; // Cổng mặc định của MySQL
-$username = 'baophuc'; // Thay bằng tên đăng nhập của bạn
-$password = 'AVNS_Y0CHLEKwLz75-i0dayg'; // Thay bằng mật khẩu của bạn
-$database = 'motorcycle'; // Thay bằng tên cơ sở dữ liệu của bạn
+$host = 'motorcycle-da-ktdl.j.aivencloud.com:17160';
+$dbname = 'motorcycle';
+$user = 'caotuan';
+$password = 'AVNS_hti9_ONmu8qTVi8uTAl';
+
 
 // Kết nối với MySQL
 $conn = new mysqli($host, $username, $password, $database, $port);
@@ -14,7 +14,20 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 //     die("Kết nối thất bại: " . $conn->connect_error);
 // }
 // echo "Kết nối thành công!";
-
+$current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
+if (!isset($_SESSION['customer_id'])) {
+    // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
+     if ($current_page !== 'login.php') {
+        header("Location: login.php");
+        exit;
+    }
+} else {
+    // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
+    if ($current_page === 'login.php') {
+        header("Location: index.php");
+        exit;
+    }
+}
 
   
 // Truy vấn 10 sản phẩm có InStock cao nhất trong bảng products

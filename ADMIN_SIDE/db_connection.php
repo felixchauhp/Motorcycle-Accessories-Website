@@ -16,7 +16,7 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 // echo "Kết nối thành công!";
 
 
-  
+
 // Cấu hình phân trang
 $itemsPerPage = 20;
 $currentPage = $_GET['page'] ?? 1;
