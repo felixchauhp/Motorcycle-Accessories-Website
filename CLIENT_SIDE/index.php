@@ -77,7 +77,10 @@ include 'db_connection.php';
         </div>
         <!-- Kiểm tra nếu sản phẩm thuộc danh sách nổi bật -->
         <?php if (in_array($product['ProductID'], $topInStockProducts)): ?>
-            <div class="product__badge light-pink">Nổi bật</div>
+            <div class="product__badge light-green">Nổi bật</div>
+        <?php endif; ?>
+        <?php if (in_array($product['ProductID'], $topInStockProducts2)): ?>
+            <div class="product__badge light-pink">Yêu thích</div>
         <?php endif; ?>
     </div>
     <div class="product__content">

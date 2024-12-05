@@ -17,55 +17,78 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 
 
   
-// Cấu hình phân trang
-$itemsPerPage = 20;
-$currentPage = $_GET['page'] ?? 1;
-$start = ($currentPage - 1) * $itemsPerPage;
-
-// Truy vấn 10 sản phẩm có InStock cao nhất
+// Truy vấn 10 sản phẩm có InStock cao nhất trong bảng products
 $topInStockQuery = "SELECT ProductID FROM products ORDER BY InStock DESC LIMIT 10";
 $topInStockResult = $conn->query($topInStockQuery);
-
-// Lưu danh sách ProductID vào một mảng
 $topInStockProducts = [];
-if ($topInStockResult->num_rows > 0) {
+if ($topInStockResult && $topInStockResult->num_rows > 0) {
     while ($row = $topInStockResult->fetch_assoc()) {
         $topInStockProducts[] = $row['ProductID'];
     }
 }
 
+// Truy vấn 10 sản phẩm có tổng InStock cao nhất trong bảng products_in_orders
+$topInStockQuery2 = "
+    SELECT p.ProductID, SUM(p.InStock) AS totalInStock
+    FROM products_in_orders p
+    GROUP BY p.ProductID
+    ORDER BY totalInStock DESC
+    LIMIT 10
+";
+$topInStockResult2 = $conn->query($topInStockQuery2);
+$topInStockProducts2 = [];
+if ($topInStockResult2 && $topInStockResult2->num_rows > 0) {
+    while ($row = $topInStockResult2->fetch_assoc()) {
+        $topInStockProducts2[] = $row['ProductID'];
+    }
+}
 
-// 1. Phân trang cho bảng sản phẩm
+// Cấu hình phân trang
+$itemsPerPage = 20;
+$currentPage = $_GET['page'] ?? 1;
+$start = ($currentPage - 1) * $itemsPerPage;
+
+// Bộ lọc tìm kiếm và phân trang
 $search = $_GET['search'] ?? '';
 $filter = $_GET['filter'] ?? '';
 $featured = isset($_GET['featured']) ? true : false;
 $popular = isset($_GET['popular']) ? true : false;
+
 $whereClauses = [];
-if ($search) $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
+if ($search) {
+    $search = $conn->real_escape_string($search);
+    $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
+}
 if ($filter === 'out_of_stock') {
     $whereClauses[] = "p.InStock = 0";
 } elseif ($filter) {
-    $whereClauses[] = "c.Category = '{$conn->real_escape_string($filter)}'";
+    $filter = $conn->real_escape_string($filter);
+    $whereClauses[] = "c.Category = '$filter'";
 }
-if ($featured) {
-      $whereClauses[] = "p.ProductID IN ('" . implode("','", $topInStockProducts) . "')";
+if ($featured && !empty($topInStockProducts)) {
+    $whereClauses[] = "p.ProductID IN ('" . implode("','", $topInStockProducts) . "')";
 }
-if($popular){
-
+if ($popular && !empty($topInStockProducts2)) {
+    $whereClauses[] = "p.ProductID IN ('" . implode("','", $topInStockProducts2) . "')";
 }
 
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
 
 // Tổng số sản phẩm
 $totalQuery = "SELECT COUNT(*) as total FROM products p LEFT JOIN products_in_category c ON p.ProductID = c.ProductID $whereSQL";
-$totalItems = $conn->query($totalQuery)->fetch_assoc()['total'];
+$totalItemsResult = $conn->query($totalQuery);
+$totalItems = $totalItemsResult ? $totalItemsResult->fetch_assoc()['total'] : 0;
 $totalPages = ceil($totalItems / $itemsPerPage);
 
-  // Lấy sản phẩm theo điều kiện tìm kiếm và phân trang
-  $query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier
-            FROM products p
-            LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
-            $whereSQL LIMIT $start, $itemsPerPage";
+// Lấy sản phẩm theo điều kiện tìm kiếm và phân trang
+$query = "
+    SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier
+    FROM products p
+    LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
+    $whereSQL
+    LIMIT $start, $itemsPerPage
+";
+
 
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
