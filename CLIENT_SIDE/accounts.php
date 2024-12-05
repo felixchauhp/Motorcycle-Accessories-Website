@@ -170,6 +170,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <h3 class="tab__header">Đơn hàng của bạn</h3>
               <div class="tab__body">
                 <table class="placed__order-table">
+                <div class="search-container">
+        <form method="GET" action="accounts.php" class="right-actions">
+        <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto;" />
+
+          <!-- Lọc trạng thái -->
+    <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+        <option value="Đã xác nhận" <?= isset($_GET['status']) && $_GET['status'] === 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
+        <option value="Đã đóng gói" <?= isset($_GET['status']) && $_GET['status'] === 'Đã đóng gói' ? 'selected' : '' ?>>Đã đóng gói</option>
+        <option value="Đã giao" <?= isset($_GET['status']) && $_GET['status'] === 'Đã giao' ? 'selected' : '' ?>>Đã giao</option>
+        <option value="Đã hủy" <?= isset($_GET['status']) && $_GET['status'] === 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
+    </select>
+
+    <!-- Lọc thanh toán -->
+    <select id="payment-filter" name="payment" style="font-family: inherit; font-size: inherit;">
+        <option value="" <?= !isset($_GET['payment']) ? 'selected' : '' ?>>Tất cả thanh toán</option>
+        <option value="Thành công" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thành công' ? 'selected' : '' ?>>Thành công</option>
+        <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
+        <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
+    </select>
+          <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>">
+          <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>">
+          <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
+          <a href="accounts.php" class="btn flex btn__md" style="cursor: pointer;">Nhập lại</a>
+        </form>
+      </div>
                   <?php
                   // Thiết lập locale cho tiếng Việt
                     setlocale(LC_TIME, 'vi_VN.UTF-8');
