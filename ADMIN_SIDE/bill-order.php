@@ -92,10 +92,11 @@ if (isset($_GET['OrderID'])) {
 
             <!-- Thông tin người mua -->
             <div class="buyer-info">
-                <p><strong>Tên khách hàng:</strong> <?= htmlspecialchars($order['LName'] . ' ' . $order['FName']); ?></p>
-                <p><strong>Email:</strong> <?= htmlspecialchars($order['email']); ?></p>
-                <p><strong>Số điện thoại:</strong> <?= htmlspecialchars($order['Tel']); ?></p>
+                <p><strong>Mã đơn hàng:</strong> <?= htmlspecialchars($order['OrderID']); ?></p>
+                <p><strong>Tên khách hàng:</strong> <?= htmlspecialchars($order['LName'] . ' ' . $order['FName']) . ' - ' . $order['CustomerID']; ?></p>
                 <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($order['ShippingAddress']); ?></p>
+                <p><strong>Số điện thoại:</strong> <?= htmlspecialchars($order['Tel']); ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($order['email']); ?></p>
             </div>
         </div>
 
@@ -164,3 +165,8 @@ if (isset($_GET['OrderID'])) {
 <!--=============== MAIN JS ===============-->
 </body>
 </html>
+<script>
+    window.onload = function() {
+        window.print();
+    };
+</script>

@@ -1,8 +1,8 @@
 <?php
 include 'db_connection.php';
-echo "<pre>";
-print_r($_SESSION); // Hiển thị toàn bộ nội dung của $_SESSION
-echo "</pre>";
+// echo "<pre>";
+// print_r($_SESSION); // Hiển thị toàn bộ nội dung của $_SESSION
+// echo "</pre>";
 // Kiểm tra xem khách hàng đã đăng nhập hay chưa
 if (!isset($_SESSION['customer_id'])) {
     // Chuyển hướng người dùng đến trang login nếu chưa đăng nhập

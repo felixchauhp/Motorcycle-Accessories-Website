@@ -169,17 +169,24 @@
 
 /* Tối ưu hóa cho chế độ in */
 @media print {
-    .btn.print-btn {
-        display: none 80%;
+    body {
+        transform: scale(0.8); /* Tỷ lệ 80% */
+        transform-origin: top center; /* Căn góc trên bên trái */
     }
-    .seller-and-buyer-info {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
+
+    /* Đảm bảo không bị cuộn ngang */
+    html, body {
+        width: 100%;
+        height: auto;
+        overflow: visible;
     }
-    .invoice-footer {
-        margin-top: 50px;
+    .print-btn {
+        display: none !important; /* Ẩn nút in khi in */
+        visibility: hidden; 
     }
+
 }
+
 
 /* Container header */
 .invoice-header {
