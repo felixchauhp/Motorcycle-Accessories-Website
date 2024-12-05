@@ -139,24 +139,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <section class="accounts section--lg">
         <div class="accounts__container container grid">
           <div class="account__tabs">
-            <p class="account__tab active-tab" data-target="#dashboard">
+            <p class="account__tab <?= $active_tab === 'dashboard' ? 'active-tab' : '' ?>" data-target="#dashboard">
               <i class="fi fi-rs-settings-sliders"></i> Bảng điều khiển
             </p>
-            <p class="account__tab" data-target="#orders">
+            <p class="account__tab <?= $active_tab === 'orders' ? 'active-tab' : '' ?>" data-target="#orders">
               <i class="fi fi-rs-shopping-bag"></i> Đơn hàng
             </p>
-            <p class="account__tab" data-target="#update-profile">
+            <p class="account__tab <?= $active_tab === 'update-profile' ? 'active-tab' : '' ?>" data-target="#update-profile">
               <i class="fi fi-rs-user"></i> Cập nhật thông tin
             </p>
-            <p class="account__tab" data-target="#address">
+            <p class="account__tab <?= $active_tab === 'address' ? 'active-tab' : '' ?>" data-target="#address">
               <i class="fi fi-rs-marker"></i> Danh sách địa chỉ
             </p>
-            <p class="account__tab" data-target="#change-password">
+            <p class="account__tab <?= $active_tab === 'change-password' ? 'active-tab' : '' ?>" data-target="#change-password">
               <i class="fi fi-rs-settings-sliders"></i> Thay đổi mật khẩu
             </p>
           </div>
           <div class="tabs__content">
-            <div class="tab__content active-tab" content id="dashboard">
+          <div class="tab__content <?= $active_tab === 'dashboard' ? 'active-tab' : '' ?>" content id="dashboard">
               <h3 class="tab__header">Xin chào <?php echo $_SESSION['username']; ?></h3> 
               <div class="tab__body">
                 <p class="tab__description">
@@ -166,49 +166,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </p>
               </div>
             </div>
-            <div class="tab__content" content id="orders">
+            <div class="tab__content <?= $active_tab === 'orders' ? 'active-tab' : '' ?>" content id="orders">
               <h3 class="tab__header">Đơn hàng của bạn</h3>
               <div class="tab__body">
                 <table class="placed__order-table">
                 <div class="search-container">
-        <form method="GET" action="accounts.php" class="right-actions">
-        <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto;" />
+                  <form method="GET" action="accounts.php" class="right-actions">
+                  <input type="hidden" name="active_tab" value="orders">
+                  <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" style="margin-right: auto;" />
 
-          <!-- Lọc trạng thái -->
-    <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
-        <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
-        <option value="Đã xác nhận" <?= isset($_GET['status']) && $_GET['status'] === 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
-        <option value="Đã đóng gói" <?= isset($_GET['status']) && $_GET['status'] === 'Đã đóng gói' ? 'selected' : '' ?>>Đã đóng gói</option>
-        <option value="Đã giao" <?= isset($_GET['status']) && $_GET['status'] === 'Đã giao' ? 'selected' : '' ?>>Đã giao</option>
-        <option value="Đã hủy" <?= isset($_GET['status']) && $_GET['status'] === 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
-    </select>
+                  <!-- Lọc trạng thái -->
+                  <select id="status-filter" name="status" style="font-family: inherit; font-size: inherit;">
+                  <option value="" <?= !isset($_GET['status']) ? 'selected' : '' ?>>Trạng thái</option>
+                  <option value="Đã xác nhận" <?= isset($_GET['status']) && $_GET['status'] === 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
+                  <option value="Đã đóng gói" <?= isset($_GET['status']) && $_GET['status'] === 'Đã đóng gói' ? 'selected' : '' ?>>Đã đóng gói</option>
+                  <option value="Đã giao" <?= isset($_GET['status']) && $_GET['status'] === 'Đã giao' ? 'selected' : '' ?>>Đã giao</option>
+                  <option value="Đã hủy" <?= isset($_GET['status']) && $_GET['status'] === 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
+                  </select>
 
-    <!-- Lọc thanh toán -->
-    <select id="payment-filter" name="payment" style="font-family: inherit; font-size: inherit;">
-        <option value="" <?= !isset($_GET['payment']) ? 'selected' : '' ?>>Tất cả thanh toán</option>
-        <option value="Thành công" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thành công' ? 'selected' : '' ?>>Thành công</option>
-        <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
-        <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
-    </select>
-          <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>">
-          <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>">
-          <button type="submit" class="btn flex btn__md" style="cursor: pointer;">Áp dụng</button>
-          <a href="accounts.php" class="btn flex btn__md" style="cursor: pointer;">Nhập lại</a>
+                  <!-- Lọc thanh toán -->
+                  <select id="payment-filter" name="payment" style="font-family: inherit; font-size: inherit;">
+                  <option value="" <?= !isset($_GET['payment']) ? 'selected' : '' ?>>Thanh toán</option>
+                  <option value="Thành công" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thành công' ? 'selected' : '' ?>>Thành công</option>
+                  <option value="Thất bại" <?= isset($_GET['payment']) && $_GET['payment'] === 'Thất bại' ? 'selected' : '' ?>>Thất bại</option>
+                  <option value="Đang chờ" <?= isset($_GET['payment']) && $_GET['payment'] === 'Đang chờ' ? 'selected' : '' ?>>Đang chờ</option>
+                  </select>
+                  <input type="date" id="start-date" name="start_date" value="<?= htmlspecialchars($startDate) ?>">
+                  <input type="date" id="end-date" name="end_date" value="<?= htmlspecialchars($endDate) ?>">
+                  <button type="submit" class="btn flex btn__md" style="cursor: pointer;white-space: nowrap;">Áp dụng</button>
+                  <a href="?active_tab=orders" class="btn flex btn__md" style="cursor: pointer;white-space: nowrap;">Nhập lại</a>
         </form>
       </div>
-                  <?php
-                  // Thiết lập locale cho tiếng Việt
-                    setlocale(LC_TIME, 'vi_VN.UTF-8');
-                  // Lấy thông tin các đơn hàng từ database
-                    $stmt = $pdo->prepare("
-                        SELECT OrderID, OrderDate, OrderStatus, PaymentStatus, TotalDue 
-                        FROM orders 
-                        WHERE CustomerID = ?
-                        ORDER BY OrderDate DESC"
-                    );
-                    $stmt->execute([$_SESSION['customer_id']]);
-                    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                  ?>
+      <br>
                   <thead>
                     <tr>
                       <th>Mã đơn hàng</th>
@@ -220,10 +209,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </thead>
                   <tbody>
                     <!-- Nếu không có đơn hàng nào -->
-                    <?php
-                      if(empty($orders))
-                        echo "<tr><td colspan='6'>Không có đơn hàng nào.</td></tr>";
-                    ?>
+                    <?php if (empty($orders)): ?>
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+                            Không có đơn hàng tồn tại.
+                        </td>
+                    </tr>
+                  <?php else: ?>
                     <!-- Hiển thị thông tin đơn hàng -->
                     <?php foreach ($orders as $order): ?>
                       <tr>
@@ -231,15 +223,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <td><?php echo strftime('%d tháng %m, %Y', strtotime($order['OrderDate'])); ?></td>
                         <td><?php echo $order['OrderStatus']; ?></td>
                         <td><?php echo $order['PaymentStatus']; ?></td>
-                        <td><?php echo number_format($order['TotalDue'], 2); ?> VNĐ</td>
+                        <td><?php echo number_format($order['TotalDue']); ?> VNĐ</td>
                         <td><a href="show-order.php?OrderID=<?php echo $order['OrderID']; ?>" class="view__order">Chi tiết</a></td>
                       </tr>
-                    <?php endforeach; ?>
+                      <?php endforeach; ?>
+                      <?php endif; ?>
                   </tbody>
                 </table>
+                <ul class="pagination">
+    <?php
+    // Cơ sở URL cho phân trang
+    $queryParams = $_GET;
+    $queryParams['active_tab'] = 'orders';
+    unset($queryParams['page']);
+
+    $baseUrl = 'accounts.php?' . http_build_query($queryParams);
+    ?>
+    <!-- Nút trang trước -->
+    <?php  if ($currentPage > 1): ?>
+        <li><a href="<?= $baseUrl ?>&page=<?= $currentPage - 1 ?>" class="pagination__link">«</a></li>
+    <?php else: ?>
+        <li><a href="#" class="pagination__link disabled">«</a></li>
+    <?php endif; ?>
+
+    <?php
+    // Hiển thị các trang xung quanh trang hiện tại
+    for ($i = 1; $i <= $totalOrderPages; $i++) {
+        if ($i == $currentPage) {
+            echo "<li><a href='#' class='pagination__link active'>$i</a></li>";
+        } elseif ($i <= 2 || $i > $totalOrderPages - 2 || abs($i - $currentPage) <= 2) {
+            echo "<li><a href='{$baseUrl}&page=$i' class='pagination__link'>$i</a></li>";
+        } elseif ($i == 3 || $i == $totalOrderPages - 2) {
+            echo "<li class='pagination__dots'>...</li>";
+        }
+    }
+    ?>
+
+    <!-- Nút "trang sau" -->
+    <?php if ($currentPage < $totalOrderPages): ?>
+        <li><a href="<?= $baseUrl ?>&page=<?= $currentPage + 1 ?>" class="pagination__link">»</a></li>
+    <?php else: ?>
+        <li><a href="#" class="pagination__link disabled">»</a></li>
+    <?php endif; ?>
+</ul>
               </div>
             </div>
-            <div class="tab__content" content id="update-profile">
+            <div class="tab__content <?= $active_tab === 'update-profile' ? 'active-tab' : '' ?>" content id="update-profile">
               <h3 class="tab__header">Cập nhật thông tin</h3>
               <div class="tab__body">
                 <form id="Update_form" class="form grid" method="POST">
@@ -271,7 +300,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </form>
               </div>
             </div>
-            <div class="tab__content" content id="address">
+            <div class="tab__content <?= $active_tab === 'address' ? 'active-tab' : '' ?>" content id="address">
               <h3 class="tab__header">Địa chỉ giao hàng mặc định</h3>
               <div class="tab__body">
                 <p>
@@ -339,7 +368,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
               </div>
             </div>
-            <div class="tab__content" content id="change-password">
+            <div class="tab__content <?= $active_tab === 'change-password' ? 'active-tab' : '' ?>" content id="change-password">
               <h3 class="tab__header">Thay đổi mật khẩu</h3>
               <div class="tab__body">
                 <form class="form grid" id="Changepass_form" method="POST" >
