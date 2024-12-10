@@ -32,8 +32,8 @@ if (!isset($_SESSION['customer_id'])) {
 }
 
   
-// Truy vấn 10 sản phẩm có InStock cao nhất trong bảng products
-$topInStockQuery = "SELECT ProductID FROM products ORDER BY InStock DESC LIMIT 10";
+// Truy vấn 8 sản phẩm có InStock cao nhất trong bảng products
+$topInStockQuery = "SELECT ProductID FROM products ORDER BY InStock DESC LIMIT 8";
 $topInStockResult = $conn->query($topInStockQuery);
 $topInStockProducts = [];
 if ($topInStockResult && $topInStockResult->num_rows > 0) {
@@ -42,13 +42,13 @@ if ($topInStockResult && $topInStockResult->num_rows > 0) {
     }
 }
 
-// Truy vấn 10 sản phẩm có tổng InStock cao nhất trong bảng products_in_orders
+// Truy vấn 8 sản phẩm có tổng InStock cao nhất trong bảng products_in_orders
 $topInStockQuery2 = "
     SELECT p.ProductID, SUM(p.InStock) AS totalInStock
     FROM products_in_orders p
     GROUP BY p.ProductID
     ORDER BY totalInStock DESC
-    LIMIT 10
+    LIMIT 8
 ";
 $topInStockResult2 = $conn->query($topInStockQuery2);
 $topInStockProducts2 = [];
