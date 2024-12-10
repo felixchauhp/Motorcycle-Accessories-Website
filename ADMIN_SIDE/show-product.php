@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'checklogin.php';
 include 'db_connection.php';
 ?>
 <!DOCTYPE html>

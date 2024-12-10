@@ -1,10 +1,11 @@
-<?php include 'dashboard_data.php'; ?>
-<?php
+<?php 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: login.php");
-    exit();
-}
+include 'checklogin.php';
+include 'dashboard_data.php'; 
+?>
+<a?php
+session_start();
+
 
 // Lấy ngày hiện tại
 $today = date('Y-m-d');
@@ -99,6 +100,7 @@ $end_date = $today;
             <button class="tab-button" onclick="showTab('combined')">Tổng hợp</button>
             <button class="tab-button active-tab" onclick="showTab('orders')">Đơn hàng</button>
             <button class="tab-button" onclick="showTab('revenue')">Doanh thu</button>
+            <button class="tab-button" onclick="showTab('category')">Danh mục</button>
         </div>
 
         <!-- Bộ chọn phạm vi ngày -->
@@ -121,13 +123,20 @@ $end_date = $today;
             <div id="revenue-tab" class="chart-container" style="display:none;">
                 <canvas id="revenueChart"></canvas>
             </div>
+            <div id="category-tab" class="chart-container" style="display:none;">
+                <h3>Tổng số sản phẩm bán ra của từng danh mục</h3>
+                <canvas id="totalProductsChart"></canvas>
+                <h3>Doanh số của từng danh mục theo ngày</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
         </div>
 </main>
 
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="assets/js/get_data_test.js"></script>
+  <script src="get_data_test.js"></script>
+  <script src="get_category_chart.js" defer></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

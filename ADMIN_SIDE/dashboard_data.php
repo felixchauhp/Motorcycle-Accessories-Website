@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+
 // Lấy ngày hiện tại theo định dạng 'YYYY-MM-DD'
 $current_date = date('Y-m-d');
 

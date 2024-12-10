@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'checklogin.php';
 include 'db_connection.php';
 
 if (isset($_GET['OrderID'])) {

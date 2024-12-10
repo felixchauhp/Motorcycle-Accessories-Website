@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
 include 'db_connection.php';
 

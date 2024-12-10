@@ -1,7 +1,11 @@
 <?php
 include 'cart_handle.php';
 ?>
-<?php include 'checkout_handle.php'; ?>
+<?php include 'checkout_handle.php'; 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";?>
+
 <!DOCTYPE html>
 <html lang="en">
   <!--=============== DOCUMENT HEAD ===============-->
@@ -27,12 +31,15 @@ include 'cart_handle.php';
         <div class="checkout__container container grid">
           <div class="checkout__group">
             <h3 class="section__title">Thông tin cá nhân</h3>
-            <form class="form grid" method="POST" action="checkout_handle.php">
+            <form id="checkoutForm" class="form grid" method="POST" action="checkout_handle.php">
               <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" required/>
               <input type="text" name="address" placeholder="Địa chỉ" class="form__input" required/>
               <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
               <input type="email" name="email" placeholder="Email" class="form__input" required/>
-            </form>
+              <input type="hidden" name="payment_method" id="payment_method">
+
+  <!-- Thêm trường ẩn cho cart -->
+  <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
           </div>
           <div class="checkout__group">
             <h3 class="section__title">Chi tiết đơn hàng</h3>
@@ -67,40 +74,35 @@ include 'cart_handle.php';
             </table>
             <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($total, 0, ',', '.') ?> VNĐ</span></h3>
             <?php endif; ?>
-            <div class="payment__methods">
+            <div class="payment__methods" >
               <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
               <div class="payment__option flex">
                 <input
                   type="radio"
                   name="radio"
+                  value="chuyen_khoan"
                   id="l1"
                   checked
                   class="payment__input"
+
                 />
                 <label for="l1" class="payment__label"
-                  >Chuyển khoản qua ngân hàng</label
+                  >Chuyển khoản</label
                 >
               </div>
               <div class="payment__option flex">
                 <input
                   type="radio"
                   name="radio"
+                  value="tien_mat"
                   id="l2"
                   class="payment__input"
                 />
-                <label for="l2" class="payment__label">Thanh toán khi nhận hàng</label>
-              </div>
-              <div class="payment__option flex">
-                <input
-                  type="radio"
-                  name="radio"
-                  id="l3"
-                  class="payment__input"
-                />
-                <label for="l3" class="payment__label">Quét mã QR VNPay</label>
+                <label for="l2" class="payment__label">Tiền mặt</label>
               </div>
             </div>
-            <button type="submit" name="place_order" class="btn btn--md">Đặt hàng</button>
+            <button type="submit" form="checkoutForm" name="place_order" class="btn btn--md">Đặt hàng</button>
+            </form>  
           </div>
         </div>
       </section>
