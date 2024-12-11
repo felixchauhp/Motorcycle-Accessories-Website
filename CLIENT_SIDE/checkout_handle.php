@@ -1,32 +1,33 @@
 <?php
 include 'db_connection.php'; // Kết nối database
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-echo "Request method: " . $_SERVER['REQUEST_METHOD'];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST)) {
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-    } else {
-        echo "Dữ liệu POST rỗng!";
-    }
-} else {
-    echo "Phương thức không phải POST.";
-}
+// echo "Request method: " . $_SERVER['REQUEST_METHOD'];
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     if (!empty($_POST)) {
+//         echo "<pre>";
+//         print_r($_POST);
+//         echo "</pre>";
+//     } else {
+//         echo "Dữ liệu POST rỗng!";
+//     }
+// } else {
+//     echo "Phương thức không phải POST.";
+// }
 if (isset($_POST['place_order'])) {
     // Kiểm tra giỏ hàng
     if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
         $_SESSION['order_error'] = 'Giỏ hàng trống hoặc không hợp lệ!';
-        header('Location: checkout.php');
+        echo "Đặt hàng thành công!1";
         exit();
     }
 
     // Kiểm tra thông tin khách hàng
     if (!isset($_SESSION['customer_id'])) {
         $_SESSION['order_error'] = 'Không xác định được thông tin khách hàng!';
-        header('Location: checkout.php');
+        echo "Đặt hàng thành công!2";
         exit();
     }
     $customer_id = $_SESSION['customer_id'];
@@ -36,7 +37,7 @@ if (isset($_POST['place_order'])) {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $order_date = date('D-m-y');
+    $order_date = date('Y-m-d');
     $order_status = 'Đang chờ';
     $payment_status = 'Đang chờ';
     $discount = 0;
@@ -61,7 +62,7 @@ if (isset($_POST['place_order'])) {
     ";
     if (!mysqli_query($conn, $query_insert_order)) {
         $_SESSION['order_error'] = 'Không thể tạo đơn hàng: ' . mysqli_error($conn);
-        header('Location: checkout.php');
+        echo "Đặt hàng thành công!3";
         exit();
     }
 
@@ -74,7 +75,7 @@ if (isset($_POST['place_order'])) {
         ";
         if (!mysqli_query($conn, $query_insert_products)) {
             $_SESSION['order_error'] = 'Không thể lưu thông tin sản phẩm: ' . mysqli_error($conn);
-            header('Location: checkout.php');
+            echo "Đặt hàng thành công!4";
             exit();
         }
     }
@@ -86,7 +87,7 @@ if (isset($_POST['place_order'])) {
     ";
     if (!mysqli_query($conn, $query_insert_payment)) {
         $_SESSION['order_error'] = 'Không thể lưu thông tin thanh toán: ' . mysqli_error($conn);
-        header('Location: checkout.php');
+        echo "Đặt hàng thành công!5";
         exit();
     }
 
