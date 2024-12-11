@@ -1,13 +1,35 @@
+<?php
+include 'db_connection.php'; // Kết nối database
+session_start(); // Bắt đầu session để sử dụng thông tin từ session
+
+// Kiểm tra xem thông báo 'order_success' có trong session không
+if (isset($_SESSION['order_success'])) {
+    $successMessage = $_SESSION['order_success'];
+    // Xóa thông báo khỏi session để không hiển thị lại khi tải lại trang
+    unset($_SESSION['order_success']);
+} else {
+    // Nếu không có thông báo thành công, chuyển hướng về trang giỏ hàng
+    header('Location: cart.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt hàng thành công</title>
+    <title>Đặt Hàng Thành Công</title>
+    <link rel="stylesheet" href="assets/css/styles.css"> <!-- Nếu có file CSS -->
 </head>
 <body>
-    <h1>Đặt hàng thành công!</h1>
-    <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đang được xử lý.</p>
-    <a href="checkout.php">Quay lại trang đặt hàng</a>
+    <div class="container">
+        <h1>Đặt Hàng Thành Công!</h1>
+        <p><?php echo htmlspecialchars($successMessage); ?></p> <!-- Hiển thị thông báo từ session -->
+
+        <div class="actions">
+            <a href="index.php" class="btn">Trở về trang chủ</a> <!-- Chuyển hướng về trang chủ -->
+            <a href="cart.php" class="btn">Quay lại giỏ hàng</a> <!-- Quay lại giỏ hàng -->
+        </div>
+    </div>
 </body>
 </html>

@@ -37,9 +37,8 @@ echo "</pre>";?>
               <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
               <input type="email" name="email" placeholder="Email" class="form__input" required/>
               <input type="hidden" name="payment_method" id="payment_method">
-
-  <!-- Thêm trường ẩn cho cart -->
-  <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
+              <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
+            </form> 
           </div>
           <div class="checkout__group">
             <h3 class="section__title">Chi tiết đơn hàng</h3>
@@ -102,17 +101,9 @@ echo "</pre>";?>
               </div>
             </div>
             <button type="submit" form="checkoutForm" name="place_order" class="btn btn--md">Đặt hàng</button>
-            </form>  
           </div>
         </div>
       </section>
-      <?php if (isset($_SESSION['order_success'])): ?>
-      <p class="alert alert-success">Đặt hàng thành công!</p>
-      <?php unset($_SESSION['order_success']); ?>
-      <?php elseif (isset($_SESSION['order_error'])): ?>
-        <p class="alert alert-error"><?= $_SESSION['order_error'] ?></p>
-      <?php unset($_SESSION['order_error']); ?>
-      <?php endif; ?>
     <!--=============== NEWSLETTER ===============-->
     <section class="newsletter section home__newsletter">
       <div class="newsletter__container container grid">

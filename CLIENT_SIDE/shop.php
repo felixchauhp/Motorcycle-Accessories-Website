@@ -47,33 +47,34 @@ include 'db_connection.php';
                 <button type="submit" class="btn flex btn__md" style="cursor: pointer; ">Tìm kiếm</button>
             </form>
         </div>
-        <br>
-        <div class="products__container grid">
+      </section>
+  <section class="products container section--lg">
+      <div class="products__container grid">
         <?php if (empty($products)): ?>
-          <div style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
-        Không tồn tại sản phẩm bạn đang tìm: "<?= htmlspecialchars($search) ?>"
-    </div>
+        <div style="text-align: center; padding: 20px; font-weight: bold; color: #888;">
+        Không tồn tại sản phẩm bạn đang tìm "<?= htmlspecialchars($search) ?>"
+        </div>
         <?php else: ?>
         <?php foreach ($products as $productlist):?>
             <div class="product__item">
               <div class="product__banner">
-              <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
-                <img
-                  src="<?=  htmlspecialchars($productlist['Image']) ?>"
-                  alt="Product Image"
-                  class="product__img default"
-                  style ="max-width: 100%;
-object-fit: cover;
-width: 100%;  "
+                <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
+                  <img
+                    src="<?=  htmlspecialchars($productlist['Image']) ?>"
+                    alt="Product Image"
+                    class="product__img default"
+                    style ="max-width: 100%;
+                    object-fit: cover;
+                    width: 100%;  "
+                    />
+                  <img
+                    src="<?=  htmlspecialchars($productlist['Image']) ?>"
+                    alt="Product Image"
+                    class="product__img hover"
                   />
-                <img
-                  src="<?=  htmlspecialchars($productlist['Image']) ?>"
-                  alt="Product Image"
-                  class="product__img hover"
-                />
-              </a> 
-            </div>
-            <div class="product__content">
+                </a> 
+              </div>
+              <div class="product__content">
               <span class="product__category"><?= htmlspecialchars($productlist['Category']) ?></span>
               <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>">
                 <h3 class="product__title"><?= htmlspecialchars($productlist['ProductName']) ?></h3>
@@ -88,8 +89,8 @@ width: 100%;  "
               >
                 <i class="fi fi-rs-shopping-bag-add"></i>
               </a>
-            </div>
-          </div>  
+              </div>
+            </div>  
         <?php endforeach; ?>
       <?php endif; ?>
     </div>
@@ -128,8 +129,8 @@ width: 100%;  "
     <?php else: ?>
         <li><a href="#" class="pagination__link disabled">»</a></li>
     <?php endif; ?>
-</ul>
-      </section>
+        </ul>
+  </section>
     </main>
 
     <!--=============== FOOTER ===============-->

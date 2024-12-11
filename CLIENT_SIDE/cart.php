@@ -1,5 +1,4 @@
 <?php include 'cart_handle.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

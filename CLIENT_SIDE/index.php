@@ -85,7 +85,7 @@ include 'db_connection.php';
     </div>
     <div class="product__content">
         <span class="product__category"><?= $product['Category'] ?></span>
-        <a href="details.php?product_id=<?= $product['ProductID'] ?>">
+        <a href="details.php?id=<?= $product['ProductID'] ?>">
             <h3 class="product__title"><?= $product['ProductName'] ?></h3>
         </a>
         <div class="product__rating">
