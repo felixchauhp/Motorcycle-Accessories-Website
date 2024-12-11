@@ -12,17 +12,14 @@ if (isset($_SESSION['order_success'])) {
     header('Location: cart.php');
     exit();
 }
+
 ?>
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt Hàng Thành Công</title>
-    <link rel="stylesheet" href="assets/css/styles.css"> <!-- Nếu có file CSS -->
-</head>
+<html lang="en">
+  <!--=============== DOCUMENT HEAD ===============-->
+  <?php include 'head.php'; ?>
 <body>
-    <div class="container">
+    <div class="container" style="display: flex; justify-content: center;">
         <h1>Đặt Hàng Thành Công!</h1>
         <p><?php echo htmlspecialchars($successMessage); ?></p> <!-- Hiển thị thông báo từ session -->
 
