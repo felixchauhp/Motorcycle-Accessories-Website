@@ -74,10 +74,10 @@ include 'db_connection.php';
                   />
                 </a> 
               </div>
-              <div class="product__content">
+              <div class="product__content" style="max-width: 304px;">
               <span class="product__category"><?= htmlspecialchars($productlist['Category']) ?></span>
               <a href="details.php?id=<?= htmlspecialchars($productlist['ProductID']) ?>">
-                <h3 class="product__title"><?= htmlspecialchars($productlist['ProductName']) ?></h3>
+                <h3 class="product__title" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?= htmlspecialchars($productlist['ProductName']) ?></h3>
               </a>
               <div class="product__price flex">
                 <span class="new__price"><?= number_format($productlist['SalePrice'], 0, ',', '.') ?> VNĐ</span>

@@ -104,12 +104,6 @@ include 'db_connection index.php';
             <?php endforeach; ?>
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="product__content">
-        <span class="product__category"><?= $product['Category'] ?></span>
-        <a href="details.php?id=<?= $product['ProductID'] ?>">
-            <h3 class="product__title"><?= $product['ProductName'] ?></h3>
-=======
     
 
         <!-- Tab yêu thích -->
@@ -131,7 +125,6 @@ include 'db_connection index.php';
                 alt="<?= $product['ProductName'] ?>"
                 class="product__img hover"
             />
->>>>>>> 58ec59198d565fd35cc6058fc3d6b98ea1c65fe0
         </a>
                             <div class="product__actions">
                                 <a href="#" class="action__btn" aria-label="Quick View">
@@ -146,10 +139,10 @@ include 'db_connection index.php';
                             </div>
                             <div class="product__badge light-pink">Yêu thích</div>
                         </div>
-                        <div class="product__content">
+                        <div class="product__content" style="max-width: 304px;">
                             <span class="product__category"><?= $product['Category'] ?></span>
                             <a href="details.php?product_id=<?= $product['ProductID'] ?>">
-                                <h3 class="product__title"><?= $product['ProductName'] ?></h3>
+                                <h3 class="product__title" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?= $product['ProductName'] ?></h3>
                             </a>
                             <div class="product__rating">
                               <i class="fi fi-rs-star"></i>
