@@ -89,7 +89,7 @@
           <div>
             <div class="cart__coupon">
               <h3 class="section__title">Mã giảm giá</h3>
-              <form action="" class="coupon__form form grid">
+              <form action="" method = "POST" class="coupon__form form grid">
                 <div class="form__group grid">
                   <input
                     type="text"
@@ -104,6 +104,9 @@
                   </div>
                 </div>
               </form>
+              <?php if (isset($message)): ?>
+                <p><?= $message ?></p>
+              <?php endif; ?>
             </div>
           </div>
 
@@ -116,11 +119,11 @@
                 </tr>
                 <tr>
                   <td><span class="cart__total-title">Số tiền giảm giá</span></td>
-                  <td><span class="cart__total-price">0.000 VNĐ</span></td>
-                </tr>
+                  <td><span class="cart__total-price"><?= number_format($discount, 0, ',', '.') ?> VNĐ</span></td>
+                  </tr>
                 <tr>
                   <td><span class="cart__total-title">Tổng cộng</span></td>
-                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($total_after_discount, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
             </table>
             <a href="checkout.php" class="btn flex btn--md">
