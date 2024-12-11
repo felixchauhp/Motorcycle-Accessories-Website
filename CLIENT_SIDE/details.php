@@ -74,7 +74,7 @@ include 'db_connection.php';
             </ul>
             <div class="details__action">
               <input type="number" class="quantity" value="3" />
-              <a href="#" class="btn btn--sm">Thêm vào giỏ hàng</a>
+              <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($productlist['ProductID']) ?>" class="btn btn--sm">Thêm vào giỏ hàng</a>
             </div>
             <ul class="details__meta">
               <li class="meta__list flex"><span>SKU:</span><?= htmlspecialchars($product['ProductID']) ?></li>
