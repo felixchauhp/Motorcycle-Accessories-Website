@@ -27,7 +27,7 @@ include 'db_connection index.php';
             <p class="home__description">
               THE BIGGEST SALE EVER - UP TO 59%
             </p>
-            <a href="shop.html" class="btn">Mua ngay kẻo lỡ!</a>
+            <a href="shop.php" class="btn">Mua ngay kẻo lỡ!</a>
           </div>
           <img src="assets/img/bannerindex3.png" class="home__img" alt="hats" />
         </div>
@@ -54,10 +54,19 @@ include 'db_connection index.php';
                 <?php if (in_array($product['ProductID'], $topInStockProducts)): ?>
                     <div class="product__item">
                     <div class="product__banner">
-                            <a href="details.php?id=<?= htmlspecialchars($product['ProductID']) ?>" class="product__images" style="width: 100%; height: 300px; object-fit: cover;">
-                                <img src="<?= $product['Image'] ?>" alt="<?= $product['ProductName'] ?>" class="product__img default" style="max-width: 100%; object-fit: cover; width: 100%;" />
-                                <img src="<?= htmlspecialchars($product['Image']) ?>" alt="<?= $product['ProductName'] ?>" class="product__img hover" />                            
-                            </a>
+                    <a href="details.php?id=<?= htmlspecialchars($product['ProductID']) ?>" class="product__images" style="width: 100%; height: 300px; object-fit: cover;">
+            <img
+                src="<?= $product['Image'] ?>"
+                alt="<?= $product['ProductName'] ?>"
+                class="product__img default"
+                style="max-width: 100%; object-fit: cover; width: 100%;"
+            />
+            <img
+                src="<?= htmlspecialchars($product['Image']) ?>"
+                alt="<?= $product['ProductName'] ?>"
+                class="product__img hover"
+            />
+        </a>
                             <div class="product__actions">
                                 <a href="#" class="action__btn" aria-label="Quick View">
                                   <i class="fi fi-rs-eye"></i>
@@ -95,18 +104,28 @@ include 'db_connection index.php';
             <?php endforeach; ?>
         </div>
     </div>
+    
 
-    <!-- Tab Yêu thích -->
+        <!-- Tab yêu thích -->
     <div class="tab__item <?= $activeTab == 'popular' ? 'active-tab' : '' ?>" id="popular">
         <div class="products__container grid">
             <?php foreach ($products as $product): ?>
                 <?php if (in_array($product['ProductID'], $topInStockProducts2)): ?>
                     <div class="product__item">
                     <div class="product__banner">
-                            <a href="details.php?id=<?= htmlspecialchars($product['ProductID']) ?>" class="product__images" style="width: 100%; height: 300px; object-fit: cover;">
-                                <img src="<?= $product['Image'] ?>" alt="<?= $product['ProductName'] ?>" class="product__img default" style="max-width: 100%; object-fit: cover; width: 100%;" />
-                                <img src="<?= htmlspecialchars($product['Image']) ?>" alt="<?= $product['ProductName'] ?>" class="product__img hover" />                            
-                            </a>
+                    <a href="details.php?id=<?= htmlspecialchars($product['ProductID']) ?>" class="product__images" style="width: 100%; height: 300px; object-fit: cover;">
+            <img
+                src="<?= $product['Image'] ?>"
+                alt="<?= $product['ProductName'] ?>"
+                class="product__img default"
+                style="max-width: 100%; object-fit: cover; width: 100%;"
+            />
+            <img
+                src="<?= htmlspecialchars($product['Image']) ?>"
+                alt="<?= $product['ProductName'] ?>"
+                class="product__img hover"
+            />
+        </a>
                             <div class="product__actions">
                                 <a href="#" class="action__btn" aria-label="Quick View">
                                   <i class="fi fi-rs-eye"></i>
@@ -134,7 +153,6 @@ include 'db_connection index.php';
                             </div>
                             <div class="product__price flex">
                                 <span class="new__price"><?= number_format($product['SalePrice']) ?> VNĐ</span>
-                                <span class="old__price"><?= number_format($product['BasePrice']) ?> VNĐ</span>
                             </div>
                             <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
                               <i class="fi fi-rs-shopping-bag-add"></i>

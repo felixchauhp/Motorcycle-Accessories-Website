@@ -16,20 +16,20 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 //     die("Kết nối thất bại: " . $conn->connect_error);
 // }
 // echo "Kết nối thành công!";
-// $current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
-// if (!isset($_SESSION['customer_id'])) {
-//     // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
-//      if ($current_page !== 'login.php') {
-//         header("Location: login.php");
-//         exit;
-//     }
-// } else {
-//     // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
-//     if ($current_page === 'login.php') {
-//         header("Location: index.php");
-//         exit;
-//     }
-// }
+$current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
+if (!isset($_SESSION['customer_id'])) {
+    // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
+     if ($current_page !== 'login.php') {
+        header("Location: login.php");
+        exit;
+    }
+} else {
+    // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
+    if ($current_page === 'login.php') {
+        header("Location: index.php");
+        exit;
+    }
+}
 
 // Cấu hình phân trang
 $itemsPerPage = 20;
