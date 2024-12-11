@@ -16,6 +16,12 @@ include 'db_connection.php';
       <?php
         // Lấy ID sản phẩm từ URL
         $product_id = isset($_GET['id']) ? $_GET['id'] : '';
+        // echo "<pre>";
+        // print_r($product_id); // Hiển thị toàn bộ nội dung của $_SESSION
+        // echo "</pre>";
+        if (empty($product_id)) {
+            die("Không tìm thấy sản phẩm!");
+        }
         //truy vấn thông tin sản phẩm   
         $sql = "SELECT * FROM products WHERE ProductID = ?";
         $stmt = $conn->prepare($sql);
