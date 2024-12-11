@@ -66,7 +66,7 @@ echo "</pre>";?>
                     <h3 class="table__title"><?= htmlspecialchars($item['name']) ?></h3>
                     <p class="table__quantity">x <?= $item['quantity'] ?></p>
                   </td>
-                  <td><span class="table__price"><?= number_format($item['price']) ?> VNĐ</span></td>
+                  <td><span class="table__price"><?= number_format($item['price'] * $item['quantity'] ) ?> VNĐ</span></td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>

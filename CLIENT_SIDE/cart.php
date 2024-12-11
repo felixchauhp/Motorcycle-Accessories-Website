@@ -115,7 +115,7 @@
             <table class="cart__total-table">
                 <tr>
                   <td><span class="cart__total-title">Thành tiền</span></td>
-                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($totalbefore, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
                 <tr>
                   <td><span class="cart__total-title">Số tiền giảm giá</span></td>
@@ -123,7 +123,7 @@
                   </tr>
                 <tr>
                   <td><span class="cart__total-title">Tổng cộng</span></td>
-                  <td><span class="cart__total-price"><?= number_format($total_after_discount, 0, ',', '.') ?> VNĐ</span></td>
+                  <td><span class="cart__total-price"><?= number_format($total, 0, ',', '.') ?> VNĐ</span></td>
                 </tr>
             </table>
             <a href="checkout.php" class="btn flex btn--md">

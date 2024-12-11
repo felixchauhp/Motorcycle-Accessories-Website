@@ -57,7 +57,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['Produ
 
 // xử lý mã giảm giá
 $discount = 0;
-$total = 0;
+$totalbefore = 0;
+// Tính tổng số tiền trong giỏ hàng
+foreach ($_SESSION['cart'] as $item) {
+    $totalbefore += $item['price'] * $item['quantity'];}
 
 
 if (isset($_POST['apply_promo'])) {
@@ -82,32 +85,28 @@ if (isset($_POST['apply_promo'])) {
         $_SESSION['promo'] = $promo;
         $message = "Mã giảm giá đã được áp dụng.";
 
-        // Tính tổng số tiền trong giỏ hàng
-        foreach ($_SESSION['cart'] as $item) {
-          $total += $item['price'] * $item['quantity'];}
-
         // Kiểm tra điều kiện giảm giá
         $min_value = $promo['MinValue'];
         $max_amount = $promo['MaxAmount'];
 
-        if ($total >= $min_value) {
-            $discount = min($total * ($promo['PromoRate'] / 100), $max_amount);
+        if ($totalbefore >= $min_value) {
+            $discount = min($totalbefore * ($promo['PromoRate'] / 100), $max_amount);
         }
         
-        // Cập nhật lại số lượng mã giảm giá trong cơ sở dữ liệu (giảm đi 1)
-        $new_quantity = $promo['Quantity'] - 1;
-        if ($new_quantity >= 0) {
-            // Cập nhật số lượng mã giảm giá trong bảng promotion
-            $update_stmt = $conn->prepare("UPDATE promotion SET Quantity = ? WHERE PromoCode = ?");
-            $update_stmt->bind_param("is", $new_quantity, $promo_code);
-            $update_stmt->execute();
-    } else {
-      $message = "Mã giảm giá này đã hết lượt sử dụng.";
-    }
+    //     // Cập nhật lại số lượng mã giảm giá trong cơ sở dữ liệu (giảm đi 1)
+    //     $new_quantity = $promo['Quantity'] - 1;
+    //     if ($new_quantity >= 0) {
+    //         // Cập nhật số lượng mã giảm giá trong bảng promotion
+    //         $update_stmt = $conn->prepare("UPDATE promotion SET Quantity = ? WHERE PromoCode = ?");
+    //         $update_stmt->bind_param("is", $new_quantity, $promo_code);
+    //         $update_stmt->execute();
+    // } else {
+    //   $message = "Mã giảm giá này đã hết lượt sử dụng.";
+    // }
   } else {
         // Mã giảm giá không hợp lệ
         $message = "Mã giảm giá không hợp lệ hoặc đã hết hạn.";
     }
 }
-$total_after_discount = $total - $discount;
+$total = $totalbefore - $discount;
 ?>
