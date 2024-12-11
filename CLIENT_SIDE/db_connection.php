@@ -31,33 +31,6 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 //     // }
 // }
 
-  
-// Truy vấn 8 sản phẩm có InStock cao nhất trong bảng products
-$topInStockQuery = "SELECT ProductID FROM products ORDER BY InStock DESC LIMIT 8";
-$topInStockResult = $conn->query($topInStockQuery);
-$topInStockProducts = [];
-if ($topInStockResult && $topInStockResult->num_rows > 0) {
-    while ($row = $topInStockResult->fetch_assoc()) {
-        $topInStockProducts[] = $row['ProductID'];
-    }
-}
-
-// Truy vấn 8 sản phẩm có tổng InStock cao nhất trong bảng products_in_orders
-$topInStockQuery2 = "
-    SELECT p.ProductID, SUM(p.InStock) AS totalInStock
-    FROM products_in_orders p
-    GROUP BY p.ProductID
-    ORDER BY totalInStock DESC
-    LIMIT 8
-";
-$topInStockResult2 = $conn->query($topInStockQuery2);
-$topInStockProducts2 = [];
-if ($topInStockResult2 && $topInStockResult2->num_rows > 0) {
-    while ($row = $topInStockResult2->fetch_assoc()) {
-        $topInStockProducts2[] = $row['ProductID'];
-    }
-}
-
 // Cấu hình phân trang
 $itemsPerPage = 20;
 $currentPage = $_GET['page'] ?? 1;
@@ -66,8 +39,6 @@ $start = ($currentPage - 1) * $itemsPerPage;
 // Bộ lọc tìm kiếm và phân trang
 $search = $_GET['search'] ?? '';
 $filter = $_GET['filter'] ?? '';
-$featured = isset($_GET['featured']) ? true : false;
-$popular = isset($_GET['popular']) ? true : false;
 
 $whereClauses = [];
 if ($search) {
@@ -79,12 +50,6 @@ if ($filter === 'out_of_stock') {
 } elseif ($filter) {
     $filter = $conn->real_escape_string($filter);
     $whereClauses[] = "c.Category = '$filter'";
-}
-if ($featured && !empty($topInStockProducts)) {
-    $whereClauses[] = "p.ProductID IN ('" . implode("','", $topInStockProducts) . "')";
-}
-if ($popular && !empty($topInStockProducts2)) {
-    $whereClauses[] = "p.ProductID IN ('" . implode("','", $topInStockProducts2) . "')";
 }
 
 $whereSQL = $whereClauses ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
