@@ -15,7 +15,15 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 // }
 // echo "Kết nối thành công!";
 
-
+try {
+    $pdo = new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+    $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // if($pdo){
+    //     echo "Connected successfully";
+    // }
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 
 // Cấu hình phân trang
 $itemsPerPage = 20;
