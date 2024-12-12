@@ -4,6 +4,11 @@ include 'db_connection.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh'); // Đặt múi giờ Việt Nam (GMT+7)
 $current_date = date('Y-m-d');
 
+// Xác nhận id người đăng nhập
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
 
 // Khởi tạo giỏ hàng nếu chưa tồn tại
 if (!isset($_SESSION['cart'])) {
