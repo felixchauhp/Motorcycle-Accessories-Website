@@ -91,6 +91,8 @@ if (isset($_POST['apply_promo'])) {
 
         if ($totalbefore >= $min_value) {
             $discount = min($totalbefore * ($promo['PromoRate'] / 100), $max_amount);
+            $_SESSION['discount'] = $discount;   
+
         }
         
     //     // Cập nhật lại số lượng mã giảm giá trong cơ sở dữ liệu (giảm đi 1)
@@ -109,4 +111,6 @@ if (isset($_POST['apply_promo'])) {
     }
 }
 $total = $totalbefore - $discount;
+$_SESSION['total'] = $total;   
+ 
 ?>

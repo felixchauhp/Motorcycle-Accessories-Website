@@ -1,6 +1,10 @@
 <?php
 include 'db_connection.php'; // Kết nối database
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -40,13 +44,19 @@ if (isset($_POST['place_order'])) {
     $order_date = date('Y-m-d');
     $order_status = 'Đang chờ';
     $payment_status = 'Đang chờ';
-    $discount = 0;
 
+
+    
     // Tính tổng tiền
     $total_amount = 0;
     foreach ($_SESSION['cart'] as $item) {
         $total_amount += $item['price'] * $item['quantity'];
     }
+    
+    if (isset($_SESSION['promo']) && !empty($_SESSION['promo'])) {
+        $promo = $_SESSION['promo'];
+    }
+    $discount = min($total_amount * ($promo['PromoRate'] / 100), $promo['MaxAmount']);
     $total_due = $total_amount - $discount;
 
     // Tạo mã OrderID (ORD000xxx)
@@ -90,9 +100,27 @@ if (isset($_POST['place_order'])) {
         echo "Đặt hàng thành công!5";
         exit();
     }
-
+ // Cập nhật số lượng mã giảm giá trong bảng promotion
+ if (isset($promo['PromoCode'])) {
+    $new_quantity = $promo['Quantity'] - 1;
+    $query_update_promo = "
+        UPDATE promotion 
+        SET Quantity = $new_quantity 
+        WHERE PromoCode = '{$promo['PromoCode']}'
+    ";
+    if (!mysqli_query($conn, $query_update_promo)) {
+        $_SESSION['order_error'] = 'Không thể cập nhật mã giảm giá: ' . mysqli_error($conn);
+        echo "Đặt hàng thành công!6";
+        exit();
+    }
+}
     // Xóa giỏ hàng
     unset($_SESSION['cart']);
+    unset($_SESSION['promo']);
+    unset($_SESSION['discount']);
+    unset($_SESSION['total']);
+    
+
 
     $_SESSION['order_success'] = 'Đặt hàng thành công!';
     header('Location: order_success.php');
