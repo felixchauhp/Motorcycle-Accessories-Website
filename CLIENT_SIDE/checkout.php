@@ -69,7 +69,7 @@ include 'cart_handle.php';
                 <?php endforeach; ?>
               </tbody>
             </table>
-            <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($_SESSION['total'] - $_SESSION['discount'] , 0, ',', '.') ?> VNĐ</span></h3>
+            <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($_SESSION['total'] - ($_SESSION['discount'] ?? 0) , 0, ',', '.') ?> VNĐ</span></h3>
             <?php endif; ?>
             <div class="payment__methods" >
               <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
