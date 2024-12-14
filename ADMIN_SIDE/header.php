@@ -1,5 +1,5 @@
 <!--=============== HEADER ===============-->
-  <header class="header">
+<header class="header">
     
     <nav class="nav container">
 
@@ -34,6 +34,15 @@
           </li>
           <li class="nav__item">
             <a href="discount.php" class="nav__link active-link">Khuyến mãi</a>
+          </li>
+          <li class="nav__item">
+            <a href="customers.php" class="nav__link active-link">Khách hàng</a>
+          </li>
+          <li class="nav__item">
+            <a href="rating.php" class="nav__link active-link">Đánh giá</a>
+          </li>
+          <li class="nav__item">
+            <a href="blog.php" class="nav__link active-link">Bài viết</a>
           </li>
         </ul>
       </div>
