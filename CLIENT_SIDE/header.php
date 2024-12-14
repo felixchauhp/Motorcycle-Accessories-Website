@@ -70,9 +70,11 @@ if (session_id() == '') {
         <a href="" class="header__action-btn" title="Wishlist">
           <img src="assets/img/bell.svg" alt="" />
         </a>
+        <?php if (isset($_SESSION['user_id'])): ?>
         <a href="cart.php" class="header__action-btn" title="Cart">
           <img src="assets/img/icon-cart.svg" alt="" />
         </a>
+        <?php endif; ?>
       <div class="dropdown w-100 mt-2">
         <a
           href="#"

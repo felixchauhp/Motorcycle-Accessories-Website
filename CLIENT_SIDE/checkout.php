@@ -2,9 +2,7 @@
 include 'cart_handle.php';
 ?>
 <?php include 'checkout_handle.php'; 
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +35,8 @@ echo "</pre>";?>
               <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
               <input type="email" name="email" placeholder="Email" class="form__input" required/>
               <input type="hidden" name="payment_method" id="payment_method">
-
-  <!-- Thêm trường ẩn cho cart -->
-  <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
+              <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
+            </form> 
           </div>
           <div class="checkout__group">
             <h3 class="section__title">Chi tiết đơn hàng</h3>
@@ -67,12 +64,12 @@ echo "</pre>";?>
                     <h3 class="table__title"><?= htmlspecialchars($item['name']) ?></h3>
                     <p class="table__quantity">x <?= $item['quantity'] ?></p>
                   </td>
-                  <td><span class="table__price"><?= number_format($item['price']) ?> VNĐ</span></td>
+                  <td><span class="table__price"><?= number_format($item['price'] * $item['quantity'] ) ?> VNĐ</span></td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>
-            <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($total, 0, ',', '.') ?> VNĐ</span></h3>
+            <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($_SESSION['total'] - ($_SESSION['discount'] ?? 0) , 0, ',', '.') ?> VNĐ</span></h3>
             <?php endif; ?>
             <div class="payment__methods" >
               <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
@@ -102,17 +99,9 @@ echo "</pre>";?>
               </div>
             </div>
             <button type="submit" form="checkoutForm" name="place_order" class="btn btn--md">Đặt hàng</button>
-            </form>  
           </div>
         </div>
       </section>
-      <?php if (isset($_SESSION['order_success'])): ?>
-      <p class="alert alert-success">Đặt hàng thành công!</p>
-      <?php unset($_SESSION['order_success']); ?>
-      <?php elseif (isset($_SESSION['order_error'])): ?>
-        <p class="alert alert-error"><?= $_SESSION['order_error'] ?></p>
-      <?php unset($_SESSION['order_error']); ?>
-      <?php endif; ?>
     <!--=============== NEWSLETTER ===============-->
     <section class="newsletter section home__newsletter">
       <div class="newsletter__container container grid">

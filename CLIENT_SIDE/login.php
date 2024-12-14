@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-   if ($user && password_verify($password, $user['Password'])) {
-    //  if ($user && $password == $user['Password']) {
+  //  if ($user && password_verify($password, $user['Password'])) {
+     if ($user && $password == $user['Password']) {
         $_SESSION['customer_id'] = $user['CustomerID'];
         $_SESSION['user_id'] = $user['AccountID'];
         $_SESSION['username'] = $user['Lname'] . ' ' . $user['Fname'];

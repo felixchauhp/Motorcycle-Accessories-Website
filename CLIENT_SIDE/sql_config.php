@@ -4,21 +4,21 @@ $dbname = 'motorcycle';
 $user = 'caotuan';
 $password = 'AVNS_hti9_ONmu8qTVi8uTAl';
 
-// Kiểm tra nếu người dùng đã đăng nhập
-$current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
-if (!isset($_SESSION['customer_id'])) {
-    // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
-    if ($current_page !== 'login.php') {
-        header("Location: login.php");
-        exit;
-   }
-} else {
-    // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
-    if ($current_page === 'login.php') {
-        header("Location: index.php");
-        exit;
-    }
-}
+// // Kiểm tra nếu người dùng đã đăng nhập
+// $current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
+// if (!isset($_SESSION['customer_id'])) {
+//     // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
+//     if ($current_page !== 'login.php') {
+//         header("Location: login.php");
+//         exit;
+//    }
+// } else {
+//     // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
+//     if ($current_page === 'login.php') {
+//         header("Location: index.php");
+//         exit;
+//     }
+// }
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);

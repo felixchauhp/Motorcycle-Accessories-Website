@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_connection.php';
 ?>
 <!DOCTYPE html>
@@ -15,9 +16,9 @@ include 'db_connection.php';
       <?php
         // Lấy ID sản phẩm từ URL
         $product_id = isset($_GET['id']) ? $_GET['id'] : '';
-        echo "<pre>";
-        print_r($product_id); // Hiển thị toàn bộ nội dung của $_SESSION
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($product_id); // Hiển thị toàn bộ nội dung của $_SESSION
+        // echo "</pre>";
         if (empty($product_id)) {
             die("Không tìm thấy sản phẩm!");
         }
@@ -73,7 +74,7 @@ include 'db_connection.php';
             </ul>
             <div class="details__action">
               <input type="number" class="quantity" value="3" />
-              <a href="#" class="btn btn--sm">Thêm vào giỏ hàng</a>
+              <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($productlist['ProductID']) ?>" class="btn btn--sm">Thêm vào giỏ hàng</a>
             </div>
             <ul class="details__meta">
               <li class="meta__list flex"><span>SKU:</span><?= htmlspecialchars($product['ProductID']) ?></li>

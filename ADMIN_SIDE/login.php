@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // $password = password_hash($password, PASSWORD_DEFAULT);
+
     // Kiểm tra thông tin trong bảng employees
     $query = "SELECT * FROM employees WHERE AccountName = ? AND Password = ?";
     $stmt = $conn->prepare($query);

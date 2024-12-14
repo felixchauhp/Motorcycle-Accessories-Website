@@ -15,7 +15,15 @@ $conn = new mysqli($host, $username, $password, $database, $port);
 // }
 // echo "Kết nối thành công!";
 
-
+try {
+    $pdo = new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+    $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // if($pdo){
+    //     echo "Connected successfully";
+    // }
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 
 // Cấu hình phân trang
 $itemsPerPage = 20;
@@ -65,7 +73,7 @@ $totalPages = ceil($totalItems / $itemsPerPage);
   $query = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier
             FROM products p
             LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
-            $whereSQL LIMIT $start, $itemsPerPage";
+            $whereSQL ORDER BY p.Lastestupdate DESC LIMIT $start, $itemsPerPage";
 
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
