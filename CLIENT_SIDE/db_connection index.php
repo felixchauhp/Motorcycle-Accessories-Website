@@ -11,33 +11,14 @@ $database = 'motorcycle'; // Thay bằng tên cơ sở dữ liệu của bạn
 // Kết nối với MySQL
 $conn = new mysqli($host, $username, $password, $database, $port);
 
-//Kiểm tra kết nối
-// if ($conn->connect_error) {
-//     die("Kết nối thất bại: " . $conn->connect_error);
-// }
-// echo "Kết nối thành công!";
-// $current_page = basename($_SERVER['PHP_SELF']); // Lấy tên file hiện tại
-// if (!isset($_SESSION['customer_id'])) {
-//     // Nếu chưa đăng nhập và không phải đang ở trang login.php, chuyển hướng về login.php
-//      if ($current_page !== 'login.php') {
-//         header("Location: login.php");
-//         exit;
-//     }
-// } else {
-//     // Nếu đã đăng nhập và đang ở trang login.php, chuyển hướng đến index.php
-//     if ($current_page === 'login.php') {
-//         header("Location: index.php");
-//         exit;
-//     }
-// }
 
 // Mặc định là tab nổi bật
 $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'featured'; // Mặc định là 'featured' nếu không có tham số
 $featured = isset($_GET['featured']) ? true : false;
 $popular = isset($_GET['popular']) ? true : false;
   
-// Truy vấn 8 sản phẩm có InStock cao nhất trong bảng products
-$topInStockQuery = "SELECT ProductID FROM products ORDER BY InStock DESC LIMIT 8";
+// Truy vấn 8 sản phẩm có lastestupdate cao nhất trong bảng products
+$topInStockQuery = "SELECT ProductID FROM products ORDER BY Lastestupdate DESC LIMIT 8";
 $topInStockResult = $conn->query($topInStockQuery);
 $topInStockProducts = [];
 if ($topInStockResult && $topInStockResult->num_rows > 0) {

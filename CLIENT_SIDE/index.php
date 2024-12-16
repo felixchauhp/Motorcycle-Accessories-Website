@@ -39,7 +39,7 @@ include 'db_connection index.php';
       <section class="products container section">
       <div class="tab__btns">
     <a href="?tab=featured">
-        <span class="tab__btn <?= $activeTab == 'featured' ? 'active-tab' : '' ?>" data-target="#featured">Nổi bật</span>
+        <span class="tab__btn <?= $activeTab == 'featured' ? 'active-tab' : '' ?>" data-target="#featured">Mới về</span>
     </a>
     <a href="?tab=popular">
         <span class="tab__btn <?= $activeTab == 'popular' ? 'active-tab' : '' ?>" data-target="#popular">Yêu thích</span>
@@ -78,7 +78,7 @@ include 'db_connection index.php';
                                   <i class="fi fi-rs-shuffle"></i>
                                 </a>
                             </div>
-                            <div class="product__badge light-green">Nổi bật</div>
+                            <div class="product__badge light-green">Mới về</div>
                         </div>
                         <div class="product__content">
                             <span class="product__category"><?= $product['Category'] ?></span>
