@@ -43,7 +43,7 @@ $filter = $_GET['filter'] ?? '';
 $whereClauses = [];
 if ($search) {
     $search = $conn->real_escape_string($search);
-    $whereClauses[] = "(p.ProductID LIKE '%$search%' OR p.ProductName LIKE '%$search%')";
+    $whereClauses[] = "( p.ProductName LIKE '%$search%')";
 }
 if ($filter === 'out_of_stock') {
     $whereClauses[] = "p.InStock = 0";
