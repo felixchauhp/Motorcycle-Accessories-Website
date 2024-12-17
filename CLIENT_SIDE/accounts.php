@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ul class="breadcrumb__list flex container">
           <li><a href="index.php" class="breadcrumb__link">Trang chủ</a></li>
           <li><span class="breadcrumb__link">></span></li>
-          <li><span class="breadcrumb__link">Về tôi</span></li>
+          <li><span class="breadcrumb__link">Thông tin cá nhân</span></li>
         </ul>
       </section>
 
@@ -160,9 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <h3 class="tab__header">Xin chào <?php echo $_SESSION['username']; ?></h3> 
               <div class="tab__body">
                 <p class="tab__description">
-                  Từ bảng điều khiển tài khoản của bạn. bạn có thể dễ dàng kiểm tra & xem
-                  đơn hàng gần đây của mình, quản lý địa chỉ giao hàng và thanh toán và
-                  chỉnh sửa mật khẩu và thông tin tài khoản của bạn
+                  Tại trang Thông tin cá nhân, bạn có thể dễ dàng kiểm tra những
+                  đơn hàng gần đây của mình, quản lý địa chỉ giao hàng,                  
+                  chỉnh sửa mật khẩu và thông tin cá nhân của bạn
                 </p>
               </div>
             </div>

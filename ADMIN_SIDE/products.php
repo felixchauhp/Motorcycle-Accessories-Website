@@ -21,7 +21,7 @@ include 'db_connection.php';
             <form method="GET" action="products.php" class="right-actions">
                 <input type="text" id="search-input" name="search" placeholder="Tìm kiếm..." value="<?= htmlspecialchars($search) ?>" />
                 <select id="filter-input" name="filter" style="font-family: inherit; font-size: inherit;">
-                    <option value="" <?= !isset($_GET['filter']) ? 'selected' : '' ?>>Tất cả trạng thái</option>
+                    <option value="" <?= !isset($_GET['filter']) ? 'selected' : '' ?>>Tất cả danh mục</option>
                     <option value="Ắc quy" <?= isset($_GET['filter']) && $_GET['filter'] === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
                     <option value="Bạc đạn" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>   
                     <option value="Bố đĩa và bố thắng" <?= isset($_GET['filter']) && $_GET['filter'] === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>

@@ -102,27 +102,6 @@ include 'cart_handle.php';
           </div>
         </div>
       </section>
-    <!--=============== NEWSLETTER ===============-->
-    <section class="newsletter section home__newsletter">
-      <div class="newsletter__container container grid">
-        <h3 class="newsletter__title flex">
-          <img
-            src="./assets/img/icon-email.svg"
-            alt=""
-            class="newsletter__icon"
-          />
-          Đăng ký nhận tin sản phẩm mới
-        </h3>
-        <form action="" class="newsletter__form">
-          <input
-            type="text"
-            placeholder="Nhập địa chỉ Email"
-            class="newsletter__input"
-          />
-          <button type="submit" class="newsletter__btn">Đăng ký</button>
-        </form>
-      </div>
-    </section>
   </main>
 
   <!--=============== FOOTER ===============-->
