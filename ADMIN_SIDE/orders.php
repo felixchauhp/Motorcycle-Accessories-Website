@@ -91,9 +91,6 @@ include 'db_connection.php';
                         <a href="show-order.php?OrderID=<?= urlencode($order['OrderID']); ?>">
                             <i class="fi fi-rs-menu-dots table__trash"></i>
                         </a>
-                        <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($order['OrderID']) ?>">
-                            <i class="fi fi-rs-trash table__trash"></i>
-                        </a>
                     </td>
 
                     </tr>

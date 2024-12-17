@@ -85,9 +85,10 @@ include 'db_connection.php';
                             <a href="../CLIENT_SIDE/details.php?id=<?= urlencode($product['ProductID']) ?>"><i class="fi fi-rs-menu-dots go-to-icon"></i></a>
                             
                             <!-- Nút xóa -->
-                            <a href="#" class="delete-btn" data-code="<?= htmlspecialchars($product['ProductID']) ?>">
+                            <a href="#" class="delete-btn" data-id="<?= htmlspecialchars($product['ProductID']) ?>">
                                 <i class="fi fi-rs-trash table__trash"></i>
                             </a>
+
                         </td>
                     </tr>
                     <?php } ?>
@@ -134,42 +135,43 @@ include 'db_connection.php';
         <li><a href="#" class="pagination__link disabled">»</a></li>
     <?php endif; ?>
     </ul>
-                   <!-- Popup xác nhận xóa -->
-                   <div id="confirmDelete" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999; display: none;">
-              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                  <p>Bạn có chắc chắn muốn xóa mã khuyến mãi này?</p>
-                  <button type="submit" class="btn btn__md" id="confirmDeleteBtn" >Xóa</button>
-                  <button type="submit" class="btn btn__md" id="cancelDeleteBtn" >Hủy</button>
-              </div>
-          </div>
-                      <!-- JavaScript để xử lý popup xác nhận -->
-                      <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                    const deleteButtons = document.querySelectorAll('.delete-btn');
-                    const confirmDeletePopup = document.getElementById('confirmDelete');
-                    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-                    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-                    let promoCodeToDelete = null;
+    <!-- Popup xác nhận xóa -->
+    <div id="confirmDelete" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 9999;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p>Bạn có chắc chắn muốn xóa sản phẩm này?</p>
+            <button class="btn btn__md" id="confirmDeleteBtn">Xóa</button>
+            <button class="btn btn__md" id="cancelDeleteBtn">Hủy</button>
+        </div>
+    </div>
 
-                    deleteButtons.forEach(button => {
-                        button.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            promoCodeToDelete = button.getAttribute('data-code'); // Lấy PromoCode từ data attribute
-                            confirmDeletePopup.style.display = 'block'; // Hiển thị popup
-                        });
-                    });
 
-                    cancelDeleteBtn.addEventListener('click', function() {
-                        confirmDeletePopup.style.display = 'none'; // Ẩn popup
-                    });
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            const confirmDeletePopup = document.getElementById('confirmDelete');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+            let productIdToDelete = null;
 
-                    confirmDeleteBtn.addEventListener('click', function() {
-                        if (promoCodeToDelete) {
-                            window.location.href = 'delete_discount.php?promo_code=' + promoCodeToDelete; // Chuyển hướng đến file PHP xử lý xóa
-                        }
-                    });
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    productIdToDelete = button.getAttribute('data-id'); // Lấy ProductID từ data attribute
+                    confirmDeletePopup.style.display = 'block'; // Hiển thị popup
                 });
-            </script>
+            });
+
+            cancelDeleteBtn.addEventListener('click', function () {
+                confirmDeletePopup.style.display = 'none'; // Ẩn popup
+            });
+
+            confirmDeleteBtn.addEventListener('click', function () {
+                if (productIdToDelete) {
+                    window.location.href = 'delete_product.php?product_id=' + productIdToDelete; // Chuyển hướng đến file PHP xử lý xóa
+                }
+            });
+        });
+    </script>
  
 
         </section>

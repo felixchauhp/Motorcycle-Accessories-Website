@@ -8,6 +8,20 @@ include 'db_connection.php';
 $product_id = $_GET['product-id'] ?? '';
 $product = null;
 
+// Lấy thông tin danh mục hiện tại của sản phẩm
+$product_category = '';
+if ($product_id) {
+    $category_query = "SELECT Category FROM products_in_category WHERE ProductID = ?";
+    if ($stmt = mysqli_prepare($conn, $category_query)) {
+        mysqli_stmt_bind_param($stmt, "s", $product_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $category_row = mysqli_fetch_assoc($result);
+        $product_category = $category_row['Category'] ?? '';
+        mysqli_stmt_close($stmt);
+    }
+}
+
 if ($product_id) {
     $query = "SELECT * FROM products WHERE ProductID = ?";
     if ($stmt = mysqli_prepare($conn, $query)) {
@@ -114,26 +128,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <h2 style="text-align: center;">Chỉnh sửa sản phẩm</h2>
           <br>
           <form id="edit-product" method="POST">
-            <label for="product-id">Mã sản phẩm:</label>
-            <input type="text" id="product-id" name="product-id" value="<?= htmlspecialchars($product['ProductID'] ?? '') ?>" readonly />
+          <label for="product-id">Mã sản phẩm:</label>
+          <input type="text" id="product-id" name="product-id" value="<?= htmlspecialchars($product['ProductID'] ?? '') ?>" readonly />
 
-            <label for="product-name">Tên sản phẩm:</label>
-            <input type="text" id="product-name" name="product-name" value="<?= htmlspecialchars($product['ProductName'] ?? '') ?>" required />
+          <label for="product-name">Tên sản phẩm:</label>
+          <input type="text" id="product-name" name="product-name" value="<?= htmlspecialchars($product['ProductName'] ?? '') ?>" readonly />
 
             <label for="product-supplier">Nhà cung cấp:</label>
-            <input type="text" id="product-supplier" name="product-supplier" value="<?= htmlspecialchars($product['Supplier'] ?? '') ?>" required />
+            <input type="text" id="product-supplier" name="product-supplier" value="<?= htmlspecialchars($product['Supplier'] ?? '') ?>" readonly />
 
             <label for="product-category">Danh mục:</label>
-            <select id="filter-input" name="product-category" required>
-              <option value="" disabled>Chọn</option>
-              <option value="Ắc quy" <?= ($product['Category'] ?? '') === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
-              <option value="Bạc đạn" <?= ($product['Category'] ?? '') === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>
-              <option value="Bố đĩa và bố thắng" <?= ($product['Category'] ?? '') === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>
-              <option value="Nhông sên dĩa" <?= ($product['Category'] ?? '') === 'Nhông sên dĩa' ? 'selected' : '' ?>>Nhông sên dĩa</option>
-              <option value="Nhớt" <?= ($product['Category'] ?? '') === 'Nhớt' ? 'selected' : '' ?>>Nhớt</option>
-              <option value="Vỏ xe và ruột xe" <?= ($product['Category'] ?? '') === 'Vỏ xe và ruột xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
-              <option value="Các phụ kiện khác" <?= ($product['Category'] ?? '') === 'Các phụ kiện khác' ? 'selected' : '' ?>>Các phụ kiện khác</option>
-            </select>
+              <select id="filter-input" name="product-category" required>
+                  <option value="" disabled>Chọn</option>
+                  <option value="Ắc quy" <?= $product_category === 'Ắc quy' ? 'selected' : '' ?>>Ắc quy</option>
+                  <option value="Bạc đạn" <?= $product_category === 'Bạc đạn' ? 'selected' : '' ?>>Bạc đạn</option>
+                  <option value="Bố đĩa và bố thắng" <?= $product_category === 'Bố đĩa và bố thắng' ? 'selected' : '' ?>>Bố đĩa và bố thắng</option>
+                  <option value="Nhông sên dĩa" <?= $product_category === 'Nhông sên dĩa' ? 'selected' : '' ?>>Nhông sên dĩa</option>
+                  <option value="Nhớt" <?= $product_category === 'Nhớt' ? 'selected' : '' ?>>Nhớt</option>
+                  <option value="Vỏ xe và ruột xe" <?= $product_category === 'Vỏ xe và ruột xe' ? 'selected' : '' ?>>Vỏ xe và ruột xe</option>
+                  <option value="Các phụ kiện khác" <?= $product_category === 'Các phụ kiện khác' ? 'selected' : '' ?>>Các phụ kiện khác</option>
+              </select>
 
             <label for="product-info">Mô tả:</label>
             <textarea id="product-info" name="product-info" required><?= htmlspecialchars($product['Description'] ?? '') ?></textarea>
@@ -145,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="product-quantity" name="product-quantity" value="<?= htmlspecialchars($product['InStock'] ?? 0) ?>" required />
 
             <label for="product-unit">Đơn vị tính:</label>
-            <input type="text" id="product-unit" name="product-unit" value="<?= htmlspecialchars($product['Unit'] ?? '') ?>" required />
+            <input type="text" id="product-unit" name="product-unit" value="<?= htmlspecialchars($product['Unit'] ?? '') ?>" readonly />
 
             <div id="product-prices">
               <div>

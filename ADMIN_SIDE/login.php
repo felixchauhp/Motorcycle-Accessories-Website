@@ -86,10 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <div class="form__btn">
                       <button type="submit" class="btn flex btn__md">Đăng nhập</button>
                   </div>
-              <p>
-                <li><a href="forgetpass.php">Quên mật khẩu ?</a></li>
-                <li><a href="register.php">Chưa có tài khoản ? Đăng ký ngay.</a></li>
-              </p>
             </form>
             <?php if (isset($error_message)) : ?>
                   <p style="color: red;"><?= $error_message ?></p>
