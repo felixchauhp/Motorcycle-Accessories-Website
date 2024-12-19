@@ -2,7 +2,8 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+$_SESSION['current_table'] = 'products';
+include 'db_staff_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Nhận dữ liệu từ form
@@ -85,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!--=============== MAIN ===============-->
     <main class="main">
+    <?php if($_SESSION['InsertData']): ?>
       <!--=============== Product Management ===============-->
       <section class="products container section--lg">
         <!-- Button to add a new product -->
@@ -146,8 +148,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <br>
             <button type="submit">Thêm</button>
           </form>
-        </div>   
-      
+        </div> 
+      </section>  
+    <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền thêm sản phẩm ở trang này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+    <?php endif; ?>
     </main>
 
      <!--=============== FOOTER ===============-->

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['current_table'] = 'promotion';
 include 'checklogin.php';
 include 'db_connection.php';
 ?>
@@ -13,6 +14,7 @@ include 'db_connection.php';
   <?php include 'header.php'; ?>
     <!--=============== MAIN ===============-->
     <main class="main">
+    <?php if($_SESSION['ViewData']): ?>
         <!--=============== Promotion Management ===============-->
         <section class="products container section--lg">
             <div class="search-container">
@@ -155,6 +157,10 @@ include 'db_connection.php';
                 });
             </script>
         </section>
+    <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền xem thông tin khuyến mãi ở trang này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+    <?php endif; ?>
     </main>
 
     <!--=============== FOOTER ===============-->

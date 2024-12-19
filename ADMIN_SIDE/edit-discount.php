@@ -2,7 +2,8 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+$_SESSION['current_table'] = 'promotion';
+include 'db_staff_connection.php';
 
 // Khởi tạo các biến và lỗi
 $promo_name = $promo_code = $start_date = $end_date = $percent_discount = "";
@@ -101,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!--=============== MAIN ===============-->
     <main class="main">
+    <?php if($_SESSION['UpdateData']): ?>
         <section class="promotions container section--lg">
             <div id="promotionForm">
                 <h2 style="text-align: center;">Chỉnh sửa mã khuyến mãi</h2>
@@ -197,6 +199,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
         </section>
+    <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền điều chỉnh các mã khuyến mãi ở trang này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+    <?php endif; ?>
     </main>
 
        <!--=============== FOOTER ===============-->

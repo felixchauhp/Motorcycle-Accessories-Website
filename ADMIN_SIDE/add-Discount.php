@@ -2,7 +2,8 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+$_SESSION['current_table'] = 'promotion';
+include 'db_staff_connection.php';
 
 // Khởi tạo các biến rỗng cho dữ liệu và lỗi
 $promo_name = $promo_code = $start_date = $end_date = "";
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!--=============== MAIN ===============-->
     <main class="main">
-
+    <?php if($_SESSION['InsertData']): ?>
       <!--=============== Promotion Management ===============-->
       <section class="promotions container section--lg">
         <!-- Button to add a new promotion -->
@@ -144,6 +145,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     </section>
+    <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền thêm mã khuyến mãi ở trang này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+    <?php endif; ?>
     </main>
        <!--=============== FOOTER ===============-->
        <?php include 'footer.php'; ?>

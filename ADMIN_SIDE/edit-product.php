@@ -2,6 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
+$_SESSION['current_table'] = 'products';
 include 'db_connection.php';
 
 // Lấy thông tin sản phẩm cần chỉnh sửa
@@ -122,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!--=============== MAIN ===============-->
     <main class="main">
+    <?php if ($_SESSION['UpdateData']): ?>
       <!--=============== Product Management ===============-->
       <section class="products container section--lg">
         <div id="productForm">
@@ -183,6 +185,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </form>
         </div>
       </section>
+    <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền cập nhật thông tin sản phẩm này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+    <?php endif; ?>
     </main>
 
      <!--=============== FOOTER ===============-->
