@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['current_table'] = 'promotion';
 include 'checklogin.php';
-include 'db_connection.php';
+include 'db_staff_connection.php';
 ?>
 
 <!DOCTYPE html>
