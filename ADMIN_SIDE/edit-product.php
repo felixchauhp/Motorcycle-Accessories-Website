@@ -2,7 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 // Lấy thông tin sản phẩm cần chỉnh sửa
 $product_id = $_GET['product-id'] ?? '';

@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php';
+include 'db_admin_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $identifier = $_POST['identifier'];

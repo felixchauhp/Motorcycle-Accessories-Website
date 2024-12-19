@@ -2,7 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 // Khởi tạo các biến và lỗi
 $promo_name = $promo_code = $start_date = $end_date = $percent_discount = "";

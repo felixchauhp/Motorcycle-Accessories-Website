@@ -2,7 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Nhận dữ liệu từ form

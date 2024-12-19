@@ -78,11 +78,6 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 $products = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
 
 
-
-
-
-
-
 // 2. Phân trang cho bảng đơn hàng
 // Lấy giá trị từ GET
 $search = $_GET['search'] ?? '';
@@ -120,9 +115,6 @@ if ($orderResults->num_rows > 0) {
 } else {
     $orders = [];
 }
-
-
-
 
 
 // 3. Phân trang cho bảng khuyến mãi

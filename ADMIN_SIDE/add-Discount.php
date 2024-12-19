@@ -2,7 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 // Khởi tạo các biến rỗng cho dữ liệu và lỗi
 $promo_name = $promo_code = $start_date = $end_date = "";
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!--=============== MAIN ===============-->
     <main class="main">
-
+    
       <!--=============== Promotion Management ===============-->
       <section class="promotions container section--lg">
         <!-- Button to add a new promotion -->

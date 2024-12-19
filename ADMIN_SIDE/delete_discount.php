@@ -2,7 +2,7 @@
 session_start();
 include 'checklogin.php';
 // Kết nối cơ sở dữ liệu
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 // Kiểm tra xem tham số promo_code có được truyền vào không
 if (isset($_GET['promo_code'])) {

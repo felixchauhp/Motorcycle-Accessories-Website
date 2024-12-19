@@ -1,7 +1,8 @@
 <?php
 session_start();
+$_SESSION['current_table'] = 'motorcycle.orders';
 include 'checklogin.php';
-include 'db_connection.php';
+include 'db_staff_connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@ include 'db_connection.php';
   <?php include 'header.php'; ?>
     <!--=============== ORDER ===============-->   
     <main class="main">
+     <?php if($_SESSION['ViewData']): ?>
         <section class="products section--lg container">
         <div class="search-container">
         <form method="GET" action="orders.php" class="right-actions">
@@ -199,6 +201,10 @@ include 'db_connection.php';
                 });
             </script>
   </section>
+  <?php else: ?>
+        <h1 style="text-align: center;"> Bạn không có quyền xem thông tin đơn hàng ở trang này </h1>
+        <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+  <?php endif; ?>
   </main>
   <!--=============== FOOTER ===============-->
   <?php include 'footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'checklogin.php';
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 if (isset($_GET['OrderID'])) {
     $order_id = urldecode($_GET['OrderID']);

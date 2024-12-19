@@ -1,23 +1,30 @@
 <?php
 session_start();
-include 'db_connection.php'; // Tệp kết nối cơ sở dữ liệu
+include 'db_admin_connection.php'; // Tệp kết nối cơ sở dữ liệu
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // $password = password_hash($password, PASSWORD_DEFAULT);
-
     // Kiểm tra thông tin trong bảng employees
-    $query = "SELECT * FROM employees WHERE AccountName = ? AND Password = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $username, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare("SELECT * FROM employees WHERE AccountName = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      
+    // if ($user) {
+    //   echo '<pre>';
+    //   echo "Password from database: " . $user['Password'] . PHP_EOL;
+    //   echo "Entered password: " . $password . PHP_EOL;
+    //   echo "Password verification result: " . (password_verify($password, $user['Password']) ? 'true' : 'false') . PHP_EOL;
+    //   echo '</pre>';
+    // } else {
+    //   echo "No user found for the username: $username";
+    // }
 
-    if ($result->num_rows > 0) {
+     if ($user && password_verify($password, $user['Password'])) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
         header("Location: index.php");
         exit();
     } else {
