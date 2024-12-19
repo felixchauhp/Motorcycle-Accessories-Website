@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'checklogin.php';
-include 'db_connection.php';
+include 'db_admin_connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
