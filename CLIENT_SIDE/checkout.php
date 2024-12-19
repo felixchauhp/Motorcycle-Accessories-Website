@@ -1,7 +1,22 @@
 <?php
 include 'cart_handle.php';
-?>
-<?php include 'checkout_handle.php'; 
+include 'checkout_handle.php'; 
+
+$stmt = $conn->prepare("SELECT * FROM customers WHERE CustomerID = ?");
+$stmt->bind_param("s", $_SESSION['customer_id']); // Bind the parameter as an string
+$stmt->execute();
+$result = $stmt->get_result(); // Get the result set
+$user = $result->fetch_assoc(); // Fetch the row as an associative array
+
+$customer_name = $user['Lname'] . ' ' . $user['Fname'];
+$phone = $user['Tel'];
+$email = $user['Email'];
+
+$stmt = $conn->prepare("SELECT Address FROM address_list WHERE CustomerID = ? AND `default` = 'yes'");
+$stmt->bind_param("s", $_SESSION['customer_id']); // Bind the parameter as an string
+$stmt->execute();
+$result = $stmt->get_result(); // Get the result set
+$address = $result->fetch_assoc()['Address'] ?? "No default address found"; // Fetch the address or provide a default value
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +45,10 @@ include 'cart_handle.php';
           <div class="checkout__group">
             <h3 class="section__title">Thông tin cá nhân</h3>
             <form id="checkoutForm" class="form grid" method="POST" action="checkout_handle.php" onsubmit="return confirmOrder()" >
-              <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" required/>
-              <input type="text" name="address" placeholder="Địa chỉ" class="form__input" required/>
-              <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
-              <input type="email" name="email" placeholder="Email" class="form__input" required/>
+              <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" value="<?php echo htmlspecialchars($customer_name); ?>" readonly/>
+              <input type="text" name="address" placeholder="Địa chỉ" class="form__input" value="<?php echo htmlspecialchars($address); ?>" readonly/>
+              <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" value="<?php echo htmlspecialchars($phone); ?>" readonly/>
+              <input type="email" name="email" placeholder="Email" class="form__input" value="<?php echo htmlspecialchars($email); ?>" readonly/>
               <input type="hidden" name="payment_method" id="payment_method">
               <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
             </form> 
