@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['current_table'] = 'products';
 include 'checklogin.php'; // Kiểm tra đăng nhập
-include 'db_connection.php'; // Kết nối cơ sở dữ liệu
+include 'db_staff_connection.php'; // Kết nối cơ sở dữ liệu
 
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id']; // Lấy ProductID từ query string
