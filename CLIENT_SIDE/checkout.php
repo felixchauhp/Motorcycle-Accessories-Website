@@ -86,33 +86,6 @@ $address = $result->fetch_assoc()['Address'] ?? "No default address found"; // F
             </table>
             <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($_SESSION['total'] - ($_SESSION['discount'] ?? 0) , 0, ',', '.') ?> VNĐ</span></h3>
             <?php endif; ?>
-            <div class="payment__methods" >
-              <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
-              <div class="payment__option flex">
-                <input
-                  type="radio"
-                  name="radio"
-                  value="chuyen_khoan"
-                  id="l1"
-                  checked
-                  class="payment__input"
-
-                />
-                <label for="l1" class="payment__label"
-                  >Chuyển khoản</label
-                >
-              </div>
-              <div class="payment__option flex">
-                <input
-                  type="radio"
-                  name="radio"
-                  value="tien_mat"
-                  id="l2"
-                  class="payment__input"
-                />
-                <label for="l2" class="payment__label">Tiền mặt</label>
-              </div>
-            </div>
             <button type="submit" id="confirmOrderBtn" form="checkoutForm" name="place_order" class="btn btn--md" >Đặt hàng</button>
           </div>
         </div>

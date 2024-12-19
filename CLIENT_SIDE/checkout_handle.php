@@ -97,7 +97,7 @@ if (isset($_POST['place_order'])) {
     // Lưu thông tin thanh toán vào bảng payment
     $query_insert_payment = "
         INSERT INTO payment (OrderID, PaymentMethod, PaymentDate)
-        VALUES ('$order_id', 'Tiền mặt', '$order_date')
+        VALUES ('$order_id', 'Chuyển khoản', '$order_date')
     ";
     if (!mysqli_query($conn, $query_insert_payment)) {
         $_SESSION['order_error'] = 'Không thể lưu thông tin thanh toán: ' . mysqli_error($conn);
