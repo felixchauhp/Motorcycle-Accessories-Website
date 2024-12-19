@@ -26,6 +26,7 @@
             <p>Hic, giỏ hàng của bạn đang trống.</p>
         <?php else: ?>
         <div class="table__container">
+        <form method="POST" action="cart_handle.php">
           <table class="table">
             <thead>
               <tr>
@@ -57,7 +58,7 @@
                 <td>
                   <span class="table__price"><?= number_format($item['price']) ?> VNĐ</span>
                 </td>
-                <td><input type="number" value="<?= $item['quantity'] ?>" class="quantity" readonly /></td>
+                <td><input type="number" name="quantity[<?= $id ?>]" value="<?= $item['quantity'] ?>" class="quantity" min="1" /></td>
                 <td><span class="subtotal"><?= number_format($item['price'] * $item['quantity']) ?> VNĐ</span></td>
 
                 <td>
@@ -73,14 +74,14 @@
         </div>
 
         <div class="cart__actions">
-          <a href="#" class="btn flex btn__md">
-            <i class="fi-rs-shuffle"></i> Cập nhật giỏ hàng
-          </a>
+        <button type="submit" name="update_cart" class="btn flex btn__md">
+      <i class="fi-rs-shuffle"></i> Cập nhật giỏ hàng
+    </button>
           <a href="shop.php" class="btn flex btn__md">
             <i class="fi-rs-shopping-bag"></i> Tiếp tục mua hàng
           </a>
         </div>
-
+        </form>
         <div class="divider">
           <i class="fi fi-rs-fingerprint"></i>
         </div>

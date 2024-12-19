@@ -95,7 +95,7 @@ include 'db_connection index.php';
                             <div class="product__price flex">
                                 <span class="new__price"><?= number_format($product['SalePrice']) ?> VNĐ</span>
                             </div>
-                            <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
+                            <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($product['ProductID']) ?>" class="action__btn cart__btn" aria-label="Add To Cart">
                               <i class="fi fi-rs-shopping-bag-add"></i>
                             </a>
                         </div>
@@ -154,7 +154,7 @@ include 'db_connection index.php';
                             <div class="product__price flex">
                                 <span class="new__price"><?= number_format($product['SalePrice']) ?> VNĐ</span>
                             </div>
-                            <a href="#" class="action__btn cart__btn" aria-label="Add To Cart">
+                            <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($product['ProductID']) ?>" class="action__btn cart__btn" aria-label="Add To Cart">
                               <i class="fi fi-rs-shopping-bag-add"></i>
                             </a>
                         </div>

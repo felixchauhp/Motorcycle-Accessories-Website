@@ -14,7 +14,28 @@ if (!isset($_SESSION['user_id'])) {
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
+// Kiểm tra xem người dùng có nhấn "Cập nhật giỏ hàng" không
+if (isset($_POST['update_cart'])) {
+    // Lấy giỏ hàng hiện tại từ session
+    $cart = $_SESSION['cart'] ?? [];
 
+    // Lấy dữ liệu số lượng từ form
+    $quantities = $_POST['quantity'];
+
+    foreach ($quantities as $id => $quantity) {
+        if (isset($cart[$id])) {
+            // Cập nhật số lượng (đảm bảo không thấp hơn 1)
+            $cart[$id]['quantity'] = max(1, intval($quantity));
+        }
+    }
+
+    // Lưu giỏ hàng đã cập nhật vào session
+    $_SESSION['cart'] = $cart;
+
+    // Chuyển hướng về trang giỏ hàng
+    header("Location: cart.php");
+    exit();
+}
 // Xử lý thêm sản phẩm vào giỏ
 if (isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['ProductID'])) {
     $productID = $_GET['ProductID'];
