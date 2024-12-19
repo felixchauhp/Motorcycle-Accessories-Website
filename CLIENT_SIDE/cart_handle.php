@@ -39,7 +39,6 @@ if (isset($_POST['update_cart'])) {
 // Xử lý thêm sản phẩm vào giỏ
 if (isset($_GET['action']) && $_GET['action'] === 'add' && isset($_GET['ProductID'])) {
     $productID = $_GET['ProductID'];
-
     // Truy vấn thông tin sản phẩm từ database
     $stmt = $conn->prepare("SELECT * FROM products WHERE ProductID = ?");
     $stmt->bind_param("s", $productID);

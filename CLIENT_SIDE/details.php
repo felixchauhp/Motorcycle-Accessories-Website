@@ -2,6 +2,7 @@
 session_start();
 include 'db_connection.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <!--=============== DOCUMENT HEAD ===============-->
@@ -23,8 +24,10 @@ include 'db_connection.php';
             die("Không tìm thấy sản phẩm!");
         }
         //truy vấn thông tin sản phẩm   
-        $sql = "SELECT * FROM products WHERE ProductID = ?";
-        $stmt = $conn->prepare($sql);
+        $sql = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier, p.Usage, p.Description, p.Unit
+        FROM products p
+        LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
+        WHERE p.ProductID = ?";        $stmt = $conn->prepare($sql);
         $stmt->bind_param('s', $product_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -34,6 +37,19 @@ include 'db_connection.php';
         } else {
             die("Sản phẩm không tồn tại!");
         }
+
+        $currentCategory = $product['Category'];
+
+        // Truy vấn để lấy các sản phẩm có cùng danh mục
+        $sql_related = "SELECT p.ProductID, p.ProductName, p.InStock, p.BasePrice, p.SalePrice, p.Notes, c.Category, p.Image, p.Supplier, p.Usage, p.Description, p.Unit
+                        FROM products p
+                        LEFT JOIN products_in_category c ON p.ProductID = c.ProductID
+                        WHERE c.Category = ? AND p.ProductID != ?
+                        LIMIT 4";  // Không lấy sản phẩm hiện tại
+        $stmt_related = $conn->prepare($sql_related);
+        $stmt_related->bind_param('ss', $currentCategory, $product_id);  // Truyền vào Category và ProductID
+        $stmt_related->execute();
+        $result_related = $stmt_related->get_result();
       ?>
       <!--=============== DETAILS ===============-->
       <section class="details section--lg">
@@ -48,7 +64,7 @@ include 'db_connection.php';
           </div>
           <div class="details__group">
             <h3 class="details__title"><?= htmlspecialchars($product['ProductName']) ?></h3>
-            <p class="details__brand">Danh mục: <span>Bình điện</span></p>
+            <p class="details__brand">Danh mục: <span><?= htmlspecialchars($product['Category']) ?></span></p>
             <div class="details__price flex">
               <span class="new__price"><?= htmlspecialchars($product['SalePrice']) ?> VNĐ</span>
             </div>
@@ -73,9 +89,9 @@ include 'db_connection.php';
               </li>
             </ul>
             <div class="details__action">
-              <input type="number" class="quantity" value="3" />
-              <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($productlist['ProductID']) ?>" class="btn btn--sm">Thêm vào giỏ hàng</a>
-            </div>
+    <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($product['ProductID']) ?>&quantity=" class="btn btn--sm" id="addToCart">Thêm vào giỏ hàng</a>
+</div>
+
             <ul class="details__meta">
               <li class="meta__list flex"><span>SKU:</span><?= htmlspecialchars($product['ProductID']) ?></li>
               <li class="meta__list flex">
@@ -178,59 +194,46 @@ include 'db_connection.php';
   </div>
 </section>
 
-
-      <!--=============== PRODUCTS ===============-->
-      <section class="products container section--lg">
-        <h3 class="section__title">Sản phẩm <span>cùng danh mục</span></h3>
-        <div class="products__container grid">
-          <div class="product__item">
-            <div class="product__banner">
-              <a href="details.php" class="product__images">
-                <img
-                  src="assets/img/product-1-1.jpg"
-                  alt=""
-                  class="product__img default"
-                />
-                <img
-                  src="assets/img/product-1-2.jpg"
-                  alt=""
-                  class="product__img hover"
-                />
-              </a>
-              <div class="product__actions">
-                <a href="#" class="action__btn" aria-label="Xem chi tiết">
-                  <i class="fi fi-rs-eye"></i>
-                </a>
-              </div>
-              <div class="product__badge light-pink">Hot</div>
-            </div>
-            <div class="product__content">
-              <span class="product__category">Clothing</span>
-              <a href="details.php">
-                <h3 class="product__title">Colorful Pattern Shirts</h3>
-              </a>
-              <div class="product__rating">
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-                <i class="fi fi-rs-star"></i>
-              </div>
-              <div class="product__price flex">
-                <span class="new__price">$238.85</span>
-                <span class="old__price">$245.8</span>
-              </div>
-              <a
-                href="#"
-                class="action__btn cart__btn"
-                aria-label="Add To Cart"
-              >
-                <i class="fi fi-rs-shopping-bag-add"></i>
-              </a>
-            </div>
-          </div>
+ <!--=============== PRODUCTS ===============-->
+ <section class="products container section--lg">
+  <h3 class="section__title">Sản phẩm <span>cùng danh mục</span></h3>
+  <div class="products__container grid">
+    <?php while ($related_product = $result_related->fetch_assoc()) { ?>
+      <div class="product__item">
+        <div class="product__banner">
+          <a href="details.php?id=<?= htmlspecialchars($related_product['ProductID']) ?>" class="product__images" style ="width: 100%; height: 300px; object-fit: cover;">
+          <img
+                    src="<?=  htmlspecialchars($related_product['Image']) ?>"
+                    alt="Product Image"
+                    class="product__img default"
+                    style ="max-width: 100%;
+                    object-fit: cover;
+                    width: 100%;  "
+                    />
+                  <img
+                    src="<?=  htmlspecialchars($related_product['Image']) ?>"
+                    alt="Product Image"
+                    class="product__img hover"
+                  />
+          </a>
         </div>
-      </section>
+        <div class="product__content" style="max-width: 304px;">
+          <span class="product__category"><?= htmlspecialchars($related_product['Category']) ?></span>
+          <a href="details.php?id=<?= htmlspecialchars($related_product['ProductID']) ?>">
+            <h3 class="product__title" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?= htmlspecialchars($related_product['ProductName']) ?></h3>
+          </a>
+          <div class="product__price flex">
+            <span class="new__price"><?= number_format($related_product['SalePrice'], 0, ',', '.') ?> VNĐ</span>
+          </div>
+          <a href="cart.php?action=add&ProductID=<?= htmlspecialchars($related_product['ProductID']) ?>" class="action__btn cart__btn" aria-label="Add To Cart">
+            <i class="fi fi-rs-shopping-bag-add"></i>
+          </a>
+        </div>
+      </div>
+    <?php } ?>
+  </div>
+</section>
+
       <script>
       // Truyền ProductID từ PHP sang JS
       var productId = <?php echo json_encode($product_id); ?>;

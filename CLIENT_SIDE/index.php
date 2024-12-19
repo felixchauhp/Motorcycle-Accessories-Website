@@ -82,7 +82,7 @@ include 'db_connection index.php';
                         </div>
                         <div class="product__content">
                             <span class="product__category"><?= $product['Category'] ?></span>
-                            <a href="details.php?product_id=<?= $product['ProductID'] ?>">
+                            <a href="details.php?id=<?= $product['ProductID'] ?>">
                                 <h3 class="product__title"><?= $product['ProductName'] ?></h3>
                             </a>
                             <div class="product__rating">
@@ -126,22 +126,11 @@ include 'db_connection index.php';
                 class="product__img hover"
             />
         </a>
-                            <div class="product__actions">
-                                <a href="#" class="action__btn" aria-label="Quick View">
-                                  <i class="fi fi-rs-eye"></i>
-                                </a>
-                                <a href="#" class="action__btn" aria-label="Add to Wishlist">
-                                  <i class="fi fi-rs-heart"></i>
-                                </a>
-                                <a href="#" class="action__btn" aria-label="Compare">
-                                  <i class="fi fi-rs-shuffle"></i>
-                                </a>
-                            </div>
-                            <div class="product__badge light-pink">Yêu thích</div>
+                          <div class="product__badge light-pink">Yêu thích</div>
                         </div>
                         <div class="product__content" style="max-width: 304px;">
                             <span class="product__category"><?= $product['Category'] ?></span>
-                            <a href="details.php?product_id=<?= $product['ProductID'] ?>">
+                            <a href="details.php?id=<?= $product['ProductID'] ?>">
                                 <h3 class="product__title" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?= $product['ProductName'] ?></h3>
                             </a>
                             <div class="product__rating">
