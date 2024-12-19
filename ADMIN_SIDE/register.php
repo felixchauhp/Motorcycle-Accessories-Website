@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php';
+include 'db_admin_connection.php';
 
 //function to generate unique id
 function generateUniqueId($prefix, $pdo, $column, $table) {
@@ -51,7 +51,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $pdo->prepare("INSERT INTO employees (EmployeeID, Lname, Fname, Sex, Birthday, Email, Tel, Address, Position, Status, StartDate, AccountID, AccountName, Password) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         if ($stmt->execute([$employeeID, $lname, $fname, $Sex, $Birthday, $Email, $Tel, $Address, $Position, $Status, $StartDate, $accountID, $username, $password])) {
-            // In ra thông tin dữ liệu đã được thêm
+        
+        //Tạo user mới cho database
+        $stmt = $pdo->prepare("
+          CREATE USER '$username'@'%' IDENTIFIED BY '$re_password';
+          GRANT ALL PRIVILEGES ON motorcycle.address_list TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.category TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.customers TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.employees TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.payment TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.products_in_category TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.products_in_orders TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.supporter_of_orders TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.used_promocodes TO '$username'@'%';
+          GRANT ALL PRIVILEGES ON motorcycle.vehicle TO '$username'@'%';
+          FLUSH PRIVILEGES;
+        ");
+        $stmt->execute();
+        
+          // In ra thông tin dữ liệu đã được thêm
             // echo "<script>console.log('Người dùng đã được thêm: " . json_encode([
             //     'CustomerID' => $customerID,
             //     'Lname' => $lname,
