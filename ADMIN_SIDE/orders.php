@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['current_table'] = 'motorcycle.orders';
+$_SESSION['current_table'] = 'orders';
 include 'checklogin.php';
 include 'db_staff_connection.php';
 ?>

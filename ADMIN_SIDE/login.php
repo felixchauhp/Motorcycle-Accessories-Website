@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // }
 
      if ($user && password_verify($password, $user['Password'])) {
+    //  if ($user && $password == $user['Password']) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;

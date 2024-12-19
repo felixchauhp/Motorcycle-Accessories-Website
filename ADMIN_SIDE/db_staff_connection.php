@@ -49,15 +49,18 @@ function checkPermission($grants, $tableName, $permission = null) {
         $grantStr = implode(" ", $grant);
         // print_r($grantStr);
 
+    // Xử lý chuỗi bảng để đảm bảo khớp chính xác
+        $pattern = '/\b' . preg_quote($tableName, '/') . '\b/';
+
         // Kiểm tra quyền cụ thể trên bảng
         foreach ($permissions as $key => &$value) {
-            if (strpos($grantStr, $key) !== false && strpos($grantStr, $tableName) !== false) {
+            if (strpos($grantStr, $key) !== false && preg_match($pattern, $grantStr)) {
                 $value = true;
             }
         }
 
         // Kiểm tra quyền ALL PRIVILEGES
-        if (strpos($grantStr, 'ALL PRIVILEGES') !== false && strpos($grantStr, $tableName) !== false) {
+        if (strpos($grantStr, 'ALL PRIVILEGES') !== false && preg_match($pattern, $grantStr)) {
             $permissions = array_fill_keys(array_keys($permissions), true);
         }
     }
@@ -71,7 +74,7 @@ function checkPermission($grants, $tableName, $permission = null) {
     return $permissions[$permission] ?? false;
 }
 
-if(isset($_SESSION['current_table'])) $tableName = $_SESSION['current_table'];
+$tableName = $_SESSION['current_table'] ?? null;
 // echo $tableName;
 if(!$tableName) return;
 else{
