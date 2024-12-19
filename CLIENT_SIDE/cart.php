@@ -62,9 +62,10 @@
                 <td><span class="subtotal"><?= number_format($item['price'] * $item['quantity']) ?> VNĐ</span></td>
 
                 <td>
-                <a href="cart.php?action=remove&ProductID=<?= $id ?>" class="table__trash">
-                        <i class="fi fi-rs-trash"></i>
-                      </a>
+                <a href="javascript:void(0);" class="table__trash" data-product-id="<?= $id ?>">
+    <i class="fi fi-rs-trash"></i>
+</a>
+
                 </td>
               </tr>
               <?php endforeach; ?>
@@ -144,5 +145,26 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function confirmDelete(productId) {
+            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                // Nếu người dùng nhấn OK, chuyển hướng tới URL xóa sản phẩm
+                window.location.href = 'cart.php?action=remove&ProductID=' + productId;
+            }
+        }
+
+        // Đảm bảo rằng các thẻ <a> có sự kiện onclick được xử lý khi DOM đã tải xong
+        const deleteLinks = document.querySelectorAll('.table__trash');
+        deleteLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const productId = link.getAttribute('data-product-id');
+                confirmDelete(productId);
+            });
+        });
+    });
+</script>
+
+
   </body>
 </html>
