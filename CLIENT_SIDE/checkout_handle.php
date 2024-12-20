@@ -8,6 +8,9 @@ if(!isset($_SESSION))
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
 // echo "Request method: " . $_SERVER['REQUEST_METHOD'];
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     if (!empty($_POST)) {
@@ -20,6 +23,7 @@ error_reporting(E_ALL);
 // } else {
 //     echo "Phương thức không phải POST.";
 // }
+
 if (isset($_POST['place_order'])) {
     // Kiểm tra giỏ hàng
     if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
@@ -42,7 +46,7 @@ if (isset($_POST['place_order'])) {
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $order_date = date('Y-m-d');
-    $order_status = 'Đang chờ';
+    $order_status = 'Đã xác nhận';
     $payment_status = 'Đang chờ';
 
 
@@ -93,7 +97,7 @@ if (isset($_POST['place_order'])) {
     // Lưu thông tin thanh toán vào bảng payment
     $query_insert_payment = "
         INSERT INTO payment (OrderID, PaymentMethod, PaymentDate)
-        VALUES ('$order_id', 'Tiền mặt', '$order_date')
+        VALUES ('$order_id', 'Chuyển khoản', '$order_date')
     ";
     if (!mysqli_query($conn, $query_insert_payment)) {
         $_SESSION['order_error'] = 'Không thể lưu thông tin thanh toán: ' . mysqli_error($conn);
@@ -123,7 +127,7 @@ if (isset($_POST['place_order'])) {
 
 
     $_SESSION['order_success'] = 'Đặt hàng thành công!';
-    header('Location: order_success.php');
+    header('Location:index.php');
     exit();
 }
 ?>

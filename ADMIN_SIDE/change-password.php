@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php'; // Tệp kết nối cơ sở dữ liệu
+include 'db_staff_connection.php'; // Tệp kết nối cơ sở dữ liệu
 
 // Kiểm tra xem người dùng đã đăng nhập hay chưa
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {

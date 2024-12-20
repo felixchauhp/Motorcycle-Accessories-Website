@@ -1,7 +1,22 @@
 <?php
 include 'cart_handle.php';
-?>
-<?php include 'checkout_handle.php'; 
+include 'checkout_handle.php'; 
+
+$stmt = $conn->prepare("SELECT * FROM customers WHERE CustomerID = ?");
+$stmt->bind_param("s", $_SESSION['customer_id']); // Bind the parameter as an string
+$stmt->execute();
+$result = $stmt->get_result(); // Get the result set
+$user = $result->fetch_assoc(); // Fetch the row as an associative array
+
+$customer_name = $user['Lname'] . ' ' . $user['Fname'];
+$phone = $user['Tel'];
+$email = $user['Email'];
+
+$stmt = $conn->prepare("SELECT Address FROM address_list WHERE CustomerID = ? AND `default` = 'yes'");
+$stmt->bind_param("s", $_SESSION['customer_id']); // Bind the parameter as an string
+$stmt->execute();
+$result = $stmt->get_result(); // Get the result set
+$address = $result->fetch_assoc()['Address'] ?? "No default address found"; // Fetch the address or provide a default value
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +44,11 @@ include 'cart_handle.php';
         <div class="checkout__container container grid">
           <div class="checkout__group">
             <h3 class="section__title">Thông tin cá nhân</h3>
-            <form id="checkoutForm" class="form grid" method="POST" action="checkout_handle.php">
-              <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" required/>
-              <input type="text" name="address" placeholder="Địa chỉ" class="form__input" required/>
-              <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" required/>
-              <input type="email" name="email" placeholder="Email" class="form__input" required/>
+            <form id="checkoutForm" class="form grid" method="POST" action="checkout_handle.php" onsubmit="return confirmOrder()" >
+              <input type="text" name="customer_name" placeholder="Họ và tên" class="form__input" value="<?php echo htmlspecialchars($customer_name); ?>" readonly/>
+              <input type="text" name="address" placeholder="Địa chỉ" class="form__input" value="<?php echo htmlspecialchars($address); ?>" readonly/>
+              <input type="text" name="phone" placeholder="Số điện thoại" class="form__input" value="<?php echo htmlspecialchars($phone); ?>" readonly/>
+              <input type="email" name="email" placeholder="Email" class="form__input" value="<?php echo htmlspecialchars($email); ?>" readonly/>
               <input type="hidden" name="payment_method" id="payment_method">
               <input type="hidden" name="cart" id="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
             </form> 
@@ -71,134 +86,56 @@ include 'cart_handle.php';
             </table>
             <h3 class="section__title" style="margin-top:25px; margin-left: 300px">Tổng số tiền: <span><?= number_format($_SESSION['total'] - ($_SESSION['discount'] ?? 0) , 0, ',', '.') ?> VNĐ</span></h3>
             <?php endif; ?>
-            <div class="payment__methods" >
-              <h3 class="checkout__title payment__title">Phương thức thanh toán</h3>
-              <div class="payment__option flex">
-                <input
-                  type="radio"
-                  name="radio"
-                  value="chuyen_khoan"
-                  id="l1"
-                  checked
-                  class="payment__input"
-
-                />
-                <label for="l1" class="payment__label"
-                  >Chuyển khoản</label
-                >
-              </div>
-              <div class="payment__option flex">
-                <input
-                  type="radio"
-                  name="radio"
-                  value="tien_mat"
-                  id="l2"
-                  class="payment__input"
-                />
-                <label for="l2" class="payment__label">Tiền mặt</label>
-              </div>
-            </div>
-            <button type="submit" form="checkoutForm" name="place_order" class="btn btn--md">Đặt hàng</button>
+            <button type="submit" id="confirmOrderBtn" form="checkoutForm" name="place_order" class="btn btn--md" >Đặt hàng</button>
           </div>
         </div>
       </section>
   </main>
 
   <!--=============== FOOTER ===============-->
-  <footer class="footer container">
-    <div class="footer__container grid">
-      <div class="footer__content">
-        <a href="index.html" class="footer__logo">
-          <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
-        </a>
-        <h4 class="footer__subtitle">Thông tin liên hệ</h4>
-        <p class="footer__description">
-          <span>Địa chỉ:</span> Công ty CP-TM-DV Xe Gắn Máy, 100 phường Đông Hòa, TP. Dĩ An, tỉnh Bình Dương, Việt Nam.
-        </p>
-        <p class="footer__description">
-          <span>Hotline:</span> +84 001 929 992
-        </p>
-        <p class="footer__description">
-          <span>Email:</span> contact@motorcycle.vn
-        </p>
-        <div class="footer__social">
-          <h4 class="footer__subtitle">MotorCycle đã có mặt trên:</h4>
-          <div class="footer__links flex">
-            <a href="#">
-              <img
-                src="./assets/img/icon-facebook.svg"
-                alt=""
-                class="footer__social-icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                src="./assets/img/icon-twitter.svg"
-                alt=""
-                class="footer__social-icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                src="./assets/img/icon-instagram.svg"
-                alt=""
-                class="footer__social-icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                src="./assets/img/icon-pinterest.svg"
-                alt=""
-                class="footer__social-icon"
-              />
-            </a>
-            <a href="#">
-              <img
-                src="./assets/img/icon-youtube.svg"
-                alt=""
-                class="footer__social-icon"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer__content">
-        <h3 class="footer__title">Thông tin chi tiết</h3>
-        <ul class="footer__links">
-          <li><a href="#" class="footer__link">Về chúng tôi</a></li>
-          <li><a href="#" class="footer__link">Chính sách giao hàng</a></li>
-          <li><a href="#" class="footer__link">Điều khoản bảo mật</a></li>
-          <li><a href="#" class="footer__link">Quy định cung cấp dịch vụ</a></li>
-        </ul>
-      </div>
-      <div class="footer__content">
-        <h3 class="footer__title">Tải khoản của tôi</h3>
-        <ul class="footer__links">
-          <li><a href="#" class="footer__link">Đăng nhập</a></li>
-          <li><a href="#" class="footer__link">Xem giỏ hàng</a></li>
-          <li><a href="#" class="footer__link">Danh sách sản phẩm yêu thích</a></li>
-          <li><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
-        </ul>
-      </div>
-      <div class="footer__content">
-        <h3 class="footer__title">Đối tác thanh toán</h3>
-        <img
-          src="./assets/img/payment-method.png"
-          alt=""
-          class="payment__img"
-        />
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="copyright">&copy; 2024. All right reserved</p>
-      <span class="designer">Website created by Group 4</span>
-    </div>
-  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-----------------------xử lí pop up đặt hàng------------------------------>
+  <!-- <script>
+    document.getElementById('confirmOrderBtn').addEventListener('click', function (event) {
+    event.preventDefault(); // Ngăn chặn hành vi mặc định của nút
 
+    Swal.fire({
+        title: 'Xác nhận đặt hàng',
+        text: 'Bạn có chắc chắn muốn đặt hàng không?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đồng ý',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Đặt hàng thành công!',
+                'Đơn hàng của bạn đã được gửi.',
+                'success'
+            ).then(() => {
+                // Gửi form bằng JavaScript
+                document.getElementById('checkoutForm').submit();
+                indow.location.href = 'order_success.php';
+            });
+        } else {
+            Swal.fire(
+                'Hủy đặt hàng',
+                'Bạn đã hủy đơn hàng.',
+                'info'
+            );
+        }
+    });
+});
+</script> -->
+<?php include 'footer.php'; ?>
   <!--=============== SWIPER JS ===============-->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!--=============== MAIN JS ===============-->
   <script src="assets/js/main.js"></script>
+
 </body>
 </html>

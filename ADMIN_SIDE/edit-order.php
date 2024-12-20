@@ -1,7 +1,8 @@
 <?php
 session_start();
+$_SESSION['current_table'] = 'orders';
 include 'checklogin.php';
-include 'db_connection.php';
+include 'db_staff_connection.php';
 
 if (isset($_GET['OrderID'])) {
     $order_id = urldecode($_GET['OrderID']);
@@ -103,6 +104,7 @@ if (isset($_GET['OrderID'])) {
 <?php include 'header.php'; ?>
 
 <main class="main">
+<?php if($_SESSION['UpdateData']): ?>
     <section class="wishlist section--lg container">
         <h2 style="text-align: center;">Chỉnh sửa đơn hàng</h2>
         <div class="order-detail-container">
@@ -190,6 +192,10 @@ if (isset($_GET['OrderID'])) {
             </div>
         </form>
     </section>
+<?php else: ?>
+    <h1 style="text-align: center;"> Bạn không có quyền thay đổi thông tin đơn hàng ở trang này </h1>
+    <h2 style="text-align: center;"> Mọi thông tin liên hệ quản lý để cấp quyền truy cập </h2>
+<?php endif; ?>
 </main>
 
 <script>
