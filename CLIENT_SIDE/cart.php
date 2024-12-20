@@ -6,6 +6,10 @@
     <?php include 'head.php'; ?>
 
   <body>
+  <div id="snow-container"></div>
+<script src="snow.js"></script>
+<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq2a126d8e3efac1df3644686aad71544687ff5251fc8a8c1812c388df1999baf7" defer></script>
+   <!--=============== HEADER ===============-->
     <!--=============== HEADER ===============-->
     <?php include 'header.php'; ?>
 
@@ -63,7 +67,7 @@
                 <td>
                 <a href="cart.php?action=remove&ProductID=<?= $id ?>" class="table__trash">
                         <i class="fi fi-rs-trash"></i>
-                      </a>
+                </a>
                 </td>
               </tr>
               <?php endforeach; ?>
