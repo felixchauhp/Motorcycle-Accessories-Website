@@ -50,6 +50,5 @@ Frontend: After processing, the backend sends a response (success or error) back
   1. Install XAMPP
   2. Place source code in the folder: C:\xampp\htdocs\project
   3. Start Apache and MySQL from the XAMPP Control Panel
-  4. Open web browser and enter: http://localhost/ADMIN_SIDE/login.php (for admin)
-                                 http://localhost/CLIENT_SIDE/login.php(for client)
-  
+  4. For admin, open web browser and enter: http://localhost/ADMIN_SIDE/login.php (for admin) with username: admin, pass: 12345678
+  5. For client, open web browser and enter: http://localhost/CLIENT_SIDE/login.php(for client) with username: phan_giang19, pass: JXxHAUJ8       
