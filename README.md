@@ -12,6 +12,8 @@ enhancing user experience and business efficiency.
 
 ## Architecture
 Frontend: 
+
+
 The customer-facing interface is designed to be user-friendly and intuitive, allowing users to:
 + Browse and search for products
 
