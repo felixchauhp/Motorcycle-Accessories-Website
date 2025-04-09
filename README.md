@@ -12,8 +12,7 @@ enhancing user experience and business efficiency.
 
 ## Architecture
 Frontend: 
--   The customer-facing interface is designed to be user-friendly and intuitive, allowing users to:
-
+The customer-facing interface is designed to be user-friendly and intuitive, allowing users to:
 + Browse and search for products
 
 + View detailed product information and pricing
@@ -22,8 +21,7 @@ Frontend:
 
 + Place orders and track order status in real time
 
--   The admin interface is tailored for store employees to manage the system efficiently. Features include:
-
+The admin interface is tailored for store employees to manage the system efficiently. Features include:
 + Adding, editing, and deleting products
 
 + Managing orders (confirming, updating status, canceling orders)
@@ -32,7 +30,7 @@ Frontend:
 
 + Viewing statistics on revenue, order volume, and top-selling products
 
-- The HTML forms send data to the server using HTTP methods such as POST, GET, or DELETE, depending on the specific action.
+The HTML forms send data to the server using HTTP methods such as POST, GET, or DELETE, depending on the specific action.
 
 Backend: PHP scripts or APIs receive requests from the frontend, process the business logic, validate data, and interact with the database accordingly—whether to retrieve, insert, update, or delete records.
 
