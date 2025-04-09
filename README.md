@@ -42,18 +42,14 @@ Frontend: After processing, the backend sends a response (success or error) back
 
 ## Prerequisites
 
-  1. [Node.js](https://nodejs.org/)
-  2. [npm](https://www.npmjs.com/)
-  3. [React]( https://reactjs.org/)
-  4. [PHP](https://www.php.net/downloads.php)
-  5. [SQl](https://learn.microsoft.com/en-us/ssms/download-sql-server-management-studio-ssms)
+  1. [Xampp](https://www.apachefriends.org/download.html)
+  2. [PHP](https://www.php.net/downloads.php)
+
 
 ## Instructions
-  1. Open your SQL client and run the database.sql script located in the database folder to create the database schema and tables
-  2. Open your terminal
-  3. Change directory to this repository: `cd \Order_Management_System\Order_Management_System-main\client\src`
-  4. Run ' npm install '
-  5. Open db_connection.php in folder server change server name, database name,... and  run ' npm start ' 
-  6. Navigate to client web: http://localhost:3000
-  7. Change directory to this repository: `cd \Order_Management_System\Order_Management_System-main\server`
-  8. Run ' php -S localhost:8000 '
+  1. Install XAMPP
+  2. Place source code in the folder: C:\xampp\htdocs\project
+  3. Start Apache and MySQL from the XAMPP Control Panel
+  4. Open web browser and enter: http://localhost/ADMIN_SIDE/login.php (for admin)
+                                 http://localhost/CLIENT_SIDE/login.php(for client)
+  
