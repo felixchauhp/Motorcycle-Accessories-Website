@@ -127,7 +127,7 @@ if (isset($_POST['place_order'])) {
 
 
     $_SESSION['order_success'] = 'Đặt hàng thành công!';
-    header('Location:index.php');
+    header('Location:accounts.php');
     exit();
 }
 ?>
